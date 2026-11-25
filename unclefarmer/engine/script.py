@@ -651,10 +651,12 @@ def _prep_dungeon(node: Node, rest: str, n: int):
         check, words = True, m.group(1).strip()
     cave = words.strip('"').strip()
     known = {k.lower(): k for k in dungeon.CAVES}
+    known.update({k.lower(): k for k in dungeon.WRAITH_CHOICES})
     if "," in cave:
         raise ScriptError(n, _("one cave only: a character goes into one cave a day"))
     if cave and cave.lower() not in known:
-        raise ScriptError(n, _("no such dungeon: {name} (there are: {all})", name=cave, all=", ".join(dungeon.CAVES)))
+        raise ScriptError(n, _("no such dungeon: {name} (there are: {all})", name=cave,
+                               all=", ".join(list(dungeon.CAVES) + [dungeon.WRAITH_CAVE])))
     node.opts.update(check=check, cave=known[cave.lower()] if cave else None)
 
 

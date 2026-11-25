@@ -693,3 +693,44 @@ def test_an_entrance_without_a_known_place_is_knocked_on_where_it_is_seen() -> N
     assert dungeon.knock(as_bot(g), {"name": "Spider cave", "map": 1502, "npc": "Spider cave", "at": [54, 4]})
     assert g.talked == ("Spider cave", (54, 4))
     assert not dungeon.knock(as_bot(g), {"name": "bottomless pit", "map": 1631, "npc": None, "at": None})
+
+
+def test_wraith_cave_config_script_and_floor_helpers() -> None:
+    assert dungeon.is_wraith("Wraith Cave")
+    assert dungeon.is_wraith("Wraith Cave Floor 10")
+    assert not dungeon.is_wraith("Scorpion Cave")
+    assert dungeon.wraith_floor("Wraith Cave Floor 6") == 6
+    assert dungeon.wraith_floor("Wraith Cave") is None
+    assert dungeon.wraith_level("Wraith Cave Floor 10") == 73
+    cfg = dungeon.config({"dungeon": {"cave": "Wraith Cave Floor 2"}})
+    assert cfg["cave"] == "Wraith Cave Floor 2"
+    assert 'dungeon "Wraith Cave Floor 2"' in dungeon.script(cfg)
+    from unclefarmer.engine.script import parse
+    main, _subs, _stop = parse('dungeon "Wraith Cave Floor 2"\ndungeon check "Wraith Cave"')
+    assert main[0].opts["cave"] == "Wraith Cave Floor 2"
+    assert main[1].opts["cave"] == "Wraith Cave" and main[1].opts["check"] is True
+
+
+def test_wraith_cave_chest_detection_and_opening() -> None:
+    class ChestGame(Game):
+        def __init__(self) -> None:
+            super().__init__()
+            self._ents = [
+                {"id": -10, "kind": "monster", "name": "Tusk Rat", "x": 20.0, "y": 20.0},
+                {"id": -17, "kind": "npc", "name": "Treasure chest belongs to asta", "x": 12.96, "y": 27.03},
+            ]
+            self.chosen: list[str] = []
+
+        def entities(self) -> list[dict[str, Any]]:
+            return self._ents
+
+        def choose(self, pattern: str, row: str | None = None) -> dict[str, Any] | None:
+            self.chosen.append(pattern)
+            return {"options": ["Open the treasure chest and return"]}
+
+    g = ChestGame()
+    chest = dungeon.wraith_chest(as_bot(g))
+    assert chest is not None and chest["name"] == "Treasure chest belongs to asta"
+    assert dungeon.open_wraith_chest(as_bot(g)) is True
+    assert g.talked == ("Treasure chest belongs to asta", (12.96, 27.03))
+    assert any("Open the treasure chest" in p for p in g.chosen)

@@ -36,7 +36,7 @@ class DungeonDialog(Dialog):
         self.game = game
         self.p = settings.load_profile(character)
         c = self.cfg = dungeon.config(self.p)
-        self.cave_keys = [dungeon.BEST] + list(dungeon.CAVES)
+        self.cave_keys = [dungeon.BEST] + list(dungeon.CAVES) + list(dungeon.WRAITH_CHOICES)
         self.done = dungeon.done_today(character)
         root = wx.BoxSizer(wx.VERTICAL)
         nb = tabs(self)
@@ -125,6 +125,13 @@ class DungeonDialog(Dialog):
     def cave_line(self, cave: str) -> str:
         if cave == dungeon.BEST:
             return _("The highest cave my level lets in")
+        if dungeon.is_wraith(cave):
+            lvl = dungeon.wraith_level(cave)
+            where = dungeon.entrance_text(dungeon.WRAITH_CAVE)
+            if cave == dungeon.WRAITH_CAVE:
+                return _("{cave} (highest unlocked floor) - level {n}+ - {where}",
+                         cave=cave, n=lvl, where=where)
+            return _("{cave} - level {n}+ - {where}", cave=cave, n=lvl, where=where)
         v = dungeon.CAVES[cave]
         return _("{cave} - level {n} - {where}", cave=_(cave), n=v["level"], where=dungeon.entrance_text(cave))
 

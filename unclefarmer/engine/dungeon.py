@@ -61,7 +61,7 @@ from ..clock import clock_for
 from ..link import AgentError
 from ..i18n import N_, _
 from . import beasts, chores, combat, keyslots, pets, town, xpcard
-from .bot import Bot, Stopped
+from .bot import Bot, Respawned, Stopped
 from .botparts.base import potion_kind
 
 CAVES: dict[str, dict[str, Any]] = {          # lowest level first
@@ -75,6 +75,26 @@ CAVES: dict[str, dict[str, Any]] = {          # lowest level first
 }
 CAVE_NAMES = (N_("Scorpion Cave"), N_("Spider cave"), N_("Bottomless pit"),
               N_("White Bone Cave"))     # CAVES' names, for translators
+
+WRAITH_CAVE = "Wraith Cave"
+WRAITH_FLOORS: dict[int, dict[str, int]] = {
+    1: {"map": 1801, "level": 21},
+    2: {"map": 1802, "level": 41},
+    3: {"map": 1802, "level": 49},
+    4: {"map": 1802, "level": 56},
+    5: {"map": 1802, "level": 60},
+    6: {"map": 1806, "level": 63},
+    7: {"map": 1807, "level": 66},
+    8: {"map": 1807, "level": 69},
+    9: {"map": 1807, "level": 71},
+    10: {"map": 1807, "level": 73},
+    11: {"map": 1811, "level": 75},
+}
+WRAITH_CHOICES: tuple[str, ...] = (WRAITH_CAVE,) + tuple(
+    f"{WRAITH_CAVE} Floor {n}" for n in WRAITH_FLOORS
+)
+WRAITH_MAPS: set[int] = {v["map"] for v in WRAITH_FLOORS.values()}
+WRAITH_MINUTES = 10.0     # safety cap per floor clear (actual clear ends on chest)
 ALREADY = r"already entered an experience dungeon today"    # the game's answer when the day's cave is used
 BEST = "best"             # the cave setting's default: the highest one the character's level lets in
 MINUTES = 15              # the game's timer inside
@@ -125,7 +145,7 @@ def config(p: dict[str, Any]) -> dict[str, Any]:
     old: object = cfg.pop("caves", None)   # before one cave a day: a ticked list, the first was the one
     if "cave" not in mine and jsonio.is_array(old):
         cfg["cave"] = next((str(c) for c in old if str(c) in CAVES), BEST)
-    if cfg["cave"] != BEST and cfg["cave"] not in CAVES:
+    if cfg["cave"] != BEST and cfg["cave"] not in CAVES and not is_wraith(cfg["cave"]):
         cfg["cave"] = BEST
     supplies: dict[str, dict[str, Any]] = {k: dict(v) for k, v in DEFAULTS["supplies"].items()}
     chosen: dict[str, Any] = cfg.get("supplies") or {}
@@ -175,7 +195,13 @@ def script(cfg: dict[str, Any]) -> str:
     another copy of it) happens to point."""
     from .plan import end_line
     cave = cfg.get("cave")
-    return end_line(cfg.get("end")) + "\ndungeon" + (" " + cave if cave in CAVES else "") + "\n"
+    if is_wraith(cave):
+        arg = f' "{cave}"'
+    elif cave in CAVES:
+        arg = " " + cave
+    else:
+        arg = ""
+    return end_line(cfg.get("end")) + "\ndungeon" + arg + "\n"
 
 
 def supply_item(b: Bot, kind: str, cfg: dict[str, Any]) -> str | None:
@@ -486,6 +512,11 @@ def game_report(b: Bot, seen: int | None) -> str | None:
 def run(b: Bot, cfg: dict[str, Any], check_only: bool = False, cave: str | None = None) -> list[str]:
     """Today's cave (the one a script names, else the window's), supplies first, unless this
     character has been in one today. [what happened]."""
+    chosen = cave if (cave in CAVES or is_wraith(cave)) else cfg.get("cave")
+    if is_wraith(chosen):
+        return run_wraith(b, cfg, check_only, str(chosen))
+    if b.map_id() in WRAITH_MAPS:
+        return [hunt_wraith(b, cfg, WRAITH_CAVE)]
     if cave in CAVES:
         cfg = dict(cfg, cave=cave)
     inside = cave_of(b.map_id())
@@ -582,4 +613,177 @@ def entrance_text(cave: str) -> str:
         return _("entrance unknown")
     at = e.get("at")
     return "%s%s" % (atlas.label(e["map"]), (" (%d,%d)" % tuple(at)) if at else "")
+
+
+# ------------------------------------------------------------------------------------- Wraith Cave
+def is_wraith(cave: object) -> bool:
+    return isinstance(cave, str) and (cave == WRAITH_CAVE or cave in WRAITH_CHOICES)
+
+
+def wraith_floor(cave: str) -> int | None:
+    m = re.match(r"^Wraith Cave Floor (\d+)$", cave)
+    if m:
+        n = int(m.group(1))
+        return n if n in WRAITH_FLOORS else None
+    return None
+
+
+def wraith_level(cave: str) -> int:
+    n = wraith_floor(cave)
+    return WRAITH_FLOORS[n]["level"] if n else WRAITH_FLOORS[1]["level"]
+
+
+def wraith_chest(b: Bot) -> dict[str, Any] | None:
+    """The end-of-floor treasure chest NPC once the floor's Boss is defeated."""
+    for e in b.entities():
+        if e.get("kind") == "npc" and "treasure chest" in str(e.get("name") or "").lower():
+            return e
+    return None
+
+
+def open_wraith_chest(b: Bot) -> bool:
+    """Walk to the Wraith Cave treasure chest and open it to collect rewards and return."""
+    chest = wraith_chest(b)
+    if not chest:
+        return False
+    b.log(_("opening {chest}", chest=chest["name"]), speak=True)
+    if not b.talk(chest["name"], (float(chest["x"]), float(chest["y"]))):
+        return False
+    b.wait_dialog(3.0)
+    if b.choose(r"Open the treasure chest") is not None:
+        b.sleep(SETTLE)
+        return True
+    b.close_dialogs()
+    return False
+
+
+def leave_wraith(b: Bot) -> None:
+    """Exit a Wraith Cave floor via the Action menu ('quit the dungeon')."""
+    b.close_dialogs()
+    b.key("lctrl+enter")
+    b.sleep(0.7)
+    if b.choose(r"quit the dungeon|leave") is not None:
+        b.sleep(SETTLE)
+        return
+    b.leave_instance()
+
+
+def _pick_wraith_row(b: Bot, level: int) -> str | None:
+    """From The Wraith Cave's open menu, choose the highest unlocked floor (preferring uncompleted)."""
+    rows = ((b.dialog().get("top") or {}).get("rows") or [])
+    candidates: list[tuple[int, int, str]] = []
+    for row in rows:
+        for cell in row:
+            text = " ".join(str(x) for x in (cell.get("options") or [])).strip()
+            m = re.match(r"^Floor\s+(\d+)\b", text)
+            if not m:
+                continue
+            fl = int(m.group(1))
+            req_m = re.search(r"Limited to level\s+(\d+)", text, re.I)
+            req = int(req_m.group(1)) if req_m else WRAITH_FLOORS.get(fl, {}).get("level", 21)
+            if level and level < req:
+                continue
+            uncompleted = 1 if "completed" not in text.lower() else 0
+            candidates.append((uncompleted, fl, rf"Floor\s+{fl}\b"))
+    if not candidates:
+        return None
+    candidates.sort(reverse=True)
+    return candidates[0][2]
+
+
+def enter_wraith(b: Bot, cfg: dict[str, Any], cave: str) -> int | None:
+    """Travel to The Wraith Cave (1702, 35,75), prepare, and enter the chosen (or best) floor."""
+    entry = entrance(WRAITH_CAVE)
+    if entry is None:
+        raise Stopped(_("I don't know where {cave} is entered", cave=WRAITH_CAVE))
+    b.go_dungeon(entry)
+    make_ready(b, WRAITH_CAVE, cfg)
+    entry = entrance(WRAITH_CAVE) or entry
+    fl = wraith_floor(cave)
+    level = level_of(b)
+    for n in range(TRIES):
+        if b.map_id() in WRAITH_MAPS:
+            return b.map_id()
+        if not knock(b, entry):
+            b.sleep(RETRY_WAIT)
+            continue
+        b.wait_dialog(3.0)
+        pattern = rf"Floor\s+{fl}\b" if fl else _pick_wraith_row(b, level)
+        if not pattern or b.choose(pattern) is None:
+            b.close_dialogs()
+            b.log(_("{cave}: floor not available for level {n}", cave=cave, n=level), speak=True)
+            return None
+        mid = b.map_id()
+        landed(b, mid)
+        if b.map_id() in WRAITH_MAPS:
+            return b.map_id()
+        b.close_dialogs()
+        b.sleep(RETRY_WAIT)
+    return b.map_id() if b.map_id() in WRAITH_MAPS else None
+
+
+def hunt_wraith(b: Bot, cfg: dict[str, Any], cave: str) -> str:
+    """Clear all monsters and the end Boss on a Wraith Cave floor, then open the treasure chest."""
+    mid = b.map_id()
+    began, kills = b.clock.time(), b.kills
+    chest_opened = False
+
+    def done() -> bool:
+        return b.map_id() != mid or wraith_chest(b) is not None or b.clock.time() - began >= WRAITH_MINUTES * 60
+
+    was = b.move_shots
+    b.move_shots = bool(cfg.get("move_shots", True))
+    try:
+        b.farm(mid, patrol=cfg["patrol"], until=done, instance=True, pack=int(cfg["pack"]), chase=int(cfg["chase"]))
+    except Respawned:
+        made = b.kills - kills
+        line = _("{cave}: died inside after {n} kills", cave=cave, n=made)
+        b.log(line, speak=True)
+        return line
+    finally:
+        b.move_shots = was
+
+    if b.map_id() == mid and wraith_chest(b) is not None:
+        chest_opened = open_wraith_chest(b)
+    if b.map_id() == mid:
+        leave_wraith(b)
+
+    made = b.kills - kills
+    minutes = max(1.0, (b.clock.time() - began) / 60.0)
+    status = _("chest opened") if chest_opened else _("finished")
+    line = _("{cave}: {n} kills in {m} minutes ({status})", cave=cave, n=made,
+             m=int(round(minutes)), status=status)
+    b.log(line, speak=True)
+    return line
+
+
+def run_wraith(b: Bot, cfg: dict[str, Any], check_only: bool, cave: str) -> list[str]:
+    """Run Wraith Cave (supports multiple entries a day; rewards & count on first clear)."""
+    if b.map_id() in WRAITH_MAPS:
+        if check_only:
+            return [_("already inside {cave}", cave=cave)]
+        was = getattr(b, "pets_for_run", None)
+        try:
+            choose_pet(b, cfg)
+            return [hunt_wraith(b, cfg, cave)]
+        finally:
+            b.pets_for_run = was
+    level = level_of(b)
+    req = wraith_level(cave)
+    if level and level < req:
+        b.log(_("{cave} needs level {n}", cave=cave, n=req), speak=True)
+        return []
+    if too_close_to_level(b, cave):
+        return []
+    was = getattr(b, "pets_for_run", None)
+    try:
+        choose_pet(b, cfg)
+        get_supplies(b, cfg, check_only)
+        if check_only:
+            return [_("would go to: {cave}", cave=cave)]
+        if enter_wraith(b, cfg, cave) is None:
+            return [_("{cave}: couldn't enter", cave=cave)]
+        return [hunt_wraith(b, cfg, cave)]
+    finally:
+        b.pets_for_run = was
 
