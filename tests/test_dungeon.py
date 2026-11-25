@@ -198,7 +198,7 @@ def test_settings_fill_in_and_keep_the_players_supplies() -> None:
 
 def test_the_old_ticked_list_becomes_its_first_cave_and_nonsense_the_best_one() -> None:
     assert dungeon.config({"dungeon": {"caves": ["Spider cave", "Scorpion Cave"]}})["cave"] == "Spider cave"
-    assert "caves" not in dungeon.config({"dungeon": {"cave": "Spider cave"}})
+    assert dungeon.config({"dungeon": {"cave": "Spider cave"}})["caves"] == ["Spider cave"]
     assert dungeon.config({"dungeon": {"caves": []}})["cave"] == dungeon.BEST
     assert dungeon.config({"dungeon": {"cave": "Atlantis"}})["cave"] == dungeon.BEST
     assert dungeon.config({})["cave"] == dungeon.BEST
