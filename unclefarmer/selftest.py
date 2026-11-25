@@ -1,4 +1,4 @@
-"""A check of a built (or source) copy without opening a window: UncleFarmer.exe --self-test <file>.
+"""A check of a built (or source) copy without opening a window: MistWorldFarmer.exe --self-test <file>.
 
 CI runs it on the freshly built folder before the build is uploaded: Nuitka finishing without an
 error doesn't prove the exe starts, finds its libraries or reads its own data. Each check is one

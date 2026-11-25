@@ -11,7 +11,8 @@ import wx
 from ... import __version__, applog, settings, updater
 from ...i18n import _
 from .. import agentfix
-from ..common import ask, ask_ok, error, info, save_file
+from ..changelog import ChangelogDialog
+from ..common import ask_ok, error, info, save_file
 from .base import FrameParts
 
 
@@ -25,11 +26,11 @@ class UpdatesMixin(FrameParts):
         threading.Thread(target=updater.clean, kwargs={"wait": 60}, daemon=True).start()
         if result is not None and result.get("ok"):
             applog.bootup.note("the update to %s finished" % mine)
-            info(self, _("Uncle Farmer is updated to {v}.", v=mine))
+            info(self, _("Mist World Farmer is updated to {v}.", v=mine))
         elif result is not None:
             applog.bootup.note("the update to %s didn't finish: %s" % (result.get("version"), result.get("error")),
                                "WARNING")
-            error(self, _("The update to {v} didn't finish: {why}\nUncle Farmer {cur} still works. The details are "
+            error(self, _("The update to {v} didn't finish: {why}\nMist World Farmer {cur} still works. The details are "
                           "in {log}.", v=result.get("version"), why=result.get("error"), cur=mine,
                           log=updater.LOG))
         ch = updater.channel(self.s.get("update_channel"))
@@ -79,36 +80,39 @@ class UpdatesMixin(FrameParts):
         if err is not None:
             error(self, _("Couldn't reach GitHub to look for updates: {why}", why=err))
         elif rel is None and not updater.REPO:
-            info(self, _("Uncle Farmer {v} doesn't look for updates online. New versions come as a zip: "
+            info(self, _("Mist World Farmer {v} doesn't look for updates online. New versions come as a zip: "
                          "unpack it over this folder.", v=__version__))
         elif rel is None and dev:
-            info(self, _("No development build of Uncle Farmer can be seen on GitHub yet."))
+            info(self, _("No development build of Mist World Farmer can be seen on GitHub yet."))
         elif rel is None:
-            info(self, _("No release of Uncle Farmer can be seen on GitHub yet."))
+            info(self, _("No release of Mist World Farmer can be seen on GitHub yet."))
         elif not updater.is_newer(rel["version"], mine) and updater.is_dev(mine) and not dev:
             # switched back to master: a stable release is offered once one is newer than this build
             info(self, _("You have the development build {v}. The newest stable release, {stable}, is older; "
                          "the next stable release newer than your build will be offered.", v=mine,
                          stable=rel["version"]))
         elif not updater.is_newer(rel["version"], mine):
-            info(self, _("Uncle Farmer {v} is the newest version.", v=mine))
+            info(self, _("Mist World Farmer {v} is the newest version.", v=mine))
         else:
             self.offer_update(rel, False)
 
+    def show_changelog(self) -> None:
+        with ChangelogDialog(self) as dialog:
+            dialog.ShowModal()
+
     def offer_update(self, rel: updater.Release, at_start: bool) -> None:
+        if self.destroyed or self.updating:
+            return
+        if not self.IsEnabled():
+            # A native modal (e.g. the startup agent question) runs its own event loop.
+            # Accepting an update over it can leave MainLoop stuck after the frame is destroyed.
+            wx.CallLater(250, self.offer_update, rel, at_start)
+            return
+        with ChangelogDialog(self, rel) as dialog:
+            accepted = dialog.ShowModal() == wx.ID_OK
         if self.destroyed:
             return
-        notes = rel.get("notes") or _("(no notes)")
-        if len(notes) > 1500:
-            notes = notes[:1500].rstrip() + " ..."
-        if updater.is_dev(rel["version"]):
-            notes = _("This is a development build from the dev branch: the newest changes, not yet a stable "
-                      "release, and it can break.") + "\n" + notes
-        if not ask(self, _("Uncle Farmer {v} is out (you have {cur}).\n\nWhat's new:\n{notes}\n\n"
-                           "Update now? Uncle Farmer closes, updates and starts again; your characters, plans, "
-                           "scripts and settings stay as they are.", v=rel["version"],
-                           cur=updater.installed_version(), notes=notes),
-                   _("Update")):
+        if not accepted:
             if at_start:                      # not asked again at start for this one; the Help menu still offers it
                 self.s["skip_version"] = rel["version"]
                 save_file(self, settings.save_app, self.s)
@@ -127,7 +131,7 @@ class UpdatesMixin(FrameParts):
         games = agentfix.running_pids()
         if games:
             # An open game holds the agent file, which the update replaces: the games close first.
-            if not ask_ok(self, _("The update reinstalls Uncle Farmer's agent, which the open games have loaded, "
+            if not ask_ok(self, _("The update reinstalls Mist World Farmer's agent, which the open games have loaded, "
                                   "so every Mist World window must close first.\n\nPress OK to close them ({n} "
                                   "open) and update. Start Mist World again after the update.", n=len(games)),
                           _("Update")):
@@ -149,7 +153,7 @@ class UpdatesMixin(FrameParts):
 
     def _download_update(self, rel: updater.Release) -> None:
         self.updating = True
-        dlg = wx.ProgressDialog(_("Update"), _("Downloading Uncle Farmer {v}", v=rel["version"]), 100, self,
+        dlg = wx.ProgressDialog(_("Update"), _("Downloading Mist World Farmer {v}", v=rel["version"]), 100, self,
                                 wx.PD_APP_MODAL | wx.PD_CAN_ABORT | wx.PD_AUTO_HIDE | wx.PD_ELAPSED_TIME)
         state = {"cancel": False}       # the worker asks this; the window's thread sets it
 
@@ -231,7 +235,7 @@ class UpdatesMixin(FrameParts):
                 return
             games = agentfix.running_pids()
             if games:
-                if not ask_ok(self, _("The update reinstalls Uncle Farmer's agent, which the open games have loaded, "
+                if not ask_ok(self, _("The update reinstalls Mist World Farmer's agent, which the open games have loaded, "
                                       "so every Mist World window must close first.\n\nPress OK to close them ({n} "
                                       "open) and update. Start Mist World again after the update.", n=len(games)), _("Update")):
                     return

@@ -3,9 +3,9 @@
 ## NVDA Controller Client
 
 `nvdaControllerClient64.dll` is the NVDA Controller Client by NV Access Limited, part of NVDA
-(https://www.nvaccess.org/, source at https://github.com/nvaccess/nvda). It lets Uncle Farmer speak
+(https://www.nvaccess.org/, source at https://github.com/nvaccess/nvda). It lets Mist World Farmer speak
 through NVDA when NVDA is running. It is distributed under the GNU Lesser General Public License,
-version 2.1. Uncle Farmer loads it at run time and does not modify it; you may replace it with any
+version 2.1. Mist World Farmer loads it at run time and does not modify it; you may replace it with any
 compatible build of the same library.
 
 ## wxPython

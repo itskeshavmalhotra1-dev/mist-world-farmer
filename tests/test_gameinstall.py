@@ -1,6 +1,6 @@
 # pyright: reportPrivateUsage=false
 # White-box tests: they check this module's internal helpers (leading-underscore names) directly.
-"""gameinstall.py: finding Mist World and adding/removing Uncle Farmer's agent line.
+"""gameinstall.py: finding Mist World and adding/removing Mist World Farmer's agent line.
 
 Covers _ours, agent_line, is_game_folder, _read_lines (missing/CRLF/LF/empty/undecodable), status
 (nogame/missing/installed/other), install (backup, dedupe, newline, agent dir), uninstall, and
@@ -446,6 +446,18 @@ def test_close_games_reports_one_that_wont_end(monkeypatch: pytest.MonkeyPatch) 
     games, clock = closing(monkeypatch, {})
     monkeypatch.setattr(gameinstall, "_end", stand_in(gameinstall._end, games.ended.append))   # access denied
     assert gameinstall.close_games([7], clock=clock, alive=games.alive) == [7]
+
+
+def test_force_close_ends_only_the_requested_game_without_asking_its_agent(monkeypatch: pytest.MonkeyPatch) -> None:
+    games, clock = closing(monkeypatch, {1: None, 2: None})
+
+    def fail_if_asked(_pid: int) -> bool:
+        pytest.fail("force close must not ask the game agent")
+
+    monkeypatch.setattr(gameinstall, "_ask_to_close", fail_if_asked)
+    assert gameinstall.close_games([2], clock=clock, alive=games.alive, force=True) == []
+    assert games.ended == [2] and games.alive(1)
+    assert clock.time() < 1002.0
 
 
 # ------------------------------------------------------------------------------- asking a game's agent

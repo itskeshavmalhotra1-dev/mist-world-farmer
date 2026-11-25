@@ -81,7 +81,7 @@ the caster to a city square; an Elf's *Elven Teleportation* goes to The Land of 
   try, with nothing hitting, went through. No packet says the channel broke. You can only tell
   because the cast-end line and the new map don't come. So: teleport only with nothing attacking,
   deal with attackers first, and count a teleport as done only when the new map arrives.
-- Uncle Farmer travels with them (travel.SPELLS, engine/teleskill.py): from outside a safe zone,
+- Mist World Farmer travels with them (travel.SPELLS, engine/teleskill.py): from outside a safe zone,
   with nothing attacking and off the beast, it presses the key, chooses the place, and counts it
   done only when the new map arrives. Each character's list is learned from the menu.
 - *Teleportation Portal* / *Elven Teleportation Portal* open a portal to the same places for

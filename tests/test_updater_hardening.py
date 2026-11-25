@@ -318,7 +318,7 @@ def copier(app: Path, monkeypatch: pytest.MonkeyPatch) -> tuple[Path, list[list[
     flat(app, "old")
     (app / updater.EXE).write_bytes(executable)
     updater.write_build(str(app), "0.4.0", "master")
-    src = flat(app / "update/new/Uncle Farmer")
+    src = flat(app / "update/new/Mist World Farmer")
     monkeypatch.setattr(updater.sys, "executable", str(src / updater.EXE))
     monkeypatch.setattr(updater, "frozen", returning(True))
     monkeypatch.setattr(updater, "_wait_for_exit", returning(None))
@@ -736,14 +736,14 @@ def release_with_bootstrap(tmp_path: Path) -> Path:
 
 
 def test_names_are_the_app_and_the_bootstrap() -> None:
-    assert updater.EXE == updater.recovery.PAYLOAD == "UncleFarmer.exe"
+    assert updater.EXE == updater.recovery.PAYLOAD == "MistWorldFarmer.exe"
     assert updater.BOOTSTRAP == updater.recovery.BOOTSTRAP == "bootstrap.exe"
     assert updater.BOOTSTRAP in updater.NEVER and updater.EXE.casefold() not in updater.NEVER
     assert updater.BOOTSTRAP in updater.recovery.PROTECTED and "unclefarmer.exe" not in updater.recovery.PROTECTED
 
 
 def test_a_copy_without_a_bootstrap_gets_the_new_app_and_the_bootstrap(app: Path, tmp_path: Path) -> None:
-    """A copy from before bootstrap.exe (1.1.0 and older): its Nuitka app is UncleFarmer.exe, and stays so."""
+    """A copy from before bootstrap.exe (1.1.0 and older): its Nuitka app is MistWorldFarmer.exe, and stays so."""
     flat(app, "old")
     (app / updater.BOOTSTRAP).unlink()
     src = release_with_bootstrap(tmp_path)
@@ -754,7 +754,7 @@ def test_a_copy_without_a_bootstrap_gets_the_new_app_and_the_bootstrap(app: Path
 
 
 def test_the_front_door_layout_gets_its_app_back_as_unclefarmer_exe(app: Path, tmp_path: Path) -> None:
-    """A dev copy of 2026-11-14: UncleFarmer.exe was the front door, UncleFarmerApp.exe the app."""
+    """A dev copy of 2026-11-14: MistWorldFarmer.exe was the front door, UncleFarmerApp.exe the app."""
     flat(app, "old")
     (app / updater.BOOTSTRAP).unlink()
     (app / updater.EXE).write_bytes(OLD_FRONT_DOOR)

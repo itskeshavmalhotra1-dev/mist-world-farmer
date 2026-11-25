@@ -400,7 +400,7 @@ def pid_of(b: Bot) -> int:
 
 
 def load_list(server: str) -> tuple[list[ListRow], dict[str, Any]]:
-    """The market list for that server (rows, its header), else the one Uncle Farmer ships."""
+    """The market list for that server (rows, its header), else the one Mist World Farmer ships."""
     for path in (list_path(server), SHIPPED_LIST):
         data: object = json.read(path, None)
         if json.is_object(data) and json.is_array(data.get("rows")):

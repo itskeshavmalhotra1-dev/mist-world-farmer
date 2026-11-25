@@ -1,16 +1,16 @@
-# Uncle Farmer User Guide
+# Mist World Farmer User Guide
 
-Welcome to Uncle Farmer!
+Welcome to Mist World Farmer!
 
-Uncle Farmer is a farming bot for Mist World. It helps your character travel to farming areas, fight monsters, manage supplies, and take care of routine tasks while you focus on something else.
+Mist World Farmer is a farming bot for Mist World. It helps your character travel to farming areas, fight monsters, manage supplies, and take care of routine tasks while you focus on something else.
 
-Uncle Farmer uses NVDA as the game's default speech system. Important events and information are spoken through NVDA, and the program is designed to work with a screen reader.
+Mist World Farmer uses NVDA as the game's default speech system. Important events and information are spoken through NVDA, and the program is designed to work with a screen reader.
 
 
 ## Table of Contents
 
-- [What Uncle Farmer Does](#what-uncle-farmer-does)
-- [Installing Uncle Farmer](#installing-uncle-farmer)
+- [What Mist World Farmer Does](#what-uncle-farmer-does)
+- [Installing Mist World Farmer](#installing-uncle-farmer)
 - [The Main Window](#the-main-window)
 - [Plans](#plans)
 - [The Farming Day](#the-farming-day)
@@ -36,9 +36,9 @@ Uncle Farmer uses NVDA as the game's default speech system. Important events and
 - [Things to Know](#things-to-know)
 
 
-## What Uncle Farmer Does
+## What Mist World Farmer Does
 
-Uncle Farmer can:
+Mist World Farmer can:
 
 - Travel to a farming map and fight monsters.
 - Use potions when your character's HP gets low.
@@ -48,45 +48,45 @@ Uncle Farmer can:
 
 It does not require additional drivers or a virtual machine.
 
-## Installing Uncle Farmer
+## Installing Mist World Farmer
 
 Follow these steps to get started:
 
 1. Extract the downloaded folder wherever you like, such as your Documents folder. Keep all the files and folders together.
-2. Run `UncleFarmer.exe`. The first time you start it, Uncle Farmer offers to open Settings.
-   (`bootstrap.exe` beside it installs updates and starts Uncle Farmer again afterwards; you don't need to start it yourself.)
+2. Run `MistWorldFarmer.exe`. The first time you start it, Mist World Farmer offers to open Settings.
+   (`bootstrap.exe` beside it installs updates and starts Mist World Farmer again afterwards; you don't need to start it yourself.)
 3. Open the **Game** tab in Settings. Select your Mist World folder (the one containing `mw.exe`), or start the game first and press **Find the running game**.
 4. Press **Install**.
 5. Restart Mist World.
 
-That's it! Uncle Farmer is ready to use.
+That's it! Mist World Farmer is ready to use.
 
 ### About the game agent
 
-Uncle Farmer installs an agent by adding one line to the game's `mw.exe.vmoptions` file. Before changing the file, it saves a backup named:
+Mist World Farmer installs an agent by adding one line to the game's `mw.exe.vmoptions` file. Before changing the file, it saves a backup named:
 
 `mw.exe.vmoptions.bak-unclefarmer`
 
 To remove the agent, use **Remove** in the same place in Settings. This removes the added line.
 
-If you move the Uncle Farmer folder to another location, install the agent again so the game can find it.
+If you move the Mist World Farmer folder to another location, install the agent again so the game can find it.
 
 ### When the agent needs to be installed again
 
-Sometimes the agent needs to be reinstalled. Uncle Farmer checks for this when it starts and explains why it needs attention.
+Sometimes the agent needs to be reinstalled. Mist World Farmer checks for this when it starts and explains why it needs attention.
 
 For example:
 
 - Another tool removed the agent's entry from the game's settings.
-- The game is loading an agent from another Uncle Farmer installation, such as an older copy.
+- The game is loading an agent from another Mist World Farmer installation, such as an older copy.
 - The game was already open and started without the current version of the agent.
 
-When this happens, Uncle Farmer offers to reinstall it.
+When this happens, Mist World Farmer offers to reinstall it.
 
 - Press **OK** to close every open Mist World window and reinstall the agent. After that, start the game again. The game only loads the agent when it starts.
 - Press **Cancel** to leave everything as it is.
 
-If you press **Install** in Settings while a game is open, Uncle Farmer offers the same process.
+If you press **Install** in Settings while a game is open, Mist World Farmer offers the same process.
 
 ## The Main Window
 
@@ -111,7 +111,7 @@ This is where you control your farming runs. It shows:
 
 Each game in the Games list has its own menu. Select the game and press the **Applications** key or **Shift+F10**, or right-click it. The menu has three submenus:
 
-- **Tools:** Gem Maker, Gem Breaker, Equipment Enhancer, Daily chores, Gathering, Dungeons, Sell the collection now, Sell shards now, Clean the bag now, Store items now, Restock now, and Update shard prices.
+- **Tools:** Gem Maker, Gem Breaker, Potion Maker, Equipment Enhancer, Daily chores, Gathering, Dungeons, Sell the collection now, Sell shards now, Clean the bag now, Store items now, Restock now, and Update shard prices.
 - **Character:** Settings, Bag and supplies, Scan now, Another character, Export character settings, and Import character settings. Fighting, pets, equipment choices and other character preferences stay inside their existing settings windows.
 - **Run:** Start, Stop, Pause or go on, Stop every bot, Walk to a dungeon or map, Schedules, Results, and Speak the results.
 
@@ -146,7 +146,7 @@ Entries that can't be used right now are greyed out. For example, Start is greye
 
 The **Help** menu provides two useful options:
 
-- **Quick guide (F1):** Explains how to use Uncle Farmer step by step.
+- **Quick guide (F1):** Explains how to use Mist World Farmer step by step.
 - **Keyboard shortcuts:** Lists the available keyboard commands.
 
 ### Starting and stopping the bot
@@ -161,13 +161,13 @@ To continue the run, press **F6** again or use the same button, now labeled **Go
 
 ### Understanding the kill count
 
-Uncle Farmer uses the game's own kill count.
+Mist World Farmer uses the game's own kill count.
 
 A monster counts as a kill if one of your hits contributed to its death. This includes monsters killed by your area skills and monsters that another player finishes after you have hit them.
 
 ### Hourly farming report
 
-While farming, Uncle Farmer reports once an hour how it spent its time.
+While farming, Mist World Farmer reports once an hour how it spent its time.
 
 The report breaks the time down into activities such as:
 
@@ -182,7 +182,7 @@ This can help you understand why a farming spot is producing fewer kills than ex
 
 ### Logs and troubleshooting files
 
-Uncle Farmer saves its activity logs in the program's `logs` folder. It creates one log file per day.
+Mist World Farmer saves its activity logs in the program's `logs` folder. It creates one log file per day.
 
 If the program crashes, its error details are saved in `errors.log` in the same folder.
 
@@ -190,18 +190,18 @@ You can control how much information is written to the log files and how large t
 
 The Log tab always displays the current run's messages, regardless of your file logging settings.
 
-Uncle Farmer also keeps two additional files to help diagnose startup and shutdown problems:
+Mist World Farmer also keeps two additional files to help diagnose startup and shutdown problems:
 
 - `bootup.log` records each startup. It shows the settings, language, window, hotkeys, update check, and agent startup steps. Each step is marked as started and then done or failed, with an error when something goes wrong. The final line says whether startup completed successfully or which step failed.
 - `teardown.log` records each shutdown. It tracks the bot shutdown process, message and chat readers, hotkeys, and timer. If a bot does not stop within five seconds, that is recorded too.
 
-These files can help identify why Uncle Farmer refuses to open or gets stuck while closing.
+These files can help identify why Mist World Farmer refuses to open or gets stuck while closing.
 
 The startup and shutdown logs are always written, regardless of the Logging settings. Like `errors.log`, they follow the same log rotation rules.
 
 ## Plans
 
-A plan tells Uncle Farmer where to farm, when to stop, and where to go when the run ends. These three parts each have their own tab.
+A plan tells Mist World Farmer where to farm, when to stop, and where to go when the run ends. These three parts each have their own tab.
 
 ### Where to farm
 
@@ -209,9 +209,17 @@ Choose one or more farming spots. Each spot defines the map, movement style, and
 
 Press **Add** to add a spot. To change a spot, select it and press **Enter**, or open its menu (**Applications** key, **Shift+F10**, or right-click) for **Edit**, **Move up**, **Move down**, and **Remove**. **Delete** also removes it.
 
-With one spot, Uncle Farmer stays there until the plan stops.
+With one spot, Mist World Farmer stays there until the plan stops.
 
 With several spots, it can either go around them in order repeatedly or visit each one once. Each spot has its own duration, which tells the bot how long to stay before moving to the next one.
+
+**Sharing the day's drop time between spots**
+
+A spot's time limit counts the minutes of the clock from when the spot began, so a restart starts it again from nothing. To split the day between two maps, for example three hours on Underwater World and the rest on Margit Rainforest, tick **A share of the day's drop time (kept across restarts)** on the first spot's **Farming** tab and set **Minutes of drop time on this spot** to 180.
+
+The game gives every character 7 hours of drop time a day, and the share is counted on that clock: the first spot farms until the day's drop time left is down to 4 hours, and the next spot gets the rest. If the bot restarts after two hours, the first spot only farms its last hour, and a run started when the share is already used up goes straight to the next spot, saying "not farming ... is already true". With several shares they follow each other in order. A plan with shares goes through its spots once, in order, whatever **With more than one spot** says: going round again would find every share used up.
+
+With a single spot, nothing changes.
 
 **Movement**
 
@@ -223,7 +231,7 @@ When following any patrol loop, the bot only goes after monsters that are within
 
 ### When to stop
 
-You can set conditions that tell Uncle Farmer when to end a farming run. These include:
+You can set conditions that tell Mist World Farmer when to end a farming run. These include:
 
 - A time limit.
 - A specific clock time.
@@ -243,7 +251,7 @@ You can configure these character-related conditions in the character settings. 
 
 ### Where to end
 
-Choose where Uncle Farmer should take your character after the run ends. The available choices include:
+Choose where Mist World Farmer should take your character after the run ends. The available choices include:
 
 - **Where the run started:** This is the default. If monsters spawn at the starting location, the bot chooses the nearest map without monsters instead.
 - **A place you choose:** You can select a specific destination, choose **Where I stand now**, or choose a city square.
@@ -255,7 +263,7 @@ Every completed run follows the selected ending destination.
 
 ### Plans from older versions
 
-Plans created with older versions of Uncle Farmer are converted automatically when opened in the new plan format.
+Plans created with older versions of Mist World Farmer are converted automatically when opened in the new plan format.
 
 For older plans, the duration of a single farming step becomes the plan's time limit. The plan is also set to return to the location where the run started.
 
@@ -263,19 +271,49 @@ For older plans, the duration of a single farming step becomes the plan's time l
 
 Mist World's drop time resets at **00:00 GMT**, which is **05:00 in Pakistan**.
 
-If you keep farming after the reset, you start using the next day's drop time. To prevent this, Uncle Farmer has a daily stopping time based on your computer's clock.
+If you keep farming after the reset, you start using the next day's drop time. To prevent this, Mist World Farmer has a daily stopping time based on your computer's clock.
 
 Every farming run stops at that time, regardless of the plan's settings or what the bot is currently doing. It then takes your character to the destination selected in the plan.
 
-Uncle Farmer will not start another farming run between the daily stopping time and the game's drop-time reset.
+Mist World Farmer will not start another farming run between the daily stopping time and the game's drop-time reset.
 
 You can change this time in **File → Settings → Farming day**.
 
 By default, the daily stopping time is set to 10 minutes before the drop-time reset. In Pakistan, that means **04:50**. This gives your character some time to leave the farming area before the reset.
 
+### Autopilot: the whole day in one window
+
+**Run → Autopilot: the whole day** (Ctrl+Shift+A) shows the logged-in character's day together:
+
+1. the **Before farming** list (for example the day's chores, a cave, restocking), top to bottom;
+2. the farming, until the plan ends or the daily stopping time;
+3. the **After farming** list (for example selling shards, storing items, the Gem Maker), when the farming ended by itself.
+
+The two lists are the same ones as **Character settings → Triggers**: change them in either place. Three choices decide how the day goes:
+
+- **Farm with:** the character's plan (chosen under **Plan**), or the best map for the character's level. The best map is chosen when the day starts, from field maps whose monsters are 9 levels below to 5 above the character, so it follows the character as it levels up.
+- **Run the day as:** the Triggers lists around the farming, or one script of the day. The script is written from the lists and the farming the first time; after that it is yours to read, change or schedule from the Plans tab, and **Write the script of the day now** writes it again from the window. Steps that farm (a cave) are left out of its After part, since the day's farming may be over by then.
+- **Start:** only when you press **Start the day**, or every day at the time you write (HH:MM, this computer's clock). The daily start is an ordinary schedule in **Run → Schedules**; choosing "Only when I press Start" again takes it away.
+
+**Save** keeps the choices; **Start the day** saves them and starts the day on that character's game now.
+
+### A lost game, and runs that didn't finish
+
+While a plan or a script runs, Mist World Farmer keeps note of where it is, every 20 seconds: the line it is on, the turn of each loop, how many minutes and kills the current farm has done, the run's own minutes and kills, and the script's `set` values.
+
+**When the game is lost in the middle of a run** (it closed, crashed or froze, or the server logged the character out and logging back in failed), Mist World Farmer closes that game if it is still open, opens a new one, logs in to the same character and carries on where the run was. It says so each time. This happens at most 3 times a day of the game (00:00 GMT to 00:00 GMT) for each character; after that the run ends there. The character's account must be known: log in to it once by hand. To turn this off: **File → Settings → Farming day → When a game is lost during a run**.
+
+**When Mist World Farmer itself stopped under a run** (you closed it, an update restarted it, or the computer restarted), the next time it starts it shows the runs that didn't finish. They carry on where they were after 10 seconds; press **Carry on now** to start them at once, or **Don't carry on** (Escape) to forget them. A game is opened and logged in to when the character isn't in one, as a schedule does.
+
+A run is carried on only the same day of the game, and only with the same plan or script: one you edited since starts from its beginning. Lines such as `stop_when` and `keep_drop` count again on the way, so a time limit still counts the minutes already farmed. A run you stopped with **Stop**, one that finished, or one that ended on an error is never carried on.
+
+Each part of a run that was carried on is saved in the results as its own run; at the end, the results said and written in the log add all the parts up.
+
+A slow game is waited for while it starts (up to 4 minutes) instead of a second one being opened beside it; one that never shows the agent in that time is closed.
+
 ### After farming
 
-The **Farming day** tab also lets you choose what Uncle Farmer should do after farming stops automatically.
+The **Farming day** tab also lets you choose what Mist World Farmer should do after farming stops automatically.
 
 This applies when a run ends because of the daily stopping time, the plan's time limit, exhausted drop time, a full bag, or the last death allowed.
 
@@ -287,17 +325,17 @@ You can choose one of three actions:
 - **Close the game:** Close the game after farming ends.
 - **Shut down the computer:** Wait until every running bot has finished and its game has closed, then shut down Windows.
 
-When computer shutdown is selected, Uncle Farmer uses Windows' forced shutdown command:
+When computer shutdown is selected, Mist World Farmer uses Windows' forced shutdown command:
 
 `shutdown /s /f /t 60`
 
-The 60-second delay gives you time to cancel the shutdown. Uncle Farmer announces the shutdown, and a window asks **Cancel the shutdown?** If you choose to cancel, Windows runs:
+The 60-second delay gives you time to cancel the shutdown. Mist World Farmer announces the shutdown, and a window asks **Cancel the shutdown?** If you choose to cancel, Windows runs:
 
 `shutdown /a`
 
 ## Your character
 
-Uncle Farmer scans each character automatically. It detects the character's class, skills, keys, potions, fusion beasts, and pets.
+Mist World Farmer scans each character automatically. It detects the character's class, skills, keys, potions, fusion beasts, and pets.
 
 Open **Character → Settings (Ctrl+P)** to choose how the bot handles your character. This is where you configure combat behavior, potions, fusion beasts, and pets. Key assignments and timing options are under **Advanced**.
 
@@ -330,7 +368,7 @@ The other tabs under **Advanced** contain more detailed options, including:
 
 ### How the bot chooses a route
 
-When travelling, Uncle Farmer combines walking with cable cars and airships whenever using a ride makes the journey shorter.
+When travelling, Mist World Farmer combines walking with cable cars and airships whenever using a ride makes the journey shorter.
 
 For example, a journey from Giant Rock City to Tulip City might go underground to reach a cable car, then continue on foot after arriving.
 
@@ -353,41 +391,67 @@ The same rules are used when choosing the nearest shop or craftsman.
 
 ### Avoiding field bosses
 
-Uncle Farmer recognizes field bosses by name. Its list includes Pig-Face Bat King, Man-wolf Caesar, Ice Queen Los, Cat King Carter, Pharaoh Tar, Elven King Erth, Fire Lord, Whale Monster Bigger, Monkey King, Barbarian Tyrant, Thunder Lord, Lich King, Meteor Queen Elsa, Dark Priest, Dracula, and other bosses in the same family, including their plain and Demonized forms.
+Mist World Farmer recognizes field bosses by name. Its list includes Pig-Face Bat King, Man-wolf Caesar, Ice Queen Los, Cat King Carter, Pharaoh Tar, Elven King Erth, Fire Lord, Whale Monster Bigger, Monkey King, Barbarian Tyrant, Thunder Lord, Lich King, Meteor Queen Elsa, Dark Priest, Dracula, and other bosses in the same family, including their plain and Demonized forms.
 
 The bot avoids attacking these bosses. It also avoids attacking anything within 40 steps of a recognized boss.
 
-When a boss comes within that distance, the bot moves to the spot furthest away from it and then continues farming.
+When a boss comes within that distance, the bot moves to the spot furthest away from it and then continues farming. Its patrol also keeps clear of the bosses it has seen in the last minute, and of the boss zones the map data marks.
+
+A boss that keeps coming back is left behind for a while. After three walk-offs in five minutes, or when there is nowhere further from it to go, the bot says "Death Worm (a boss) keeps coming back - leaving for central plains (1041) for 60 s". It goes out through the nearest door that is far from the boss, waits on the other side (fighting back anything that attacks it), then comes back to farm. If the boss is still there and it has to leave again, the wait doubles: 1 minute, then 2, 4, and at most 5. It never leaves a dungeon this way, and it only goes through doors to ordinary maps, roads or towns.
 
 You can change the 40-step distance or turn boss avoidance off in **Advanced → Fighting**.
 
 The game files do not tell the bot when a boss will appear. Instead, it reacts when it detects a boss nearby.
 
+### When nothing is killed for a while
+
+On a night nobody watches, a run can go on for hours without a kill: every monster taken by other players, a corner with nothing left, a monster the game keeps refusing. Mist World Farmer keeps an eye on that.
+
+- After 10 minutes on the farm with no kill, it says "no kill for 10 minutes - trying another part of the map" and walks to the part of the farming area furthest from where it is.
+- After another 10 minutes with still no kill, it does the same again.
+- The third time, it says "no kill for 30 minutes - stopping the run" and ends the run the way a used-up drop time does: it goes where your plan says a run ends.
+
+A farm that fights only some names (a rare monster) never stops for this: it only tries elsewhere.
+
+A kill starts the count again. So does a trip away from the map (town, a death, a boss left behind) or a long pause, which start the minutes again. It never applies in a dungeon, whose timer ends the visit.
+
+You can change the 10 minutes, or turn it off, in **Advanced → Fighting**: **When nothing is killed for a while, try elsewhere, then stop**.
+
 ### Treasure chests
 
-Now and then a treasure chest appears on a farming map, and the game announces it to everyone: "There's a Shining Small Chest in Margit Rainforest. Go find it and see what's inside!". The first player to open it gets what's inside, usually arnebia and a pile of shards.
+Now and then a treasure chest appears on a farming map, and the game announces it to the players on that map: "There's a Shining Small Chest in Margit Rainforest. Go find it and see what's inside!". The first player to open it gets what's inside, usually arnebia and a pile of shards.
 
-When a chest comes into sight while farming, Uncle Farmer walks to it and opens it the way you would: it selects the chest, presses Enter and chooses **Open the chest**. It says "opened a chest" with the number opened so far, and the results count the chests opened.
+When a chest comes into sight while farming, Mist World Farmer walks to it and opens it the way you would: it selects the chest, presses Enter and chooses **Open the chest**. It says "opened a chest" with the number opened so far, and the results count the chests opened.
 
-It finishes any fight first, leaves a chest that is within the boss distance of a boss, and doesn't go more than 80 steps out of its way. A chest that won't open is left alone for five minutes. When someone else gets there first, the bot just goes back to farming.
+It finishes any fight first, leaves a chest that is within the boss distance of a boss, and doesn't go more than 80 steps out of its way. A chest it saw in the middle of a fight and lost from sight before the fight ended is not forgotten: it goes back for it ("going back to the chest seen 40 steps away"), for up to five minutes.
 
-You can turn this off in **Advanced → Fighting**: untick **Open the chests that turn up while farming**.
+The game tells the players on the map when a chest appears there, without saying where. When it does, Mist World Farmer goes looking for it: it says "a chest turned up on Margit Rainforest (5281) - looking for it (up to 5 minutes)", stops picking monsters (it still fights back anything that attacks it) and sweeps the farming area on the travel fusion beast, in lanes about 100 steps apart, nearest unseen ground first. The bot sees about 60 steps around it, three times what the radar keys reach. The search ends when the chest is found and opened, when the game says someone else opened it, when the whole area has been seen, or after the minutes you set. On a quiet map a chest can stay unopened for a quarter of an hour; on a crowded one it goes in a minute or two.
+
+The bot hears both of the game's lines, the chest turning up and someone opening it, whether it is looking or not, so it times every chest of the map it is on. When the last three were opened less than two minutes after they turned up on average, it stops looking on that map and says "chests on Underwater World (5361) are opened by others within 40 s on average - not looking for them here": on a map that crowded, a search never gets there first, and farming is worth more. It keeps timing them, and looks again once they stay unopened longer ("... stay unopened longer now - looking for them again"). When someone else opens the chest it is looking for, it says so and goes back to farming. A chest that won't open is left alone for five minutes. When someone else gets there first, the bot just goes back to farming.
+
+You can turn this off in **Advanced → Fighting**: untick **Open the chests that turn up while farming**. The search for an announced chest has its own box there, **Look for a chest the game announces on the map**, with the minutes to look for it (5 by default).
 
 ### Demonized elites
 
 Some maps have "demonized" elites (demonized Boar, demonized black bear, demonized Water Elf...), much
 stronger than the monsters around them; one the same level as your character can still kill it,
 depending on its gear. They aren't bosses (the demonized field bosses are kept away from as bosses).
-Uncle Farmer fights them like any other monster unless you tick **Leave demonized elites alone** in
-**Advanced → Fighting**: then it never picks one as a target, and the log counts them among the
-monsters left alone. One that attacks you is still fought, since standing there would be worse.
+Mist World Farmer fights them like any other monster unless you tick **Leave demonized elites alone** in
+**Advanced → Fighting**. Then it keeps away from them:
+
+- It never picks one as a target, nor any monster within 40 steps of one: a fight there would pull
+  the elite in. The log counts them among the monsters left alone.
+- When one comes within 30 steps, it walks to the spot furthest from it, and notes it once in the log (not spoken: elites are common).
+- Its patrol keeps 40 steps clear of the elites it has seen in the last minute.
+- One that attacks you is still fought, and so is a monster near it that attacks you, since
+  standing there would be worse. The bot never leaves the map because of an elite.
 
 ### Drop time and the next level
 
 Under **Character → Settings → Fighting**, the group **Drop time and experience** holds two reasons to end a run, each with its own number:
 
 - **Stop when the day's drop time runs out** (on by default), with **Drop time to save (minutes)**: the run ends while that much of the day's public area drop time is still left. With 0 it uses all of it.
-- **Stop before the next level** (off by default), with **Stop when the next level needs less than (experience)** (100,000 by default): for characters you keep at their level. The character sheet says how much experience the next level still needs, and Uncle Farmer reads it after every kill. Once it is under your number, it says "the next level needs only 85000 experience - going somewhere safe and stopping", leaves the monsters and ends the run. At the top level there is nothing to read, and it never stops for this.
+- **Stop before the next level** (off by default), with **Stop when the next level needs less than (experience)** (100,000 by default): for characters you keep at their level. The character sheet says how much experience the next level still needs, and Mist World Farmer reads it after every kill. Once it is under your number, it says "the next level needs only 85000 experience - going somewhere safe and stopping", leaves the monsters and ends the run. At the top level there is nothing to read, and it never stops for this.
 
 It also checks before a run sets out, before the **Before farming** list: when the next level already needs less than your number, it says "the next level needs only ... experience - not starting to farm" and does nothing else, so it doesn't make the whole trip to the farm only to come back. The drop time is checked the same
 way: when what is left is already down to what you save, it says "the drop time is nearly used up
@@ -421,7 +485,7 @@ skills did:
 
 Every character has its own settings.
 
-When Uncle Farmer encounters a character for the first time, it creates that character's settings using information from its initial scan.
+When Mist World Farmer encounters a character for the first time, it creates that character's settings using information from its initial scan.
 
 ## The bag
 
@@ -436,7 +500,7 @@ For each shard, choose one of four actions:
 - **Store**
 - **Sell**
 
-If you have not assigned a shard to any of these lists, Uncle Farmer keeps it.
+If you have not assigned a shard to any of these lists, Mist World Farmer keeps it.
 
 Shards marked **Throw away** are discarded right where your character is farming.
 
@@ -446,7 +510,7 @@ To turn shards into gems, use **Tools, Gem Maker**.
 
 ### Other items
 
-For items that are not shards, choose whether Uncle Farmer should:
+For items that are not shards, choose whether Mist World Farmer should:
 
 - Keep them.
 - Store them.
@@ -455,11 +519,11 @@ For items that are not shards, choose whether Uncle Farmer should:
 
 ### Supplies
 
-Choose which potions and food Uncle Farmer should refill, and where it should get them.
+Choose which potions and food Mist World Farmer should refill, and where it should get them.
 
 ### Full bag
 
-Choose what Uncle Farmer should do when the bag becomes full. The option to stop when the day's drop time runs out is under **Character → Settings → Fighting**, with the other reasons to stop (see "Drop time and the next level").
+Choose what Mist World Farmer should do when the bag becomes full. The option to stop when the day's drop time runs out is under **Character → Settings → Fighting**, with the other reasons to stop (see "Drop time and the next level").
 
 A full bag means the bag has reached its carrying limit. By default, the bot keeps farming until the load reaches that limit. It can also treat the bag as full if the load stops increasing just below the limit while monsters continue to die.
 
@@ -540,7 +604,7 @@ The familiar default jobs include:
 
 ## Fighting and staying alive
 
-Uncle Farmer stands its ground and fights, even when several monsters attack at once. It does not turn its back on a group of monsters because they can keep following and attacking while it walks.
+Mist World Farmer stands its ground and fights, even when several monsters attack at once. It does not turn its back on a group of monsters because they can keep following and attacking while it walks.
 
 When several monsters are attacking and your HP is dropping, the bot uses your class's shields and powerful healing skills, as well as potions.
 
@@ -548,13 +612,15 @@ Damage-absorbing shields, such as Formless, can also be used while approaching o
 
 For melee characters, the bot prefers attacking a monster with fewer other monsters around it instead of jumping into the middle of a pack.
 
+On a busy map, a monster another player stands nearer to than you do is often gone before you get there: measured over an hour on Underwater World, about one in four of those went to someone else, against one in ten of the others. So when two monsters are about as far, the bot takes the one nobody else is closer to; one that another player is nearer to counts as 15 steps further away. It never leaves such a monster out, since most of them still end up as your kills, and a monster that attacks you is fought first, whoever stands near it. Pets and summons don't count as players.
+
 If no monsters are attacking but your HP is low, the bot rests before starting another fight.
 
 While travelling, the bot only fights monsters that attack it.
 
 ### What counts as a monster?
 
-Uncle Farmer follows the game's own target selection rules, the same rules used by the target key, **V**.
+Mist World Farmer follows the game's own target selection rules, the same rules used by the target key, **V**.
 
 For example:
 
@@ -562,7 +628,7 @@ For example:
 - Guards and summons belonging to other players are not treated as enemies.
 - These characters and creatures are never attacked by the bot.
 
-Before every fight, Uncle Farmer checks that the target key is set to enemies. If it is not, the bot switches it back.
+Before every fight, Mist World Farmer checks that the target key is set to enemies. If it is not, the bot switches it back.
 
 When talking to an NPC, it switches the target setting to NPCs instead.
 
@@ -579,7 +645,7 @@ The bot checks the available points before using skills that require them. For e
 
 ### Potions and deaths
 
-When you use your last red or blue potion, Uncle Farmer stops the run and takes your character to the plan's ending destination.
+When you use your last red or blue potion, Mist World Farmer stops the run and takes your character to the plan's ending destination.
 
 There is one exception: if a restock rule can refill the potion, the bot can restock instead of stopping.
 
@@ -597,7 +663,7 @@ If you untick **Stop after too many deaths**, the bot never stops because of dea
 
 ### Your own skills
 
-Uncle Farmer reads the skills assigned to your character's keys. It checks both skill-key pages, including whichever keys you have chosen.
+Mist World Farmer reads the skills assigned to your character's keys. It checks both skill-key pages, including whichever keys you have chosen.
 
 It also reads the game's skill descriptions to understand what each skill does.
 
@@ -645,7 +711,7 @@ These skills are cast while standing still. The bot does not walk toward a monst
 
 Some talents make one skill prepare the target for another skill. These combinations are called combos.
 
-Uncle Farmer reads which talents you have activated. Each class has two talent paths that exclude each other, so a talent from the other path has no effect.
+Mist World Farmer reads which talents you have activated. Each class has two talent paths that exclude each other, so a talent from the other path has no effect.
 
 The bot uses the available combos when the skills involved are assigned to your keys.
 
@@ -676,7 +742,7 @@ To disable these combinations, untick **Use the combos of the activated talents*
 
 ### Empty keys
 
-When a run starts, Uncle Farmer checks whether the skills and items it needs are assigned to keys.
+When a run starts, Mist World Farmer checks whether the skills and items it needs are assigned to keys.
 
 This includes:
 
@@ -716,7 +782,7 @@ You can turn off this automatic key assignment behavior on the **Fighting** page
 
 ### Repairs
 
-When the game first warns that your equipment is about to break, Uncle Farmer repairs everything your character is wearing.
+When the game first warns that your equipment is about to break, Mist World Farmer repairs everything your character is wearing.
 
 It uses one toolbox, choosing the cheapest type that can repair equipment at your level:
 
@@ -748,19 +814,19 @@ You can configure repair behavior on the **Fighting** page under **Character, Se
 
 **About old equipment warnings**
 
-Only warnings that appear while Uncle Farmer is running count as new repair warnings.
+Only warnings that appear while Mist World Farmer is running count as new repair warnings.
 
 Mist World keeps the last warning for an item while the game remains open. This means a warning from an earlier run, when the equipment was already repaired, is ignored.
 
 For example, running **Sell shards**, **Update shard prices**, or **Clean the bag now** will not waste a toolbox repairing equipment that is already fine.
 
-However, if the game actually shows equipment as broken, Uncle Farmer repairs it immediately, regardless of when it broke.
+However, if the game actually shows equipment as broken, Mist World Farmer repairs it immediately, regardless of when it broke.
 
 ### Fusion beasts and your pet in fights
 
 **Fusion beasts**
 
-Uncle Farmer waits until there has been no attack on your character or pet for six seconds before transforming into a fusion beast.
+Mist World Farmer waits until there has been no attack on your character or pet for six seconds before transforming into a fusion beast.
 
 Every hit, or any decrease in your HP, restarts this six-second wait.
 
@@ -781,7 +847,7 @@ The Log tab reports the failed attempt and reports again when the beast is final
 
 **Protecting your pet**
 
-Uncle Farmer also monitors your pet's HP.
+Mist World Farmer also monitors your pet's HP.
 
 If the pet loses at least 2% of its HP within three seconds, the bot assumes that nearby monsters are attacking it. It prioritizes fighting those monsters, even if the game does not identify which monsters hit the pet.
 
@@ -796,6 +862,14 @@ If the pet is out of sight or its HP cannot be read, the bot does not make assum
 
 
 ## Tools
+
+### Keyboard Manager
+
+Right-click a logged-in character and choose **Tools → Keyboard Manager**. Select **Capture current keys** to load the game's two combat skill pages, profession skills, number-row item slots, and quick phrases. Enter a name and choose **Save profile**. Use **New profile** to start with an empty draft, or enter a different name to save a copy.
+
+Use **Edit binding** on each tab to change a slot. **Toggle preparation** on a bound self-buff or shield to cast it on yourself when the profile is applied. A slot marked **Leave unchanged** keeps its current game binding. An item needs to be in the bag when the profile assigns it to a new slot.
+
+Choose **Apply profile** while out of combat and with game menus closed. For automation, add **Apply keyboard profile** under **Character settings → Triggers → Before farming** or **After farming**. The Before farming list can be skipped if you start on the farming map. Use that tab's checkbox to control when it runs. Schedules can run either trigger sequence or a saved script with a `keyboard_profile` command. Place that command at the point where your script needs a different layout.
 
 ### Sound Silencer
 
@@ -820,7 +894,7 @@ Scripts may change live muting afterward. Corrupt configuration is logged and do
 clear live mute rules. Existing audio lines use supported MUTE controls and subsequent signed-PCM
 writes become silence; already-buffered audio without hardware MUTE may finish first.
 
-Uncle Farmer includes several tools for tasks outside regular farming. You can run them manually from the **Tools** menu or use them in scripts.
+Mist World Farmer includes several tools for tasks outside regular farming. You can run them manually from the **Tools** menu or use them in scripts.
 
 Some tools can use craftsmen from your own gang, another gang, or the nearest city. Gang craftsmen are found in the **Outer Hall** of the gang's base, and their services cost less.
 
@@ -883,6 +957,21 @@ A gem breaks into 3 gems of the level below, for free, and a Level 1 gem into 3 
 
 What a break leaves can weigh more than what it took: when the game says "overweight", the Gem Breaker asks for fewer. If not even one fits, it sells when that box is ticked and carries on; otherwise, or when nothing sells, it stops with a message.
 
+### Potion Maker
+
+Open **Tools, Potion Maker** or press **Ctrl+Shift+O**. It uses the Pharmacist in a gang base's outer hall: **Make Medicine** turns Bloods and Pelts into a batch of 50 (or 45) potions for a fee in arnebia (lower in your own gang), and **Fuse Medicine** turns 5 potions of a size into 1 of the next for free (Small to Medium to Large, red and blue, for you and for pets), up to 100 at a time.
+
+- **Potions** and **Pet potions**: how many of each to have in the bag. 0 means it isn't made. The window shows how many you have now.
+- **Make them** (Medium and Large potions): from Small ones, fused up, or each from its own recipe. Fusing is usually cheaper: 25 Small Red Potions (one Lesser Blood and half a fee) make 1 Large one.
+- **Fuse spare potions up to**: after making, fuse what is over your numbers up to Medium or Large, keeping at least the Small and Medium ones you say.
+- **Pharmacist**: your own gang's, or another gang's by its name. Arnebia below your reserve is never spent, and each fee is read on the Pharmacist's page before anything is paid.
+- **Take them from**: missing Bloods and Pelts come from only the bag, the town storehouse, the market, or the storehouse and then the market.
+- **Most gold coins a piece**: for each material, the most the market may charge. The cheapest lots are always bought first; with 0 any price is fine, still cheapest first. **Most gold coins to spend on materials in one run** caps the whole buy.
+
+- **Put the potions made into the town storehouse**: then it works a bagful at a time: it fills the bag with Bloods and Pelts up to its full mark (Character settings, the bag's full mark), makes and fuses, puts the potions in the storehouse and goes again until your numbers are there. Your numbers then count what the storehouse holds too, and the potions you had in the bag before stay in the bag. Making and fusing still work when the bag is over its full mark: only the materials brought in are held to it.
+
+**Check only** walks to the Pharmacist, reads the real fees and says what it would make, fuse and buy, without spending anything.
+
 ### Equipment Enhancer
 
 Open **Tools, Equipment Enhancer** or press **Ctrl+Shift+E**.
@@ -915,7 +1004,7 @@ Open **Tools, Daily chores** or press **Ctrl+Shift+D**.
 
 Daily chores handles tasks that each character can complete once per game day. The game's day starts at **00:00 GMT**.
 
-Uncle Farmer keeps a record of completed chores. This prevents it from repeating a donation or another daily task if you run the tool again.
+Mist World Farmer keeps a record of completed chores. This prevents it from repeating a donation or another daily task if you run the tool again.
 
 **Bank**
 
@@ -927,7 +1016,7 @@ Uses the free daily rebirths for the pet you choose.
 
 The pet name found during the character scan should work, although the Pet Trainer may use a slightly different name for the same pet. For example, the character scan may identify a pet as **Eagle**, while the Pet Trainer calls it **Wild Eagle**.
 
-Uncle Farmer never spends diamonds on pet rebirths.
+Mist World Farmer never spends diamonds on pet rebirths.
 
 **Contribution Chests**
 
@@ -975,7 +1064,7 @@ Feeding the beast is separate from the two daily construction jobs.
 
 The secret room allows players to share arnebia. Sharing is available once during each half-hour period, at :00 and :30. You can do this five times per day, and both players receive arnebia.
 
-Uncle Farmer handles the timing by entering shortly before the half-hour mark. For example, it may enter at 10:28, share, wait until 10:30, share again, and then leave.
+Mist World Farmer handles the timing by entering shortly before the half-hour mark. For example, it may enter at 10:28, share, wait until 10:30, share again, and then leave.
 
 While farming, the bot can handle this automatically. It leaves the farming area a few minutes before a half-hour sharing opportunity that has not yet been completed. The default is 10 minutes before, including travel time. It returns to farming afterwards and continues until all five daily shares are completed.
 
@@ -989,7 +1078,7 @@ Remember that time spent in the secret room counts against your daily drop time 
 
 The **Check only** option visits the relevant NPCs and reads their menus. It does not collect rewards, spend money, or enter the secret room.
 
-You can also enable **At the start of the first farming run**. When enabled, Uncle Farmer performs the daily chores before the first farming run of each game day.
+You can also enable **At the start of the first farming run**. When enabled, Mist World Farmer performs the daily chores before the first farming run of each game day.
 
 You can run daily chores from a script with these commands:
 
@@ -1012,7 +1101,7 @@ The Gathering window shows which skill was detected during the last character sc
 
 #### Where to gather
 
-Uncle Farmer checks gang gathering areas first, then moves on to places in the open world.
+Mist World Farmer checks gang gathering areas first, then moves on to places in the open world.
 
 **Gang gathering areas**
 
@@ -1030,7 +1119,7 @@ You can add your own gang with **Add our own gang**. To add another gang, use **
 
 To change the order or take a gang off the list, select it and open its menu (**Applications** key, **Shift+F10**, or right-click): **Move up**, **Move down**, and **Remove**. **Delete** also removes it.
 
-Uncle Farmer visits each gang in the order listed. For another gang, it first finds the gang through the Gang Entrance's **All gangs** list. It then enters the base and talks to the entrance to check the gathering area for your skill.
+Mist World Farmer visits each gang in the order listed. For another gang, it first finds the gang through the Gang Entrance's **All gangs** list. It then enters the base and talks to the entrance to check the gathering area for your skill.
 
 Before entering, the bot checks the area's level, saturation, and entry fee. It enters only if the fee is within your configured limit and paying it would not use your arnebia reserve.
 
@@ -1038,13 +1127,13 @@ You can also set a minimum saturation on the **Gangs** tab. An area under it is 
 
 Each gang's gathering area can be visited once per game day.
 
-The game automatically sends your character outside after 30 minutes. Uncle Farmer then moves on to the next gang.
+The game automatically sends your character outside after 30 minutes. Mist World Farmer then moves on to the next gang.
 
 Because the game does not allow you to leave and resume the same gathering session, the bot sells your collected items before entering each gang area.
 
 **Open-world gathering places**
 
-After checking the gang areas, Uncle Farmer can gather at one of your saved places or at a known gathering location in the game.
+After checking the gang areas, Mist World Farmer can gather at one of your saved places or at a known gathering location in the game.
 
 To add your own location:
 
@@ -1052,17 +1141,17 @@ To add your own location:
 2. Open the Gathering window.
 3. Press **Add where I stand**.
 
-Uncle Farmer saves that exact position and returns to it when gathering there.
+Mist World Farmer saves that exact position and returns to it when gathering there.
 
 To rename or remove a saved place, select it in **Your places** and open its menu (**Applications** key, **Shift+F10**, or right-click). Double-clicking a place also renames it, and **Delete** removes it.
 
 You can also choose **The best for this character**. The bot then selects the highest-level gathering area where the monsters are no more than a few levels above your character. The default level difference is five.
 
-If the game refuses to start gathering at a particular location, Uncle Farmer remembers that place and skips it until your gathering skill rank increases.
+If the game refuses to start gathering at a particular location, Mist World Farmer remembers that place and skips it until your gathering skill rank increases.
 
 #### Starting and continuing gathering
 
-Uncle Farmer starts gathering in the same way you would manually:
+Mist World Farmer starts gathering in the same way you would manually:
 
 1. Open the backpack's **Profession skills** panel.
 2. Press **Right Ctrl** on the gathering skill.
@@ -1073,11 +1162,11 @@ Once started, the game gathers automatically every two seconds. This continues u
 
 In a gang gathering area, the bot lets the game handle gathering for the full 30-minute session.
 
-In an open-world area, monsters can appear and attack your character. Uncle Farmer protects you throughout the session. It uses potions and healing skills, fights monsters that attack, returns to the saved gathering position, and starts gathering again.
+In an open-world area, monsters can appear and attack your character. Mist World Farmer protects you throughout the session. It uses potions and healing skills, fights monsters that attack, returns to the saved gathering position, and starts gathering again.
 
 #### Checking your bag before leaving
 
-Before travelling to a gathering area, Uncle Farmer checks how much free space remains in your bag.
+Before travelling to a gathering area, Mist World Farmer checks how much free space remains in your bag.
 
 If there is less than 1,000 space available, it considers the bag too full to begin gathering.
 
@@ -1089,7 +1178,7 @@ This check is especially important for gang gathering areas. The bot cannot leav
 
 #### Selling gathered items
 
-When your bag becomes full while gathering outside a gang area, Uncle Farmer travels to the nearest suitable buyer:
+When your bag becomes full while gathering outside a gang area, Mist World Farmer travels to the nearest suitable buyer:
 
 - Aquaculture Buyer for fish.
 - Ore Buyer for mining materials.
@@ -1105,7 +1194,7 @@ It also sells gathered items once more when the gathering job ends.
 
 Gathering stops when your character runs out of Vitality for the day or when the configured time limit is reached.
 
-Uncle Farmer never spends diamonds to refill Vitality.
+Mist World Farmer never spends diamonds to refill Vitality.
 
 For open-world gathering, you can also use **Stop when Vitality is down to** on the **When to stop** tab.
 
@@ -1113,9 +1202,9 @@ This setting tells the bot how much Vitality to save for later. It reads your cu
 
 #### Check only and selling manually
 
-The **Check only** option reads the gang gathering area's entrance and tells you where Uncle Farmer would gather. It does not start gathering.
+The **Check only** option reads the gang gathering area's entrance and tells you where Mist World Farmer would gather. It does not start gathering.
 
-You can also use **Sell the collection now** in the game's menu in the Games list to sell gathered items to all three types of buyers from your current location.
+Use **Sell the collection now** in the game's menu in the Games list to go to the buyer for your gathering skill. If the character has no gathering skill, the bot chooses buyers for the goods it recognizes in the bag.
 
 In a script, use:
 
@@ -1124,9 +1213,10 @@ gather
 gather check
 sell_collection
 sell_collection fish
+sell_collection all
 ```
 
-The first command starts gathering. The second checks what the bot would do. The last two sell your collection, with the final command specifying fish.
+The first command starts gathering and the second checks where the bot would gather. The three sale commands choose the buyer automatically, sell fish only, or visit all three types of buyer.
 
 
 
@@ -1142,7 +1232,7 @@ All items, or one of the game's 14 categories), then go through the items: each 
 lots there are (and how many open soon), how many in all, the cheapest and the usual price, and
 how many sellers. Names are shown the way your game's language pack shows them.
 
-The first time, the list is the one Uncle Farmer came with. Press **Refresh the market list**:
+The first time, the list is the one Mist World Farmer came with. Press **Refresh the market list**:
 the bot walks to the nearest marketplace and reads every category, which takes about a minute or
 two. Tick **Also count sellers** to fill the Sellers column too. That looks at every lot's
 details, so the first time it takes about ten minutes; every seller seen is remembered, so later
@@ -1184,19 +1274,19 @@ The same work runs from a script: see "The player market" in docs/SCRIPTING.md.
 
 ## Shard prices
 
-Uncle Farmer keeps track of shard prices so it can estimate how much your collected shards are worth.
+Mist World Farmer keeps track of shard prices so it can estimate how much your collected shards are worth.
 
 ### Updating prices manually
 
-To update shard prices through the Uncle Farmer window:
+To update shard prices through the Mist World Farmer window:
 
 1. Open **Tools**.
 2. Select **Update shard prices**.
-3. Uncle Farmer travels to the nearest Shard Broker.
+3. Mist World Farmer travels to the nearest Shard Broker.
 4. It reads the current shard prices from the broker's list.
 5. It updates the saved prices in `data\shards.json`.
 
-For each shard, Uncle Farmer checks whether the price in the broker's list matches the expected item and is a valid number.
+For each shard, Mist World Farmer checks whether the price in the broker's list matches the expected item and is a valid number.
 
 - If the price is valid, the saved price is replaced with the newly read price.
 - If the shard is missing or its price cannot be verified, its previous price is kept.
@@ -1214,25 +1304,25 @@ It performs the same update process: travels to the nearest Shard Broker, reads 
 
 The Tools menu and the script command always read the prices. Only the Before farming and After farming lists skip them while they are less than 8 hours old.
 
-### When Uncle Farmer is updated
+### When Mist World Farmer is updated
 
-An Uncle Farmer release may include a newer default shard price list. Installing the release updates the program's included data, but it does not automatically refresh the prices already saved by your copy.
+An Mist World Farmer release may include a newer default shard price list. Installing the release updates the program's included data, but it does not automatically refresh the prices already saved by your copy.
 
-After updating Uncle Farmer, run **Update shard prices** manually or use the `update_shard_prices` script command to read the current prices from the game again.
+After updating Mist World Farmer, run **Update shard prices** manually or use the `update_shard_prices` script command to read the current prices from the game again.
 
 The saved prices are used by the bag manager and the Results window to estimate the value of collected shards.
 
 
 ## Shops and the Shard Market by index
 
-Uncle Farmer can use item numbers to select entries in certain shop menus. This makes buying and selling faster and helps avoid mistakes when menus contain many items.
+Mist World Farmer can use item numbers to select entries in certain shop menus. This makes buying and selling faster and helps avoid mistakes when menus contain many items.
 
 This feature is supported by agent version 53 and works with:
 
 - Shard Broker menus for viewing, buying, and selling shards.
 - Potion seller menus.
 
-Uncle Farmer already knows how these menus are arranged in each city.
+Mist World Farmer already knows how these menus are arranged in each city.
 
 **How menu verification works**
 
@@ -1254,12 +1344,12 @@ After a menu has been verified, later selections can use item numbers without re
 
 Shops that do not support indexed selection, such as the grocer, continue to use text-based item selection.
 
-If an unexpected menu appears at the Shard Broker, Uncle Farmer selects nothing rather than risk buying or selling the wrong shard.
+If an unexpected menu appears at the Shard Broker, Mist World Farmer selects nothing rather than risk buying or selling the wrong shard.
 
 
 ## Every other menu
 
-For most game menus that support it, Uncle Farmer uses agent version 55 to select an entry directly by its text.
+For most game menus that support it, Mist World Farmer uses agent version 55 to select an entry directly by its text.
 
 This applies to ordinary menus where the game presents a list of choices, such as NPC conversations and action menus. It does not replace the special indexed-selection system used by the Shard Broker and potion sellers.
 
@@ -1269,18 +1359,18 @@ Instead of moving through the menu one entry at a time, the agent finds the requ
 
 Before selecting, the agent checks that the menu currently displayed in the game matches what it expects. If the menu has changed or the requested entry is unavailable, it does not make an unsafe selection.
 
-Direct selection also avoids having the game speak every menu entry while Uncle Farmer searches for the right one.
+Direct selection also avoids having the game speak every menu entry while Mist World Farmer searches for the right one.
 
 **If direct selection is unavailable**
 
-If the game is using an older agent or the menu cannot be handled by direct selection, Uncle Farmer falls back to moving through the menu with the arrow keys.
+If the game is using an older agent or the menu cannot be handled by direct selection, Mist World Farmer falls back to moving through the menu with the arrow keys.
 
 It chooses the shortest direction to reach the requested entry. Since game menus wrap around, moving up past the first entry can sometimes be faster than moving down through the entire list.
 
 
 ## Dungeons
 
-Ready for a dungeon run? Uncle Farmer can take your character into a daily dungeon, gather the supplies needed, and fight monsters for the full 15 minutes allowed by the game.
+Ready for a dungeon run? Mist World Farmer can take your character into a daily dungeon, gather the supplies needed, and fight monsters for the full 15 minutes allowed by the game.
 
 To get started, open **Tools → Dungeons** or press **Ctrl+Shift+G**.
 
@@ -1297,17 +1387,17 @@ You can enter only one dungeon per character each game day. That means visiting 
 
 Once inside, you have 15 minutes to defeat as many monsters as possible.
 
-If the bot or the game was restarted while your character was inside a cave, start the dungeon run again from where you are. Uncle Farmer sees that it is already inside and keeps hunting until the game moves your character out, without leaving to check supplies.
+If the bot or the game was restarted while your character was inside a cave, start the dungeon run again from where you are. Mist World Farmer sees that it is already inside and keeps hunting until the game moves your character out, without leaving to check supplies.
 
 ### Choose your cave
 
 Head to the **Caves** tab to choose where your character will go.
 
-Not sure which cave to pick? Leave **The highest cave my level lets in** selected. This is the default option, and Uncle Farmer will choose the highest-level cave your character can enter.
+Not sure which cave to pick? Leave **The highest cave my level lets in** selected. This is the default option, and Mist World Farmer will choose the highest-level cave your character can enter.
 
 You'll also see whether your character has already used its dungeon visit for the day.
 
-Don't worry about accidentally entering a cave that's too difficult. Uncle Farmer checks your character's level and won't attempt to enter a cave above it. It will tell you if you cannot enter your selected cave.
+Don't worry about accidentally entering a cave that's too difficult. Mist World Farmer checks your character's level and won't attempt to enter a cave above it. It will tell you if you cannot enter your selected cave.
 
 ### Get your supplies ready
 
@@ -1322,19 +1412,19 @@ These are the default amounts:
 
 You can customize these amounts to suit your needs.
 
-For potions, Uncle Farmer normally uses the one assigned to your character's hotkey. If no potion is assigned, it chooses the strongest available potion in your bag. You can also select a specific potion yourself.
+For potions, Mist World Farmer normally uses the one assigned to your character's hotkey. If no potion is assigned, it chooses the strongest available potion in your bag. You can also select a specific potion yourself.
 
-Set an amount to `0` if you don't want Uncle Farmer to check or prepare that item.
+Set an amount to `0` if you don't want Mist World Farmer to check or prepare that item.
 
 **What if you're missing supplies?**
 
-No need to visit the shop yourself. Uncle Farmer takes care of the preparation:
+No need to visit the shop yourself. Mist World Farmer takes care of the preparation:
 
 1. It checks your bag for the required supplies.
 2. If anything is missing, it tries to take those items from your storehouse.
 3. If you still don't have enough, it buys the missing items from a shop.
 
-If you're still short after that, Uncle Farmer normally cancels the trip rather than sending your character into the dungeon unprepared.
+If you're still short after that, Mist World Farmer normally cancels the trip rather than sending your character into the dungeon unprepared.
 
 You can choose to let it go anyway if you prefer.
 
@@ -1342,21 +1432,32 @@ One thing to remember: pet supplies are checked only when the pet option is enab
 
 ### What happens during the dungeon run?
 
-Once your supplies are ready, Uncle Farmer travels to the entrance and selects **Enter the dungeon**.
+Once your supplies are ready, Mist World Farmer travels to the entrance.
 
-After your character reaches the safe landing area inside, the dungeon run begins. Uncle Farmer keeps your character moving and fighting until the visit ends. It won't stop to rest or leave for extra supplies.
+**Getting ready at the door**
+
+The 15 minutes start the moment your character is inside, so Mist World Farmer gets everything ready before it selects **Enter the dungeon**:
+
+- It gets off the travel beast, or onto the fusion beast your character fights in.
+- It calls your pet, which comes in with you. If the pet can come out within three minutes, Mist World Farmer waits for it at the door. If it needs longer, Mist World Farmer goes in and calls it inside as soon as it can.
+- It puts your long buffs up and tops up HP and MP.
+- It puts potions back on empty keys and lets a paused experience card run again. A new experience card is started inside, so none is spent if the game turns your character away.
+
+Then it selects **Enter the dungeon**.
+
+After your character reaches the safe landing area inside, the dungeon run begins at once. Mist World Farmer keeps your character moving and fighting until the visit ends. It won't stop to rest or leave for extra supplies.
 
 **Finding monsters**
 
-Uncle Farmer looks for the nearest monster it can reach within 90 walking steps. If it cannot find one within that distance, it follows its walking loop around the cave.
+Mist World Farmer looks for the nearest monster it can reach within 90 walking steps. If it cannot find one within that distance, it follows its walking loop around the cave.
 
-If your character fights from a distance, it can attack monsters as they come within range while moving. Once the game reports that a monster has been killed, Uncle Farmer moves on to the next target.
+If your character fights from a distance, it can attack monsters as they come within range while moving. Once the game reports that a monster has been killed, Mist World Farmer moves on to the next target.
 
 Monsters respawn approximately 30 seconds after being killed. They can appear anywhere in the cave, so keep exploring!
 
 **Using your combat skills**
 
-Uncle Farmer uses area skills when they can hit at least two monsters. You can increase this minimum if you want it to save those skills for larger groups.
+Mist World Farmer uses area skills when they can hit at least two monsters. You can increase this minimum if you want it to save those skills for larger groups.
 
 It also checks the actual shape of each skill to work out which monsters it can hit:
 
@@ -1365,7 +1466,7 @@ It also checks the actual shape of each skill to work out which monsters it can 
 - **Ring around your character:** Whirlwind Slash, Frost Nova, and Divine Nova.
 - **Area around the landing point:** Blizzard and Skeleton Explosion.
 
-If your character attacks from a distance while moving, Uncle Farmer uses instant skills only. It avoids channeling skills because continuing to walk would interrupt them.
+If your character attacks from a distance while moving, Mist World Farmer uses instant skills only. It avoids channeling skills because continuing to walk would interrupt them.
 
 **Why does your character chase monsters farther?**
 
@@ -1375,25 +1476,25 @@ Tests using the actual cave layouts showed that the walking loop made little dif
 
 **Taking care of your character and pet**
 
-You don't need to worry about Uncle Farmer stopping for a rest. During the dungeon run, it uses potions instead of resting to keep your character's HP and MP up.
+You don't need to worry about Mist World Farmer stopping for a rest. During the dungeon run, it uses potions instead of resting to keep your character's HP and MP up.
 
 It also keeps your pet out and uses Rice Rolls to maintain its amiability.
 
-If you haven't selected a pet in **Character → Settings**, Uncle Farmer looks after whichever pet is already out when the dungeon visit begins.
+If you haven't selected a pet in **Character → Settings**, Mist World Farmer looks after whichever pet is already out when the dungeon visit begins.
 
-Remember, once your character enters the dungeon, it stays there for the full visit. Uncle Farmer won't leave early to restock supplies, empty a full bag, or visit a secret room. The game does not allow you to resume a dungeon visit after leaving.
+Remember, once your character enters the dungeon, it stays there for the full visit. Mist World Farmer won't leave early to restock supplies, empty a full bag, or visit a secret room. The game does not allow you to resume a dungeon visit after leaving.
 
 ### Your dungeon kill count
 
 Wondering whether your pet's kills count toward your results? Yes!
 
-Uncle Farmer includes your pet's kills in your character's kill count, just as the game does in its **Monsters Killed** report.
+Mist World Farmer includes your pet's kills in your character's kill count, just as the game does in its **Monsters Killed** report.
 
 ### When the dungeon visit ends
 
 You don't have to watch the clock. After 15 minutes, the game normally moves your character out of the dungeon automatically.
 
-If that doesn't happen for some reason, Uncle Farmer leaves through the game's **Action** menu.
+If that doesn't happen for some reason, Mist World Farmer leaves through the game's **Action** menu.
 
 After leaving, it follows your **Where to end** setting. You can choose to:
 
@@ -1406,7 +1507,7 @@ After leaving, it follows your **Where to end** setting. You can choose to:
 
 Want to make sure everything is ready before starting? Use the **Check** option.
 
-It tells you which supplies are missing and which cave Uncle Farmer would choose. It does not enter the dungeon or use your daily visit.
+It tells you which supplies are missing and which cave Mist World Farmer would choose. It does not enter the dungeon or use your daily visit.
 
 **Using scripts**
 
@@ -1420,17 +1521,17 @@ You can choose where your character should go after the dungeon by putting `end_
 
 ## Walking
 
-Uncle Farmer has a walking tool that lets you travel to dungeon entrances and locations on the open-world map without starting a farming plan.
+Mist World Farmer has a walking tool that lets you travel to dungeon entrances and locations on the open-world map without starting a farming plan.
 
 Open **Run → Walk to a dungeon or map**, or press **Ctrl+W**.
 
 ### Walking to a dungeon entrance
 
-You can select a dungeon whose entrance NPC is known to Uncle Farmer.
+You can select a dungeon whose entrance NPC is known to Mist World Farmer.
 
 An entrance may be a teleport circle or an NPC standing near the cave entrance.
 
-Uncle Farmer walks your character to the entrance. You can also choose to have it open the NPC's menu when it arrives, so you can select the entrance yourself.
+Mist World Farmer walks your character to the entrance. You can also choose to have it open the NPC's menu when it arrives, so you can select the entrance yourself.
 
 ### Walking to a map or location
 
@@ -1442,9 +1543,9 @@ You can also specify a particular cell on the selected map if you want to reach 
 
 ### Showing the route
 
-Enable **Show the route** if you want Uncle Farmer to speak the route before starting the journey.
+Enable **Show the route** if you want Mist World Farmer to speak the route before starting the journey.
 
-During travel, Uncle Farmer uses your fastest available Swift fusion beast, including when passing through towns and areas with monsters.
+During travel, Mist World Farmer uses your fastest available Swift fusion beast, including when passing through towns and areas with monsters.
 
 It does not stop to fight monsters along the way, but it still uses potions to keep your character's HP up.
 
@@ -1474,13 +1575,13 @@ underground and Demon Castle), it stays walkable.
 
 ## Several games at once
 
-Have more than one Mist World character? You can run Uncle Farmer for several game windows at the same time.
+Have more than one Mist World character? You can run Mist World Farmer for several game windows at the same time.
 
-You only need one copy of Uncle Farmer. It can manage multiple game windows, with a separate bot run for each character.
+You only need one copy of Mist World Farmer. It can manage multiple game windows, with a separate bot run for each character.
 
 ### Opening another game window
 
-Uncle Farmer itself runs only once per Windows session. If you try to start it again, Windows brings the already-open Uncle Farmer window to the front instead of opening another copy.
+Mist World Farmer itself runs only once per Windows session. If you try to start it again, Windows brings the already-open Mist World Farmer window to the front instead of opening another copy.
 
 To open another Mist World window, use **Game → Open another game window** or press **Ctrl+O**. You can also start Mist World again normally.
 
@@ -1511,14 +1612,14 @@ This stops all active bot runs across your open game windows.
 
 **A note about files**
 
-While Uncle Farmer is running, it keeps its settings, plans, profiles, scripts, message files, and results open.
+While Mist World Farmer is running, it keeps its settings, plans, profiles, scripts, message files, and results open.
 
-Windows may prevent you from moving or deleting these files while the program is using them. Close Uncle Farmer first if you need to manage or clean up those files manually.
+Windows may prevent you from moving or deleting these files while the program is using them. Close Mist World Farmer first if you need to manage or clean up those files manually.
 
 
 ## Schedules
 
-Want Uncle Farmer to start farming without having to press **Start** yourself? You can use schedules to run a plan or script automatically at a time you choose.
+Want Mist World Farmer to start farming without having to press **Start** yourself? You can use schedules to run a plan or script automatically at a time you choose.
 
 Open **Run → Schedules** or press **Ctrl+Shift+H**.
 
@@ -1550,7 +1651,7 @@ The **Add** button creates a new schedule. The other options are in the selected
 - **Delete:** Remove a schedule.
 - **History:** See what happened during previous scheduled runs.
 
-Your schedules are saved in `schedules.json`, beside Uncle Farmer's settings. They are preserved when you update Uncle Farmer.
+Your schedules are saved in `schedules.json`, beside Mist World Farmer's settings. They are preserved when you update Mist World Farmer.
 
 ### What happens when a scheduled task starts?
 
@@ -1558,13 +1659,13 @@ A scheduled plan starts just as it would if you pressed the **Start** button you
 
 It uses the character's open game window and follows the same settings, including its plan, log, results, farming day, and ending location.
 
-Each scheduled occurrence runs only once. If Uncle Farmer is closed or the schedule is turned off when its scheduled time arrives, that run is missed. It won't automatically try again later.
+Each scheduled occurrence runs only once. If Mist World Farmer is closed or the schedule is turned off when its scheduled time arrives, that run is missed. It won't automatically try again later.
 
 You can check the History to see when a scheduled run was missed.
 
 ### What if the game is busy or closed?
 
-Uncle Farmer allows only one bot run at a time for each game window.
+Mist World Farmer allows only one bot run at a time for each game window.
 
 If the character's game is already busy with another run, or its game window isn't open, the schedule waits for up to 15 minutes.
 
@@ -1587,13 +1688,13 @@ This makes it easier to check whether your schedules are working as expected.
 
 ## Results
 
-Curious about how your character did during the last farming run? The Results window gives you a closer look at everything Uncle Farmer has been keeping track of.
+Curious about how your character did during the last farming run? The Results window gives you a closer look at everything Mist World Farmer has been keeping track of.
 
 You can check your farming time, monsters defeated, items collected, earnings, expenses, and even combat statistics. It's a handy way to see how your character is progressing and where your resources are going.
 
 Open **Run → Results** or press **Ctrl+R**.
 
-### What does Uncle Farmer record?
+### What does Mist World Farmer record?
 
 Results are saved separately for each character. You can review:
 
@@ -1620,6 +1721,8 @@ You can choose which period to review:
 - Last 30 days.
 - All time.
 
+Today, yesterday and the days of the **Day** list are the game's days: from 00:00 GMT to 00:00 GMT, when the drop time starts again (05:00 in Pakistan). A night farmed across your computer's midnight counts as one day. A run belongs to the day it started on. The `today` private message command counts the same way.
+
 
 
 ### Understanding your farming time
@@ -1642,10 +1745,10 @@ This means the time used can be shorter than the actual time between starting an
 
 This shows how much time is left before the run reaches its earliest applicable stopping limit.
 
-Uncle Farmer checks three possible limits:
+Mist World Farmer checks three possible limits:
 
 - **Plan's time limit:** The maximum duration you set for the plan, counted from when the run starts.
-- **Plan's scheduled stop time:** The clock time you selected for the plan to stop. For example, if you set it to stop at 10:00 PM, Uncle Farmer stops when that time arrives.
+- **Plan's scheduled stop time:** The clock time you selected for the plan to stop. For example, if you set it to stop at 10:00 PM, Mist World Farmer stops when that time arrives.
 - **Daily stop time:** The daily stopping time configured for your character. It prevents farming from continuing beyond your chosen daily limit.
 
 Whichever limit is reached first determines when the run should end.
@@ -1654,7 +1757,7 @@ Whichever limit is reached first determines when the run should end.
 
 Pausing does not stop the stopping limits from counting down. Both the plan's time limit and clock-based limits continue to run, even though paused time is not included in **Time used**.
 
-If no stopping limit is set, Uncle Farmer tells you. Once a run finishes, the remaining time shows `00:00`.
+If no stopping limit is set, Mist World Farmer tells you. Once a run finishes, the remaining time shows `00:00`.
 
 Both time values update while the Results window is open.
 
@@ -1670,7 +1773,7 @@ Buying an item does not immediately count as an expense. For example, buying a p
 
 Money spent on shop purchases and travel fares is shown separately.
 
-Older results saved by previous versions of Uncle Farmer recorded only the bag's net change in Arnebia. Earnings for those runs are calculated from that saved amount.
+Older results saved by previous versions of Mist World Farmer recorded only the bag's net change in Arnebia. Earnings for those runs are calculated from that saved amount.
 
 ### Reviewing other jobs
 
@@ -1693,7 +1796,7 @@ While a run is paused, nothing is counted as bot activity. Monsters you kill or 
 
 ### Understanding item expenses
 
-Uncle Farmer can show you exactly how much your character spent on items that were consumed.
+Mist World Farmer can show you exactly how much your character spent on items that were consumed.
 
 For each item, it records:
 
@@ -1706,17 +1809,17 @@ It then adds these amounts to calculate the total expenses.
 Prices come from different sources:
 
 - **Shop items:** Their fixed prices from the game's data.
-- **Shards:** The Shard Market prices most recently read by Uncle Farmer.
+- **Shards:** The Shard Market prices most recently read by Mist World Farmer.
 
 Shard prices can change, so their costs are estimates.
 
-Remember that purchased items are not counted as consumed until they are actually used. If an item has no stored price, Uncle Farmer still lists it, but does not include it in the expense calculation.
+Remember that purchased items are not counted as consumed until they are actually used. If an item has no stored price, Mist World Farmer still lists it, but does not include it in the expense calculation.
 
 Each run keeps the prices used for its calculations. Updating shard prices later will not change the expense figures in older results.
 
 ### Reviewing combat statistics
 
-Uncle Farmer also records combat information reported by the game.
+Mist World Farmer also records combat information reported by the game.
 
 Depending on what the game provides, you can review:
 
@@ -1730,15 +1833,19 @@ Depending on what the game provides, you can review:
 
 These statistics require agent version 28 or newer, the same version requirement used for crit-timed combos.
 
-If the game does not provide a particular statistic, Uncle Farmer displays `null` for that value.
+If the game does not provide a particular statistic, Mist World Farmer displays `null` for that value.
+
+### Map by map
+
+When a run farmed two maps or more, its results add a **Map by map** part: for each map, the time spent farming on it (not the trips away from it, nor a pause), its kills and kills an hour, the arnebia and the shards gained on it, the chests opened there and the deaths. A day's or a week's results add the maps up the same way. A run that farmed one map shows the results it always did.
 
 ### Quick results and spoken summaries
 
 You don't always need to open the Results window to check how things are going.
 
 - Press **Shift+Pause** to hear a one-line summary of the game currently in front. You can do this from anywhere.
-- Press **Ctrl+Shift+R** in Uncle Farmer to hear the same summary for the selected game.
-- When a run ends, Uncle Farmer speaks a short summary automatically.
+- Press **Ctrl+Shift+R** in Mist World Farmer to hear the same summary for the selected game.
+- When a run ends, Mist World Farmer speaks a short summary automatically.
 
 The summary starts with how long the character has farmed and how much of today's public area drop time is left, then the kills, contribution, experience and any level ups. For example: "farmed 2 h 15 min, drop time left 3 h 20 min, 340 kills, 4,183 contribution, 12,000 experience". The drop time comes from the character sheet; it is left out until the game has shown it. Damage and loot are in the Results window.
 
@@ -1749,7 +1856,7 @@ All results are saved in the `results` folder, with a separate file for each cha
 
 ## The game's own voice
 
-When Uncle Farmer is running, it can mute the game's speech so you can use your computer without hearing the game speak over other applications. Game sounds and music can still play.
+When Mist World Farmer is running, it can mute the game's speech so you can use your computer without hearing the game speak over other applications. Game sounds and music can still play.
 
 The game can speak in different ways:
 
@@ -1757,14 +1864,14 @@ The game can speak in different ways:
 - **SAPI:** Uses Windows Speech API voices to speak the game's messages. These are Windows text-to-speech voices.
 - **Own voices:** Uses the voices built into Mist World instead of relying on a screen reader or Windows SAPI.
 
-The **combat announcer** is another source of spoken information. It announces combat details, such as damage numbers. Uncle Farmer mutes these announcements along with the rest of the game's speech.
+The **combat announcer** is another source of spoken information. It announces combat details, such as damage numbers. Mist World Farmer mutes these announcements along with the rest of the game's speech.
 
 **Choose when to mute the game**
 
-You can configure when Uncle Farmer mutes the game's speech:
+You can configure when Mist World Farmer mutes the game's speech:
 
 - **While a bot runs:** Mutes the game only while your character is farming.
-- **Always:** Keeps the game's speech muted whenever Uncle Farmer is running.
+- **Always:** Keeps the game's speech muted whenever Mist World Farmer is running.
 - **Never:** Leaves the game's speech alone.
 
 **Mute or unmute a game manually**
@@ -1775,7 +1882,7 @@ You can also control speech for individual games:
 - Press **Ctrl+U** to unmute it.
 - Open the **Game** menu to mute or unmute every game at once.
 
-If you manually mute a game, Uncle Farmer keeps it muted even after the farming run ends.
+If you manually mute a game, Mist World Farmer keeps it muted even after the farming run ends.
 
 
 ## Quick phrases and teammates
@@ -1802,9 +1909,9 @@ These special codes help your character find or coordinate with teammates:
 - `/8` — Target the weakest teammate within 30 yards.
 - `/0`, `/1`, and `/2` — Set or cancel the team's navigation target.
 
-At the beginning of a run, Uncle Farmer lists what each quick phrase does in the log. It does not display the actual phrase text there. You can also check the phrases under **Character → Scan**.
+At the beginning of a run, Mist World Farmer lists what each quick phrase does in the log. It does not display the actual phrase text there. You can also check the phrases under **Character → Scan**.
 
-Uncle Farmer can add some missing control phrases automatically for certain character classes. For example, a Priest, Sorceress, or Witcher may need `/6`, `/5`, `/4`, or `/7`.
+Mist World Farmer can add some missing control phrases automatically for certain character classes. For example, a Priest, Sorceress, or Witcher may need `/6`, `/5`, `/4`, or `/7`.
 
 These phrases are added only to empty quick phrase slots. Existing phrases are never overwritten. This behavior is controlled by the `fill_empty_phrases` profile setting.
 
@@ -1812,17 +1919,46 @@ If you change this setting or update the phrases, restart the game so it can loa
 
 **Finding and reaching teammates**
 
-Uncle Farmer can also help your character locate teammates:
+Mist World Farmer can also help your character locate teammates:
 
 - It uses `/6` to get the map position of a teammate who is not currently visible.
-- If your character is more than 20 yards away from the team leader and on the same map, Uncle Farmer can press **Shift+P** to teleport to the leader. It checks approximately every 50 seconds.
+- If your character is more than 20 yards away from the team leader and on the same map, Mist World Farmer can press **Shift+P** to teleport to the leader. It checks approximately every 50 seconds.
 
 The `come` and `follow` commands can use these features when the target is leading the team.
+
+**Leading a team (the Team tab)**
+
+Character settings has a **Team** tab. Nothing on it does anything until you tick it, and each
+character keeps its own choices.
+
+- **Accept requests to join my team.** When a player asks to join, the game plays a sound for the
+  leader. Mist World Farmer hears it between fights and lets in only the players you allow, chosen in
+  **Who may join**: your trusted players (Private messages), your friends in the game, or the
+  names and ids you type. Anyone else is left waiting: the bot never presses "refuse", and the log
+  names them once. Requests that arrived while the bot wasn't farming are looked at as farming
+  starts.
+- **Remove members who go offline.** Every few minutes (or only when the run passes through a
+  town), the bot opens the member list and presses the game's info key (G) on each member. The
+  game answers for a member who is online and says nothing for one who isn't. A member who doesn't
+  answer is asked again, with twice the wait, before being removed.
+- **Hand the team over when the run ends**, to the first player of your list who is in the team.
+  If none of them is, the team stays with your character and the log says so.
+- **Create my team when the run starts**, with the name you type (letters and numbers), wherever
+  the run starts. If your team has another name, the bot can disband it and make it again (a
+  separate tick, as disbanding sends everyone out of the team).
+- **Leave a team another player leads** when the run starts.
+- **After the run, stay in town and manage the team** until you stop the run. A script can do the
+  same with `manage_team`, which first sets the team up as a run's start does (leaving another
+  player's team, making yours). If both are ticked, the team is handed over and the bot doesn't stay;
+  it stays only when nobody from the list is in the team.
+
+If another player disbands the team or becomes its leader, Mist World Farmer stops managing it for the
+rest of the run and says so. Healing teammates while following is on the same tab.
 
 
 ## Chat
 
-Uncle Farmer has a built-in chat window that lets you read and send game messages while your character is farming. Open it with **Messages → Chat** or press **Ctrl+T**.
+Mist World Farmer has a built-in chat window that lets you read and send game messages while your character is farming. Open it with **Messages → Chat** or press **Ctrl+T**.
 
 Messages are sent through the game itself, so you can chat while the bot is running without interfering with its controls.
 
@@ -1926,7 +2062,7 @@ The game supports voice messages only in Team, Gang, and private conversations. 
 
 **Voice message processing**
 
-Uncle Farmer improves recorded audio before sending it:
+Mist World Farmer improves recorded audio before sending it:
 
 - Removes background hum and silence.
 - Adjusts the volume to make it more consistent.
@@ -1950,7 +2086,7 @@ Every open game window plays voice messages as the game normally would. You can 
 
 ### Chat and speech settings
 
-You can choose when Uncle Farmer reads new messages aloud:
+You can choose when Mist World Farmer reads new messages aloud:
 
 - **Only when Chat is open:** Reads messages only while the Chat window is open. This is the default.
 - **Always:** Reads new messages even when Chat is closed.
@@ -1977,40 +2113,40 @@ The game limits how quickly messages can be sent:
 
 These limits apply to all channels and private messages together.
 
-Uncle Farmer manages a message queue for chat messages, automatic replies, and responses to trusted players. It also accounts for messages you type directly in the game.
+Mist World Farmer manages a message queue for chat messages, automatic replies, and responses to trusted players. It also accounts for messages you type directly in the game.
 
-If the game drops a message because it was sent too quickly, Uncle Farmer tries sending it again. Messages are limited to 200 characters and are split at spaces when necessary.
+If the game drops a message because it was sent too quickly, Mist World Farmer tries sending it again. Messages are limited to 200 characters and are split at spaces when necessary.
 
 ### When the game window is active
 
-When a game's own window is in the foreground, Uncle Farmer does not read incoming messages aloud or play notification tones. You can still see the messages in the log and Chat window.
+When a game's own window is in the foreground, Mist World Farmer does not read incoming messages aloud or play notification tones. You can still see the messages in the log and Chat window.
 
 ### Chat history
 
-Chat messages are not saved to files. Uncle Farmer keeps them in memory only while the application is running. Closing Uncle Farmer clears this chat history.
+Chat messages are not saved to files. Mist World Farmer keeps them in memory only while the application is running. Closing Mist World Farmer clears this chat history.
 
 
 ## Private messages
 
-Uncle Farmer can automatically reply to private messages while your character is farming. You can also mark certain players as trusted so they can send commands to control your bot.
+Mist World Farmer can automatically reply to private messages while your character is farming. You can also mark certain players as trusted so they can send commands to control your bot.
 
 Open **Messages → Private messages** or press **Ctrl+Shift+M**.
 
 ### Automatic replies to strangers
 
-When someone who is not on your trusted list sends a private message, Uncle Farmer can reply automatically.
+When someone who is not on your trusted list sends a private message, Mist World Farmer can reply automatically.
 
 It sends a few replies at a time, choosing from the messages you've configured. It does not repeat the same reply twice in a row.
 
-After sending its replies, Uncle Farmer sends a goodbye message and stops responding to that player for one hour.
+After sending its replies, Mist World Farmer sends a goodbye message and stops responding to that player for one hour.
 
 You can edit the replies to use your own wording. The default messages are polite responses that let people know you're away.
 
 **Using a player's name in replies**
 
-You can include `{name}` in a reply. Uncle Farmer replaces it with the sender's name.
+You can include `{name}` in a reply. Mist World Farmer replaces it with the sender's name.
 
-There is also a **Call them by their name** option. When enabled, Uncle Farmer adds the sender's name to the beginning of a reply that does not already contain `{name}`.
+There is also a **Call them by their name** option. When enabled, Mist World Farmer adds the sender's name to the beginning of a reply that does not already contain `{name}`.
 
 ### Trusted players
 
@@ -2022,9 +2158,9 @@ Trusted players do not receive the automatic replies intended for strangers.
 
 **When the game window is in front**
 
-When a game's own window is in the foreground, you handle private messages yourself. Uncle Farmer does not read them aloud or play notification tones, but the messages still appear in the log and Chat window.
+When a game's own window is in the foreground, you handle private messages yourself. Mist World Farmer does not read them aloud or play notification tones, but the messages still appear in the log and Chat window.
 
-Uncle Farmer also does not send an automatic away reply while the game window is in front.
+Mist World Farmer also does not send an automatic away reply while the game window is in front.
 
 Trusted commands can still work in this situation unless **Take their commands while game window is in front** is disabled.
 
@@ -2062,15 +2198,15 @@ Available commands include:
 
 Send `help` to see the available commands. You can also send `help` followed by a command name for more information.
 
-Uncle Farmer automatically accepts team invitations from trusted players. It declines invitations from other players by pressing **Escape** while the bot is running.
+Mist World Farmer automatically accepts team invitations from trusted players. It declines invitations from other players by pressing **Escape** while the bot is running.
 
 ### Using `come`
 
 The `come` command sends your character to the trusted player.
 
-How it works depends on whether Uncle Farmer knows the player's location:
+How it works depends on whether Mist World Farmer knows the player's location:
 
-- If the player is one of your characters running in the same Uncle Farmer session, it can use their exact location.
+- If the player is one of your characters running in the same Mist World Farmer session, it can use their exact location.
 - Otherwise, it uses the player's last known location from any game, provided that location is no more than 10 minutes old.
 
 For more accurate directions, send `come` together with the player's location. You can copy a location from the game using **E**, followed by **Shift+C**. This includes the map and coordinates.
@@ -2090,9 +2226,9 @@ Your character will:
 - Help fight nearby monsters that the player is fighting.
 - Follow the player when they change maps.
 
-For your own characters, Uncle Farmer can follow them anywhere. For other players, it uses the map exits to travel between maps.
+For your own characters, Mist World Farmer can follow them anywhere. For other players, it uses the map exits to travel between maps.
 
-Starting `follow` stops the current farming run. If Uncle Farmer cannot find any sign of the target for one minute, it stops following.
+Starting `follow` stops the current farming run. If Mist World Farmer cannot find any sign of the target for one minute, it stops following.
 
 **Buffs while following**
 
@@ -2110,7 +2246,7 @@ Send `unfollow` to stop following the player.
 
 ## Updates
 
-Uncle Farmer can check GitHub for newer versions and help you install them.
+Mist World Farmer can check GitHub for newer versions and help you install them.
 
 When a new version is available, it shows the release notes so you can review what's changed before deciding whether to update.
 
@@ -2118,14 +2254,14 @@ You can also check manually through **Help → Check for updates**.
 
 ### Installing an update
 
-When you accept an update, Uncle Farmer handles the download and installation for you.
+When you accept an update, Mist World Farmer handles the download and installation for you.
 
 The process works as follows:
 
-1. **Download:** Uncle Farmer downloads the new version from GitHub.
+1. **Download:** Mist World Farmer downloads the new version from GitHub.
 2. **Verify:** It checks the downloaded files before installing them.
-3. **Close the games:** If any Mist World windows are open, Uncle Farmer asks for confirmation before closing them. This is necessary because the game loads the Uncle Farmer agent when it starts. The agent is a component that allows Uncle Farmer to interact with the game, and it must be replaced along with the application.
-4. **Install:** Uncle Farmer installs the downloaded version and restarts itself.
+3. **Close the games:** If any Mist World windows are open, Mist World Farmer asks for confirmation before closing them. This is necessary because the game loads the Mist World Farmer agent when it starts. The agent is a component that allows Mist World Farmer to interact with the game, and it must be replaced along with the application.
+4. **Install:** Mist World Farmer installs the downloaded version and restarts itself.
 5. **Start playing again:** Once the update is complete, you can open Mist World again. The game will load the updated agent.
 
 The update process does not send your personal or game information to GitHub.
@@ -2140,14 +2276,14 @@ Here you can:
 - See the source of the current version.
 - Enable or disable the startup update check.
 - Choose a release channel.
-- Ask Uncle Farmer to offer a version again if you previously declined it.
+- Ask Mist World Farmer to offer a version again if you previously declined it.
 - Save your settings and check for updates immediately.
 
-The **Look for a new version when Uncle Farmer starts** option controls whether Uncle Farmer checks GitHub each time it starts.
+The **Look for a new version when Mist World Farmer starts** option controls whether Mist World Farmer checks GitHub each time it starts.
 
 ### Choosing a release channel
 
-Uncle Farmer offers two release channels:
+Mist World Farmer offers two release channels:
 
 - **Master:** The stable release channel. This is the default and contains the hand-made releases also listed in the README.
 - **Dev:** The development channel. It offers builds made from the `dev` branch whenever changes are pushed to GitHub.
@@ -2158,13 +2294,13 @@ A development version includes its build number in the version name. For example
 
 Each channel offers only its own releases.
 
-If you switch from Dev back to Master, Uncle Farmer keeps your current development version until a newer stable release is available. To return to the stable version immediately, download the stable release ZIP and unpack it over your existing Uncle Farmer folder.
+If you switch from Dev back to Master, Mist World Farmer keeps your current development version until a newer stable release is available. To return to the stable version immediately, download the stable release ZIP and unpack it over your existing Mist World Farmer folder.
 
 ### What happens to update files?
 
-During an update, Uncle Farmer downloads and unpacks files into an `update` folder beside the application.
+During an update, Mist World Farmer downloads and unpacks files into an `update` folder beside the application.
 
-After the update succeeds, fails, or is cancelled, Uncle Farmer removes the temporary update files and cleans up that folder.
+After the update succeeds, fails, or is cancelled, Mist World Farmer removes the temporary update files and cleans up that folder.
 
 This cleanup affects only the `update` folder. It does not delete your profiles, plans, settings, or other personal data.
 
@@ -2174,9 +2310,9 @@ Update activity is recorded in `logs/update.log`.
 
 You can also install an update yourself:
 
-1. Close Uncle Farmer and all Mist World game windows.
+1. Close Mist World Farmer and all Mist World game windows.
 2. Download the newer `UncleFarmer-<version>.zip` file.
-3. Unpack it over your existing Uncle Farmer folder.
+3. Unpack it over your existing Mist World Farmer folder.
 
 Your existing user data is preserved.
 
@@ -2185,7 +2321,7 @@ After updating, check **What's new.txt** to see what has changed.
 
 ## The game in another language
 
-Uncle Farmer works with any of the game's language packs, using `language\lang.txt`, not just English. It reads the same language files as the game and translates what it sees back into English. This helps it recognize the same potions, skills, monsters, pets, and menus regardless of the selected language.
+Mist World Farmer works with any of the game's language packs, using `language\lang.txt`, not just English. It reads the same language files as the game and translates what it sees back into English. This helps it recognize the same potions, skills, monsters, pets, and menus regardless of the selected language.
 
 Anything the language pack leaves untranslated is already in English. Player names are never changed.
 
@@ -2196,12 +2332,12 @@ To use another language:
 1. Choose your preferred language in Mist World.
 2. Restart the game so the new language settings take effect.
 
-Uncle Farmer will then read the language files for the selected language.
+Mist World Farmer will then read the language files for the selected language.
 
 
 ## Contact
 
-Need help, found a bug, or have a suggestion? Uncle Farmer provides a couple of ways to get in touch.
+Need help, found a bug, or have a suggestion? Mist World Farmer provides a couple of ways to get in touch.
 
 ### Contact the developer
 
@@ -2213,26 +2349,26 @@ If you're reporting a bug, opening an issue on GitHub is usually the best way to
 
 ### Join the Telegram group
 
-You can also join the Uncle Farmer Telegram group to connect with other users.
+You can also join the Mist World Farmer Telegram group to connect with other users.
 
 Open **Help → Join Telegram group**, or use the link below:
 
-[Join the Uncle Farmer Telegram group](https://t.me/+55NtoqsY7u1lMzNk)
+[Join the Mist World Farmer Telegram group](https://t.me/+55NtoqsY7u1lMzNk)
 
 
 ## Things to know
 
-Here are a few extra details that can help you maintain Uncle Farmer, protect your settings, and contribute translations.
+Here are a few extra details that can help you maintain Mist World Farmer, protect your settings, and contribute translations.
 
-### When Uncle Farmer cannot find the game
+### When Mist World Farmer cannot find the game
 
-Some tools that clean or modify Mist World settings, such as `mwMod`, may remove the line that loads the Uncle Farmer agent.
+Some tools that clean or modify Mist World settings, such as `mwMod`, may remove the line that loads the Mist World Farmer agent.
 
-If this happens, Uncle Farmer may no longer recognize the game.
+If this happens, Mist World Farmer may no longer recognize the game.
 
 To fix it:
 
-1. Restart Uncle Farmer.
+1. Restart Mist World Farmer.
 2. If it offers to reinstall the agent, accept.
 3. If it does not, open **File → Settings → Install** and install the agent manually.
 4. Restart Mist World so it loads the agent again.
@@ -2243,14 +2379,14 @@ Your character settings, farming plans, scripts, and logs are stored in separate
 
 - `profiles` — Character settings and profiles.
 - `plans` — Your saved farming plans.
-- `scripts` — Scripts used by Uncle Farmer.
+- `scripts` — Scripts used by Mist World Farmer.
 - `logs` — Log files.
 
-You can copy these folders to another location to keep a backup. This is especially useful before making major changes or moving Uncle Farmer to another computer.
+You can copy these folders to another location to keep a backup. This is especially useful before making major changes or moving Mist World Farmer to another computer.
 
 ### Creating a translation
 
-If you'd like to translate Uncle Farmer into another language, you can start with the provided translation template.
+If you'd like to translate Mist World Farmer into another language, you can start with the provided translation template.
 
 1. Open the `lang` folder.
 2. Copy `unclefarmer.pot`.
@@ -2261,24 +2397,31 @@ If you'd like to translate Uncle Farmer into another language, you can start wit
 
    `uv run python -m unclefarmer --strings`
 
-Your translation should then appear in Uncle Farmer's **Settings → Language** list.
+Your translation should then appear in Mist World Farmer's **Settings → Language** list.
 
 ### Spanish and Turkish translations
 
-Uncle Farmer includes Spanish (`lang\es.po`) and Turkish (`lang\tr.po`) translations. Game names
+Mist World Farmer includes Spanish (`lang\es.po`) and Turkish (`lang\tr.po`) translations. Game names
 (the hearthstone, the storehouse, the Shard Broker, the Forger, the Gem Craftsman and so on) follow
 the game's own Spanish and Turkish language packs, so they match what the game shows. Each Alt+letter
 shortcut is the same letter as in English; when the translated word has no such letter, it is shown
 in brackets at the end, for example `(&S)`. Trusted-player commands and script words stay in English,
 because the bot only understands them that way.
 
+### French translation
+
+Mist World Farmer includes a French translation in `lang\fr.po`. Game names (maps, NPCs, items, skills,
+the Storehouse, the Shard Broker and so on) stay in English: the bot's log lines name them in
+English whatever the game's language pack, so the two always match. Trusted-player commands and
+script words stay in English, because the bot only understands them that way.
+
 ### Urdu translation
 
-Uncle Farmer includes an Urdu translation in `lang\ur.po`.
+Mist World Farmer includes an Urdu translation in `lang\ur.po`.
 
 It uses Roman Urdu, meaning Urdu written with Latin letters rather than the Urdu or Nastaliq script.
 
-Uncle Farmer also keeps wx in English left-to-right mode, so its interface does not switch to a right-to-left layout.
+Mist World Farmer also keeps wx in English left-to-right mode, so its interface does not switch to a right-to-left layout.
 
 
 ### Reacting to sounds in scripts

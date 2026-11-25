@@ -265,7 +265,7 @@ class MarketFrame(wx.Frame):
         self.rows, self.head = market.load_list(self.server)
         made = str(self.head.get("made") or "?")
         if self.head.get("shipped"):
-            text = _("the list Uncle Farmer came with (from {made}) - press Refresh for today's", made=made)
+            text = _("the list Mist World Farmer came with (from {made}) - press Refresh for today's", made=made)
         elif self.rows:
             text = _("read {made}: {items} items in {lots} lots", made=made, items=len(self.rows),
                      lots=self.head.get("lots", "?"))

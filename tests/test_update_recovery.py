@@ -73,7 +73,7 @@ elif action in ("download", "extract"):
     else:
         archive = os.path.join(app, "archive.zip")
         with zipfile.ZipFile(archive, "w") as z:
-            z.writestr("Uncle Farmer/UncleFarmer.exe", b"new")
+            z.writestr("Mist World Farmer/MistWorldFarmer.exe", b"new")
         u.unpack(archive)
 else:
     if action == "rollback":
@@ -124,7 +124,7 @@ def fresh_recovery(app: Path, success: bool = True) -> subprocess.CompletedProce
     ("replace-intent:*", "apply", False),
     ("replacement-moved:*", "apply", False),
     ("replacement-moved:numpy", "apply", False),
-    ("replacement-moved:UncleFarmer.exe", "apply", False),
+    ("replacement-moved:MistWorldFarmer.exe", "apply", False),
     ("replace-intent:build.json", "apply", False),
     ("cleanup-started", "apply", True),
     ("cleanup-removed:*", "apply", True),
@@ -391,7 +391,7 @@ def test_recovery_dispatch_precedes_application_initialization(
     from unclefarmer import __main__ as entry
     app, _ = trees
     calls: list[str] = []
-    monkeypatch.setattr(sys, "argv", ["UncleFarmer.exe", "--recover-update", str(app)])
+    monkeypatch.setattr(sys, "argv", ["MistWorldFarmer.exe", "--recover-update", str(app)])
     monkeypatch.setattr(sys, "executable", str(app / recovery.HERE / "runtime" / recovery.PAYLOAD))
     monkeypatch.setattr(sys, "frozen", True, raising=False)
     def recovered(path: str) -> str:
@@ -417,7 +417,7 @@ def test_source_recovery_entry_cannot_select_an_arbitrary_destination(
 
 @pytest.fixture(scope="module")
 def native_programs(tmp_path_factory: pytest.TempPathFactory) -> tuple[Path, Path]:
-    """The real bootstrap.exe and a stub that stands in for UncleFarmer.exe in all three roles:
+    """The real bootstrap.exe and a stub that stands in for MistWorldFarmer.exe in all three roles:
     the app (writes payload-started with its arguments), the rescue runtime (--recover-update) and
     the update copier (--apply-update: writes copier-args.txt and copier-pid.txt beside itself)."""
     import build_exe
@@ -479,7 +479,7 @@ int WINAPI wWinMain(HINSTANCE a, HINSTANCE b, LPWSTR args, int show) {
 
 
 def installed(native_programs: tuple[Path, Path], app: Path) -> Path:
-    """bootstrap.exe and the stub app (UncleFarmer.exe) in app; returns the bootstrap."""
+    """bootstrap.exe and the stub app (MistWorldFarmer.exe) in app; returns the bootstrap."""
     import shutil
     bootstrap, stub = native_programs
     shutil.copy2(bootstrap, app / updater.BOOTSTRAP)
@@ -556,7 +556,7 @@ def test_native_bootstrap_checks_armed_marker_when_journals_are_missing(
 
 def staged_copier(native_programs: tuple[Path, Path], app: Path) -> Path:
     import shutil
-    staged = app / "update" / "new" / "Uncle Farmer"
+    staged = app / "update" / "new" / "Mist World Farmer"
     staged.mkdir(parents=True)
     shutil.copy2(native_programs[1], staged / recovery.PAYLOAD)
     return staged / recovery.PAYLOAD
@@ -658,7 +658,7 @@ def test_the_app_hands_an_unfinished_update_to_the_bootstrap(
     from unclefarmer import paths
     monkeypatch.setattr(paths, "APP", str(app))
     monkeypatch.setattr(paths, "frozen", lambda: True)
-    monkeypatch.setattr(sys, "argv", ["UncleFarmer.exe"])
+    monkeypatch.setattr(sys, "argv", ["MistWorldFarmer.exe"])
     with pytest.raises(SystemExit) as stopped:
         entry.main()
     assert stopped.value.code == 0
@@ -682,7 +682,7 @@ def test_the_app_never_hands_the_update_back_right_after_a_recovery(
     monkeypatch.setattr(ctypes.windll.user32, "MessageBoxW", box)
     monkeypatch.setattr(paths, "APP", str(app))
     monkeypatch.setattr(paths, "frozen", lambda: True)
-    monkeypatch.setattr(sys, "argv", ["UncleFarmer.exe", "--recovered"])
+    monkeypatch.setattr(sys, "argv", ["MistWorldFarmer.exe", "--recovered"])
     with pytest.raises(SystemExit) as stopped:
         entry.main()
     assert stopped.value.code != 0 and launched == []
@@ -728,7 +728,7 @@ def test_the_bootstrap_accepts_short_and_long_names_of_the_same_folder(
 
 def test_the_rescue_runtime_accepts_its_own_short_name(trees: tuple[Path, Path], monkeypatch: pytest.MonkeyPatch) -> None:
     """Found by the real-binary test, and why an updated copy never opened again: a frozen app's
-    sys.executable is the 8.3 short name when a folder has spaces ("Uncle Farmer"), bootstrap.exe
+    sys.executable is the 8.3 short name when a folder has spaces ("Mist World Farmer"), bootstrap.exe
     passes the long one, and the rescue runtime refused to run, so nothing was started."""
     from unclefarmer import __main__ as entry
     app, _ = trees
@@ -739,7 +739,7 @@ def test_the_rescue_runtime_accepts_its_own_short_name(trees: tuple[Path, Path],
     if short == str(runtime / recovery.PAYLOAD):
         pytest.skip("this volume has no 8.3 names")
     calls: list[str] = []
-    monkeypatch.setattr(sys, "argv", ["UncleFarmer.exe", "--recover-update", str(app)])
+    monkeypatch.setattr(sys, "argv", ["MistWorldFarmer.exe", "--recover-update", str(app)])
     monkeypatch.setattr(sys, "executable", short)
     monkeypatch.setattr(sys, "frozen", True, raising=False)
     def recovered(path: str) -> str:
@@ -766,14 +766,14 @@ def test_a_journal_reads_under_the_short_and_the_long_name(trees: tuple[Path, Pa
 
 def test_the_rescue_runtime_accepts_nuitkas_python_exe(trees: tuple[Path, Path], monkeypatch: pytest.MonkeyPatch) -> None:
     """Found by the real-binary test: in a Nuitka build sys.executable is a python.exe beside
-    UncleFarmer.exe. The rescue entry compared it with the exe's own name and refused every
+    MistWorldFarmer.exe. The rescue entry compared it with the exe's own name and refused every
     recovery, so the old front door never started an updated copy."""
     from unclefarmer import __main__ as entry
     app, _ = trees
     runtime = app / recovery.HERE / "runtime"
     runtime.mkdir(parents=True)
     calls: list[str] = []
-    monkeypatch.setattr(sys, "argv", ["UncleFarmer.exe", "--recover-update", str(app)])
+    monkeypatch.setattr(sys, "argv", ["MistWorldFarmer.exe", "--recover-update", str(app)])
     monkeypatch.setattr(sys, "executable", os.path.join(short_name(runtime), "python.exe"))
     monkeypatch.setattr(sys, "frozen", True, raising=False)
     def recovered(path: str) -> str:
@@ -787,7 +787,7 @@ def test_the_rescue_runtime_accepts_nuitkas_python_exe(trees: tuple[Path, Path],
 def test_python_exe_elsewhere_is_still_refused(trees: tuple[Path, Path], monkeypatch: pytest.MonkeyPatch) -> None:
     from unclefarmer import __main__ as entry
     app, _ = trees
-    monkeypatch.setattr(sys, "argv", ["UncleFarmer.exe", "--recover-update", str(app)])
+    monkeypatch.setattr(sys, "argv", ["MistWorldFarmer.exe", "--recover-update", str(app)])
     monkeypatch.setattr(sys, "executable", str(app / "python.exe"))       # the installation, not the rescue copy
     monkeypatch.setattr(sys, "frozen", True, raising=False)
     def refused(path: str) -> str:

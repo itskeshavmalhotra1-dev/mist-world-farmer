@@ -9,6 +9,7 @@ from typing import Any
 import wx
 
 from .. import __version__, applog, daily, gameinstall, i18n, paths, updater
+from ..engine import resume
 from ..i18n import _
 from . import agentfix
 from .common import Dialog, ask, ask_ok, buttons, enable_label, error, group, info, modal, ok_cancel, opens, page, tabs
@@ -97,6 +98,10 @@ class SetupDialog(Dialog):
                               self.s.get("shutdown_delay", 60), 10, 600)
         self.after.Bind(wx.EVT_CHOICE, lambda e: self.sync_after())
         self.sync_after()
+        f = group(panel, box, _("When a game is lost during a run"))
+        self.restart_lost = f.check(
+            _("&Open the game again, log in and carry on where the run was (at most {n} times a day)",
+              n=resume.RESTARTS_MOST), self.s.get("restart_lost_games", True))
 
         def sync(_evt: wx.Event | None = None) -> None:
             self.day_at.Enable(self.day_on.GetValue())
@@ -143,7 +148,7 @@ class SetupDialog(Dialog):
         if not updater.REPO:          # nowhere to look for updates: no switches for it
             return
         f = group(panel, box, _("Updates"))
-        self.updates = f.check(_("Look for a new &version when Uncle Farmer starts"),
+        self.updates = f.check(_("Look for a new &version when Mist World Farmer starts"),
                                self.s.get("check_updates", True))
         self.channel = f.choice(_("Release &channel:"),
                                 [_("Master: stable releases"),
@@ -157,7 +162,7 @@ class SetupDialog(Dialog):
     def updater_status(self) -> str:
         """What the Updater tab says about this copy."""
         mine = updater.installed_version()
-        lines = [_("Uncle Farmer {v}", v=mine) + (" " + _("(a development build)") if updater.is_dev(mine) else "")]
+        lines = [_("Mist World Farmer {v}", v=mine) + (" " + _("(a development build)") if updater.is_dev(mine) else "")]
         if not updater.REPO:
             lines.append(_("This copy doesn't look for updates online. New versions come as a zip: unpack it over "
                            "this folder."))
@@ -193,10 +198,10 @@ class SetupDialog(Dialog):
             "nogame": _("Mist World isn't in this folder. Choose the folder that has mw.exe."),
             "missing": _("Not installed. Press Install, then restart the game."),
             "installed": _("Installed. If the game was running when you installed it, restart the game."),
-            "other": _("An older Uncle Farmer agent is installed. Press Install to update it."),
+            "other": _("An older Mist World Farmer agent is installed. Press Install to update it."),
         }.get(st, _("Mist World isn't in this folder. Choose the folder that has mw.exe."))
         if not os.path.exists(paths.AGENT_JAR):
-            text += " " + _("The agent file is missing from Uncle Farmer's agent folder.")
+            text += " " + _("The agent file is missing from Mist World Farmer's agent folder.")
         self.status.ChangeValue(text)
         self.install_btn.Enable(st in ("missing", "other"))
         self.remove_btn.Enable(st in ("installed", "other"))
@@ -265,6 +270,7 @@ class SetupDialog(Dialog):
         self.s["results_every"] = self.every.GetValue() if self.progress.GetValue() else 0
         self.s["daily_stop"] = self.day_on.GetValue()
         self.s["after_stop"] = AFTER[max(0, self.after.GetSelection())]
+        self.s["restart_lost_games"] = self.restart_lost.GetValue()
         self.s["shutdown_delay"] = self.delay.GetValue()
         self.s["log_level"] = applog.LEVELS[max(0, self.level.GetSelection())]
         self.s["log_max_mb"] = self.log_mb.GetValue()

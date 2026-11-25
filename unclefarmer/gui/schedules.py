@@ -146,7 +146,7 @@ class SchedulesDialog(Dialog):
         self.add_btn = buttons(self, box, (opens(_("&Add")), lambda e: self.add()))[0]
         note = wx.StaticText(self, label=_(
             "A scheduled plan starts in the game the character is logged in to, as the Start button would. "
-            "A time missed while Uncle Farmer was closed doesn't run later; a game busy with another run "
+            "A time missed while Mist World Farmer was closed doesn't run later; a game busy with another run "
             "waits up to 15 minutes."))
         note.Wrap(560)
         box.Add(note, 0, wx.TOP, 10)

@@ -1,16 +1,16 @@
-"""Finding Mist World, and adding Uncle Farmer's agent to it.
+"""Finding Mist World, and adding Mist World Farmer's agent to it.
 
 The game is a Java program launched by mw.exe, which passes every line of mw.exe.vmoptions to Java.
 One line there loads our agent:
 
-    -javaagent:<Uncle Farmer>\\agent\\unclefarmer-agent.jar=<Uncle Farmer>\\agent\\run
+    -javaagent:<Mist World Farmer>\\agent\\unclefarmer-agent.jar=<Mist World Farmer>\\agent\\run
 
 Nothing else in the game folder is changed. The original file is kept once as
 mw.exe.vmoptions.bak-unclefarmer. Some other tools (mwMod) delete every -javaagent line when they start
 the game; if the agent stops answering after using one, install it again.
 
 A game loads the agent only as it starts, so a reinstall (the line gone or pointing at another
-Uncle Farmer, or a game running without this copy's agent) closes the open games first:
+Mist World Farmer, or a game running without this copy's agent) closes the open games first:
 stale_games() finds them, close_games() closes them.
 """
 
@@ -33,7 +33,7 @@ MARKER = "unclefarmer-agent.jar"
 LEGACY = ("mwfarmer-agent.jar",)
 # The agent version this copy ships (StateServer.VERSION in agent/src; a test keeps them equal).
 # A running game whose agent answers an older one loaded it before this copy was installed.
-AGENT_VERSION = 74
+AGENT_VERSION = 77
 CLOSE_WAIT = 20.0       # seconds a game gets to close through its own close button before it is ended
 
 
@@ -95,7 +95,7 @@ def _agent_version(pid: int) -> int:
 def stale_games() -> list[tuple[int, int]]:
     """(pid, agent version) of every running game without this copy's agent loaded: version 0 for
     one with no agent at all (started before the install, or after a tool removed the line), an
-    older number for one that loaded an older Uncle Farmer's agent."""
+    older number for one that loaded an older Mist World Farmer's agent."""
     from .link import agents
     loaded = {pid for _port, pid, _secret in agents()}
     out: list[tuple[int, int]] = []
@@ -135,11 +135,11 @@ def _ask_to_close(pid: int) -> bool:
 
 
 def close_games(pids: list[int], wait: float = CLOSE_WAIT, clock: Clock = CLOCK,
-                alive: Callable[[int], bool] = _alive) -> list[int]:
+                alive: Callable[[int], bool] = _alive, *, force: bool = False) -> list[int]:
     """Close every game in pids: through its own close button where its agent answers, then
     whatever is still open after `wait` seconds (or has no agent to ask) is ended. Returns the
-    pids still running after that (normally none)."""
-    asked = [pid for pid in pids if alive(pid) and _ask_to_close(pid)]
+    pids still running after that. With force, end the processes without asking the game agent."""
+    asked = [] if force else [pid for pid in pids if alive(pid) and _ask_to_close(pid)]
     for pid in pids:
         if pid not in asked and alive(pid):
             _end(pid)
@@ -169,7 +169,7 @@ def _read_lines(folder: str) -> tuple[str, list[str], str]:
 
 
 def status(folder: str | None) -> str:
-    """'installed', 'other' (an older Uncle Farmer path), 'missing', or 'nogame'."""
+    """'installed', 'other' (an older Mist World Farmer path), 'missing', or 'nogame'."""
     if not is_game_folder(folder):
         return "nogame"
     _path, lines, _nl = _read_lines(folder or "")

@@ -41,7 +41,7 @@ def exported(name: str) -> str:
                          cwd=ROOT, capture_output=True, text=True, encoding="utf-8")
     if out.returncode != 0:
         sys.exit("uv export failed:\n" + out.stderr)
-    header = ("# Uncle Farmer's packages %s, pinned, for Python 3.14 on Windows:\n"
+    header = ("# Mist World Farmer's packages %s, pinned, for Python 3.14 on Windows:\n"
               "#     py -3.14 -m venv .venv\n"
               "#     .venv\\Scripts\\pip install -r %s\n"
               "# Made from uv.lock by export_requirements.py: don't edit it, run that after `uv lock`.\n"

@@ -26,9 +26,21 @@ What the game showed (hand runs logged 2026-10-27, one with a Hunter, one with a
   - Turned away because the day's cave is used, the game says "You have already entered an
     experience dungeon today".
 
+What the bot's own visits showed (2026-11-01 to 11-15, thirteen of them, field logs and packets):
+  - Everything done after landing is taken off the 15 minutes. Every visit with a pet stood 11 to
+    13 seconds on the spawn point first: a second for the game to settle, a second of target-mode
+    presses, the pet called - and then the "get off the Swift beast" press, which the server
+    ignores right after a pet came out (pets.keep_out), so 8.5 s more until the next one. The
+    hand runs called the pet at the door, ten seconds before going in, and it came in with them.
+  - The rest of a visit has no idle time worth the name: walking up to monsters (60-70% of a
+    Hunter's visit, on foot at 4.1 tiles a second), the game's own 0.7 s stand after each cast,
+    and 3 to 8 fights a visit that the server refuses or that end without a kill (3 to 6 s each).
+
 So a visit is: the supplies topped up before setting out (the pet's blue potions and Rice Rolls,
 our own blues and reds - a pet that fights and a lower character's potions are a good part of the
-damage), the walk to the entrance, "Enter the dungeon", then the farming fight in dungeon mode:
+damage), the walk to the entrance, getting ready at the door (make_ready: the fight's beast, the
+pet out, buffs up, keys filled - none of it on the timer), "Enter the dungeon", then the farming
+fight in dungeon mode:
 no trips out (the visit can't be taken up again), no resting (drink instead), area skills from two
 monsters together, chasing whatever is within 90 steps (caveloops.py: the chase range, not the
 loop, is what decides the kills here), until the game moves us out. The pet is the one chosen in
@@ -42,12 +54,14 @@ from __future__ import annotations
 
 import copy
 import re
-from typing import Any
+from typing import Any, cast
 
 from .. import atlas, dungeons, jsonio, knowledge
+from ..clock import clock_for
+from ..link import AgentError
 from ..i18n import N_, _
-from . import chores, pets, town
-from .bot import Bot, Stopped
+from . import beasts, chores, combat, keyslots, pets, town, xpcard
+from .bot import Bot, Respawned, Stopped
 from .botparts.base import potion_kind
 
 CAVES: dict[str, dict[str, Any]] = {          # lowest level first
@@ -61,6 +75,26 @@ CAVES: dict[str, dict[str, Any]] = {          # lowest level first
 }
 CAVE_NAMES = (N_("Scorpion Cave"), N_("Spider cave"), N_("Bottomless pit"),
               N_("White Bone Cave"))     # CAVES' names, for translators
+
+WRAITH_CAVE = "Wraith Cave"
+WRAITH_FLOORS: dict[int, dict[str, int]] = {
+    1: {"map": 1801, "level": 21},
+    2: {"map": 1802, "level": 41},
+    3: {"map": 1802, "level": 49},
+    4: {"map": 1802, "level": 56},
+    5: {"map": 1802, "level": 60},
+    6: {"map": 1806, "level": 63},
+    7: {"map": 1807, "level": 66},
+    8: {"map": 1807, "level": 69},
+    9: {"map": 1807, "level": 71},
+    10: {"map": 1807, "level": 73},
+    11: {"map": 1811, "level": 75},
+}
+WRAITH_CHOICES: tuple[str, ...] = (WRAITH_CAVE,) + tuple(
+    f"{WRAITH_CAVE} Floor {n}" for n in WRAITH_FLOORS
+)
+WRAITH_MAPS: set[int] = {v["map"] for v in WRAITH_FLOORS.values()}
+WRAITH_MINUTES = 10.0     # safety cap per floor clear (actual clear ends on chest)
 ALREADY = r"already entered an experience dungeon today"    # the game's answer when the day's cave is used
 BEST = "best"             # the cave setting's default: the highest one the character's level lets in
 MINUTES = 15              # the game's timer inside
@@ -70,6 +104,12 @@ CHASE = 90                # walking steps to chase a monster from the loop: farm
                           # hardly matters with a monster nearly always that close
 ENTER = r"^\s*Enter the dungeon"
 LANDING = 10.0            # seconds the game has to move us in after "Enter the dungeon"
+LANDING_LOOK = 0.1        # ... looked at this often: the timer runs from the landing
+PET_WAIT = 180.0          # seconds to wait at the door for the run's pet to be ready to come out
+                          # (one put away comes back in about two minutes; one that died takes 10
+                          # to 30, and then we go in without it)
+DOOR_LOOKS = 5            # looks at ourselves at the door, DOOR_LOOK apart: each puts up one buff
+DOOR_LOOK = 0.6           # or drinks one potion, so none of it costs a cast inside
 TRIES = 3                 # goes at the entrance before giving up (none is written down for the day)
 RETRY_WAIT = 2.0          # seconds between two goes: a late move in shows meanwhile
 IN, USED, MISSED = "in", "used", "missed"     # what enter() got
@@ -105,7 +145,7 @@ def config(p: dict[str, Any]) -> dict[str, Any]:
     old: object = cfg.pop("caves", None)   # before one cave a day: a ticked list, the first was the one
     if "cave" not in mine and jsonio.is_array(old):
         cfg["cave"] = next((str(c) for c in old if str(c) in CAVES), BEST)
-    if cfg["cave"] != BEST and cfg["cave"] not in CAVES:
+    if cfg["cave"] != BEST and cfg["cave"] not in CAVES and not is_wraith(cfg["cave"]):
         cfg["cave"] = BEST
     supplies: dict[str, dict[str, Any]] = {k: dict(v) for k, v in DEFAULTS["supplies"].items()}
     chosen: dict[str, Any] = cfg.get("supplies") or {}
@@ -155,7 +195,13 @@ def script(cfg: dict[str, Any]) -> str:
     another copy of it) happens to point."""
     from .plan import end_line
     cave = cfg.get("cave")
-    return end_line(cfg.get("end")) + "\ndungeon" + (" " + cave if cave in CAVES else "") + "\n"
+    if is_wraith(cave):
+        arg = f' "{cave}"'
+    elif cave in CAVES:
+        arg = " " + cave
+    else:
+        arg = ""
+    return end_line(cfg.get("end")) + "\ndungeon" + arg + "\n"
 
 
 def supply_item(b: Bot, kind: str, cfg: dict[str, Any]) -> str | None:
@@ -234,14 +280,112 @@ def turned_away(b: Bot, since: int) -> bool:
     return any(re.search(ALREADY, line, re.I) for line in chores.said_since(b, since))
 
 
-def enter(b: Bot, cave: str) -> str:
-    """Walk to the cave's entrance, talk, choose "Enter the dungeon" and wait to land inside, up to
-    TRIES times: a menu that came late, a row not found or a slow move in is tried again, and a
-    move in that came after LANDING is seen before the next try. IN when inside; USED when the game
-    said the day's entry is used; MISSED when TRIES tries got nowhere (the day may still be free)."""
+def pet_ready(b: Bot) -> None:
+    """At the door: the run's pet out before we go in - it comes in with us (the hand runs called
+    theirs ten seconds before the door). One that is still cooling down is waited for when that is
+    soon (PET_WAIT), looking after ourselves meanwhile; a summon the game didn't take is tried
+    once more after the server's gap between such changes. A pet that was out already has its
+    description read here, not between two fights inside."""
+    names = pets.chosen(b)
+    if not names:
+        return
+    clock = clock_for(b)
+    rows = pets.owned(b)
+    mine = [r for r in rows if r.get("name") in names]
+    out_now = any(pets.state(r, clock) == "out" for r in rows)
+    if mine and not out_now and not any(pets.state(r, clock) == "ready" for r in mine):
+        soon = min(mine, key=lambda r: r["usable_at"])
+        wait = soon["usable_at"] - clock.time()
+        if wait > PET_WAIT:
+            b.log(_("{pet} can't come out for {n} more minutes - going in without it; it is called inside "
+                    "as soon as it can", pet=soon["name"], n=int(wait // 60) + 1), speak=True)
+        else:
+            b.log(_("{pet} can come out in {n} seconds - waiting for it at the door, where no timer runs",
+                    pet=soon["name"], n=int(wait) + 1), speak=True)
+            until = soon["usable_at"] + 1.0
+            while clock.time() < until:
+                b.look_after()
+                b.sleep(min(1.0, max(0.1, until - clock.time())))
+    for attempt in range(2):
+        b.pet_checked = 0.0               # look now, whenever the farm loop last did
+        pets.keep_out(b)
+        rows = pets.owned(b)
+        if any(pets.state(r, clock) == "out" for r in rows):
+            break
+        left = next((r for r in rows if r.get("name") in names and pets.state(r, clock) == "ready"), None)
+        if left is None or attempt:
+            break
+        b.pets_refused.pop(left["id"], None)      # not taken: once more after the server's gap
+        b.sleep(beasts.GAP)
+    out: dict[str, Any] | None = getattr(b, "pet_out", None)
+    if out and out.get("id") not in getattr(b, "pet_described", {}):
+        pets.describe(b)
+
+
+def make_ready(b: Bot, cave: str, cfg: dict[str, Any]) -> None:
+    """At the door, before "Enter the dungeon": everything the farm loop would otherwise do on the
+    spawn point inside, while the 15 minutes run (11 to 13 s of every visit with a pet, measured).
+      - the fight's beast: off the Swift one the trip ended on, or onto the Fierce one the
+        character fights in - first, because the server ignores a fusion change right after a
+        pet came out;
+      - the run's pet out (pet_ready);
+      - the skills read, and a few looks at ourselves: long buffs up, HP and MP topped up;
+      - potions back on empty keys, a paused experience card running again;
+      - the cave's map and loop worked out.
+    The target key can't be set here: talking to the entrance turns it to NPCs, so that is the
+    one thing left for the first moment inside (a few hundredths of a second a press)."""
+    b.log(_("getting ready at the door of {cave}: its timer starts the moment we are in", cave=_(cave)))
+    beasts.ensure(b, beasts.FIGHT)
+    pet_ready(b)
+    if b.skillbook is None and b.p.get("smart_skills", True):
+        b.skillbook = combat.SkillBook(b)
+    for _look in range(DOOR_LOOKS):
+        b.look_after()
+        b.sleep(DOOR_LOOK)
+    keyslots.refill(b)
+    xpcard.at_the_door(b)
+    mid = CAVES[cave]["map"]
+    atlas.model(mid)
+    if cfg.get("patrol") in PATROLS:
+        atlas.patrol_loop(mid, cfg["patrol"])
+
+
+def knock(b: Bot, entry: dict[str, Any]) -> bool:
+    """Talk to the entrance we stand next to (go_dungeon brought us): the NPC at the place the
+    entrance names, else the one in sight that is this dungeon's. True once its menu is open."""
+    if entry.get("at") and entry.get("npc"):
+        return b.talk(entry["npc"], (entry["at"][0], entry["at"][1]))
+    seen: list[dict[str, Any]] = b.snap()["entities"]
+    npc = next((e for e in seen if e.get("id", 0) < 0 and dungeons.is_entrance(entry, e.get("name"))), None)
+    return npc is not None and b.talk(npc["name"], (int(round(npc["x"])), int(round(npc["y"]))))
+
+
+def landed(b: Bot, mid: int) -> bool:
+    """After "Enter the dungeon": wait for the game to move us off map mid, looking ten times a
+    second, and go on the moment the new map can be read. True once it has. Not the trips'
+    wait_map_change: that one gives every new map a settling second, and here the timer runs
+    from the landing."""
+    end = b.clock.time() + LANDING
+    while b.clock.time() < end:
+        if b.map_id() != mid:
+            b.settled_map()
+            return True
+        b.sleep(LANDING_LOOK)
+    return False
+
+
+def enter(b: Bot, cave: str, cfg: dict[str, Any] | None = None) -> str:
+    """Walk to the cave's entrance, get ready there (make_ready), then talk, choose "Enter the
+    dungeon" and wait to land inside, up to TRIES times: a menu that came late, a row not found or
+    a slow move in is tried again, and a move in that came after LANDING is seen before the next
+    try. IN when inside; USED when the game said the day's entry is used; MISSED when TRIES tries
+    got nowhere (the day may still be free)."""
     entry = entrance(cave)
     if entry is None:
         raise Stopped(_("I don't know where {cave} is entered", cave=cave))
+    b.go_dungeon(entry)
+    make_ready(b, cave, cfg if cfg is not None else config(b.p))
+    entry = entrance(cave) or entry       # a circle found on the way is remembered with its place
     inside = CAVES[cave]["map"]
     said: list[str] = []
     for n in range(TRIES):
@@ -249,7 +393,10 @@ def enter(b: Bot, cave: str) -> str:
             return IN                  # the last try's move in came late
         if n:
             b.log(_("not in {cave} yet - trying again ({n} of {all})", cave=cave, n=n + 1, all=TRIES))
-        b.go_dungeon(entry, talk=True)
+        if not knock(b, entry):
+            b.log(_("couldn't talk to {npc}", npc=entry.get("npc") or cave))
+            b.sleep(RETRY_WAIT)
+            continue
         b.wait_dialog(3.0)
         mid = b.map_id()
         since = chores.said_mark(b)
@@ -257,7 +404,7 @@ def enter(b: Bot, cave: str) -> str:
             b.close_dialogs()
             b.log(_("{npc} offered no \"Enter the dungeon\"", npc=entry.get("npc") or cave), speak=True)
         else:
-            b.wait_map_change(mid, LANDING)
+            landed(b, mid)
             if b.map_id() == inside:
                 return IN
             b.close_dialogs()
@@ -279,7 +426,7 @@ def visit(b: Bot, cfg: dict[str, Any], cave: str) -> str:
     game said is used (or our own way in) is written down for the day: one that just didn't work
     is tried again at the next run."""
     name = chores.who(b)
-    got = enter(b, cave)
+    got = enter(b, cave, cfg)
     if got == USED:
         chores.mark(name, done_key(cave), "not let in")
         return _("{cave}: the game didn't let us in (once a day)", cave=cave)
@@ -296,6 +443,7 @@ def hunt(b: Bot, cfg: dict[str, Any], cave: str) -> str:
     """Inside a cave: the fight until the game moves us out, then a line about it."""
     mid = CAVES[cave]["map"]
     began, kills = b.clock.time(), b.kills
+    seen = report_at(b)
 
     def out() -> bool:
         return b.map_id() != mid or b.clock.time() - began >= (MINUTES + OVERTIME) * 60
@@ -316,13 +464,59 @@ def hunt(b: Bot, cfg: dict[str, Any], cave: str) -> str:
     made = b.kills - kills
     minutes = max(1.0, (b.clock.time() - began) / 60.0)
     line = _("{cave}: {n} kills in {m} minutes", cave=cave, n=made, m=int(round(minutes)))
+    told = game_report(b, seen)
+    if told:
+        line += "; " + told
     b.log(line, speak=True)
+    return line
+
+
+def report_at(b: Bot) -> int | None:
+    """When the game's newest end-of-dungeon report arrived (agent 76 `report`), or None: one
+    newer than this after a visit is that visit's."""
+    try:
+        r: Any = b.a.json("report")
+    except AgentError:         # the link broke: the visit goes on without it
+        return None
+    if not isinstance(r, dict):
+        return None
+    at: Any = cast(dict[str, Any], r).get("at")
+    return at if isinstance(at, int) else None
+
+
+def game_report(b: Bot, seen: int | None) -> str | None:
+    """What the game's own end report (IN op=66) says about this visit: our kills, damage and
+    healing, and the kills of everyone in it. None when no new report came (an older agent, or
+    the game sent none). The bot's own count misses kills it can't see; the game's doesn't."""
+    try:
+        got: Any = b.a.json("report")
+    except AgentError:
+        return None
+    if not isinstance(got, dict):
+        return None
+    r = cast(dict[str, Any], got)
+    players: list[dict[str, Any]] = r.get("players") or []
+    if not players or r.get("at") == seen:
+        return None
+    me_id = b.me().get("id")
+    mine: dict[str, Any] = next((p for p in players if p.get("id") == me_id), dict[str, Any]())
+    if not mine:
+        return _("the game's report: {total} kills", total=r.get("total_kills", 0))
+    line = _("the game's report: {n} of {total} kills, {dmg} damage", n=mine.get("kills", 0),
+             total=r.get("total_kills", 0), dmg=f"{int(mine.get('damage') or 0):,}")
+    if mine.get("healing"):
+        line += _(", {heal} healing", heal=f"{int(mine['healing']):,}")
     return line
 
 
 def run(b: Bot, cfg: dict[str, Any], check_only: bool = False, cave: str | None = None) -> list[str]:
     """Today's cave (the one a script names, else the window's), supplies first, unless this
     character has been in one today. [what happened]."""
+    chosen = cave if (cave in CAVES or is_wraith(cave)) else cfg.get("cave")
+    if is_wraith(chosen):
+        return run_wraith(b, cfg, check_only, str(chosen))
+    if b.map_id() in WRAITH_MAPS:
+        return [hunt_wraith(b, cfg, WRAITH_CAVE)]
     if cave in CAVES:
         cfg = dict(cfg, cave=cave)
     inside = cave_of(b.map_id())
@@ -419,4 +613,182 @@ def entrance_text(cave: str) -> str:
         return _("entrance unknown")
     at = e.get("at")
     return "%s%s" % (atlas.label(e["map"]), (" (%d,%d)" % tuple(at)) if at else "")
+
+
+# ------------------------------------------------------------------------------------- Wraith Cave
+def is_wraith(cave: object) -> bool:
+    return isinstance(cave, str) and (cave == WRAITH_CAVE or cave in WRAITH_CHOICES)
+
+
+def wraith_floor(cave: str) -> int | None:
+    m = re.match(r"^Wraith Cave Floor (\d+)$", cave)
+    if m:
+        n = int(m.group(1))
+        return n if n in WRAITH_FLOORS else None
+    return None
+
+
+def wraith_level(cave: str) -> int:
+    n = wraith_floor(cave)
+    return WRAITH_FLOORS[n]["level"] if n else WRAITH_FLOORS[1]["level"]
+
+
+def wraith_chest(b: Bot) -> dict[str, Any] | None:
+    """The end-of-floor treasure chest NPC once the floor's Boss is defeated."""
+    state = cast(dict[str, Any], b.a.json("mem state"))
+    ents = cast(list[dict[str, Any]], state.get("entities") or [])
+    for e in ents:
+        if e.get("kind") == "npc" and "treasure chest" in str(e.get("name") or "").lower():
+            return e
+    return None
+
+
+def open_wraith_chest(b: Bot) -> bool:
+    """Walk to the Wraith Cave treasure chest and open it to collect rewards and return."""
+    chest = wraith_chest(b)
+    if not chest:
+        return False
+    b.log(_("opening {chest}", chest=chest["name"]), speak=True)
+    if not b.talk(chest["name"], (float(chest["x"]), float(chest["y"]))):
+        return False
+    b.wait_dialog(3.0)
+    if b.choose(r"Open the treasure chest") is not None:
+        b.sleep(SETTLE)
+        return True
+    b.close_dialogs()
+    return False
+
+
+def leave_wraith(b: Bot) -> None:
+    """Exit a Wraith Cave floor via the Action menu ('quit the dungeon')."""
+    b.close_dialogs()
+    b.key("lctrl+enter")
+    b.sleep(0.7)
+    if b.choose(r"quit the dungeon|leave") is not None:
+        b.sleep(SETTLE)
+        return
+    b.leave_instance()
+
+
+def _pick_wraith_row(b: Bot, level: int) -> str | None:
+    """From The Wraith Cave's open menu, choose the highest unlocked floor (preferring uncompleted)."""
+    top = cast(dict[str, Any], b.dialog().get("top") or {})
+    rows: list[list[dict[str, Any]]] = cast(list[list[dict[str, Any]]], top.get("rows") or [])
+    candidates: list[tuple[int, int, str]] = []
+    for row in rows:
+        for cell in row:
+            raw_opts = cast(list[Any], cell.get("options") or [])
+            opts: list[str] = [str(x) for x in raw_opts]
+            text = " ".join(opts).strip()
+            m = re.match(r"^Floor\s+(\d+)\b", text)
+            if not m:
+                continue
+            fl = int(m.group(1))
+            req_m = re.search(r"Limited to level\s+(\d+)", text, re.I)
+            req = int(req_m.group(1)) if req_m else WRAITH_FLOORS.get(fl, {}).get("level", 21)
+            if level and level < req:
+                continue
+            uncompleted = 1 if "completed" not in text.lower() else 0
+            candidates.append((uncompleted, fl, rf"Floor\s+{fl}\b"))
+    if not candidates:
+        return None
+    candidates.sort(reverse=True)
+    return candidates[0][2]
+
+
+def enter_wraith(b: Bot, cfg: dict[str, Any], cave: str) -> int | None:
+    """Travel to The Wraith Cave (1702, 35,75), prepare, and enter the chosen (or best) floor."""
+    entry = entrance(WRAITH_CAVE)
+    if entry is None:
+        raise Stopped(_("I don't know where {cave} is entered", cave=WRAITH_CAVE))
+    b.go_dungeon(entry)
+    make_ready(b, WRAITH_CAVE, cfg)
+    entry = entrance(WRAITH_CAVE) or entry
+    fl = wraith_floor(cave)
+    level = level_of(b)
+    for _n in range(TRIES):
+        if b.map_id() in WRAITH_MAPS:
+            return b.map_id()
+        if not knock(b, entry):
+            b.sleep(RETRY_WAIT)
+            continue
+        b.wait_dialog(3.0)
+        pattern = rf"Floor\s+{fl}\b" if fl else _pick_wraith_row(b, level)
+        if not pattern or b.choose(pattern) is None:
+            b.close_dialogs()
+            b.log(_("{cave}: floor not available for level {n}", cave=cave, n=level), speak=True)
+            return None
+        mid = b.map_id()
+        landed(b, mid)
+        if b.map_id() in WRAITH_MAPS:
+            return b.map_id()
+        b.close_dialogs()
+        b.sleep(RETRY_WAIT)
+    return b.map_id() if b.map_id() in WRAITH_MAPS else None
+
+
+def hunt_wraith(b: Bot, cfg: dict[str, Any], cave: str) -> str:
+    """Clear all monsters and the end Boss on a Wraith Cave floor, then open the treasure chest."""
+    mid = b.map_id()
+    began, kills = b.clock.time(), b.kills
+    chest_opened = False
+
+    def done() -> bool:
+        return b.map_id() != mid or wraith_chest(b) is not None or b.clock.time() - began >= WRAITH_MINUTES * 60
+
+    was = b.move_shots
+    b.move_shots = bool(cfg.get("move_shots", True))
+    try:
+        b.farm(mid, patrol=cfg["patrol"], until=done, instance=True, pack=int(cfg["pack"]), chase=int(cfg["chase"]))
+    except Respawned:
+        made = b.kills - kills
+        line = _("{cave}: died inside after {n} kills", cave=cave, n=made)
+        b.log(line, speak=True)
+        return line
+    finally:
+        b.move_shots = was
+
+    if b.map_id() == mid and wraith_chest(b) is not None:
+        chest_opened = open_wraith_chest(b)
+    if b.map_id() == mid:
+        leave_wraith(b)
+
+    made = b.kills - kills
+    minutes = max(1.0, (b.clock.time() - began) / 60.0)
+    status = _("chest opened") if chest_opened else _("finished")
+    line = _("{cave}: {n} kills in {m} minutes ({status})", cave=cave, n=made,
+             m=int(round(minutes)), status=status)
+    b.log(line, speak=True)
+    return line
+
+
+def run_wraith(b: Bot, cfg: dict[str, Any], check_only: bool, cave: str) -> list[str]:
+    """Run Wraith Cave (supports multiple entries a day; rewards & count on first clear)."""
+    if b.map_id() in WRAITH_MAPS:
+        if check_only:
+            return [_("already inside {cave}", cave=cave)]
+        was = getattr(b, "pets_for_run", None)
+        try:
+            choose_pet(b, cfg)
+            return [hunt_wraith(b, cfg, cave)]
+        finally:
+            b.pets_for_run = was
+    level = level_of(b)
+    req = wraith_level(cave)
+    if level and level < req:
+        b.log(_("{cave} needs level {n}", cave=cave, n=req), speak=True)
+        return []
+    if too_close_to_level(b, cave):
+        return []
+    was = getattr(b, "pets_for_run", None)
+    try:
+        choose_pet(b, cfg)
+        get_supplies(b, cfg, check_only)
+        if check_only:
+            return [_("would go to: {cave}", cave=cave)]
+        if enter_wraith(b, cfg, cave) is None:
+            return [_("{cave}: couldn't enter", cave=cave)]
+        return [hunt_wraith(b, cfg, cave)]
+    finally:
+        b.pets_for_run = was
 

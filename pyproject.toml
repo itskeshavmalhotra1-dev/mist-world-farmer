@@ -1,10 +1,10 @@
-# Everything Uncle Farmer needs, in one place. uv.lock pins the exact versions; `uv sync` installs
+# Everything Mist World Farmer needs, in one place. uv.lock pins the exact versions; `uv sync` installs
 # them into .venv (the app, the checking tools and Nuitka), and CI's `uv sync --locked` fails when
 # this file changed without `uv lock`.
 
 [project]
 name = "unclefarmer"
-version = "1.2.2"            # release.py sets this together with unclefarmer/__init__.py
+version = "1.2.3"            # release.py sets this together with unclefarmer/__init__.py
 description = "A farming bot for Mist World."
 readme = "README.md"
 license = "GPL-3.0-only"

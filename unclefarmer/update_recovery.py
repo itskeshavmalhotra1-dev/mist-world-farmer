@@ -22,7 +22,7 @@ from typing import Any, cast
 
 HERE = ".recovery"
 JOURNAL = "transaction.json"
-PAYLOAD = "UncleFarmer.exe"     # the application, which updates replace
+PAYLOAD = "MistWorldFarmer.exe"     # the application, which updates replace
 BOOTSTRAP = "bootstrap.exe"     # native/bootstrap.c: runs updates and recovery, never replaced by one
 PROTECTED = {BOOTSTRAP, HERE, "profiles", "plans", "scripts", "logs", "messages", "results",
              "survey", "market", "update", "settings.json", "schedules.json"}

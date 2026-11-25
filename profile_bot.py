@@ -1,4 +1,4 @@
-"""Run Uncle Farmer from source under a profiler that understands threads and wx.
+"""Run Mist World Farmer from source under a profiler that understands threads and wx.
 
     python profile_bot.py --tool yappi --minutes 5
     python profile_bot.py --tool tracemalloc --minutes 30
@@ -275,7 +275,7 @@ class Tracemalloc:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Profile Uncle Farmer from source.")
+    parser = argparse.ArgumentParser(description="Profile Mist World Farmer from source.")
     parser.add_argument("--tool", choices=["yappi", "tracemalloc", "all"], default="yappi")
     parser.add_argument("--minutes", type=float, default=0.0,
                         help="stop the profiler after this many minutes and write the report (0: on exit)")

@@ -651,7 +651,7 @@ def test_an_early_record_has_empty_progress(app: Path, journal: dict[str, Any]) 
 
 
 @windows
-@pytest.mark.parametrize("fail_at", [None, "replacement-recorded:numpy", "backup-verified:UncleFarmer.exe"])
+@pytest.mark.parametrize("fail_at", [None, "replacement-recorded:numpy", "backup-verified:MistWorldFarmer.exe"])
 def test_every_journal_a_real_update_writes_reads_back(tmp_path: Path, monkeypatch: pytest.MonkeyPatch,
                                                        fail_at: str | None) -> None:
     from test_update_recovery import release as make_release
@@ -732,7 +732,7 @@ def test_right_after_a_recovery_even_a_current_bootstrap_is_not_asked_again(
 
 
 # ------------------------------------------------------------------ 8. install paths are literal
-@pytest.mark.parametrize("name", ["Uncle Farmer [old]", "a]b", "x[1", "Uncle Farmer", "plain", "[ab]", "q[!x]"])
+@pytest.mark.parametrize("name", ["Mist World Farmer [old]", "a]b", "x[1", "Mist World Farmer", "plain", "[ab]", "q[!x]"])
 def test_a_complete_install_in_any_folder_name_misses_nothing(tmp_path: Path, name: str) -> None:
     folder = flat(tmp_path / name)
     assert updater.missing_runtime(str(folder)) == []
@@ -748,7 +748,7 @@ def test_a_bracket_folder_does_not_match_a_neighbour(tmp_path: Path) -> None:
 
 
 def test_a_release_in_a_bracket_folder_verifies(tmp_path: Path) -> None:
-    folder = flat(tmp_path / "Uncle Farmer [2]")
+    folder = flat(tmp_path / "Mist World Farmer [2]")
     assert updater._verify_release(str(folder), "0.5.0")
 
 
@@ -843,7 +843,7 @@ def archive(path: Path, files: dict[str, bytes]) -> Path:
 
 
 def test_a_normal_archive_unpacks(app: Path, tmp_path: Path) -> None:
-    zip_path = archive(tmp_path / "ok.zip", {"Uncle Farmer/" + updater.EXE: b"exe", "Uncle Farmer/data/a.json": b"{}"})
+    zip_path = archive(tmp_path / "ok.zip", {"Mist World Farmer/" + updater.EXE: b"exe", "Mist World Farmer/data/a.json": b"{}"})
     folder = updater.unpack(str(zip_path))
     assert Path(folder, updater.EXE).read_bytes() == b"exe"
 
@@ -856,15 +856,15 @@ def test_a_normal_archive_unpacks(app: Path, tmp_path: Path) -> None:
 def test_an_oversized_archive_is_refused_before_anything_is_written(
         app: Path, tmp_path: Path, monkeypatch: pytest.MonkeyPatch, limit: str, value: int, message: str) -> None:
     monkeypatch.setattr(updater, limit, value)
-    zip_path = archive(tmp_path / "bomb.zip", {"Uncle Farmer/" + updater.EXE: b"e" * 900,
-                                               "Uncle Farmer/a.bin": b"\0" * 1200, "Uncle Farmer/b.bin": b"b"})
+    zip_path = archive(tmp_path / "bomb.zip", {"Mist World Farmer/" + updater.EXE: b"e" * 900,
+                                               "Mist World Farmer/a.bin": b"\0" * 1200, "Mist World Farmer/b.bin": b"b"})
     with pytest.raises(updater.UpdateError, match=message):
         updater.unpack(str(zip_path))
     assert list((app / "update/new").rglob("*")) == []
 
 
 def test_an_archive_the_disk_has_no_room_for_is_refused(app: Path, tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
-    zip_path = archive(tmp_path / "big.zip", {"Uncle Farmer/" + updater.EXE: b"exe" * 1000})
+    zip_path = archive(tmp_path / "big.zip", {"Mist World Farmer/" + updater.EXE: b"exe" * 1000})
     monkeypatch.setattr(updater.shutil, "disk_usage", returning(types.SimpleNamespace(free=updater.SPACE_MARGIN)))
     with pytest.raises(updater.UpdateError, match="free space"):
         updater.unpack(str(zip_path))
@@ -941,7 +941,7 @@ def test_the_app_says_so_before_it_starts_a_copier(installed: tuple[Path, Path],
     monkeypatch.setattr(updater.paths, "LOGS", str(app / "logs"))
     monkeypatch.setattr(updater, "UPDATE", str(app / "update"))
     monkeypatch.setattr(updater, "NEW", str(app / "update/new"))
-    staged = app / "update/new/Uncle Farmer"
+    staged = app / "update/new/Mist World Farmer"
     staged.parent.mkdir(parents=True)
     import shutil
     shutil.copytree(source, staged)

@@ -410,20 +410,20 @@ def copy_text(text: str) -> bool:
 
 
 def error(parent: wx.Window | None, message: str, title: str | None = None) -> None:
-    wx.MessageBox(message, title or _("Uncle Farmer"), wx.OK | wx.ICON_ERROR, parent)
+    wx.MessageBox(message, title or _("Mist World Farmer"), wx.OK | wx.ICON_ERROR, parent)
 
 
 def info(parent: wx.Window | None, message: str, title: str | None = None) -> None:
-    wx.MessageBox(message, title or _("Uncle Farmer"), wx.OK | wx.ICON_INFORMATION, parent)
+    wx.MessageBox(message, title or _("Mist World Farmer"), wx.OK | wx.ICON_INFORMATION, parent)
 
 
 def ask(parent: wx.Window | None, message: str, title: str | None = None) -> bool:
-    return wx.MessageBox(message, title or _("Uncle Farmer"), wx.YES_NO | wx.ICON_QUESTION, parent) == wx.YES
+    return wx.MessageBox(message, title or _("Mist World Farmer"), wx.YES_NO | wx.ICON_QUESTION, parent) == wx.YES
 
 
 def ask_ok(parent: wx.Window | None, message: str, title: str | None = None) -> bool:
     """OK or Cancel: for a step the player starts by pressing OK (closing the games)."""
-    return wx.MessageBox(message, title or _("Uncle Farmer"), wx.OK | wx.CANCEL | wx.ICON_WARNING, parent) == wx.OK
+    return wx.MessageBox(message, title or _("Mist World Farmer"), wx.OK | wx.CANCEL | wx.ICON_WARNING, parent) == wx.OK
 
 
 def guide_text(name: str) -> str:
@@ -434,6 +434,11 @@ def guide_text(name: str) -> str:
             md = f.read()
     except OSError:
         return _("The guide {name} is missing from the docs folder.", name=name)
+    return markdown_text(md)
+
+
+def markdown_text(md: str) -> str:
+    """Keep headings and list structure as text a screen reader can read."""
     out: list[str] = []
     for line in md.splitlines():
         if re.match(r"^\|[-| ]+\|$", line.strip()):

@@ -2,7 +2,7 @@
 what they look like to the agent, so the bot can be taught to open them.
 
     python chestwatch.py                              # the games started with this checkout's agent
-    python chestwatch.py --uf "C:\\Games\\Uncle Farmer"  # the games started with a release's agent
+    python chestwatch.py --uf "C:\\Games\\Mist World Farmer"  # the games started with a release's agent
 
 Then farm as usual, by hand or with the bot, for as long as it takes a chest to show up; leave
 this window open. Ctrl+C ends it and prints a summary.
@@ -184,7 +184,7 @@ class Watcher(threading.Thread):
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=(__doc__ or "").split("\n\n")[0])
-    ap.add_argument("--uf", help="the Uncle Farmer release folder whose agent the games loaded")
+    ap.add_argument("--uf", help="the Mist World Farmer release folder whose agent the games loaded")
     ap.add_argument("--every", type=float, default=0.5, help="seconds between looks (default 0.5)")
     args = ap.parse_args()
     run_dir = os.path.join(args.uf, "agent", "run") if args.uf else paths.AGENT_RUN

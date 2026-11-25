@@ -1,10 +1,10 @@
-"""Start Uncle Farmer.
+"""Start Mist World Farmer.
 
     python -m unclefarmer            the app
     python -m unclefarmer --strings  refresh lang/unclefarmer.pot, merge the .po files, compile them
-    UncleFarmer.exe --apply-update <app folder> <pid> <version> [<token>] [--bootstrap]
+    MistWorldFarmer.exe --apply-update <app folder> <pid> <version> [<token>] [--bootstrap]
                                      (the updater's own step, run by bootstrap.exe: see updater.py)
-    UncleFarmer.exe --self-test <report.json>
+    MistWorldFarmer.exe --self-test <report.json>
                                      check the copy without a window (selftest.py; CI runs it)
 """
 
@@ -34,9 +34,9 @@ def main() -> None:
             recovery_app = os.path.abspath(sys.argv[index + 1])
             expected = os.path.join(recovery_app, recovery.HERE, "runtime")
             packaged = "__compiled__" in globals() or bool(getattr(sys, "frozen", False))
-            # The folder, not the file: Nuitka's sys.executable is a python.exe beside UncleFarmer.exe
+            # The folder, not the file: Nuitka's sys.executable is a python.exe beside MistWorldFarmer.exe
             # (comparing the exe name refused every real rescue). same_path: it may also be the 8.3
-            # short name of the folder bootstrap.exe passed ("UNCLEF~1" for "Uncle Farmer").
+            # short name of the folder bootstrap.exe passed ("UNCLEF~1" for "Mist World Farmer").
             if not packaged or not recovery.same_path(os.path.dirname(os.path.abspath(sys.executable)), expected):
                 raise recovery.RecoveryError("recovery must run in the independent rescue runtime")
             trusted_recovery = True
@@ -111,12 +111,12 @@ def _hand_to_bootstrap(app: str, recovered: bool) -> None:
             sys.exit(0)
         except OSError:
             pass
-    text = ("An update of Uncle Farmer was interrupted and could not be finished. Your files and the "
-            "backups are kept in the .recovery folder; start bootstrap.exe in the Uncle Farmer folder to "
+    text = ("An update of Mist World Farmer was interrupted and could not be finished. Your files and the "
+            "backups are kept in the .recovery folder; start bootstrap.exe in the Mist World Farmer folder to "
             "try again, and send the files in .recovery to the developer if it keeps failing.")
     try:
         import ctypes
-        ctypes.windll.user32.MessageBoxW(None, text, "Uncle Farmer", 0x10)     # MB_ICONERROR
+        ctypes.windll.user32.MessageBoxW(None, text, "Mist World Farmer", 0x10)     # MB_ICONERROR
     except (AttributeError, OSError):
         pass
     sys.exit(text)
@@ -125,7 +125,7 @@ def _hand_to_bootstrap(app: str, recovered: bool) -> None:
 def _about() -> str:
     from . import __version__, paths
     build = "packaged build" if paths.frozen() else "from source"
-    return "Uncle Farmer %s, %s, Python %s" % (__version__, build, sys.version.split()[0])
+    return "Mist World Farmer %s, %s, Python %s" % (__version__, build, sys.version.split()[0])
 
 
 def _start(boot: Lifecycle) -> wx.App | None:
@@ -135,7 +135,7 @@ def _start(boot: Lifecycle) -> wx.App | None:
     with boot.step("one copy only"):
         first = instance.acquire()
     if not first:
-        boot.note("another Uncle Farmer is open: it is brought to the front and this copy ends")
+        boot.note("another Mist World Farmer is open: it is brought to the front and this copy ends")
         instance.focus_existing()
         boot.end("not started (another copy is open)")
         return None
@@ -180,7 +180,7 @@ def _first_launch_language(config: dict[str, Any]) -> None:
         from .gui.common import modal
         code, name = offered
         with modal(wx.MessageDialog(None,
-                   _("Your system language is supported. Would you like to use {language} in Uncle Farmer?", language=name),
+                   _("Your system language is supported. Would you like to use {language} in Mist World Farmer?", language=name),
                    _("Would you like to switch to {language}?", language=name),
                    wx.YES_NO | wx.NO_DEFAULT | wx.ICON_QUESTION)) as dialog:
             dialog.SetYesNoLabels(_("&Yes, switch language"), _("&No, keep current language"))

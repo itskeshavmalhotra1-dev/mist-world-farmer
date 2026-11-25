@@ -224,13 +224,13 @@ after it needs no reading at all if the list is fresh.
   shows "?" and Lots stands in (one seller often lists several lots).
 - Each refresh keeps the old list's prices, so the list can say "cheaper than last time".
 
-**Ready-made list, before the first scan.** Uncle Farmer ships `data/market_list.json`, made from
+**Ready-made list, before the first scan.** Mist World Farmer ships `data/market_list.json`, made from
 one full scan during development. It has every item name seen for sale with its category, and
 the starting prices marked with their date. A new player sees real names and categories at once,
 and "Refresh" replaces the numbers with today's.
 
 **Every language pack.** The tool doesn't keep its own word lists. Rows are read through the same
-agent menu read as every other menu, and Uncle Farmer's existing game-language table
+agent menu read as every other menu, and Mist World Farmer's existing game-language table
 (`gamelang.py`, built from the player's chosen language pack) turns them back to the game's
 English. The market's row templates are in the packs (`equipment_market.txt`,
 `store-spaceMarket.txt`), so the numbers always parse.

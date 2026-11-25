@@ -17,7 +17,7 @@ from unclefarmer.gui import contact as gui_contact, main  # noqa: E402
 def test_the_mailto_link_is_the_address_with_an_optional_subject() -> None:
     assert contact.EMAIL
     assert contact.mailto() == "mailto:" + contact.EMAIL
-    assert contact.mailto("Uncle Farmer 1.0") == "mailto:%s?subject=Uncle%%20Farmer%%201.0" % contact.EMAIL
+    assert contact.mailto("Mist World Farmer 1.0") == "mailto:%s?subject=Mist%%20World%%20Farmer%%201.0" % contact.EMAIL
 
 
 def test_the_window_says_where_to_write_and_where_bugs_go() -> None:
@@ -74,7 +74,7 @@ def test_write_an_email_opens_a_message_naming_this_version(monkeypatch: pytest.
         return True
     monkeypatch.setattr(gui_contact.webbrowser, "open", open_url)
     assert gui_contact.write_email() is True
-    assert opened == [contact.mailto("Uncle Farmer %s" % __version__)]
+    assert opened == [contact.mailto("Mist World Farmer %s" % __version__)]
 
 
 def test_the_help_menu_opens_the_contact_window(monkeypatch: pytest.MonkeyPatch) -> None:

@@ -1,4 +1,4 @@
-"""Single instance: a named mutex allows only one Uncle Farmer per Windows session, and a second
+"""Single instance: a named mutex allows only one Mist World Farmer per Windows session, and a second
 launch finds the open window by its mark, whatever language its title is in."""
 
 import ctypes
@@ -55,7 +55,7 @@ def test_a_second_launch_finds_the_marked_window_whatever_its_title(window: int)
 def test_an_unmarked_copy_is_still_found_by_its_title(window: int) -> None:
     user32 = ctypes.WinDLL("user32", use_last_error=True)
     user32.SetWindowTextW.argtypes = (ctypes.c_void_p, ctypes.c_wchar_p)
-    title = "Uncle Farmer test " + uuid.uuid4().hex
+    title = "Mist World Farmer test " + uuid.uuid4().hex
     user32.SetWindowTextW(window, title)
     assert instance.find_existing("UncleFarmerTest." + uuid.uuid4().hex, title) == window
 

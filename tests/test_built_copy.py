@@ -1,6 +1,6 @@
 # pyright: reportPrivateUsage=false
 # White-box tests: they call __main__'s _about and the update window's helpers directly.
-"""The built UncleFarmer.exe knows it is built, and every module agrees (paths.frozen).
+"""The built MistWorldFarmer.exe knows it is built, and every module agrees (paths.frozen).
 
 build_exe.py builds with Nuitka, which never sets sys.frozen: it puts __compiled__ in the
 globals of each module it compiles (checked against a real Nuitka 4.3 standalone build with
@@ -15,7 +15,9 @@ import os
 import runpy
 import sys
 from collections.abc import Callable
+from contextlib import nullcontext
 from pathlib import Path
+from types import SimpleNamespace
 from typing import Any
 
 import pytest
@@ -36,8 +38,8 @@ def source(monkeypatch: pytest.MonkeyPatch) -> None:
 @pytest.fixture
 def built(monkeypatch: pytest.MonkeyPatch, source: None, tmp_path: Path) -> Path:
     """The built exe's view: Nuitka's marker in paths' globals, and its sys.executable (a python.exe
-    beside UncleFarmer.exe) in a folder of its own. Returns that folder."""
-    folder = tmp_path / "Uncle Farmer"
+    beside MistWorldFarmer.exe) in a folder of its own. Returns that folder."""
+    folder = tmp_path / "Mist World Farmer"
     folder.mkdir()
     monkeypatch.setitem(vars(paths), "__compiled__", object())
     monkeypatch.setattr(sys, "executable", str(folder / "python.exe"))
@@ -79,10 +81,10 @@ def test_sys_frozen_from_another_build_tool_still_counts(monkeypatch: pytest.Mon
 @pytest.mark.usefixtures("source")
 def test_the_environment_and_working_folder_do_not_make_a_build(monkeypatch: pytest.MonkeyPatch,
                                                                 tmp_path: Path) -> None:
-    (tmp_path / "UncleFarmer.exe").write_bytes(b"")
+    (tmp_path / "MistWorldFarmer.exe").write_bytes(b"")
     monkeypatch.chdir(tmp_path)
     monkeypatch.setenv("NUITKA_ONEFILE_PARENT", "1")
-    monkeypatch.setattr(sys, "argv", [str(tmp_path / "UncleFarmer.exe")])
+    monkeypatch.setattr(sys, "argv", [str(tmp_path / "MistWorldFarmer.exe")])
     assert paths.frozen() is False
 
 
@@ -158,6 +160,9 @@ class Window:
 
     def SetStatusText(self, text: str) -> None:
         self.status.append(text)
+
+    def IsEnabled(self) -> bool:
+        return True
 
     def say(self, text: str, run: object = None) -> None:
         self.said.append(text)
@@ -309,7 +314,7 @@ def test_the_help_menu_check_asks_the_chosen_channel(window: dict[str, list[str]
     monkeypatch.setattr(updates.wx, "CallAfter", call_after)
     w.check_updates()
     assert asked == ["dev"]
-    assert window["info"] == ["No development build of Uncle Farmer can be seen on GitHub yet."]
+    assert window["info"] == ["No development build of Mist World Farmer can be seen on GitHub yet."]
 
 
 @pytest.mark.usefixtures("built")
@@ -317,7 +322,7 @@ def test_no_dev_build_yet_says_so(window: dict[str, list[str]]) -> None:
     w = Window()
     w.s["update_channel"] = "dev"
     w._checked_updates(None, None)
-    assert window["info"] == ["No development build of Uncle Farmer can be seen on GitHub yet."]
+    assert window["info"] == ["No development build of Mist World Farmer can be seen on GitHub yet."]
 
 
 @pytest.mark.usefixtures("built")
@@ -332,17 +337,21 @@ def test_back_on_master_a_dev_build_is_told_why_nothing_is_offered(window: dict[
 
 @pytest.mark.usefixtures("built")
 def test_a_dev_build_is_offered_as_one(window: dict[str, list[str]], monkeypatch: pytest.MonkeyPatch) -> None:
+    import wx
+
     from unclefarmer.gui.mainparts import updates
-    asked: list[str] = []
-    def ask(parent: object, text: str, title: str | None = None) -> bool:
-        asked.append(text)
-        return True
-    monkeypatch.setattr(updates, "ask", ask)
+
+    offered: list[updater.Release] = []
+
+    def confirm(parent: Window, release: updater.Release) -> nullcontext[SimpleNamespace]:
+        offered.append(release)
+        return nullcontext(SimpleNamespace(ShowModal=returning(wx.ID_OK)))
+
+    monkeypatch.setattr(updates, "ChangelogDialog", confirm)
     monkeypatch.setattr(updater, "installed_version", returning("0.9.0-dev.57"))
     w = Window()
     w.s["update_channel"] = "dev"
     rel: updater.Release = {**REL, "version": "0.9.0-dev.58", "notes": "the notes"}
     w._checked_updates(rel, None)
-    assert len(asked) == 1 and "0.9.0-dev.58 is out (you have 0.9.0-dev.57)" in asked[0]
-    assert "development build from the dev branch" in asked[0] and "the notes" in asked[0]
+    assert offered == [rel]
     assert w.downloads == [rel]

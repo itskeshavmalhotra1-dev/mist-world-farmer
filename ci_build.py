@@ -9,7 +9,7 @@ how a release is made: build_exe.py builds the folder (with its own folder check
 make_zip zips it, as for a release. Then:
 
   1. the zip is opened and read back, and must hold everything build_exe.REQUIRED names;
-  2. the built exe checks itself without a window (UncleFarmer.exe --self-test, selftest.py) within
+  2. the built exe checks itself without a window (MistWorldFarmer.exe --self-test, selftest.py) within
      SMOKE_SECONDS, so a build that can't start or can't find its data never gets uploaded;
   3. build-info.json says what the build is (version, release version, channel, type, branch,
      commit, time, run, tools);
@@ -135,7 +135,7 @@ def build_info(build_type: str, version: str, sha: str, branch: str, zip_path: s
                release: str | None = None) -> dict[str, Any]:
     env = os.environ
     return {
-        "application": "Uncle Farmer",
+        "application": "Mist World Farmer",
         "version": version,
         "release_version": release or version,
         "channel": TYPES.get(build_type, ""),
@@ -184,7 +184,7 @@ def write_checksum(zip_path: str) -> str:
 
 def verify_zip(zip_path: str, required: tuple[str, ...]) -> list[str]:
     """Open the zip, read every member back (CRC check), and find each required path under
-    "Uncle Farmer/". Returns what is missing; a broken zip stops here."""
+    "Mist World Farmer/". Returns what is missing; a broken zip stops here."""
     import fnmatch
     try:
         with zipfile.ZipFile(zip_path) as z:
@@ -195,9 +195,9 @@ def verify_zip(zip_path: str, required: tuple[str, ...]) -> list[str]:
     except zipfile.BadZipFile as e:
         fail("%s is not a readable zip: %s" % (zip_path, e))
         return []
-    if not names or any(not n.startswith("Uncle Farmer/") for n in names):
-        fail("%s must hold one 'Uncle Farmer' folder" % zip_path)
-    inside = [n[len("Uncle Farmer/"):] for n in names]
+    if not names or any(not n.startswith("Mist World Farmer/") for n in names):
+        fail("%s must hold one 'Mist World Farmer' folder" % zip_path)
+    inside = [n[len("Mist World Farmer/"):] for n in names]
     missing: list[str] = []
     for pattern in required:
         if not any(fnmatch.fnmatch(n, pattern) or n.startswith(pattern.rstrip("/") + "/") for n in inside):
@@ -211,7 +211,7 @@ def smoke_test(zip_path: str, work: str) -> dict[str, Any]:
     os.makedirs(work)
     with zipfile.ZipFile(zip_path) as z:
         z.extractall(work)
-    exe = os.path.join(work, "Uncle Farmer", "UncleFarmer.exe")
+    exe = os.path.join(work, "Mist World Farmer", "MistWorldFarmer.exe")
     report = os.path.join(work, "self-test.json")
     try:
         code = subprocess.run([exe, "--self-test", report], timeout=SMOKE_SECONDS).returncode
@@ -327,7 +327,7 @@ def to_prune(releases: list[dict[str, Any]], keep: int) -> list[str]:
 
 
 def dev_notes(version: str, sha: str, branch: str = "dev") -> str:
-    return ("Development build %s of Uncle Farmer, built by CI from the %s branch at %s.\n\n"
+    return ("Development build %s of Mist World Farmer, built by CI from the %s branch at %s.\n\n"
             "Not a stable release: it has the newest changes and can break. Only copies set to the Dev "
             "release channel (Settings, Updates) are offered it." % (version, branch, sha[:7]))
 
@@ -363,7 +363,7 @@ def publish_dev(zip_path: str, version: str, sha: str, keep: int = DEV_KEEP, rep
             run(["release", "delete", tag, "--repo", repo, "--cleanup-tag", "--yes"])
     print("== publishing %s (%s)" % (tag, asset), flush=True)
     run(["release", "create", tag, upload, upload + ".sha256", "--repo", repo, "--target", sha, "--prerelease",
-         "--latest=false", "--title", "Uncle Farmer %s (development build)" % version,
+         "--latest=false", "--title", "Mist World Farmer %s (development build)" % version,
          "--notes", dev_notes(version, sha)])
     got = json.loads(run(["api", "repos/%s/releases/tags/%s" % (repo, tag)]))
     names = {a.get("name"): a for a in got.get("assets", [])}

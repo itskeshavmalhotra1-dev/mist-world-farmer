@@ -42,12 +42,12 @@ def text(name: str) -> str:
 # ------------------------------------------------------------ Lifecycle itself
 def test_a_clean_start_has_begin_each_stage_and_a_ready_end() -> None:
     boot = applog.bootup
-    boot.begin("Uncle Farmer 1.0")
+    boot.begin("Mist World Farmer 1.0")
     with boot.step("settings"):
         pass
     assert boot.end("ready") is True
     rows = lines("bootup.log")
-    assert "INFO" in rows[0] and "[%d] BEGIN startup: Uncle Farmer 1.0" % os.getpid() in rows[0]
+    assert "INFO" in rows[0] and "[%d] BEGIN startup: Mist World Farmer 1.0" % os.getpid() in rows[0]
     assert rows[1].endswith("settings: started")
     assert "settings: done (" in rows[2]
     assert "END startup: ready in " in rows[3] and "INFO" in rows[3]
@@ -158,7 +158,7 @@ def test_a_start_that_fails_names_the_stage_and_still_raises(monkeypatch: pytest
     with pytest.raises(ValueError):
         start.main()
     log = text("bootup.log")
-    assert "BEGIN startup: Uncle Farmer " in log and "one copy only: done" in log
+    assert "BEGIN startup: Mist World Farmer " in log and "one copy only: done" in log
     assert "hold the data files: done" in log
     assert "settings: FAILED" in log and "settings.json is not JSON" in log
     assert "END startup: FAILED at 'settings' after " in lines("bootup.log")[-1]
@@ -171,7 +171,7 @@ def test_a_second_copy_says_so_and_ends(monkeypatch: pytest.MonkeyPatch) -> None
     monkeypatch.setattr(instance, "focus_existing", lambda title="": True)
     assert start._start(applog.bootup) is None
     log = text("bootup.log")
-    assert "another Uncle Farmer is open" in log and "END startup: not started (another copy is open)" in log
+    assert "another Mist World Farmer is open" in log and "END startup: not started (another copy is open)" in log
 
 
 @pytest.mark.usefixtures("quiet_start")
