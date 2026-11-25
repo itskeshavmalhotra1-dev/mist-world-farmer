@@ -1,4 +1,4 @@
-"""Build the shareable Uncle Farmer folder: dist\\Uncle Farmer\\UncleFarmer.exe plus its data.
+"""Build the shareable Mist World Farmer folder: dist\\Mist World Farmer\\UncleFarmer.exe plus its data.
 
     python build_exe.py
     python build_exe.py --full     every core at normal priority (faster; CI builds this way)
@@ -7,7 +7,7 @@ Needs Nuitka (uv sync installs it), a JDK (the game agent is built from source) 
 in the UPX_DIR environment variable, else the upx found on PATH (winget install UPX.UPX puts it
 there). Without UPX the build stops and says so: it never quietly makes a bigger, different build.
 Builds its own copy of the game agent every time, never over the one a running game has loaded.
-The result needs nothing installed: zip "dist\\Uncle Farmer" and share it. Character settings,
+The result needs nothing installed: zip "dist\\Mist World Farmer" and share it. Character settings,
 plans, scripts, settings and logs are NOT copied, so your own setup never ends up in someone else's
 copy. The finished folder is checked (verify) before the build counts as done.
 """
@@ -24,7 +24,7 @@ from unclefarmer import __version__, native, updater
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DIST = os.path.join(ROOT, "dist")
-OUT = os.path.join(DIST, "Uncle Farmer")
+OUT = os.path.join(DIST, "Mist World Farmer")
 # The release's jar is built here, never over agent/unclefarmer-agent.jar: a running game has that
 # one loaded, and a release can be built while you play.
 JAR = os.path.join(DIST, "unclefarmer-agent.jar")
@@ -91,7 +91,7 @@ def main(full: bool = False) -> None:
         sys.executable, "-m", "nuitka", os.path.join(ROOT, "UncleFarmer.pyw"),
         "--standalone", "--windows-console-mode=disable", "--assume-yes-for-downloads",
         "--output-filename=" + updater.EXE, "--output-dir=" + DIST, "--remove-output",
-        "--windows-product-name=Uncle Farmer",
+        "--windows-product-name=Mist World Farmer",
         "--windows-product-version=" + windows_version(__version__),
         "--jobs=%d" % jobs, "--lto=auto", PYTHON_FLAG,
         "--enable-plugin=upx", "--upx-binary=" + upx,

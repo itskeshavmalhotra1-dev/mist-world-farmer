@@ -271,7 +271,7 @@ def read_import(source: str) -> dict[str, Any]:
         raise ValueError("this isn't a plan file")
     if "format" in raw:
         if raw.get("format") != PLAN_EXPORT_FORMAT:
-            raise ValueError("this isn't an Uncle Farmer plan export")
+            raise ValueError("this isn't an Mist World Farmer plan export")
         if raw.get("version") != PLAN_EXPORT_VERSION:
             raise ValueError("this plan export is from an unsupported version")
         data = raw.get("plan")

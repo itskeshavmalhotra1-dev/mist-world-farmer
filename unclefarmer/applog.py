@@ -77,7 +77,7 @@ def _complain(what: str, exc: BaseException, fallback: str = "") -> None:
     if not _warned:
         _warned = True
         try:
-            sys.stderr.write("Uncle Farmer: can't write the %s: %s\n" % (what, exc))
+            sys.stderr.write("Mist World Farmer: can't write the %s: %s\n" % (what, exc))
         except Exception as e:
             carry_on(e, "warning about a broken log")
     if fallback:

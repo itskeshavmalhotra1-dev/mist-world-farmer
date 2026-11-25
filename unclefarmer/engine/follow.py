@@ -2,7 +2,7 @@
 
 Where the player is comes from two places:
   - the game itself: another player in view is an entity of kind "player" with their name;
-  - `locate`, when the player is one of the characters Uncle Farmer runs on this PC: their own game
+  - `locate`, when the player is one of the characters Mist World Farmer runs on this PC: their own game
     knows their map and cell, wherever they are (bot.locate(name) -> (map id, x, y) or None);
   - `last_seen`, for anyone else: where any of our games last had them in view, a few minutes at
     most (bot.last_seen(name) -> (map id, x, y, seconds ago) or None).

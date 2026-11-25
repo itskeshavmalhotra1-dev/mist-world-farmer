@@ -5,7 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 /**
- * The agent shipped with Uncle Farmer -- the build other players get.
+ * The agent shipped with Mist World Farmer -- the build other players get.
  *
  * It keeps the world model fed, answers the bot on loopback (StateServer, with its per-launch
  * secret) and puts its key presses on the game's own input queue (Keys). It lets several game clients
@@ -13,8 +13,8 @@ import java.nio.file.Path;
  * log packets or write chat logs, and it carries none of the protocol-level actions: everything the
  * bot does is a key press, handled by the game the way it handles the keyboard.
  *
- * Attach with:  -javaagent:<Uncle Farmer>/agent/unclefarmer-agent.jar=<Uncle Farmer>/agent/run
- * Uncle Farmer adds and removes that line itself.
+ * Attach with:  -javaagent:<Mist World Farmer>/agent/unclefarmer-agent.jar=<Mist World Farmer>/agent/run
+ * Mist World Farmer adds and removes that line itself.
  */
 public final class BotAgent {
 
@@ -34,7 +34,7 @@ public final class BotAgent {
             Path out = Agent.outputDir(args, "run");
             Files.createDirectories(out);
             Log.init(out);
-            Log.info("Uncle Farmer agent attached  java=" + System.getProperty("java.version"));
+            Log.info("Mist World Farmer agent attached  java=" + System.getProperty("java.version"));
             writeGameFolder(out);
             Agent.start(new ChannelHunter(inst));
             Keys.start();
@@ -49,7 +49,7 @@ public final class BotAgent {
     }
 
     /** The game's own folder (its working folder: it opens config/, users/ and voice/ from there)
-     *  beside the logs: in game_folder.txt (the last game started), so Uncle Farmer finds the game
+     *  beside the logs: in game_folder.txt (the last game started), so Mist World Farmer finds the game
      *  it is installed in even when its settings have no game folder, and in agent.<pid>.folder for
      *  this game alone (gone when it exits) - with several copies of the game, a character's
      *  phrases and key settings are in the copy it runs from. */

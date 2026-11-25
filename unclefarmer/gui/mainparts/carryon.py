@@ -1,4 +1,4 @@
-"""Carrying on the runs that didn't end (engine/resume.py): offered once Uncle Farmer has started,
+"""Carrying on the runs that didn't end (engine/resume.py): offered once Mist World Farmer has started,
 then each one started in its character's game - a game opened and logged in to when none is, as a
 schedule does - and given CARRY_MOST seconds to get going before it is given up."""
 
@@ -110,7 +110,7 @@ class CarryOnMixin(FrameParts):
         """A plan or script that was going lost its game (it closed, froze, or logged our character
         out for good): the game is closed if it is still there, opened again, logged in to, and the
         run carries on where it was - at most resume.RESTARTS_MOST times a game day per character,
-        and only with the setting on. Never after Stop or when Uncle Farmer is closing."""
+        and only with the setting on. Never after Stop or when Mist World Farmer is closing."""
         if (self.destroyed or not getattr(run, "game_lost", False) or run.app_closing or not run.keeps_place()):
             return
         # A run can report the lost connection before the intentional kill worker calls Stop.

@@ -1,4 +1,4 @@
-"""The offer to carry on the runs that didn't finish (engine/resume.py), when Uncle Farmer starts.
+"""The offer to carry on the runs that didn't finish (engine/resume.py), when Mist World Farmer starts.
 
 It carries on by itself once its countdown is over, so a computer that restarted in the night
 farms on with nobody there; Escape or "Don't carry on" says no.

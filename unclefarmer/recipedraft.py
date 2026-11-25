@@ -246,7 +246,7 @@ def draft(messages: Iterable[tuple[float, str, int, bytes]], start: float | None
             "menus": s.menus, "door_sounds": len(s.door_sounds),
             "timers": s.timers if len(s.timers) < 3 else [s.timers[0], s.timers[-1]],
         })
-    return {"format": "Uncle Farmer recipe draft 1", "stages": stages, "reports": d.reports}
+    return {"format": "Mist World Farmer recipe draft 1", "stages": stages, "reports": d.reports}
 
 
 def summary(dr: dict[str, Any]) -> list[str]:

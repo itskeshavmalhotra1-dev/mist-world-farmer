@@ -1,4 +1,4 @@
-"""Updates from the GitHub releases of Uncle Farmer, on one of two channels.
+"""Updates from the GitHub releases of Mist World Farmer, on one of two channels.
 
   master  stable releases: a tag "v<version>" (v0.2.0) with one asset, UncleFarmer-<version>.zip,
           published by hand (release.py). GitHub's "latest release", which never is a pre-release.
@@ -539,7 +539,7 @@ def agent_games(app: str | None = None) -> list[int]:
 def _refuse_running_agent(app: str) -> None:
     games = agent_games(app)
     if games:
-        raise UpdateError("Mist World is still running with Uncle Farmer's agent loaded (process %s). Close "
+        raise UpdateError("Mist World is still running with Mist World Farmer's agent loaded (process %s). Close "
                           "every Mist World window, then update again" % ", ".join(str(g) for g in games))
 
 
@@ -1233,7 +1233,7 @@ def _refuse_read_only(folder: str, names: list[str] | None = None) -> None:
             os.path.join(parent, f) for parent, _dirs, here in os.walk(top) for f in here]
         found += [os.path.relpath(f, folder) for f in files if not os.stat(f).st_mode & stat.S_IWRITE]
     if found:
-        raise UpdateError("read-only file%s in the Uncle Farmer folder: %s. An update must be able to write "
+        raise UpdateError("read-only file%s in the Mist World Farmer folder: %s. An update must be able to write "
                           "every file it keeps; make %s writable (Properties, untick Read-only) and update "
                           "again" % ("s" if len(found) > 1 else "", ", ".join(found[:3]) + (" ..." if len(found) > 3 else ""),
                                      "them" if len(found) > 1 else "it"))
@@ -1242,7 +1242,7 @@ def _refuse_read_only(folder: str, names: list[str] | None = None) -> None:
 def missing_runtime(folder: str) -> list[str]:
     """One shared file/type/size contract for the release builder and updater."""
     missing: list[str] = []
-    # the folder is a literal path ("Uncle Farmer [old]" is a valid folder name); only the
+    # the folder is a literal path ("Mist World Farmer [old]" is a valid folder name); only the
     # required patterns themselves hold wildcards
     root = glob.escape(folder)
     for pattern in REQUIRED:

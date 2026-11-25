@@ -23,11 +23,11 @@ def import_confirmation(character: str, source: str, exists: bool) -> str:
     """The last clear warning before an import creates or replaces a profile file."""
     character = settings.profile_display(character)
     if exists:
-        return _("Replace the saved Uncle Farmer settings for {character} with those exported from {source}?\n\n"
+        return _("Replace the saved Mist World Farmer settings for {character} with those exported from {source}?\n\n"
                  "This replaces combat, key, potion, bag, pet, travel and restock choices. "
                  "It keeps {character}'s own scan and learned hearthstone location. Nothing changes "
                  "until you choose Yes.", character=character, source=source)
-    return _("Create Uncle Farmer settings for {character} from {source}?\n\n"
+    return _("Create Mist World Farmer settings for {character} from {source}?\n\n"
              "This creates settings for that name only. It doesn't create or log in to a Mist World "
              "character. The choices take effect when that character is scanned or run. Nothing changes "
              "until you choose Yes.", character=character, source=source)
@@ -152,7 +152,7 @@ class EditingMixin(FrameParts):
             self.say(_("Select a plan first."))
             return
         name = item[1]
-        wildcard = _("Uncle Farmer plan exports (*.unclefarmer-plan.json)|*.unclefarmer-plan.json|") + \
+        wildcard = _("Mist World Farmer plan exports (*.unclefarmer-plan.json)|*.unclefarmer-plan.json|") + \
                    _("JSON files (*.json)|*.json")
         with modal(wx.FileDialog(self, _("Export plan"), wildcard=wildcard,
                                  defaultFile=paths.safe_name(name) + ".unclefarmer-plan.json",
@@ -169,7 +169,7 @@ class EditingMixin(FrameParts):
 
     def import_plan(self) -> None:
         """Plans, Import: validate a portable or ordinary plan before an atomic save."""
-        wildcard = _("Uncle Farmer plan exports and plans (*.unclefarmer-plan.json;*.json)|*.unclefarmer-plan.json;*.json|") + \
+        wildcard = _("Mist World Farmer plan exports and plans (*.unclefarmer-plan.json;*.json)|*.unclefarmer-plan.json;*.json|") + \
                    _("All files (*.*)|*.*")
         with modal(wx.FileDialog(self, _("Import plan"), wildcard=wildcard,
                                  style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)) as d:
@@ -383,7 +383,7 @@ class EditingMixin(FrameParts):
                 return
             character = profiles[d.GetSelection()]
         filename = paths.safe_name(settings.profile_display(character)) + ".unclefarmer-profile.json"
-        wildcard = _("Uncle Farmer character settings and profiles (*.unclefarmer-profile.json;*.json)|*.unclefarmer-profile.json;*.json|") + \
+        wildcard = _("Mist World Farmer character settings and profiles (*.unclefarmer-profile.json;*.json)|*.unclefarmer-profile.json;*.json|") + \
                    _("All files (*.*)|*.*")
         with modal(wx.FileDialog(self, _("Export character settings"), wildcard=wildcard, defaultFile=filename,
                                  style=wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT)) as d:
@@ -403,7 +403,7 @@ class EditingMixin(FrameParts):
         """Character, Import settings: validate first, confirm, then atomically replace choices."""
         # Profiles from older/local copies are ordinary .json files, as are the new exports.
         # The initially selected Windows filter explicitly includes both, so either appears at once.
-        wildcard = _("Uncle Farmer character settings and profiles (*.unclefarmer-profile.json;*.json)|*.unclefarmer-profile.json;*.json|") + \
+        wildcard = _("Mist World Farmer character settings and profiles (*.unclefarmer-profile.json;*.json)|*.unclefarmer-profile.json;*.json|") + \
                    _("All files (*.*)|*.*")
         with modal(wx.FileDialog(self, _("Import character settings"), wildcard=wildcard,
                                  style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)) as d:
@@ -450,7 +450,7 @@ class EditingMixin(FrameParts):
         folder = self.remember_game_folder()
         if not gameinstall.is_game_folder(folder):
             applog.bootup.note("no game folder set yet: the welcome message offers Settings")
-            if ask(self, _("Welcome to Uncle Farmer. The agent needs to be installed in Mist World first. "
+            if ask(self, _("Welcome to Mist World Farmer. The agent needs to be installed in Mist World first. "
                            "Open Settings now?")):
                 self.open_setup()
             return
@@ -465,7 +465,7 @@ class EditingMixin(FrameParts):
             why = _("Mist World's settings don't load it (it was never installed there, or another tool "
                     "removed it)")
         elif st == "other":
-            why = _("Mist World loads another Uncle Farmer's agent (an older copy, or this one before it "
+            why = _("Mist World loads another Mist World Farmer's agent (an older copy, or this one before it "
                     "moved)")
         else:
             stale = gameinstall.stale_games()
@@ -480,16 +480,16 @@ class EditingMixin(FrameParts):
         """Ask; on OK close every open game (a game loads the agent only as it starts), then
         install the agent again. Nothing happens while a bot runs: its game would close under it."""
         if self.runs:
-            error(self, _("Uncle Farmer's agent needs to be reinstalled: {why}. Stop every running bot, then "
+            error(self, _("Mist World Farmer's agent needs to be reinstalled: {why}. Stop every running bot, then "
                           "use File, Settings, Install.", why=why))
             return
         games = agentfix.running_pids()
         if games:
-            text = _("Uncle Farmer's agent needs to be reinstalled: {why}.\n\nPress OK to close every Mist "
+            text = _("Mist World Farmer's agent needs to be reinstalled: {why}.\n\nPress OK to close every Mist "
                      "World window ({n} open) and reinstall it. A game loads the agent only as it starts, so "
                      "start Mist World again afterwards.", why=why, n=len(games))
         else:
-            text = _("Uncle Farmer's agent needs to be reinstalled: {why}.\n\nPress OK to reinstall it.", why=why)
+            text = _("Mist World Farmer's agent needs to be reinstalled: {why}.\n\nPress OK to reinstall it.", why=why)
         if not ask_ok(self, text, _("Reinstall the agent")):
             return
         if not games:
@@ -541,7 +541,7 @@ class EditingMixin(FrameParts):
                 return
             if save_file(self, settings.save_app, self.s) and self.s["language"] != old_lang:
                 i18n.load(self.s["language"])
-                info(self, _("Restart Uncle Farmer to switch the language."))
+                info(self, _("Restart Mist World Farmer to switch the language."))
         if code == CHECK_UPDATES:
             self.check_updates()          # Help, Check for updates, on the channel just saved
 

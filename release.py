@@ -1,4 +1,4 @@
-"""Publish a new version of Uncle Farmer on GitHub, for every copy's updater to find.
+"""Publish a new version of Mist World Farmer on GitHub, for every copy's updater to find.
 
     python release.py 0.2.0 --notes "What's new, in a line or two"
     python release.py 0.2.0 --notes-file notes.md
@@ -33,7 +33,7 @@ from unclefarmer import updater  # noqa: E402
 
 INIT = os.path.join(ROOT, "unclefarmer", "__init__.py")
 PYPROJECT = os.path.join(ROOT, "pyproject.toml")
-OUT = os.path.join(ROOT, "dist", "Uncle Farmer")
+OUT = os.path.join(ROOT, "dist", "Mist World Farmer")
 
 
 def _replace_once(path: str, pattern: str, new: str) -> None:
@@ -58,7 +58,7 @@ def set_version(v: str) -> None:
 
 
 def make_zip(v: str, path: str | None = None) -> str:
-    """The built folder as a zip (dist/UncleFarmer-<v>.zip, or path): "Uncle Farmer/..." inside,
+    """The built folder as a zip (dist/UncleFarmer-<v>.zip, or path): "Mist World Farmer/..." inside,
     and never a player's own files. CI's builds (ci_build.py) are zipped here too."""
     path = path or os.path.join(ROOT, "dist", "UncleFarmer-%s.zip" % v)
     with zipfile.ZipFile(path, "w", zipfile.ZIP_DEFLATED) as z:
@@ -73,7 +73,7 @@ def make_zip(v: str, path: str | None = None) -> str:
                 if f == "game_texts.json":
                     sys.exit("the built folder holds game_texts.json, which is made from each player's game")
                 full = os.path.join(folder, f)
-                z.write(full, os.path.join("Uncle Farmer", os.path.relpath(full, OUT)))
+                z.write(full, os.path.join("Mist World Farmer", os.path.relpath(full, OUT)))
     return path
 
 
@@ -92,13 +92,13 @@ def main() -> None:
     updater.write_build(OUT, v, "master")      # a stable release: the master channel's
     if a.local and notes:
         with open(os.path.join(OUT, "What's new.txt"), "w", encoding="utf-8") as f:
-            f.write("Uncle Farmer %s\n\n%s\n" % (v, notes.strip()))
+            f.write("Mist World Farmer %s\n\n%s\n" % (v, notes.strip()))
     zip_path = make_zip(v)
     print("zipped:", zip_path, "(%.1f MB)" % (os.path.getsize(zip_path) / 1e6))
     if a.local:
         if notes:
             with open(os.path.join(ROOT, "dist", "UncleFarmer-%s.txt" % v), "w", encoding="utf-8") as f:
-                f.write("Uncle Farmer %s\n\n%s\n" % (v, notes.strip()))
+                f.write("Mist World Farmer %s\n\n%s\n" % (v, notes.strip()))
         print("built v%s locally. Commit the version change (unclefarmer/__init__.py, pyproject.toml, uv.lock)." % v)
         return
     _publish(a, v, zip_path)
@@ -166,7 +166,7 @@ def _publish(a: Options, v: str, zip_path: str) -> None:
     """The GitHub release v<version> with the zip."""
     if not updater.REPO:
         sys.exit("no GitHub repository is set (updater.REPO): use --local")
-    cmd = ["gh", "release", "create", "v" + v, zip_path, "--repo", updater.REPO, "--title", "Uncle Farmer " + v]
+    cmd = ["gh", "release", "create", "v" + v, zip_path, "--repo", updater.REPO, "--title", "Mist World Farmer " + v]
     if a.notes_file:
         cmd += ["--notes-file", a.notes_file]
     elif a.notes:

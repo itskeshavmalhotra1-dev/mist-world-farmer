@@ -22,7 +22,7 @@ TEMPLATE = DOMAIN + ".pot"
 
 # Header fields, in the order written. Lower-case keys are used in memory.
 HEADER_FIELDS = (
-    ("Project-Id-Version", "Uncle Farmer"),
+    ("Project-Id-Version", "Mist World Farmer"),
     ("Report-Msgid-Bugs-To", ""),
     ("Language", ""),
     ("Language-Team", ""),
@@ -113,7 +113,7 @@ def header_text(header: dict[str, str]) -> str:
 def render_po(header: dict[str, str], entries: Iterable[tuple[str, str]],
               obsolete: Iterable[tuple[str, str]] = ()) -> str:
     """A .pot/.po file: the header, entries sorted by msgid, then obsolete ones under #~."""
-    out = ["# Uncle Farmer translation catalog. Edit the msgstr lines; keep the {placeholders}.\n",
+    out = ["# Mist World Farmer translation catalog. Edit the msgstr lines; keep the {placeholders}.\n",
            "msgid \"\"\n", "msgstr \"\"\n"]
     out += ['"%s"\n' % _escape(line) for line in header_text(header).splitlines(True)]
     out.append("\n")
@@ -313,7 +313,7 @@ def write_template(lang_dir: str) -> tuple[str, int]:
     os.makedirs(lang_dir, exist_ok=True)
     template = os.path.join(lang_dir, TEMPLATE)
     blank = {name.lower(): "" for name, _default in HEADER_FIELDS}
-    blank["project-id-version"] = "Uncle Farmer"
+    blank["project-id-version"] = "Mist World Farmer"
     write(template, render_po(blank, [(s, "") for s in strings]))
     if os.path.isdir(lang_dir):
         for name in sorted(os.listdir(lang_dir)):

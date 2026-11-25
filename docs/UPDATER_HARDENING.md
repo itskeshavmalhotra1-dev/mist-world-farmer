@@ -8,7 +8,7 @@ report's original lack-of-crash-recovery limitation.
 ## Scope and shutdown decision
 
 The updater was inspected against the flat Nuitka output used by `build_exe.py`.
-The existing `dist/Uncle Farmer` layout also passed the shared runtime verifier.
+The existing `dist/Mist World Farmer` layout also passed the shared runtime verifier.
 No real installation was updated, and no new executable was compiled for this task.
 
 Requirements 3 and 12 conflicted over whether the copier could start before the

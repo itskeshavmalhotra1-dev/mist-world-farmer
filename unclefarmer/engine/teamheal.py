@@ -193,7 +193,7 @@ def look_after(b: Bot, snap: dict[str, Any]) -> bool:
     name = mate.get("name", "").strip()
     if not getattr(b, "agent_act", False):
         _problem(b, _("can't heal {name} with {skill}: the bot can't select teammates in this game "
-                      "(restart the game so Uncle Farmer's agent loads)", name=name, skill=h["name"]))
+                      "(restart the game so Mist World Farmer's agent loads)", name=name, skill=h["name"]))
         return False
     sb = b.skillbook
     if sb is None or sb.gcd_wait(now) or not sb.ready(h, now):      # (_healer found one in it)

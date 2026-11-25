@@ -1,4 +1,4 @@
-"""One Uncle Farmer per Windows session; a second launch brings the open window forward."""
+"""One Mist World Farmer per Windows session; a second launch brings the open window forward."""
 
 from __future__ import annotations
 import ctypes
@@ -45,7 +45,7 @@ class InstanceLock:
 
 
 MARK = "UncleFarmer.MainWindow"     # a property on the main window: found whatever language its title is in
-TITLE = "Uncle Farmer"              # the English title, for a copy from before the mark
+TITLE = "Mist World Farmer"              # the English title, for a copy from before the mark
 
 
 def mark_window(hwnd: int, mark: str = MARK) -> bool:

@@ -3,11 +3,11 @@
     python update_compat.py --new <new build zip> [--from master] [--from dev] [--from v1.2.0] [--work DIR]
 
 For each --from (master = GitHub's latest release, dev = the newest dev pre-release, or a tag):
-download that release's zip and unpack it into "<work>/<tag>/Uncle Farmer". Then run THAT
+download that release's zip and unpack it into "<work>/<tag>/Mist World Farmer". Then run THAT
 release's own updater code from its tagged source, with its paths pointed at the copy. It takes
 the new zip through its normal steps: download (from a file:// link, size and SHA-256 checked),
 unpack, start_apply, then the window "closes". The new build's copier (and bootstrap.exe) must
-then install the update and start Uncle Farmer again. The check passes when build.json is the
+then install the update and start Mist World Farmer again. The check passes when build.json is the
 new version, the journal is COMMITTED, and the restarted app logs that the update finished.
 
 This is the check unit tests cannot be: the old code and the old binaries are the real ones that
@@ -163,11 +163,11 @@ def update_from(tag: str, new_zip: str, new_version: str, work: str) -> None:
     run("git", "fetch", "--quiet", "--depth", "1", "origin", "tag", tag)
     run("git", "worktree", "add", "--quiet", "--detach", source, tag)
     try:
-        app = os.path.join(here, "Uncle Farmer")         # a space, as in every real install
+        app = os.path.join(here, "Mist World Farmer")         # a space, as in every real install
         with zipfile.ZipFile(old_zip) as z:
             z.extractall(here)
         if not os.path.isfile(os.path.join(app, EXE)):
-            raise SystemExit("%s has no Uncle Farmer/%s" % (old_zip, EXE))
+            raise SystemExit("%s has no Mist World Farmer/%s" % (old_zip, EXE))
         with open(os.path.join(app, "settings.json"), "w", encoding="utf-8") as f:
             json.dump({"check_updates": False, "language_prompted": True}, f)
         sha = hashlib.sha256(pathlib.Path(new_zip).read_bytes()).hexdigest()
@@ -184,7 +184,7 @@ def update_from(tag: str, new_zip: str, new_version: str, work: str) -> None:
              lambda: new_version in read(build) and json.loads(read(build) or "{}").get("version") == new_version, app, new_version)
         if os.path.isdir(os.path.join(app, ".recovery")):
             wait("the update journal is COMMITTED", lambda: journal_state(app) == "COMMITTED", app, new_version)
-        wait("Uncle Farmer started again", lambda: bool(processes(os.path.join(app, EXE))), app, new_version)
+        wait("Mist World Farmer started again", lambda: bool(processes(os.path.join(app, EXE))), app, new_version)
         wait("the restarted app says the update finished",
              lambda: "the update to %s finished" % new_version in read(os.path.join(app, "logs", "update.log")), app, new_version)
         print("  passed in %.0f s" % (time.time() - began), flush=True)

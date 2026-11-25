@@ -120,7 +120,7 @@ def details():
         "drop": _("drop: how much drop time I have left today."),
         "pause": _("pause: I stop where I am and hold still until you send resume. The run is not ended."),
         "resume": _("resume: I go on with the paused run."),
-        "stop": _("stop: I end the run the safe way, as if you pressed Stop in Uncle Farmer."),
+        "stop": _("stop: I end the run the safe way, as if you pressed Stop in Mist World Farmer."),
         "start": _("start: I start the plan I ran last. start and a plan's name starts that plan, for example: start wolves"),
         "home": _("home: I go back to where my farming started, then the run stops. If I don't know where that "
                   "was, the hearthstone takes me home."),

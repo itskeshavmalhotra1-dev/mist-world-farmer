@@ -4,7 +4,7 @@ Ever wished your character could do more than just farm in one place? Maybe you 
 
 That's what scripts are for!
 
-A **plan** handles ordinary farming: choose maps, set how long to farm, and add rules for when to stop. A **script** gives you more freedom. It's a list of commands that Uncle Farmer follows from top to bottom. You can make decisions, repeat tasks, visit shops between farming sessions, and react to what's happening in the game.
+A **plan** handles ordinary farming: choose maps, set how long to farm, and add rules for when to stop. A **script** gives you more freedom. It's a list of commands that Mist World Farmer follows from top to bottom. You can make decisions, repeat tasks, visit shops between farming sessions, and react to what's happening in the game.
 
 And here's the good news: **you don't need to be a programmer to write one.** If you can write a shopping list or follow a set of instructions, you're already familiar with the basic idea.
 
@@ -13,7 +13,7 @@ We'll start with something small and gradually build up to more powerful scripts
 
 ## Sign in before a script
 
-Put `login` as the first command in a scheduled script: the schedule's selected character supplies the identity. `login "Character - S1"` or `login "Character - S2"` is also available when the script itself should name the character. If that character is already in the selected game, Uncle Farmer uses it. Otherwise it uses one signed-out game; when there is none, it opens one game window, waits for its agent, selects the saved character's server directly, then uses the saved sign-in and the real character list to select the matching character ID. The address is learned when the character is first seen and is shown read-only in Character Settings, Overview; no password is stored. The command stops safely if the character has not been seen before, its saved account or server is unavailable, or more than one game is signed out.
+Put `login` as the first command in a scheduled script: the schedule's selected character supplies the identity. `login "Character - S1"` or `login "Character - S2"` is also available when the script itself should name the character. If that character is already in the selected game, Mist World Farmer uses it. Otherwise it uses one signed-out game; when there is none, it opens one game window, waits for its agent, selects the saved character's server directly, then uses the saved sign-in and the real character list to select the matching character ID. The address is learned when the character is first seen and is shown read-only in Character Settings, Overview; no password is stored. The command stops safely if the character has not been seen before, its saved account or server is unavailable, or more than one game is signed out.
 
 ## 1. Your first script
 
@@ -29,13 +29,13 @@ Let's get your first script running! We'll start with a simple task: travel to a
         farm minutes=10
         hearthstone
 
-4. Press **F5** to check your script. If you see "The script reads correctly", Uncle Farmer has understood every line.
+4. Press **F5** to check your script. If you see "The script reads correctly", Mist World Farmer has understood every line.
 5. Press **Ctrl+S** to save your script, then press Escape to close the editor.
 6. On the **Bot** tab, choose `My first script (script)` in the Plan box and press **Start**.
 
 **What will happen?**
 
-Uncle Farmer follows the commands in order:
+Mist World Farmer follows the commands in order:
 
 - `travel "Wolf Prairie"` sends your character to Wolf Prairie.
 - `farm minutes=10` starts farming and stops after ten minutes.
@@ -52,7 +52,7 @@ Before we start making scripts do interesting things, let's get familiar with a 
 
 **One command per line**
 
-Each line contains one command. The first word tells Uncle Farmer what to do, and the rest provides the details.
+Each line contains one command. The first word tells Mist World Farmer what to do, and the rest provides the details.
 
 For example:
 
@@ -64,7 +64,7 @@ The bot reads these commands from top to bottom, one line at a time.
 
 **Add notes with `#`**
 
-You can leave yourself reminders or explanations inside a script. Start a note with `#`, and Uncle Farmer will ignore everything after it on that line.
+You can leave yourself reminders or explanations inside a script. Start a note with `#`, and Mist World Farmer will ignore everything after it on that line.
 
     # Farm the wolves before dinner
     farm minutes=30    # Half an hour should be enough
@@ -102,7 +102,7 @@ The two spaces before the commands inside `repeat` are there for readability. Yo
 
 Some commands, such as `repeat`, `if`, and `while`, can contain other commands underneath them. These groups of commands are called **blocks**.
 
-Every block needs a matching `end` to tell Uncle Farmer where that group finishes.
+Every block needs a matching `end` to tell Mist World Farmer where that group finishes.
 
     repeat
       farm minutes=30
@@ -116,7 +116,7 @@ That's all you need to know about the basic writing rules. With these in place, 
 
 ## 3. Going places
 
-Before your character can start farming, they need to get somewhere! Uncle Farmer has two commands for traveling: `travel` and `go`.
+Before your character can start farming, they need to get somewhere! Mist World Farmer has two commands for traveling: `travel` and `go`.
 
 Both can take your character to different maps, but they work a little differently.
 
@@ -142,7 +142,7 @@ The last example takes your character to a specific cell on the map instead of s
 
 ### What if two maps have the same name?
 
-Some maps share names. If Uncle Farmer chooses the wrong one, use the map number instead.
+Some maps share names. If Mist World Farmer chooses the wrong one, use the map number instead.
 
 You can find each map's number in brackets in the map list inside the plan editor.
 
@@ -174,7 +174,7 @@ The second takes your character to Lifting Platform No. 1, then walks up to the 
 
 ### Finding dungeon entrances
 
-Uncle Farmer keeps a list of the dungeons it knows about. You can find this list in the **Walk to** window, including dungeons whose entrances haven't yet been seen in the game.
+Mist World Farmer keeps a list of the dungeons it knows about. You can find this list in the **Walk to** window, including dungeons whose entrances haven't yet been seen in the game.
 
 This makes it easier to send your character to a dungeon entrance without having to work out the route yourself.
 
@@ -326,7 +326,7 @@ When a `farm` line finishes, the script moves on to the next line. If you don't 
 
 A good script needs to know when to stop and what to do afterward. Maybe you've run out of potions, reached your kill target, or simply spent enough time farming for the day.
 
-Uncle Farmer gives you several ways to control how a run ends.
+Mist World Farmer gives you several ways to control how a run ends.
 
 ### Setting automatic stop rules
 
@@ -436,7 +436,7 @@ With these commands, you can decide not only when a script finishes, but also wh
 
 Your script doesn't have to rely on fixed instructions. It can also check what's happening in the game and make decisions based on that information.
 
-Uncle Farmer provides several built-in names and functions that you can use in conditions and in the `say` command.
+Mist World Farmer provides several built-in names and functions that you can use in conditions and in the `say` command.
 
 ### Checking your character's status
 
@@ -498,7 +498,7 @@ This checks whether you have fewer than 10 Large Red Potions.
 
 ### Using number functions
 
-Uncle Farmer also provides a few useful mathematical functions.
+Mist World Farmer also provides a few useful mathematical functions.
 
 | Function | What it does |
 |---|---|
@@ -624,7 +624,7 @@ With decisions and loops, your scripts can respond to changing conditions, repea
 
 ## 8. Your own values
 
-So far, we've used information that Uncle Farmer already provides, such as `kills`, `hp_pct`, and `level`.
+So far, we've used information that Mist World Farmer already provides, such as `kills`, `hp_pct`, and `level`.
 
 But what if you want your script to keep track of something of its own?
 
@@ -650,7 +650,7 @@ Each time this command runs, the value of `rounds` increases by one.
 
 ### Displaying values with `say`
 
-The `say` command writes a message to the log. You can include your own values, built-in values, and calculations inside `{ }`. Uncle Farmer works them out before displaying the message.
+The `say` command writes a message to the log. You can include your own values, built-in values, and calculations inside `{ }`. Mist World Farmer works them out before displaying the message.
 
 For example:
 
@@ -732,13 +732,13 @@ This keeps your script shorter and makes it easier to update repeated tasks. If 
 
 ## 10. Towns, shops and the storehouse
 
-Farming isn't the only thing your character can do. Uncle Farmer can also visit NPCs, buy and sell items, manage your supplies, and use several in-game tools.
+Farming isn't the only thing your character can do. Mist World Farmer can also visit NPCs, buy and sell items, manage your supplies, and use several in-game tools.
 
 Let's look at what each command can do.
 
 ### Visiting and talking to NPCs
 
-Uncle Farmer has two commands for interacting with NPCs:
+Mist World Farmer has two commands for interacting with NPCs:
 
     visit <kind or NPC name>     go to the nearest NPC of a kind and open its menu
     talk <NPC name>              walk up to an NPC and open its menu
@@ -796,7 +796,7 @@ This visits the nearest NPC of the `potions` kind and opens its menu.
 
 ### Using the Gem Maker and Equipment Enhancer
 
-If you've configured these tools in Uncle Farmer, you can run them directly from a script.
+If you've configured these tools in Mist World Farmer, you can run them directly from a script.
 
     gem_maker          run the Gem Maker as set up in Tools
     gem_maker check    only look: walk there, read the menus and prices, change nothing
@@ -875,7 +875,7 @@ The available types are `fish`, `ore`, and `herb`. If the character has no gathe
 
 ### Managing shards and your bag
 
-Uncle Farmer also provides commands for handling shards and following your bag manager's settings.
+Mist World Farmer also provides commands for handling shards and following your bag manager's settings.
 
 **Selling shards**
 
@@ -964,7 +964,7 @@ You can use a different cave name after `dungeon` to choose that cave instead of
 
 ### Exploring NPCs and maps with `survey`
 
-Sometimes you need to know what NPCs are available, where they stand, or what their menus contain. The `survey` command lets Uncle Farmer explore maps and collect that information directly from the game.
+Sometimes you need to know what NPCs are available, where they stand, or what their menus contain. The `survey` command lets Mist World Farmer explore maps and collect that information directly from the game.
 
 Here are the available forms:
 
@@ -1008,7 +1008,7 @@ With these commands, your scripts can do much more than fight monsters. They can
 
 ## 11. Keys
 
-Most of the time, Uncle Farmer handles movement, farming, potions, and menus for you. You won't need to press keys manually.
+Most of the time, Mist World Farmer handles movement, farming, potions, and menus for you. You won't need to press keys manually.
 
 However, there may be times when you want your script to press a particular key, hold it down, or wait before continuing.
 
@@ -1046,7 +1046,7 @@ You can also combine keys, such as:
 
 This presses the left Ctrl and Alt keys together with the Down arrow.
 
-Most scripts won't need these commands because Uncle Farmer already handles farming, potions, travel, and menus automatically. Use manual key commands when you need to control a key directly.
+Most scripts won't need these commands because Mist World Farmer already handles farming, potions, travel, and menus automatically. Use manual key commands when you need to control a key directly.
 
 
 ## 12. Complete examples
@@ -1150,7 +1150,7 @@ Here are a few things to check when something doesn't work as expected.
 
 ### Check your script with F5
 
-Press **F5** regularly while writing your script. This checks whether Uncle Farmer can understand the commands.
+Press **F5** regularly while writing your script. This checks whether Mist World Farmer can understand the commands.
 
 If something is wrong, the bot reports the line and describes the problem.
 
@@ -1213,7 +1213,7 @@ You don't always have to start from an empty editor.
 
 If you already have a plan you like, open it in the plan editor and use **Save as script**.
 
-Uncle Farmer converts the plan into script lines that you can then edit and customize.
+Mist World Farmer converts the plan into script lines that you can then edit and customize.
 
 With a little testing and the help of the Log tab, you'll be able to find and fix most scripting problems.
 

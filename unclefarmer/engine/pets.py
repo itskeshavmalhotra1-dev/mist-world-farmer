@@ -413,7 +413,7 @@ def heal(b: Bot, pet: dict[str, Any], share: float, now: float) -> bool:
     name = (pet.get("name") or "").split(" belongs to ")[0].strip() or _("the pet")
     if not getattr(b, "agent_act", False):
         _heal_problem(b, _("can't heal {pet} with {skill}: the bot can't select the pet in this game "
-                           "(restart the game so Uncle Farmer's agent loads) - pet potions meanwhile",
+                           "(restart the game so Mist World Farmer's agent loads) - pet potions meanwhile",
                            pet=name, skill=h["name"]))
         return False
     if now < getattr(b, "pet_heal_rest_until", 0.0):

@@ -996,7 +996,7 @@ def read_profile_export(path: str) -> tuple[str, dict[str, Any]]:
         raise ValueError("this isn't a character-settings file")
     if "format" in raw:
         if raw.get("format") != PROFILE_EXPORT_FORMAT:
-            raise ValueError("this isn't an Uncle Farmer character-settings file")
+            raise ValueError("this isn't an Mist World Farmer character-settings file")
         if raw.get("version") != PROFILE_EXPORT_VERSION:
             raise ValueError("this character-settings file is from an unsupported version")
         source = raw.get("character")
@@ -1017,7 +1017,7 @@ def read_profile_export(path: str) -> tuple[str, dict[str, Any]]:
                  else os.path.splitext(base)[0]
     try:
         # Validate every known field before a caller asks to replace anything.  Extra fields are
-        # retained by Profile so a newer Uncle Farmer can share settings with an older one.
+        # retained by Profile so a newer Mist World Farmer can share settings with an older one.
         profile = Profile.model_validate({**copy.deepcopy(PROFILE_DEFAULTS), **copy.deepcopy(data)}).model_dump()
     except ValidationError as e:
         fields = ", ".join(str(err["loc"][0]) for err in e.errors() if err["loc"])

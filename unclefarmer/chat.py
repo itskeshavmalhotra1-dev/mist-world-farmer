@@ -5,7 +5,7 @@ game's own sender (`say`), the way the game does when the player types one - no 
 no key is pressed, so the bot's keys and the chat never get in each other's way.
 
 Chat lives in memory only, as private as the game's own chat box: a few hundred lines per game,
-never written to a file or a log, and gone when Uncle Farmer closes. Private messages are the Messenger's
+never written to a file or a log, and gone when Mist World Farmer closes. Private messages are the Messenger's
 (messages.py): they show here too, but it is the Messenger that speaks and sends them.
 """
 

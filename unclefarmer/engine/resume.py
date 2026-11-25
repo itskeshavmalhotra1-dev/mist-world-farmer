@@ -5,8 +5,8 @@ has already done, the run's minutes and kills, its own `set` values - in profile
 one row per character, every SAVE_EVERY seconds while it runs.
 
 The row stays when the run didn't end: the game was lost (it closed, froze or logged our character
-out for good), or Uncle Farmer was closed under it (by the player, an update or the computer
-restarting). Then the next start of Uncle Farmer offers to carry on, the same game day only (the
+out for good), or Mist World Farmer was closed under it (by the player, an update or the computer
+restarting). Then the next start of Mist World Farmer offers to carry on, the same game day only (the
 drop time starts again at 00:00 GMT). A run that ended by itself, one stopped with Stop, and one
 that failed some other way (a script error, a bug) take their row away: carrying those on would
 only repeat what ended them.

@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 /**
  * Starts one of the game's already saved accounts and chooses a known character without keyboard
  * input. The game continues to own its saved credential file; its bytes stay in the game JVM and
- * are never converted to text, returned, logged, or saved by Uncle Farmer.
+ * are never converted to text, returned, logged, or saved by Mist World Farmer.
  */
 final class AutomaticLogin {
 
@@ -99,7 +99,7 @@ final class AutomaticLogin {
                 status = problem == null && waitForCharacter(id, System.currentTimeMillis() + WORLD_TIMEOUT_MILLIS)
                         ? "ready" : (problem == null ? "timed out loading character" : problem);
             } catch (InterruptedException ignored) { Thread.currentThread().interrupt(); status = "cancelled"; }
-              finally { running = false; } } }, "Uncle Farmer reconnect").start();
+              finally { running = false; } } }, "Mist World Farmer reconnect").start();
         }
         return "{\"ok\":true,\"id\":" + id + "}";
     }
@@ -135,7 +135,7 @@ final class AutomaticLogin {
                     running = false;
                 }
             }
-        }, "Uncle Farmer automatic login");
+        }, "Mist World Farmer automatic login");
         worker.setDaemon(true);
         worker.start();
     }

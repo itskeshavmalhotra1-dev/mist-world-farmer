@@ -1,4 +1,4 @@
-# Uncle Farmer's packages to run, check (check.py) and build (build_exe.py), pinned, for Python 3.14 on Windows:
+# Mist World Farmer's packages to run, check (check.py) and build (build_exe.py), pinned, for Python 3.14 on Windows:
 #     py -3.14 -m venv .venv
 #     .venv\Scripts\pip install -r requirements-dev.txt
 # Made from uv.lock by export_requirements.py: don't edit it, run that after `uv lock`.

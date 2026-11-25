@@ -90,10 +90,10 @@ class Run(threading.Thread):
         self.done_called = False      # on_done() has run: it runs once, however the end went
         self.end_failures: list[tuple[str, Exception]] = []   # what failed on the way out (the end goes on regardless)
         # Where this plan or script is (engine/resume.py): kept when the run doesn't end - the game
-        # lost or Uncle Farmer closed under it - so the next start can carry on from there.
+        # lost or Mist World Farmer closed under it - so the next start can carry on from there.
         self.resume_row: dict[str, Any] | None = None   # set by the window: carry on from this place
         self.game_lost = False       # the game closed, froze or lost our character for good
-        self.app_closing = False     # Uncle Farmer is closing under the run: its place is kept
+        self.app_closing = False     # Mist World Farmer is closing under the run: its place is kept
         self.script: Runner | None = None    # the plan or script whose place is kept
         self.place_lock = threading.Lock()
         self.place_done = False      # the run's end has decided about its place: no more saves
@@ -208,7 +208,7 @@ class Run(threading.Thread):
         version = link.send("version")
         agent = int(version.split()[1]) if version.startswith("mwagent ") else 0
         if agent < AGENT_VERSION:
-            raise Stopped(_("the game is running an older Uncle Farmer agent - restart Mist World so it loads "
+            raise Stopped(_("the game is running an older Mist World Farmer agent - restart Mist World so it loads "
                             "the new one"))
         snap = link.json("mem state" if agent >= AGENT_STATE else "mem")
         if not snap.get("ok") and self.profile:
@@ -243,7 +243,7 @@ class Run(threading.Thread):
     def _login_saved_character(self, link: AgentLink, agent: int) -> None:
         """Use this plan's saved account, then wait for the requested character to be selected."""
         if agent < AGENT_LOGIN:
-            raise Stopped(_("the game is running an older Uncle Farmer agent - restart Mist World so it loads "
+            raise Stopped(_("the game is running an older Mist World Farmer agent - restart Mist World so it loads "
                             "the new one"))
         character = self.profile or ""
         email = settings.load_profile(character).get("login_email")
@@ -619,7 +619,7 @@ class Run(threading.Thread):
             carry_on(e, "keeping the run's place")
 
     def _settle_place(self) -> None:
-        """The run is over: its place kept when it didn't end (the game lost, Uncle Farmer closing),
+        """The run is over: its place kept when it didn't end (the game lost, Mist World Farmer closing),
         else taken away - a finished run, Stop, or a failure that carrying on would only repeat."""
         with self.place_lock:
             if self.place_done:

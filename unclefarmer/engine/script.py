@@ -1,4 +1,4 @@
-"""Uncle Farmer scripts: a small line-based language for anything the plan editor can't express.
+"""Mist World Farmer scripts: a small line-based language for anything the plan editor can't express.
 
 One command per line; `#` starts a comment. Blocks end with `end`.
 

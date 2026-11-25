@@ -1,4 +1,4 @@
-/* bootstrap.exe: Uncle Farmer's updater/bootstrapper. Imports only Windows system DLLs, never the
+/* bootstrap.exe: Mist World Farmer's updater/bootstrapper. Imports only Windows system DLLs, never the
  * application's Python runtime, so a half-replaced UncleFarmer.exe cannot stop it.
  *
  *   bootstrap.exe [args]
@@ -63,7 +63,7 @@ static void failure(const char *what, DWORD code) {
     HANDLE file = CreateFileW(log, GENERIC_WRITE, FILE_SHARE_READ, NULL, CREATE_NEW,
                               FILE_ATTRIBUTE_NORMAL | FILE_FLAG_WRITE_THROUGH, NULL);
     if (file == INVALID_HANDLE_VALUE) return;
-    int length = snprintf(text, sizeof(text), "%s (Windows/process code %lu). Uncle Farmer was not started.\r\n",
+    int length = snprintf(text, sizeof(text), "%s (Windows/process code %lu). Mist World Farmer was not started.\r\n",
                           what, (unsigned long)code);
     DWORD written;
     if (length > 0 && length < (int)sizeof(text)) WriteFile(file, text, (DWORD)length, &written, NULL);
