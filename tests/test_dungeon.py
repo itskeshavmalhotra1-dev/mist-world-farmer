@@ -720,9 +720,14 @@ def test_wraith_cave_chest_detection_and_opening() -> None:
                 {"id": -17, "kind": "npc", "name": "Treasure chest belongs to asta", "x": 12.96, "y": 27.03},
             ]
             self.chosen: list[str] = []
+            orig_json = self.a.json
 
-        def entities(self) -> list[dict[str, Any]]:
-            return self._ents
+            def custom_json(line: str) -> Any:
+                if line == "mem state":
+                    return {"ok": True, "entities": self._ents}
+                return orig_json(line)
+
+            self.a.json = custom_json  # type: ignore[method-assign]
 
         def choose(self, pattern: str, row: str | None = None) -> dict[str, Any] | None:
             self.chosen.append(pattern)

@@ -635,7 +635,9 @@ def wraith_level(cave: str) -> int:
 
 def wraith_chest(b: Bot) -> dict[str, Any] | None:
     """The end-of-floor treasure chest NPC once the floor's Boss is defeated."""
-    for e in b.entities():
+    state = cast(dict[str, Any], b.a.json("mem state"))
+    ents = cast(list[dict[str, Any]], state.get("entities") or [])
+    for e in ents:
         if e.get("kind") == "npc" and "treasure chest" in str(e.get("name") or "").lower():
             return e
     return None
@@ -670,11 +672,14 @@ def leave_wraith(b: Bot) -> None:
 
 def _pick_wraith_row(b: Bot, level: int) -> str | None:
     """From The Wraith Cave's open menu, choose the highest unlocked floor (preferring uncompleted)."""
-    rows = ((b.dialog().get("top") or {}).get("rows") or [])
+    top = cast(dict[str, Any], b.dialog().get("top") or {})
+    rows: list[list[dict[str, Any]]] = cast(list[list[dict[str, Any]]], top.get("rows") or [])
     candidates: list[tuple[int, int, str]] = []
     for row in rows:
         for cell in row:
-            text = " ".join(str(x) for x in (cell.get("options") or [])).strip()
+            raw_opts = cast(list[Any], cell.get("options") or [])
+            opts: list[str] = [str(x) for x in raw_opts]
+            text = " ".join(opts).strip()
             m = re.match(r"^Floor\s+(\d+)\b", text)
             if not m:
                 continue
@@ -701,7 +706,7 @@ def enter_wraith(b: Bot, cfg: dict[str, Any], cave: str) -> int | None:
     entry = entrance(WRAITH_CAVE) or entry
     fl = wraith_floor(cave)
     level = level_of(b)
-    for n in range(TRIES):
+    for _n in range(TRIES):
         if b.map_id() in WRAITH_MAPS:
             return b.map_id()
         if not knock(b, entry):
