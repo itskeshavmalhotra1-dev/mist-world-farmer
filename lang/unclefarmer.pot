@@ -1,7 +1,7 @@
-# Uncle Farmer translation catalog. Edit the msgstr lines; keep the {placeholders}.
+# Mist World Farmer translation catalog. Edit the msgstr lines; keep the {placeholders}.
 msgid ""
 msgstr ""
-"Project-Id-Version: Uncle Farmer\n"
+"Project-Id-Version: Mist World Farmer\n"
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
 "Language-Team: \n"
@@ -32,7 +32,7 @@ msgstr ""
 msgid " - {n} used up with no stored price, not counted"
 msgstr ""
 
-msgid "&About Uncle Farmer"
+msgid "&About Mist World Farmer"
 msgstr ""
 
 msgid "&Accept requests to join my team"
@@ -811,7 +811,7 @@ msgid "A plan named {name} already exists. Replace it?"
 msgstr ""
 
 msgid ""
-"A scheduled plan starts in the game the character is logged in to, as the Start button would. A time missed while Uncle Farmer was closed doesn't run later; a game busy with another run waits up to 15 minutes."
+"A scheduled plan starts in the game the character is logged in to, as the Start button would. A time missed while Mist World Farmer was closed doesn't run later; a game busy with another run waits up to 15 minutes."
 msgstr ""
 
 msgid "A script called {name} exists. Replace it?"
@@ -967,7 +967,8 @@ msgstr ""
 msgid "Always leave this many in the &bag:"
 msgstr ""
 
-msgid "An older Uncle Farmer agent is installed. Press Install to update it."
+msgid ""
+"An older Mist World Farmer agent is installed. Press Install to update it."
 msgstr ""
 
 msgid "Animal Shed feeding"
@@ -1533,7 +1534,7 @@ msgid "Craftsman and spending"
 msgstr ""
 
 msgid ""
-"Create Uncle Farmer settings for {character} from {source}?\n"
+"Create Mist World Farmer settings for {character} from {source}?\n"
 "\n"
 "This creates settings for that name only. It doesn't create or log in to a Mist World character. The choices take effect when that character is scanned or run. Nothing changes until you choose Yes."
 msgstr ""
@@ -1633,7 +1634,7 @@ msgstr ""
 msgid "Double beep"
 msgstr ""
 
-msgid "Downloading Uncle Farmer {v}"
+msgid "Downloading Mist World Farmer {v}"
 msgstr ""
 
 msgid "Draw Blood"
@@ -2589,7 +2590,7 @@ msgstr ""
 msgid "Look for a chest the game announces on the map"
 msgstr ""
 
-msgid "Look for a new &version when Uncle Farmer starts"
+msgid "Look for a new &version when Mist World Farmer starts"
 msgstr ""
 
 msgid "Looking for a new version"
@@ -2743,6 +2744,61 @@ msgstr ""
 msgid "Mist World"
 msgstr ""
 
+msgid "Mist World Farmer"
+msgstr ""
+
+msgid ""
+"Mist World Farmer character settings and profiles (*.unclefarmer-profile.json;*.json)|*.unclefarmer-profile.json;*.json|"
+msgstr ""
+
+msgid "Mist World Farmer is updated to {v}."
+msgstr ""
+
+msgid ""
+"Mist World Farmer plan exports (*.unclefarmer-plan.json)|*.unclefarmer-plan.json|"
+msgstr ""
+
+msgid ""
+"Mist World Farmer plan exports and plans (*.unclefarmer-plan.json;*.json)|*.unclefarmer-plan.json;*.json|"
+msgstr ""
+
+msgid "Mist World Farmer {v}"
+msgstr ""
+
+msgid ""
+"Mist World Farmer {v}\n"
+"A farming bot for Mist World."
+msgstr ""
+
+msgid ""
+"Mist World Farmer {v} doesn't look for updates online. New versions come as a zip: unpack it over this folder."
+msgstr ""
+
+msgid ""
+"Mist World Farmer {v} is out (you have {cur}).\n"
+"\n"
+"Mist World Farmer closes, updates and starts again; your characters, plans, scripts and settings stay as they are."
+msgstr ""
+
+msgid "Mist World Farmer {v} is the newest version."
+msgstr ""
+
+msgid ""
+"Mist World Farmer's agent needs to be reinstalled: {why}.\n"
+"\n"
+"Press OK to close every Mist World window ({n} open) and reinstall it. A game loads the agent only as it starts, so start Mist World again afterwards."
+msgstr ""
+
+msgid ""
+"Mist World Farmer's agent needs to be reinstalled: {why}.\n"
+"\n"
+"Press OK to reinstall it."
+msgstr ""
+
+msgid ""
+"Mist World Farmer's agent needs to be reinstalled: {why}. Stop every running bot, then use File, Settings, Install."
+msgstr ""
+
 msgid "Mist World isn't in this folder. Choose the folder that has mw.exe."
 msgstr ""
 
@@ -2750,7 +2806,7 @@ msgid "Mist World isn't running. Start it, or use Browse."
 msgstr ""
 
 msgid ""
-"Mist World loads another Uncle Farmer's agent (an older copy, or this one before it moved)"
+"Mist World loads another Mist World Farmer's agent (an older copy, or this one before it moved)"
 msgstr ""
 
 msgid "Mist World windows that didn't close: {n}. Close them yourself."
@@ -2928,7 +2984,7 @@ msgstr ""
 msgid "No crystals or runes seen yet."
 msgstr ""
 
-msgid "No development build of Uncle Farmer can be seen on GitHub yet."
+msgid "No development build of Mist World Farmer can be seen on GitHub yet."
 msgstr ""
 
 msgid "No email program opened. Write to {email} from your email."
@@ -2983,7 +3039,7 @@ msgstr ""
 msgid "No price stored, not counted: {list}"
 msgstr ""
 
-msgid "No release of Uncle Farmer can be seen on GitHub yet."
+msgid "No release of Mist World Farmer can be seen on GitHub yet."
 msgstr ""
 
 msgid ""
@@ -3536,7 +3592,7 @@ msgid "Replace keyboard profile {name}?"
 msgstr ""
 
 msgid ""
-"Replace the saved Uncle Farmer settings for {character} with those exported from {source}?\n"
+"Replace the saved Mist World Farmer settings for {character} with those exported from {source}?\n"
 "\n"
 "This replaces combat, key, potion, bag, pet, travel and restock choices. It keeps {character}'s own scan and learned hearthstone location. Nothing changes until you choose Yes."
 msgstr ""
@@ -3562,7 +3618,7 @@ msgstr ""
 msgid "Rest &until HP (%):"
 msgstr ""
 
-msgid "Restart Uncle Farmer to switch the language."
+msgid "Restart Mist World Farmer to switch the language."
 msgstr ""
 
 msgid ""
@@ -4307,7 +4363,7 @@ msgstr ""
 msgid "The Triggers lists around the farming"
 msgstr ""
 
-msgid "The agent file is missing from Uncle Farmer's agent folder."
+msgid "The agent file is missing from Mist World Farmer's agent folder."
 msgstr ""
 
 msgid ""
@@ -4599,18 +4655,18 @@ msgid "The update didn't download: {why}"
 msgstr ""
 
 msgid ""
-"The update is being prepared: Uncle Farmer closes by itself in a moment."
+"The update is being prepared: Mist World Farmer closes by itself in a moment."
 msgstr ""
 
 msgid ""
-"The update reinstalls Uncle Farmer's agent, which the open games have loaded, so every Mist World window must close first.\n"
+"The update reinstalls Mist World Farmer's agent, which the open games have loaded, so every Mist World window must close first.\n"
 "\n"
 "Press OK to close them ({n} open) and update. Start Mist World again after the update."
 msgstr ""
 
 msgid ""
 "The update to {v} didn't finish: {why}\n"
-"Uncle Farmer {cur} still works. The details are in {log}."
+"Mist World Farmer {cur} still works. The details are in {log}."
 msgstr ""
 
 msgid ""
@@ -4820,61 +4876,6 @@ msgstr ""
 msgid "Type the name of the gang whose craftsmen to use."
 msgstr ""
 
-msgid "Uncle Farmer"
-msgstr ""
-
-msgid ""
-"Uncle Farmer character settings and profiles (*.unclefarmer-profile.json;*.json)|*.unclefarmer-profile.json;*.json|"
-msgstr ""
-
-msgid "Uncle Farmer is updated to {v}."
-msgstr ""
-
-msgid ""
-"Uncle Farmer plan exports (*.unclefarmer-plan.json)|*.unclefarmer-plan.json|"
-msgstr ""
-
-msgid ""
-"Uncle Farmer plan exports and plans (*.unclefarmer-plan.json;*.json)|*.unclefarmer-plan.json;*.json|"
-msgstr ""
-
-msgid "Uncle Farmer {v}"
-msgstr ""
-
-msgid ""
-"Uncle Farmer {v}\n"
-"A farming bot for Mist World."
-msgstr ""
-
-msgid ""
-"Uncle Farmer {v} doesn't look for updates online. New versions come as a zip: unpack it over this folder."
-msgstr ""
-
-msgid ""
-"Uncle Farmer {v} is out (you have {cur}).\n"
-"\n"
-"Uncle Farmer closes, updates and starts again; your characters, plans, scripts and settings stay as they are."
-msgstr ""
-
-msgid "Uncle Farmer {v} is the newest version."
-msgstr ""
-
-msgid ""
-"Uncle Farmer's agent needs to be reinstalled: {why}.\n"
-"\n"
-"Press OK to close every Mist World window ({n} open) and reinstall it. A game loads the agent only as it starts, so start Mist World again afterwards."
-msgstr ""
-
-msgid ""
-"Uncle Farmer's agent needs to be reinstalled: {why}.\n"
-"\n"
-"Press OK to reinstall it."
-msgstr ""
-
-msgid ""
-"Uncle Farmer's agent needs to be reinstalled: {why}. Stop every running bot, then use File, Settings, Install."
-msgstr ""
-
 msgid "Unit price"
 msgstr ""
 
@@ -5046,7 +5047,7 @@ msgid "Wednesday"
 msgstr ""
 
 msgid ""
-"Welcome to Uncle Farmer. The agent needs to be installed in Mist World first. Open Settings now?"
+"Welcome to Mist World Farmer. The agent needs to be installed in Mist World first. Open Settings now?"
 msgstr ""
 
 msgid "West edge (x):"
@@ -5198,7 +5199,7 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Your system language is supported. Would you like to use {language} in Uncle Farmer?"
+"Your system language is supported. Would you like to use {language} in Mist World Farmer?"
 msgstr ""
 
 msgid "a chat line"
@@ -5520,14 +5521,14 @@ msgid "can't get next to {npc}"
 msgstr ""
 
 msgid ""
-"can't heal {name} with {skill}: the bot can't select teammates in this game (restart the game so Uncle Farmer's agent loads)"
+"can't heal {name} with {skill}: the bot can't select teammates in this game (restart the game so Mist World Farmer's agent loads)"
 msgstr ""
 
 msgid "can't heal {name} with {skill}: {why} - the heal is tried again"
 msgstr ""
 
 msgid ""
-"can't heal {pet} with {skill}: the bot can't select the pet in this game (restart the game so Uncle Farmer's agent loads) - pet potions meanwhile"
+"can't heal {pet} with {skill}: the bot can't select the pet in this game (restart the game so Mist World Farmer's agent loads) - pet potions meanwhile"
 msgstr ""
 
 msgid ""
@@ -5605,6 +5606,9 @@ msgid "checking the ticked lots..."
 msgstr ""
 
 msgid "checking {n} lots"
+msgstr ""
+
+msgid "chest opened"
 msgstr ""
 
 msgid ""
@@ -7052,6 +7056,9 @@ msgstr ""
 msgid "opening a game for {name}"
 msgstr ""
 
+msgid "opening {chest}"
+msgstr ""
+
 msgid "opens in {min} min"
 msgstr ""
 
@@ -7451,7 +7458,7 @@ msgid "stop rule: {cond}"
 msgstr ""
 
 msgid ""
-"stop: I end the run the safe way, as if you pressed Stop in Uncle Farmer."
+"stop: I end the run the safe way, as if you pressed Stop in Mist World Farmer."
 msgstr ""
 
 msgid "stopped"
@@ -7938,7 +7945,7 @@ msgid ""
 msgstr ""
 
 msgid ""
-"the game is running an older Uncle Farmer agent - restart Mist World so it loads the new one"
+"the game is running an older Mist World Farmer agent - restart Mist World so it loads the new one"
 msgstr ""
 
 msgid "the game isn't running with the agent"
@@ -8056,7 +8063,7 @@ msgid "the limit of {most} deaths will stop the run before that"
 msgstr ""
 
 msgid ""
-"the list Uncle Farmer came with (from {made}) - press Refresh for today's"
+"the list Mist World Farmer came with (from {made}) - press Refresh for today's"
 msgstr ""
 
 msgid ""
@@ -8622,7 +8629,13 @@ msgstr ""
 msgid "{card} ({n} in the bag)"
 msgstr ""
 
+msgid "{cave} (highest unlocked floor) - level {n}+ - {where}"
+msgstr ""
+
 msgid "{cave} - level {n} - {where}"
+msgstr ""
+
+msgid "{cave} - level {n}+ - {where}"
 msgstr ""
 
 msgid "{cave} is done for today - a character goes into one cave a day"
@@ -8631,7 +8644,16 @@ msgstr ""
 msgid "{cave} needs level {n}"
 msgstr ""
 
+msgid "{cave}: couldn't enter"
+msgstr ""
+
 msgid "{cave}: couldn't get in after {n} tries"
+msgstr ""
+
+msgid "{cave}: died inside after {n} kills"
+msgstr ""
+
+msgid "{cave}: floor not available for level {n}"
 msgstr ""
 
 msgid "{cave}: still inside after the timer - leaving"
@@ -8641,6 +8663,9 @@ msgid "{cave}: the game didn't let us in (once a day)"
 msgstr ""
 
 msgid "{cave}: {n} kills in {m} minutes"
+msgstr ""
+
+msgid "{cave}: {n} kills in {m} minutes ({status})"
 msgstr ""
 
 msgid "{cell} can't be reached on {map}"

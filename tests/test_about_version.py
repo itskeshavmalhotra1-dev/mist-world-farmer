@@ -13,9 +13,9 @@ from conftest import returning  # noqa: E402
 
 def test_about_names_the_dev_build(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setattr(updater, "installed_version", returning(__version__ + "-dev.436"))
-    assert main.about_text().startswith("Uncle Farmer %s-dev.436\n" % __version__)
+    assert main.about_text().startswith("Mist World Farmer %s-dev.436\n" % __version__)
 
 
 def test_about_names_a_release(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setattr(updater, "installed_version", returning(__version__))
-    assert main.about_text().splitlines()[0] == "Uncle Farmer " + __version__
+    assert main.about_text().splitlines()[0] == "Mist World Farmer " + __version__

@@ -260,7 +260,7 @@ def test_write_template_collects_strings(tmp_path: Path, monkeypatch: pytest.Mon
     assert path == str(tmp_path / "lang" / "unclefarmer.pot")
     assert count > 0
     header, entries = catalog.parse_po(open(path, encoding="utf-8").read())
-    assert header["project-id-version"] == "Uncle Farmer"
+    assert header["project-id-version"] == "Mist World Farmer"
     assert len(entries) == count
     assert all(msgstr == "" for _msgid, msgstr in entries)          # the template is untranslated
     assert "dungeon - you leave by its chest, not on foot" in {msgid for msgid, _msgstr in entries}

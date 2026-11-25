@@ -318,7 +318,7 @@ def copier(app: Path, monkeypatch: pytest.MonkeyPatch) -> tuple[Path, list[list[
     flat(app, "old")
     (app / updater.EXE).write_bytes(executable)
     updater.write_build(str(app), "0.4.0", "master")
-    src = flat(app / "update/new/Uncle Farmer")
+    src = flat(app / "update/new/Mist World Farmer")
     monkeypatch.setattr(updater.sys, "executable", str(src / updater.EXE))
     monkeypatch.setattr(updater, "frozen", returning(True))
     monkeypatch.setattr(updater, "_wait_for_exit", returning(None))

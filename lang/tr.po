@@ -1,7 +1,7 @@
-# Uncle Farmer translation catalog. Edit the msgstr lines; keep the {placeholders}.
+# Mist World Farmer translation catalog. Edit the msgstr lines; keep the {placeholders}.
 msgid ""
 msgstr ""
-"Project-Id-Version: Uncle Farmer\n"
+"Project-Id-Version: Mist World Farmer\n"
 "Report-Msgid-Bugs-To: \n"
 "Language: tr\n"
 "Language-Team: Turkish\n"
@@ -32,8 +32,8 @@ msgstr " - tahmini: parçaları da içerir"
 msgid " - {n} used up with no stored price, not counted"
 msgstr " - kayıtlı fiyatı olmayan {n} tükenen, sayılmadı"
 
-msgid "&About Uncle Farmer"
-msgstr "Uncle F&armer Hakkında"
+msgid "&About Mist World Farmer"
+msgstr ""
 
 msgid "&Accept requests to join my team"
 msgstr ""
@@ -818,9 +818,8 @@ msgid "A plan named {name} already exists. Replace it?"
 msgstr "{name} adlı bir plan zaten mevcut. Değiştirilsin mi?"
 
 msgid ""
-"A scheduled plan starts in the game the character is logged in to, as the Start button would. A time missed while Uncle Farmer was closed doesn't run later; a game busy with another run waits up to 15 minutes."
+"A scheduled plan starts in the game the character is logged in to, as the Start button would. A time missed while Mist World Farmer was closed doesn't run later; a game busy with another run waits up to 15 minutes."
 msgstr ""
-"Zamanlanmış bir plan, Başlat düğmesinin yapacağı gibi karakterin giriş yaptığı oyunda başlar. Uncle Farmer kapalıyken kaçırılan bir saat sonradan çalıştırılmaz; başka bir çalışmayla meşgul olan oyun 15 dakikaya kadar bekler."
 
 msgid "A script called {name} exists. Replace it?"
 msgstr "{name} adlı bir betik zaten var. Değiştirilsin mi?"
@@ -979,8 +978,9 @@ msgstr ""
 msgid "Always leave this many in the &bag:"
 msgstr "Çantada her zaman &bu kadarını bırak:"
 
-msgid "An older Uncle Farmer agent is installed. Press Install to update it."
-msgstr "Daha eski bir Uncle Farmer ajanı yüklü. Güncellemek için Yükle'ye bas."
+msgid ""
+"An older Mist World Farmer agent is installed. Press Install to update it."
+msgstr ""
 
 msgid "Animal Shed feeding"
 msgstr "Hayvan Kulübesi besleme"
@@ -1552,13 +1552,10 @@ msgid "Craftsman and spending"
 msgstr "Usta ve harcama"
 
 msgid ""
-"Create Uncle Farmer settings for {character} from {source}?\n"
+"Create Mist World Farmer settings for {character} from {source}?\n"
 "\n"
 "This creates settings for that name only. It doesn't create or log in to a Mist World character. The choices take effect when that character is scanned or run. Nothing changes until you choose Yes."
 msgstr ""
-"{source} kaynağından {character} için Uncle Farmer ayarları oluşturulsun mu?\n"
-"\n"
-"Bu yalnızca o ad için ayar oluşturur. Bir Mist World karakteri oluşturmaz ya da onunla giriş yapmaz. Seçimler o karakter taranınca ya da çalıştırılınca geçerli olur. Evet'i seçene kadar hiçbir şey değişmez."
 
 msgid ""
 "Critical hits: {crits}, defence breaks: {breaks}, normal hits: {normals}"
@@ -1656,8 +1653,8 @@ msgstr "Bu oyun gününde yapılanlar (gün 00:00 GMT'de başlar):"
 msgid "Double beep"
 msgstr "Çift bip sesi"
 
-msgid "Downloading Uncle Farmer {v}"
-msgstr "Uncle Farmer {v} indiriliyor"
+msgid "Downloading Mist World Farmer {v}"
+msgstr ""
 
 msgid "Draw Blood"
 msgstr "Kan alma"
@@ -2636,8 +2633,8 @@ msgstr "Günlüğe kaydetme"
 msgid "Look for a chest the game announces on the map"
 msgstr "Oyunun haritada duyurduğu sandığı ara"
 
-msgid "Look for a new &version when Uncle Farmer starts"
-msgstr "Uncle Farmer açılırken yeni sürüm ara (&V)"
+msgid "Look for a new &version when Mist World Farmer starts"
+msgstr ""
 
 msgid "Looking for a new version"
 msgstr "Yeni sürüm aranıyor"
@@ -2792,6 +2789,61 @@ msgstr ""
 msgid "Mist World"
 msgstr "Mist World"
 
+msgid "Mist World Farmer"
+msgstr ""
+
+msgid ""
+"Mist World Farmer character settings and profiles (*.unclefarmer-profile.json;*.json)|*.unclefarmer-profile.json;*.json|"
+msgstr ""
+
+msgid "Mist World Farmer is updated to {v}."
+msgstr ""
+
+msgid ""
+"Mist World Farmer plan exports (*.unclefarmer-plan.json)|*.unclefarmer-plan.json|"
+msgstr ""
+
+msgid ""
+"Mist World Farmer plan exports and plans (*.unclefarmer-plan.json;*.json)|*.unclefarmer-plan.json;*.json|"
+msgstr ""
+
+msgid "Mist World Farmer {v}"
+msgstr ""
+
+msgid ""
+"Mist World Farmer {v}\n"
+"A farming bot for Mist World."
+msgstr ""
+
+msgid ""
+"Mist World Farmer {v} doesn't look for updates online. New versions come as a zip: unpack it over this folder."
+msgstr ""
+
+msgid ""
+"Mist World Farmer {v} is out (you have {cur}).\n"
+"\n"
+"Mist World Farmer closes, updates and starts again; your characters, plans, scripts and settings stay as they are."
+msgstr ""
+
+msgid "Mist World Farmer {v} is the newest version."
+msgstr ""
+
+msgid ""
+"Mist World Farmer's agent needs to be reinstalled: {why}.\n"
+"\n"
+"Press OK to close every Mist World window ({n} open) and reinstall it. A game loads the agent only as it starts, so start Mist World again afterwards."
+msgstr ""
+
+msgid ""
+"Mist World Farmer's agent needs to be reinstalled: {why}.\n"
+"\n"
+"Press OK to reinstall it."
+msgstr ""
+
+msgid ""
+"Mist World Farmer's agent needs to be reinstalled: {why}. Stop every running bot, then use File, Settings, Install."
+msgstr ""
+
 msgid "Mist World isn't in this folder. Choose the folder that has mw.exe."
 msgstr "Mist World bu klasörde değil. İçinde mw.exe olan klasörü seç."
 
@@ -2799,9 +2851,8 @@ msgid "Mist World isn't running. Start it, or use Browse."
 msgstr "Mist World çalışmıyor. Başlat ya da Gözat'ı kullan."
 
 msgid ""
-"Mist World loads another Uncle Farmer's agent (an older copy, or this one before it moved)"
+"Mist World loads another Mist World Farmer's agent (an older copy, or this one before it moved)"
 msgstr ""
-"Mist World başka bir Uncle Farmer'ın ajanını yüklüyor (eski bir kopya ya da taşınmadan önceki bu kopya)"
 
 msgid "Mist World windows that didn't close: {n}. Close them yourself."
 msgstr "Kapanmayan Mist World pencereleri: {n}. Onları kendin kapat."
@@ -2984,8 +3035,8 @@ msgstr "{word} adında bir komut yok. Liste için help gönder."
 msgid "No crystals or runes seen yet."
 msgstr "Henüz kristal veya rün görülmedi."
 
-msgid "No development build of Uncle Farmer can be seen on GitHub yet."
-msgstr "GitHub'da henüz Uncle Farmer'ın geliştirme sürümü görünmüyor."
+msgid "No development build of Mist World Farmer can be seen on GitHub yet."
+msgstr ""
 
 msgid "No email program opened. Write to {email} from your email."
 msgstr ""
@@ -3041,8 +3092,8 @@ msgstr "Henüz plan yok. Oluşturmak için Yeni plan'a bas."
 msgid "No price stored, not counted: {list}"
 msgstr "Kayıtlı fiyatı yok, sayılmadı: {list}"
 
-msgid "No release of Uncle Farmer can be seen on GitHub yet."
-msgstr "GitHub'da henüz Uncle Farmer sürümü görünmüyor."
+msgid "No release of Mist World Farmer can be seen on GitHub yet."
+msgstr ""
 
 msgid ""
 "No report yet. Scan the constructions: the bot visits each one and repairs nothing."
@@ -3613,13 +3664,10 @@ msgid "Replace keyboard profile {name}?"
 msgstr "{name} klavye profilinin yerine yazılsın mı?"
 
 msgid ""
-"Replace the saved Uncle Farmer settings for {character} with those exported from {source}?\n"
+"Replace the saved Mist World Farmer settings for {character} with those exported from {source}?\n"
 "\n"
 "This replaces combat, key, potion, bag, pet, travel and restock choices. It keeps {character}'s own scan and learned hearthstone location. Nothing changes until you choose Yes."
 msgstr ""
-"{character} için kayıtlı Uncle Farmer ayarları, {source} kaynağından dışa aktarılanlarla değiştirilsin mi?\n"
-"\n"
-"Bu; dövüş, tuş, iksir, çanta, evcil hayvan, yolculuk ve stok seçimlerini değiştirir. {character} karakterinin kendi taraması ve öğrenilmiş Kalp taşı konumu korunur. Evet'i seçene kadar hiçbir şey değişmez."
 
 msgid "Replace the saved plan {name}? Nothing changes until you choose Yes."
 msgstr ""
@@ -3643,8 +3691,8 @@ msgstr ""
 msgid "Rest &until HP (%):"
 msgstr "HP ş&una çıkana kadar dinlen (%):"
 
-msgid "Restart Uncle Farmer to switch the language."
-msgstr "Dili değiştirmek için Uncle Farmer'ı yeniden başlat."
+msgid "Restart Mist World Farmer to switch the language."
+msgstr ""
 
 msgid ""
 "Restart the game with the current agent to apply these keyboard settings."
@@ -4409,8 +4457,8 @@ msgstr "Yalnızca Parça pazarı"
 msgid "The Triggers lists around the farming"
 msgstr ""
 
-msgid "The agent file is missing from Uncle Farmer's agent folder."
-msgstr "Ajan dosyası Uncle Farmer'ın agent klasöründe yok."
+msgid "The agent file is missing from Mist World Farmer's agent folder."
+msgstr ""
 
 msgid ""
 "The agent is reinstalled. Start Mist World again: it loads the agent as it starts."
@@ -4717,24 +4765,19 @@ msgid "The update didn't download: {why}"
 msgstr "Güncelleme indirilmedi: {why}"
 
 msgid ""
-"The update is being prepared: Uncle Farmer closes by itself in a moment."
-msgstr "Güncelleme hazırlanıyor: Uncle Farmer birazdan kendiliğinden kapanacak."
+"The update is being prepared: Mist World Farmer closes by itself in a moment."
+msgstr ""
 
 msgid ""
-"The update reinstalls Uncle Farmer's agent, which the open games have loaded, so every Mist World window must close first.\n"
+"The update reinstalls Mist World Farmer's agent, which the open games have loaded, so every Mist World window must close first.\n"
 "\n"
 "Press OK to close them ({n} open) and update. Start Mist World again after the update."
 msgstr ""
-"Güncelleme, açık oyunların yüklediği Uncle Farmer ajanını yeniden yükler; bu yüzden önce tüm Mist World pencereleri kapanmalı.\n"
-"\n"
-"Onları ({n} açık) kapatıp güncellemek için Tamam'a bas. Güncellemeden sonra Mist World'ü yeniden başlat."
 
 msgid ""
 "The update to {v} didn't finish: {why}\n"
-"Uncle Farmer {cur} still works. The details are in {log}."
+"Mist World Farmer {cur} still works. The details are in {log}."
 msgstr ""
-"{v} sürümüne güncelleme tamamlanmadı: {why}\n"
-"Uncle Farmer {cur} hâlâ çalışıyor. Ayrıntılar: {log}"
 
 msgid ""
 "Then fill the bag with {shard} from {source} and make them up, again and again."
@@ -4955,74 +4998,6 @@ msgstr ""
 msgid "Type the name of the gang whose craftsmen to use."
 msgstr "Ustaları kullanılacak çetenin adını yaz."
 
-msgid "Uncle Farmer"
-msgstr "Uncle Farmer"
-
-msgid ""
-"Uncle Farmer character settings and profiles (*.unclefarmer-profile.json;*.json)|*.unclefarmer-profile.json;*.json|"
-msgstr ""
-"Uncle Farmer karakter ayarları ve profilleri (*.unclefarmer-profile.json;*.json)|*.unclefarmer-profile.json;*.json|"
-
-msgid "Uncle Farmer is updated to {v}."
-msgstr "Uncle Farmer {v} sürümüne güncellendi."
-
-msgid ""
-"Uncle Farmer plan exports (*.unclefarmer-plan.json)|*.unclefarmer-plan.json|"
-msgstr ""
-"Uncle Farmer plan dışa aktarımları (*.unclefarmer-plan.json)|*.unclefarmer-plan.json|"
-
-msgid ""
-"Uncle Farmer plan exports and plans (*.unclefarmer-plan.json;*.json)|*.unclefarmer-plan.json;*.json|"
-msgstr ""
-"Uncle Farmer plan dışa aktarımları ve planları (*.unclefarmer-plan.json;*.json)|*.unclefarmer-plan.json;*.json|"
-
-msgid "Uncle Farmer {v}"
-msgstr "Uncle Farmer {v}"
-
-msgid ""
-"Uncle Farmer {v}\n"
-"A farming bot for Mist World."
-msgstr ""
-"Uncle Farmer {v}\n"
-"Mist World için bir farm botu."
-
-msgid ""
-"Uncle Farmer {v} doesn't look for updates online. New versions come as a zip: unpack it over this folder."
-msgstr ""
-"Uncle Farmer {v} çevrimiçi güncelleme aramaz. Yeni sürümler zip olarak gelir: bu klasörün üzerine aç."
-
-msgid ""
-"Uncle Farmer {v} is out (you have {cur}).\n"
-"\n"
-"Uncle Farmer closes, updates and starts again; your characters, plans, scripts and settings stay as they are."
-msgstr ""
-
-msgid "Uncle Farmer {v} is the newest version."
-msgstr "Uncle Farmer {v} en yeni sürüm."
-
-msgid ""
-"Uncle Farmer's agent needs to be reinstalled: {why}.\n"
-"\n"
-"Press OK to close every Mist World window ({n} open) and reinstall it. A game loads the agent only as it starts, so start Mist World again afterwards."
-msgstr ""
-"Uncle Farmer ajanının yeniden yüklenmesi gerekiyor: {why}.\n"
-"\n"
-"Tüm Mist World pencerelerini ({n} açık) kapatıp ajanı yeniden yüklemek için Tamam'a bas. Oyun ajanı yalnızca açılırken yükler; sonra Mist World'ü yeniden başlat."
-
-msgid ""
-"Uncle Farmer's agent needs to be reinstalled: {why}.\n"
-"\n"
-"Press OK to reinstall it."
-msgstr ""
-"Uncle Farmer ajanının yeniden yüklenmesi gerekiyor: {why}.\n"
-"\n"
-"Yeniden yüklemek için Tamam'a bas."
-
-msgid ""
-"Uncle Farmer's agent needs to be reinstalled: {why}. Stop every running bot, then use File, Settings, Install."
-msgstr ""
-"Uncle Farmer ajanının yeniden yüklenmesi gerekiyor: {why}. Çalışan tüm botları durdur, sonra Dosya, Ayarlar, Yükle'yi kullan."
-
 msgid "Unit price"
 msgstr ""
 
@@ -5200,9 +5175,8 @@ msgid "Wednesday"
 msgstr "Çarşamba"
 
 msgid ""
-"Welcome to Uncle Farmer. The agent needs to be installed in Mist World first. Open Settings now?"
+"Welcome to Mist World Farmer. The agent needs to be installed in Mist World first. Open Settings now?"
 msgstr ""
-"Uncle Farmer'a hoş geldin. Önce ajanın Mist World'e yüklenmesi gerekiyor. Ayarlar şimdi açılsın mı?"
 
 msgid "West edge (x):"
 msgstr "Batı kenarı (x):"
@@ -5360,9 +5334,8 @@ msgstr ""
 "Sende {v} geliştirme sürümü var. En yeni kararlı sürüm {stable} daha eski; senin sürümünden yeni olan bir sonraki kararlı sürüm önerilecek."
 
 msgid ""
-"Your system language is supported. Would you like to use {language} in Uncle Farmer?"
+"Your system language is supported. Would you like to use {language} in Mist World Farmer?"
 msgstr ""
-"Sistem dilin destekleniyor. Uncle Farmer'da {language} kullanmak ister misin?"
 
 msgid "a chat line"
 msgstr "bir sohbet satırı"
@@ -5692,18 +5665,16 @@ msgid "can't get next to {npc}"
 msgstr "{npc} yanına ulaşılamıyor"
 
 msgid ""
-"can't heal {name} with {skill}: the bot can't select teammates in this game (restart the game so Uncle Farmer's agent loads)"
+"can't heal {name} with {skill}: the bot can't select teammates in this game (restart the game so Mist World Farmer's agent loads)"
 msgstr ""
-"{name}, {skill} ile iyileştirilemiyor: bot bu oyunda takım arkadaşlarını seçemiyor (Uncle Farmer ajanının yüklenmesi için oyunu yeniden başlat)"
 
 msgid "can't heal {name} with {skill}: {why} - the heal is tried again"
 msgstr ""
 "{name}, {skill} ile iyileştirilemiyor: {why} - iyileştirme yeniden denenir"
 
 msgid ""
-"can't heal {pet} with {skill}: the bot can't select the pet in this game (restart the game so Uncle Farmer's agent loads) - pet potions meanwhile"
+"can't heal {pet} with {skill}: the bot can't select the pet in this game (restart the game so Mist World Farmer's agent loads) - pet potions meanwhile"
 msgstr ""
-"{pet}, {skill} ile iyileştirilemiyor: bot bu oyunda evcil hayvanı seçemiyor (Uncle Farmer ajanının yüklenmesi için oyunu yeniden başlat) - bu arada evcil hayvan iksirleri"
 
 msgid ""
 "can't heal {pet} with {skill}: {why} - pet potions meanwhile, and the heal is tried again"
@@ -5787,6 +5758,9 @@ msgid "checking the ticked lots..."
 msgstr ""
 
 msgid "checking {n} lots"
+msgstr ""
+
+msgid "chest opened"
 msgstr ""
 
 msgid ""
@@ -7278,6 +7252,9 @@ msgstr "bir sandık açıldı (bu çalışmada {n})"
 msgid "opening a game for {name}"
 msgstr "{name} için oyun açılıyor"
 
+msgid "opening {chest}"
+msgstr ""
+
 msgid "opens in {min} min"
 msgstr ""
 
@@ -7687,9 +7664,8 @@ msgid "stop rule: {cond}"
 msgstr "durdurma kuralı: {cond}"
 
 msgid ""
-"stop: I end the run the safe way, as if you pressed Stop in Uncle Farmer."
+"stop: I end the run the safe way, as if you pressed Stop in Mist World Farmer."
 msgstr ""
-"stop: Uncle Farmer’daki Durdur düğmesine basılmış gibi çalışmayı güvenli biçimde bitiririm."
 
 msgid "stopped"
 msgstr "durduruldu"
@@ -8196,9 +8172,8 @@ msgstr ""
 "oyunun yalnızca {left} MB belleği kaldı - yakında donabilir; ilk fırsatta yeniden başlat"
 
 msgid ""
-"the game is running an older Uncle Farmer agent - restart Mist World so it loads the new one"
+"the game is running an older Mist World Farmer agent - restart Mist World so it loads the new one"
 msgstr ""
-"oyun eski bir Uncle Farmer ajanı çalıştırıyor - yenisini yüklemesi için Mist World'ü yeniden başlat"
 
 msgid "the game isn't running with the agent"
 msgstr "oyun ajanla çalışmıyor"
@@ -8320,7 +8295,7 @@ msgid "the limit of {most} deaths will stop the run before that"
 msgstr ""
 
 msgid ""
-"the list Uncle Farmer came with (from {made}) - press Refresh for today's"
+"the list Mist World Farmer came with (from {made}) - press Refresh for today's"
 msgstr ""
 
 msgid ""
@@ -8914,8 +8889,14 @@ msgstr "{card} (çantada yok)"
 msgid "{card} ({n} in the bag)"
 msgstr "{card} (çantada {n})"
 
+msgid "{cave} (highest unlocked floor) - level {n}+ - {where}"
+msgstr ""
+
 msgid "{cave} - level {n} - {where}"
 msgstr "{cave} - seviye {n} - {where}"
+
+msgid "{cave} - level {n}+ - {where}"
+msgstr ""
 
 msgid "{cave} is done for today - a character goes into one cave a day"
 msgstr "{cave} bugün için tamam - bir karakter günde bir mağaraya girer"
@@ -8923,8 +8904,17 @@ msgstr "{cave} bugün için tamam - bir karakter günde bir mağaraya girer"
 msgid "{cave} needs level {n}"
 msgstr "{cave} için {n}. seviye gerekli"
 
+msgid "{cave}: couldn't enter"
+msgstr ""
+
 msgid "{cave}: couldn't get in after {n} tries"
 msgstr "{cave}: {n} denemeden sonra girilemedi"
+
+msgid "{cave}: died inside after {n} kills"
+msgstr ""
+
+msgid "{cave}: floor not available for level {n}"
+msgstr ""
 
 msgid "{cave}: still inside after the timer - leaving"
 msgstr "{cave}: süre bittikten sonra hâlâ içeride - çıkılıyor"
@@ -8934,6 +8924,9 @@ msgstr "{cave}: oyun bizi içeri almadı (günde bir kez)"
 
 msgid "{cave}: {n} kills in {m} minutes"
 msgstr "{cave}: {m} dakikada {n} öldürme"
+
+msgid "{cave}: {n} kills in {m} minutes ({status})"
+msgstr ""
 
 msgid "{cell} can't be reached on {map}"
 msgstr "{map} üzerinde {cell} hücresine ulaşılamıyor"
@@ -9715,26 +9708,183 @@ msgstr ""
 msgid "{w} by {h} tiles, {n} exits."
 msgstr "{w} x {h} kare, {n} çıkış."
 
+#~ msgid "&About Mist World Farmer"
+#~ msgstr "Uncle F&armer Hakkında"
+
 #~ msgid "(no notes)"
 #~ msgstr "(not yok)"
+
+#~ msgid ""
+#~ "A scheduled plan starts in the game the character is logged in to, as the Start button would. A time missed while Mist World Farmer was closed doesn't run later; a game busy with another run waits up to 15 minutes."
+#~ msgstr ""
+#~ "Zamanlanmış bir plan, Başlat düğmesinin yapacağı gibi karakterin giriş yaptığı oyunda başlar. Mist World Farmer kapalıyken kaçırılan bir saat sonradan çalıştırılmaz; başka bir çalışmayla meşgul olan oyun 15 dakikaya kadar bekler."
+
+#~ msgid ""
+#~ "An older Mist World Farmer agent is installed. Press Install to update it."
+#~ msgstr ""
+#~ "Daha eski bir Mist World Farmer ajanı yüklü. Güncellemek için Yükle'ye bas."
+
+#~ msgid ""
+#~ "Create Mist World Farmer settings for {character} from {source}?\n"
+#~ "\n"
+#~ "This creates settings for that name only. It doesn't create or log in to a Mist World character. The choices take effect when that character is scanned or run. Nothing changes until you choose Yes."
+#~ msgstr ""
+#~ "{source} kaynağından {character} için Mist World Farmer ayarları oluşturulsun mu?\n"
+#~ "\n"
+#~ "Bu yalnızca o ad için ayar oluşturur. Bir Mist World karakteri oluşturmaz ya da onunla giriş yapmaz. Seçimler o karakter taranınca ya da çalıştırılınca geçerli olur. Evet'i seçene kadar hiçbir şey değişmez."
+
+#~ msgid "Downloading Mist World Farmer {v}"
+#~ msgstr "Mist World Farmer {v} indiriliyor"
 
 #~ msgid "Healing teammates while following"
 #~ msgstr "Takip ederken takım arkadaşlarını iyileştirme"
 
+#~ msgid "Look for a new &version when Mist World Farmer starts"
+#~ msgstr "Mist World Farmer açılırken yeni sürüm ara (&V)"
+
+#~ msgid "Mist World Farmer"
+#~ msgstr "Mist World Farmer"
+
 #~ msgid ""
-#~ "Uncle Farmer {v} is out (you have {cur}).\n"
+#~ "Mist World Farmer character settings and profiles (*.unclefarmer-profile.json;*.json)|*.unclefarmer-profile.json;*.json|"
+#~ msgstr ""
+#~ "Mist World Farmer karakter ayarları ve profilleri (*.unclefarmer-profile.json;*.json)|*.unclefarmer-profile.json;*.json|"
+
+#~ msgid "Mist World Farmer is updated to {v}."
+#~ msgstr "Mist World Farmer {v} sürümüne güncellendi."
+
+#~ msgid ""
+#~ "Mist World Farmer plan exports (*.unclefarmer-plan.json)|*.unclefarmer-plan.json|"
+#~ msgstr ""
+#~ "Mist World Farmer plan dışa aktarımları (*.unclefarmer-plan.json)|*.unclefarmer-plan.json|"
+
+#~ msgid ""
+#~ "Mist World Farmer plan exports and plans (*.unclefarmer-plan.json;*.json)|*.unclefarmer-plan.json;*.json|"
+#~ msgstr ""
+#~ "Mist World Farmer plan dışa aktarımları ve planları (*.unclefarmer-plan.json;*.json)|*.unclefarmer-plan.json;*.json|"
+
+#~ msgid "Mist World Farmer {v}"
+#~ msgstr "Mist World Farmer {v}"
+
+#~ msgid ""
+#~ "Mist World Farmer {v}\n"
+#~ "A farming bot for Mist World."
+#~ msgstr ""
+#~ "Mist World Farmer {v}\n"
+#~ "Mist World için bir farm botu."
+
+#~ msgid ""
+#~ "Mist World Farmer {v} doesn't look for updates online. New versions come as a zip: unpack it over this folder."
+#~ msgstr ""
+#~ "Mist World Farmer {v} çevrimiçi güncelleme aramaz. Yeni sürümler zip olarak gelir: bu klasörün üzerine aç."
+
+#~ msgid ""
+#~ "Mist World Farmer {v} is out (you have {cur}).\n"
 #~ "\n"
 #~ "What's new:\n"
 #~ "{notes}\n"
 #~ "\n"
-#~ "Update now? Uncle Farmer closes, updates and starts again; your characters, plans, scripts and settings stay as they are."
+#~ "Update now? Mist World Farmer closes, updates and starts again; your characters, plans, scripts and settings stay as they are."
 #~ msgstr ""
-#~ "Uncle Farmer {v} çıktı (sendeki: {cur}).\n"
+#~ "Mist World Farmer {v} çıktı (sendeki: {cur}).\n"
 #~ "\n"
 #~ "Yenilikler:\n"
 #~ "{notes}\n"
 #~ "\n"
-#~ "Şimdi güncellensin mi? Uncle Farmer kapanır, güncellenir ve yeniden açılır; karakterlerin, planların, betiklerin ve ayarların olduğu gibi kalır."
+#~ "Şimdi güncellensin mi? Mist World Farmer kapanır, güncellenir ve yeniden açılır; karakterlerin, planların, betiklerin ve ayarların olduğu gibi kalır."
+
+#~ msgid "Mist World Farmer {v} is the newest version."
+#~ msgstr "Mist World Farmer {v} en yeni sürüm."
+
+#~ msgid ""
+#~ "Mist World Farmer's agent needs to be reinstalled: {why}.\n"
+#~ "\n"
+#~ "Press OK to close every Mist World window ({n} open) and reinstall it. A game loads the agent only as it starts, so start Mist World again afterwards."
+#~ msgstr ""
+#~ "Mist World Farmer ajanının yeniden yüklenmesi gerekiyor: {why}.\n"
+#~ "\n"
+#~ "Tüm Mist World pencerelerini ({n} açık) kapatıp ajanı yeniden yüklemek için Tamam'a bas. Oyun ajanı yalnızca açılırken yükler; sonra Mist World'ü yeniden başlat."
+
+#~ msgid ""
+#~ "Mist World Farmer's agent needs to be reinstalled: {why}.\n"
+#~ "\n"
+#~ "Press OK to reinstall it."
+#~ msgstr ""
+#~ "Mist World Farmer ajanının yeniden yüklenmesi gerekiyor: {why}.\n"
+#~ "\n"
+#~ "Yeniden yüklemek için Tamam'a bas."
+
+#~ msgid ""
+#~ "Mist World Farmer's agent needs to be reinstalled: {why}. Stop every running bot, then use File, Settings, Install."
+#~ msgstr ""
+#~ "Mist World Farmer ajanının yeniden yüklenmesi gerekiyor: {why}. Çalışan tüm botları durdur, sonra Dosya, Ayarlar, Yükle'yi kullan."
+
+#~ msgid ""
+#~ "Mist World loads another Mist World Farmer's agent (an older copy, or this one before it moved)"
+#~ msgstr ""
+#~ "Mist World başka bir Mist World Farmer'ın ajanını yüklüyor (eski bir kopya ya da taşınmadan önceki bu kopya)"
+
+#~ msgid "No development build of Mist World Farmer can be seen on GitHub yet."
+#~ msgstr "GitHub'da henüz Mist World Farmer'ın geliştirme sürümü görünmüyor."
+
+#~ msgid "No release of Mist World Farmer can be seen on GitHub yet."
+#~ msgstr "GitHub'da henüz Mist World Farmer sürümü görünmüyor."
+
+#~ msgid ""
+#~ "Replace the saved Mist World Farmer settings for {character} with those exported from {source}?\n"
+#~ "\n"
+#~ "This replaces combat, key, potion, bag, pet, travel and restock choices. It keeps {character}'s own scan and learned hearthstone location. Nothing changes until you choose Yes."
+#~ msgstr ""
+#~ "{character} için kayıtlı Mist World Farmer ayarları, {source} kaynağından dışa aktarılanlarla değiştirilsin mi?\n"
+#~ "\n"
+#~ "Bu; dövüş, tuş, iksir, çanta, evcil hayvan, yolculuk ve stok seçimlerini değiştirir. {character} karakterinin kendi taraması ve öğrenilmiş Kalp taşı konumu korunur. Evet'i seçene kadar hiçbir şey değişmez."
+
+#~ msgid "Restart Mist World Farmer to switch the language."
+#~ msgstr "Dili değiştirmek için Mist World Farmer'ı yeniden başlat."
+
+#~ msgid "The agent file is missing from Mist World Farmer's agent folder."
+#~ msgstr "Ajan dosyası Mist World Farmer'ın agent klasöründe yok."
+
+#~ msgid ""
+#~ "The update is being prepared: Mist World Farmer closes by itself in a moment."
+#~ msgstr ""
+#~ "Güncelleme hazırlanıyor: Mist World Farmer birazdan kendiliğinden kapanacak."
+
+#~ msgid ""
+#~ "The update reinstalls Mist World Farmer's agent, which the open games have loaded, so every Mist World window must close first.\n"
+#~ "\n"
+#~ "Press OK to close them ({n} open) and update. Start Mist World again after the update."
+#~ msgstr ""
+#~ "Güncelleme, açık oyunların yüklediği Mist World Farmer ajanını yeniden yükler; bu yüzden önce tüm Mist World pencereleri kapanmalı.\n"
+#~ "\n"
+#~ "Onları ({n} açık) kapatıp güncellemek için Tamam'a bas. Güncellemeden sonra Mist World'ü yeniden başlat."
+
+#~ msgid ""
+#~ "The update to {v} didn't finish: {why}\n"
+#~ "Mist World Farmer {cur} still works. The details are in {log}."
+#~ msgstr ""
+#~ "{v} sürümüne güncelleme tamamlanmadı: {why}\n"
+#~ "Mist World Farmer {cur} hâlâ çalışıyor. Ayrıntılar: {log}"
+
+#~ msgid ""
+#~ "Welcome to Mist World Farmer. The agent needs to be installed in Mist World first. Open Settings now?"
+#~ msgstr ""
+#~ "Mist World Farmer'a hoş geldin. Önce ajanın Mist World'e yüklenmesi gerekiyor. Ayarlar şimdi açılsın mı?"
+
+#~ msgid ""
+#~ "Your system language is supported. Would you like to use {language} in Mist World Farmer?"
+#~ msgstr ""
+#~ "Sistem dilin destekleniyor. Mist World Farmer'da {language} kullanmak ister misin?"
+
+#~ msgid ""
+#~ "can't heal {name} with {skill}: the bot can't select teammates in this game (restart the game so Mist World Farmer's agent loads)"
+#~ msgstr ""
+#~ "{name}, {skill} ile iyileştirilemiyor: bot bu oyunda takım arkadaşlarını seçemiyor (Mist World Farmer ajanının yüklenmesi için oyunu yeniden başlat)"
+
+#~ msgid ""
+#~ "can't heal {pet} with {skill}: the bot can't select the pet in this game (restart the game so Mist World Farmer's agent loads) - pet potions meanwhile"
+#~ msgstr ""
+#~ "{pet}, {skill} ile iyileştirilemiyor: bot bu oyunda evcil hayvanı seçemiyor (Mist World Farmer ajanının yüklenmesi için oyunu yeniden başlat) - bu arada evcil hayvan iksirleri"
 
 #~ msgid "demonized elites, left alone as the character settings say"
 #~ msgstr "şeytanlaşmış elitler, karakter ayarlarının dediği gibi dokunulmuyor"
@@ -9746,3 +9896,13 @@ msgstr "{w} x {h} kare, {n} çıkış."
 
 #~ msgid "no way to walk there"
 #~ msgstr "oraya yürüyerek gidilecek yol yok"
+
+#~ msgid ""
+#~ "stop: I end the run the safe way, as if you pressed Stop in Mist World Farmer."
+#~ msgstr ""
+#~ "stop: Mist World Farmer’daki Durdur düğmesine basılmış gibi çalışmayı güvenli biçimde bitiririm."
+
+#~ msgid ""
+#~ "the game is running an older Mist World Farmer agent - restart Mist World so it loads the new one"
+#~ msgstr ""
+#~ "oyun eski bir Mist World Farmer ajanı çalıştırıyor - yenisini yüklemesi için Mist World'ü yeniden başlat"

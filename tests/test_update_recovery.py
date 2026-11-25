@@ -73,7 +73,7 @@ elif action in ("download", "extract"):
     else:
         archive = os.path.join(app, "archive.zip")
         with zipfile.ZipFile(archive, "w") as z:
-            z.writestr("Uncle Farmer/UncleFarmer.exe", b"new")
+            z.writestr("Mist World Farmer/UncleFarmer.exe", b"new")
         u.unpack(archive)
 else:
     if action == "rollback":
@@ -556,7 +556,7 @@ def test_native_bootstrap_checks_armed_marker_when_journals_are_missing(
 
 def staged_copier(native_programs: tuple[Path, Path], app: Path) -> Path:
     import shutil
-    staged = app / "update" / "new" / "Uncle Farmer"
+    staged = app / "update" / "new" / "Mist World Farmer"
     staged.mkdir(parents=True)
     shutil.copy2(native_programs[1], staged / recovery.PAYLOAD)
     return staged / recovery.PAYLOAD
@@ -728,7 +728,7 @@ def test_the_bootstrap_accepts_short_and_long_names_of_the_same_folder(
 
 def test_the_rescue_runtime_accepts_its_own_short_name(trees: tuple[Path, Path], monkeypatch: pytest.MonkeyPatch) -> None:
     """Found by the real-binary test, and why an updated copy never opened again: a frozen app's
-    sys.executable is the 8.3 short name when a folder has spaces ("Uncle Farmer"), bootstrap.exe
+    sys.executable is the 8.3 short name when a folder has spaces ("Mist World Farmer"), bootstrap.exe
     passes the long one, and the rescue runtime refused to run, so nothing was started."""
     from unclefarmer import __main__ as entry
     app, _ = trees

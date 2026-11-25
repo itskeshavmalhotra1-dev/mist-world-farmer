@@ -280,8 +280,8 @@ def test_download_wraps_a_connection_drop(monkeypatch: pytest.MonkeyPatch, tmp_p
 def test_unpack_returns_the_folder_with_the_exe(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
     z = tmp_path / "r.zip"
     with zipfile.ZipFile(z, "w") as zf:
-        zf.writestr("Uncle Farmer/UncleFarmer.exe", "MZ")
-        zf.writestr("Uncle Farmer/data/x.json", "{}")
+        zf.writestr("Mist World Farmer/UncleFarmer.exe", "MZ")
+        zf.writestr("Mist World Farmer/data/x.json", "{}")
     folder = updater.unpack(str(z))
     assert os.path.isfile(os.path.join(folder, updater.EXE))
 
@@ -715,7 +715,7 @@ def test_unpack_replaces_an_older_unpacked_copy(home: Path, tmp_path: Path) -> N
     up = staged(home)
     z = tmp_path / "r.zip"
     with zipfile.ZipFile(z, "w") as zf:
-        zf.writestr("Uncle Farmer/UncleFarmer.exe", "MZ2")
+        zf.writestr("Mist World Farmer/UncleFarmer.exe", "MZ2")
     folder = updater.unpack(str(z))
     assert (Path(folder) / updater.EXE).read_text(encoding="utf-8") == "MZ2"
     assert not (up / "new" / "_internal").exists()
@@ -727,7 +727,7 @@ def test_unpack_stops_when_the_old_copy_is_still_in_use(home: Path, tmp_path: Pa
     up = staged(home)
     z = tmp_path / "r.zip"
     with zipfile.ZipFile(z, "w") as zf:
-        zf.writestr("Uncle Farmer/UncleFarmer.exe", "MZ2")
+        zf.writestr("Mist World Farmer/UncleFarmer.exe", "MZ2")
     with open(up / "new" / "UncleFarmer.exe", "rb"):
         with pytest.raises(updater.UpdateError, match="still in use"):
             updater.unpack(str(z))
@@ -760,7 +760,7 @@ def test_a_whole_update_leaves_only_the_app_and_its_logs(home: Path, tmp_path: P
     with zipfile.ZipFile(z, "w") as zf:
         for path in release_folder.rglob("*"):
             if path.is_file():
-                zf.write(path, "Uncle Farmer/" + path.relative_to(release_folder).as_posix())
+                zf.write(path, "Mist World Farmer/" + path.relative_to(release_folder).as_posix())
     body = z.read_bytes()
     fake_open(monkeypatch, Resp(body, {"Content-Length": str(len(body))}))
     launched: list[list[str]] = []

@@ -103,7 +103,7 @@ def test_restarts_count_again_on_a_new_game_day() -> None:
 
 @pytest.mark.parametrize("flags", [
     {"game_lost": False},            # it ended some other way
-    {"app_closing": True},           # Uncle Farmer is closing
+    {"app_closing": True},           # Mist World Farmer is closing
     {"kind": "tool"},                # a tool is started again by hand
     {"script": None},                # it never got going
 ])

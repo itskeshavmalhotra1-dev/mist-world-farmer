@@ -1,6 +1,6 @@
 # pyright: reportPrivateUsage=false
 # White-box tests: they check this module's internal helpers (leading-underscore names) directly.
-"""gameinstall.py: finding Mist World and adding/removing Uncle Farmer's agent line.
+"""gameinstall.py: finding Mist World and adding/removing Mist World Farmer's agent line.
 
 Covers _ours, agent_line, is_game_folder, _read_lines (missing/CRLF/LF/empty/undecodable), status
 (nogame/missing/installed/other), install (backup, dedupe, newline, agent dir), uninstall, and

@@ -147,9 +147,9 @@ def test_the_early_fire_setting_says_what_range_it_adds_to() -> None:
 def test_profile_import_confirmation_distinguishes_create_from_replace() -> None:
     replace = editing.import_confirmation("Atomix", "Atomix", exists=True)
     create = editing.import_confirmation("Atomix", "Atomix", exists=False)
-    assert replace.startswith("Replace the saved Uncle Farmer settings")
+    assert replace.startswith("Replace the saved Mist World Farmer settings")
     assert "keeps Atomix's own scan" in replace
-    assert create.startswith("Create Uncle Farmer settings")
+    assert create.startswith("Create Mist World Farmer settings")
     assert "doesn't create or log in to a Mist World character" in create
 
 

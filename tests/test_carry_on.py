@@ -150,7 +150,7 @@ def make_run(kind: str = "plan") -> Run:
 
 @pytest.mark.parametrize(("lost", "closing", "by_itself", "kept"), [
     (True, False, False, True),       # the game was lost
-    (False, True, False, True),       # Uncle Farmer closed under it
+    (False, True, False, True),       # Mist World Farmer closed under it
     (False, False, False, False),     # Stop, or a failure that carrying on would repeat
     (False, False, True, False),      # it finished
     (True, False, True, False),

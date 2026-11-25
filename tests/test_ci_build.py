@@ -25,7 +25,7 @@ SHA = "0123456789abcdef0123456789abcdef01234567"
 
 def fake_folder(root: Path, leave_out: str = "") -> Path:
     """A built folder holding one file for each of build_exe.REQUIRED (bar leave_out)."""
-    out = root / "Uncle Farmer"
+    out = root / "Mist World Farmer"
     for pattern in build_exe.REQUIRED:
         if pattern == leave_out:
             continue
@@ -40,7 +40,7 @@ def zipped(folder: Path, dest: Path) -> Path:
     with zipfile.ZipFile(dest, "w") as z:
         for f in folder.rglob("*"):
             if f.is_file():
-                z.write(f, "Uncle Farmer/" + f.relative_to(folder).as_posix())
+                z.write(f, "Mist World Farmer/" + f.relative_to(folder).as_posix())
     return dest
 
 
@@ -73,7 +73,7 @@ def test_a_broken_or_misshapen_zip_stops_the_build(tmp_path: Path) -> None:
         ci_build.verify_zip(str(junk), build_exe.REQUIRED)
     loose = tmp_path / "loose.zip"
     with zipfile.ZipFile(loose, "w") as z:
-        z.writestr("UncleFarmer.exe", "x")              # not inside "Uncle Farmer/"
+        z.writestr("UncleFarmer.exe", "x")              # not inside "Mist World Farmer/"
     with pytest.raises(SystemExit):
         ci_build.verify_zip(str(loose), build_exe.REQUIRED)
 
@@ -228,7 +228,7 @@ def test_every_build_carries_its_build_json(tmp_path: Path, monkeypatch: pytest.
                                             want_version: str, want_channel: str) -> None:
     import release
     from unclefarmer import __version__
-    out = tmp_path / "dist" / "Uncle Farmer"
+    out = tmp_path / "dist" / "Mist World Farmer"
     monkeypatch.setattr(build_exe, "OUT", str(out))
     monkeypatch.setattr(release, "OUT", str(out))
     monkeypatch.setattr(build_exe, "main", lambda full=False: fake_folder(tmp_path / "dist"))
@@ -244,7 +244,7 @@ def test_every_build_carries_its_build_json(tmp_path: Path, monkeypatch: pytest.
     ci_build.build(build_type, str(tmp_path / "ci"))
     (zip_path,) = (tmp_path / "ci").glob("*.zip")
     with zipfile.ZipFile(zip_path) as z:
-        built = json.loads(z.read("Uncle Farmer/build.json"))
+        built = json.loads(z.read("Mist World Farmer/build.json"))
     assert "UncleFarmer.exe" in built.pop("files")
     assert built == {"version": __version__ + want_version, "channel": want_channel, "commit": SHA}
     assert "release_version=%s%s\n" % (__version__, want_version) in github_output.read_text(encoding="utf-8")

@@ -258,7 +258,7 @@ def test_two_schedules_at_once_for_one_character_never_run_together(tmp_path: Pa
 def test_a_game_that_isn_t_open_is_waited_for_then_skipped_with_why(tmp_path: Path) -> None:
     sch = fresh(tmp_path)
     s = sch.add(daily("06:00"), T0)
-    start = Starts((WAIT, "Hero isn't logged in to a game that Uncle Farmer sees"))
+    start = Starts((WAIT, "Hero isn't logged in to a game that Mist World Farmer sees"))
     run_ticks(sch, start, [at(2, 6, m) for m in range(0, 30, 5)])
     assert outcomes(s) == ["skipped"] and "isn't logged in" in s["history"][0]["detail"]
     assert len(start.calls) == 4                         # tried while the window was open, not after

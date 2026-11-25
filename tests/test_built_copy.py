@@ -39,7 +39,7 @@ def source(monkeypatch: pytest.MonkeyPatch) -> None:
 def built(monkeypatch: pytest.MonkeyPatch, source: None, tmp_path: Path) -> Path:
     """The built exe's view: Nuitka's marker in paths' globals, and its sys.executable (a python.exe
     beside UncleFarmer.exe) in a folder of its own. Returns that folder."""
-    folder = tmp_path / "Uncle Farmer"
+    folder = tmp_path / "Mist World Farmer"
     folder.mkdir()
     monkeypatch.setitem(vars(paths), "__compiled__", object())
     monkeypatch.setattr(sys, "executable", str(folder / "python.exe"))
@@ -314,7 +314,7 @@ def test_the_help_menu_check_asks_the_chosen_channel(window: dict[str, list[str]
     monkeypatch.setattr(updates.wx, "CallAfter", call_after)
     w.check_updates()
     assert asked == ["dev"]
-    assert window["info"] == ["No development build of Uncle Farmer can be seen on GitHub yet."]
+    assert window["info"] == ["No development build of Mist World Farmer can be seen on GitHub yet."]
 
 
 @pytest.mark.usefixtures("built")
@@ -322,7 +322,7 @@ def test_no_dev_build_yet_says_so(window: dict[str, list[str]]) -> None:
     w = Window()
     w.s["update_channel"] = "dev"
     w._checked_updates(None, None)
-    assert window["info"] == ["No development build of Uncle Farmer can be seen on GitHub yet."]
+    assert window["info"] == ["No development build of Mist World Farmer can be seen on GitHub yet."]
 
 
 @pytest.mark.usefixtures("built")

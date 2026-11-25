@@ -21,7 +21,7 @@ class MenuFrame(wx.Frame):
     game_context_menu = main.MainFrame.game_context_menu
 
     def __init__(self) -> None:
-        super().__init__(None, title="Uncle Farmer menu preview", size=(860, 640))
+        super().__init__(None, title="Mist World Farmer menu preview", size=(860, 640))
         self.calls: list[tuple[str, tuple[Any, ...], dict[str, Any]]] = []
         self.runs: dict[int, object] = {}
         self.items = [("plan", "Diagnostic plan")]
