@@ -160,7 +160,7 @@ def command_lines(names: Iterable[str]) -> dict[int, str]:
 
 def find_bot() -> int | None:
     """The pid of the running Mist World Farmer, or None."""
-    for pid, cmd in sorted(command_lines(("python.exe", "pythonw.exe", "Mist World Farmer.exe", "UncleFarmer.exe")).items()):
+    for pid, cmd in sorted(command_lines(("python.exe", "pythonw.exe", "Mist World Farmer.exe", "MistWorldFarmer.exe")).items()):
         low = cmd.lower()
         if any(m in low for m in BOT_MARKS) and "nightwatch" not in low and "pytest" not in low:
             return pid

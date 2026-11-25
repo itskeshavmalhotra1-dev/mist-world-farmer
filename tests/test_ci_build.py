@@ -73,7 +73,7 @@ def test_a_broken_or_misshapen_zip_stops_the_build(tmp_path: Path) -> None:
         ci_build.verify_zip(str(junk), build_exe.REQUIRED)
     loose = tmp_path / "loose.zip"
     with zipfile.ZipFile(loose, "w") as z:
-        z.writestr("UncleFarmer.exe", "x")              # not inside "Mist World Farmer/"
+        z.writestr("MistWorldFarmer.exe", "x")              # not inside "Mist World Farmer/"
     with pytest.raises(SystemExit):
         ci_build.verify_zip(str(loose), build_exe.REQUIRED)
 
@@ -245,7 +245,7 @@ def test_every_build_carries_its_build_json(tmp_path: Path, monkeypatch: pytest.
     (zip_path,) = (tmp_path / "ci").glob("*.zip")
     with zipfile.ZipFile(zip_path) as z:
         built = json.loads(z.read("Mist World Farmer/build.json"))
-    assert "UncleFarmer.exe" in built.pop("files")
+    assert "MistWorldFarmer.exe" in built.pop("files")
     assert built == {"version": __version__ + want_version, "channel": want_channel, "commit": SHA}
     assert "release_version=%s%s\n" % (__version__, want_version) in github_output.read_text(encoding="utf-8")
 

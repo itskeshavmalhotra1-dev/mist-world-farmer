@@ -53,7 +53,7 @@ It does not require additional drivers or a virtual machine.
 Follow these steps to get started:
 
 1. Extract the downloaded folder wherever you like, such as your Documents folder. Keep all the files and folders together.
-2. Run `UncleFarmer.exe`. The first time you start it, Mist World Farmer offers to open Settings.
+2. Run `MistWorldFarmer.exe`. The first time you start it, Mist World Farmer offers to open Settings.
    (`bootstrap.exe` beside it installs updates and starts Mist World Farmer again afterwards; you don't need to start it yourself.)
 3. Open the **Game** tab in Settings. Select your Mist World folder (the one containing `mw.exe`), or start the game first and press **Find the running game**.
 4. Press **Install**.

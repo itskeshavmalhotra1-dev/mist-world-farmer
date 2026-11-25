@@ -17,14 +17,14 @@ Updating goes in three steps:
   1. latest() asks GitHub for the newest release of the channel; the window says what's new and asks.
   2. download() + unpack() put the new folder in update/new, next to the exe.
   3. start_apply() hands the update to bootstrap.exe (the installed, never-replaced native
-     bootstrapper, native/bootstrap.c). It runs the NEW UncleFarmer.exe from update/new as a paused
+     bootstrapper, native/bootstrap.c). It runs the NEW MistWorldFarmer.exe from update/new as a paused
      copier. Only after the window closes and __main__ releases its locks is copying authorized.
      The copier verifies that the old process exited, prepares a complete release on the same
      volume, swaps entries with rollback and reports the result. bootstrap.exe waits for the
      copier to end, recovers an interrupted update if one is pending, starts the updated
-     UncleFarmer.exe and exits.
+     MistWorldFarmer.exe and exits.
 
-Two executables: UncleFarmer.exe is the application (Nuitka) and the one players start;
+Two executables: MistWorldFarmer.exe is the application (Nuitka) and the one players start;
 bootstrap.exe is the updater/bootstrapper. A copy without a current bootstrap.exe (one older than
 it) runs the copier directly, and the copier restarts the app through the bootstrap it installed.
 
@@ -87,14 +87,14 @@ ASSET = re.compile(r"^UncleFarmer-[\w.\-]+\.zip$", re.I)
 DEV_VERSION = re.compile(r"^\d+\.\d+\.\d+-dev\.\d+$")
 CHANNELS = ("master", "dev")
 DEFAULT_CHANNEL = "master"
-EXE = recovery.PAYLOAD             # UncleFarmer.exe: the application, which an update replaces
+EXE = recovery.PAYLOAD             # MistWorldFarmer.exe: the application, which an update replaces
 BOOTSTRAP = recovery.BOOTSTRAP     # bootstrap.exe: runs the update and starts the app again
 # In bootstrap.exe (native/bootstrap.c): its protocol version. A missing bootstrap, or one without
 # this marker, is put in place after a committed update; a current one is never replaced.
 BOOTSTRAP_MARKER = b"UNCLEFARMER-BOOTSTRAP-2"
 BOOTSTRAP_SECONDS = 60.0
 BOOTSTRAP_MOST = 4 * 1024 * 1024   # a larger file is the application, never the bootstrap
-# For a while (dev builds of 2026-11-14 on) the native front door was UncleFarmer.exe and the app
+# For a while (dev builds of 2026-11-14 on) the native front door was MistWorldFarmer.exe and the app
 # UncleFarmerApp.exe. Such a front door carries this marker; the old app name is removed on update.
 LEGACY_LAUNCHER_MARKER = b"UNCLEFARMER-NATIVE-LAUNCHER-1"
 LEGACY_APP = "UncleFarmerApp.exe"
@@ -820,7 +820,7 @@ def _ensure_recovery_runtime_locked(app: str, source: str) -> None:
             recovery.safe(abandoned, app)
             recovery.fingerprint(abandoned)
             recovery.remove_private_tree(abandoned, app)
-    # bootstrap.exe runs the rescue copy's UncleFarmer.exe; the copy needs no bootstrap of its own
+    # bootstrap.exe runs the rescue copy's MistWorldFarmer.exe; the copy needs no bootstrap of its own
     files = _verify_release(source, bootstrap=False)
     _refuse_read_only(source)
     needed = sum(size for name, size in files.items() if name.split(os.sep)[0].casefold() not in NEVER) + SPACE_MARGIN
@@ -841,7 +841,7 @@ def _ensure_recovery_runtime_locked(app: str, source: str) -> None:
 
 
 def _legacy_runtime(runtime: str) -> bool:
-    """A rescue copy from the UncleFarmerApp.exe layout: its UncleFarmer.exe is the old front door."""
+    """A rescue copy from the UncleFarmerApp.exe layout: its MistWorldFarmer.exe is the old front door."""
     exe = os.path.join(runtime, EXE)
     return not os.path.isfile(exe) or _has_marker(exe, LEGACY_LAUNCHER_MARKER)
 
@@ -1520,7 +1520,7 @@ def _install_bootstrap(app: str, src: str, log: Callable[[str], None]) -> None:
     The transaction never touches bootstrap.exe (it is protected: a running bootstrap is never
     replaced), so a copy from before it, or from before this protocol, gets it here, once, after
     the commit. A failure costs only the automatic restart through it: the update is installed,
-    and the copier then starts UncleFarmer.exe directly."""
+    and the copier then starts MistWorldFarmer.exe directly."""
     installed, shipped = os.path.join(app, BOOTSTRAP), os.path.join(src, BOOTSTRAP)
     if is_bootstrap(installed) or not is_bootstrap(shipped):
         return
@@ -1577,7 +1577,7 @@ def _report_result(app: str, result: UpdateResult) -> None:
 
 def _restart(app: str) -> str | None:
     """Start the app again once this process has ended: through bootstrap.exe --relaunch (it waits
-    for this process, recovers if needed, starts UncleFarmer.exe and exits), else directly."""
+    for this process, recovers if needed, starts MistWorldFarmer.exe and exits), else directly."""
     try:
         target = os.path.join(app, EXE)
         _safe_entry(target, app)

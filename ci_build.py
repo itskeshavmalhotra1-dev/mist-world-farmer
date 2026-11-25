@@ -9,7 +9,7 @@ how a release is made: build_exe.py builds the folder (with its own folder check
 make_zip zips it, as for a release. Then:
 
   1. the zip is opened and read back, and must hold everything build_exe.REQUIRED names;
-  2. the built exe checks itself without a window (UncleFarmer.exe --self-test, selftest.py) within
+  2. the built exe checks itself without a window (MistWorldFarmer.exe --self-test, selftest.py) within
      SMOKE_SECONDS, so a build that can't start or can't find its data never gets uploaded;
   3. build-info.json says what the build is (version, release version, channel, type, branch,
      commit, time, run, tools);
@@ -211,7 +211,7 @@ def smoke_test(zip_path: str, work: str) -> dict[str, Any]:
     os.makedirs(work)
     with zipfile.ZipFile(zip_path) as z:
         z.extractall(work)
-    exe = os.path.join(work, "Mist World Farmer", "UncleFarmer.exe")
+    exe = os.path.join(work, "Mist World Farmer", "MistWorldFarmer.exe")
     report = os.path.join(work, "self-test.json")
     try:
         code = subprocess.run([exe, "--self-test", report], timeout=SMOKE_SECONDS).returncode

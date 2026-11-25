@@ -1,15 +1,15 @@
 /* bootstrap.exe: Mist World Farmer's updater/bootstrapper. Imports only Windows system DLLs, never the
- * application's Python runtime, so a half-replaced UncleFarmer.exe cannot stop it.
+ * application's Python runtime, so a half-replaced MistWorldFarmer.exe cannot stop it.
  *
  *   bootstrap.exe [args]
- *       recover an interrupted update if one is pending, then start UncleFarmer.exe [args] and exit
+ *       recover an interrupted update if one is pending, then start MistWorldFarmer.exe [args] and exit
  *   bootstrap.exe --relaunch <pid>
  *       wait until that process has ended (the update copier, or an app that found an unfinished
- *       update), then the same: recover if needed, start UncleFarmer.exe, exit
+ *       update), then the same: recover if needed, start MistWorldFarmer.exe, exit
  *   bootstrap.exe --update <copier> <pid> <version> <token>
- *       the app's update: run the staged copier (update\new\...\UncleFarmer.exe --apply-update),
+ *       the app's update: run the staged copier (update\new\...\MistWorldFarmer.exe --apply-update),
  *       which waits for the old app <pid> to close and replaces the files. When it exits 0, recover
- *       if needed, start the updated UncleFarmer.exe and exit. Any other exit code: the copier
+ *       if needed, start the updated MistWorldFarmer.exe and exit. Any other exit code: the copier
  *       withheld the restart (the old app still runs, or a rollback was incomplete).
  *
  * Ordinary updates never replace this file: updater.BOOTSTRAP is protected, and only a missing or
@@ -28,7 +28,7 @@
 #include <stdlib.h>
 
 #define CAP 32768
-#define APP L"UncleFarmer.exe"
+#define APP L"MistWorldFarmer.exe"
 #define WAIT_MS 120000
 /* updater.BOOTSTRAP_MARKER: how an update tells this bootstrap from an older or missing one. */
 __attribute__((used)) static const char bootstrap_marker[] = "UNCLEFARMER-BOOTSTRAP-2";
@@ -115,7 +115,7 @@ static DWORD recover(int *ran) {
     swprintf(recovery_args, CAP + 64, L"--recover-update \"%ls\"", root);
     DWORD result = run(path, recovery_args, recovery_directory, 1, NULL);
     if (result) {
-        failure("Recovery runtime .recovery\\runtime\\UncleFarmer.exe failed; preserve the journals and backups", result);
+        failure("Recovery runtime .recovery\\runtime\\MistWorldFarmer.exe failed; preserve the journals and backups", result);
         return result;      /* Fail closed. Never launch a mixed installation. */
     }
     *ran = 1;
@@ -131,7 +131,7 @@ static int start_app(const wchar_t *args) {
     if (swprintf(extra, CAP, L"%ls%ls", ran ? L"--recovered " : L"", args) < 0) return ERROR_BUFFER_OVERFLOW;
     swprintf(path, CAP, L"%ls\\" APP, root);
     result = run(path, extra, root, 0, NULL);
-    if (result) failure("Could not start UncleFarmer.exe", result);
+    if (result) failure("Could not start MistWorldFarmer.exe", result);
     return (int)result;
 }
 

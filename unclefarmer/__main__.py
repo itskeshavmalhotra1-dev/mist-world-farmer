@@ -2,9 +2,9 @@
 
     python -m unclefarmer            the app
     python -m unclefarmer --strings  refresh lang/unclefarmer.pot, merge the .po files, compile them
-    UncleFarmer.exe --apply-update <app folder> <pid> <version> [<token>] [--bootstrap]
+    MistWorldFarmer.exe --apply-update <app folder> <pid> <version> [<token>] [--bootstrap]
                                      (the updater's own step, run by bootstrap.exe: see updater.py)
-    UncleFarmer.exe --self-test <report.json>
+    MistWorldFarmer.exe --self-test <report.json>
                                      check the copy without a window (selftest.py; CI runs it)
 """
 
@@ -34,7 +34,7 @@ def main() -> None:
             recovery_app = os.path.abspath(sys.argv[index + 1])
             expected = os.path.join(recovery_app, recovery.HERE, "runtime")
             packaged = "__compiled__" in globals() or bool(getattr(sys, "frozen", False))
-            # The folder, not the file: Nuitka's sys.executable is a python.exe beside UncleFarmer.exe
+            # The folder, not the file: Nuitka's sys.executable is a python.exe beside MistWorldFarmer.exe
             # (comparing the exe name refused every real rescue). same_path: it may also be the 8.3
             # short name of the folder bootstrap.exe passed ("UNCLEF~1" for "Mist World Farmer").
             if not packaged or not recovery.same_path(os.path.dirname(os.path.abspath(sys.executable)), expected):

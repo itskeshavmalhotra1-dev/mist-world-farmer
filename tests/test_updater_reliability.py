@@ -651,7 +651,7 @@ def test_an_early_record_has_empty_progress(app: Path, journal: dict[str, Any]) 
 
 
 @windows
-@pytest.mark.parametrize("fail_at", [None, "replacement-recorded:numpy", "backup-verified:UncleFarmer.exe"])
+@pytest.mark.parametrize("fail_at", [None, "replacement-recorded:numpy", "backup-verified:MistWorldFarmer.exe"])
 def test_every_journal_a_real_update_writes_reads_back(tmp_path: Path, monkeypatch: pytest.MonkeyPatch,
                                                        fail_at: str | None) -> None:
     from test_update_recovery import release as make_release

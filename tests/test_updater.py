@@ -280,7 +280,7 @@ def test_download_wraps_a_connection_drop(monkeypatch: pytest.MonkeyPatch, tmp_p
 def test_unpack_returns_the_folder_with_the_exe(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
     z = tmp_path / "r.zip"
     with zipfile.ZipFile(z, "w") as zf:
-        zf.writestr("Mist World Farmer/UncleFarmer.exe", "MZ")
+        zf.writestr("Mist World Farmer/MistWorldFarmer.exe", "MZ")
         zf.writestr("Mist World Farmer/data/x.json", "{}")
     folder = updater.unpack(str(z))
     assert os.path.isfile(os.path.join(folder, updater.EXE))
@@ -297,7 +297,7 @@ def test_unpack_needs_the_exe(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -
     z = tmp_path / "r.zip"
     with zipfile.ZipFile(z, "w") as zf:
         zf.writestr("readme.txt", "hi")
-    with pytest.raises(updater.UpdateError, match="no UncleFarmer.exe"):
+    with pytest.raises(updater.UpdateError, match="no MistWorldFarmer.exe"):
         updater.unpack(str(z))
 
 
@@ -477,7 +477,7 @@ def staged(home: Path) -> Path:
     """update/ as an update leaves it: an unpacked copy, a zip and a half download."""
     up = home / "update"
     (up / "new" / "_internal").mkdir(parents=True)
-    (up / "new" / "UncleFarmer.exe").write_text("MZ", encoding="utf-8")
+    (up / "new" / "MistWorldFarmer.exe").write_text("MZ", encoding="utf-8")
     (up / "new" / "_internal" / "x.dll").write_text("dll", encoding="utf-8")
     (up / "UncleFarmer-0.3.zip").write_text("zip", encoding="utf-8")
     (up / "UncleFarmer-0.2.zip.part").write_text("half", encoding="utf-8")
@@ -486,7 +486,7 @@ def staged(home: Path) -> Path:
 
 def keepsakes(home: Path) -> dict[Path, str]:
     """The app, the player's things and the logs, which a cleanup must never touch."""
-    files = {home / "UncleFarmer.exe": "app", home / "_internal" / "core.dll": "core",
+    files = {home / "MistWorldFarmer.exe": "app", home / "_internal" / "core.dll": "core",
              home / "settings.json": "settings", home / "profiles" / "Hero.json": "profile",
              home / "logs" / "bootup.log": "boot", home / "plans" / "p.json": "plan"}
     for path, text in files.items():
@@ -594,7 +594,7 @@ def test_clean_is_put_off_while_another_process_uses_the_folder(home: Path, monk
     busy_file(home, 999999, what="update copier")
     alive_only(monkeypatch, 999999)
     assert updater.clean() is False
-    assert (up / "new" / "UncleFarmer.exe").exists() and (up / "UncleFarmer-0.3.zip").exists()
+    assert (up / "new" / "MistWorldFarmer.exe").exists() and (up / "UncleFarmer-0.3.zip").exists()
     assert "put off: the update copier of process 999999" in update_log(home)
     alive_only(monkeypatch)                          # it has exited: the next start cleans
     assert updater.clean() is True and not up.exists()
@@ -669,10 +669,10 @@ def test_another_processs_update_blocks_a_new_one(home: Path, monkeypatch: pytes
 @pytest.mark.skipif(os.name != "nt", reason="an open file can't be deleted on Windows only")
 def test_a_file_in_use_is_left_and_said_and_goes_next_time(home: Path) -> None:
     up = staged(home)
-    held = open(up / "new" / "UncleFarmer.exe", "rb")
+    held = open(up / "new" / "MistWorldFarmer.exe", "rb")
     try:
         assert updater.clean() is False
-        assert (up / "new" / "UncleFarmer.exe").exists()
+        assert (up / "new" / "MistWorldFarmer.exe").exists()
         assert not (up / "UncleFarmer-0.3.zip").exists()      # the rest went
         assert "staging cleanup left 2 item(s)" in update_log(home)     # the file and its folder
     finally:
@@ -715,7 +715,7 @@ def test_unpack_replaces_an_older_unpacked_copy(home: Path, tmp_path: Path) -> N
     up = staged(home)
     z = tmp_path / "r.zip"
     with zipfile.ZipFile(z, "w") as zf:
-        zf.writestr("Mist World Farmer/UncleFarmer.exe", "MZ2")
+        zf.writestr("Mist World Farmer/MistWorldFarmer.exe", "MZ2")
     folder = updater.unpack(str(z))
     assert (Path(folder) / updater.EXE).read_text(encoding="utf-8") == "MZ2"
     assert not (up / "new" / "_internal").exists()
@@ -727,8 +727,8 @@ def test_unpack_stops_when_the_old_copy_is_still_in_use(home: Path, tmp_path: Pa
     up = staged(home)
     z = tmp_path / "r.zip"
     with zipfile.ZipFile(z, "w") as zf:
-        zf.writestr("Mist World Farmer/UncleFarmer.exe", "MZ2")
-    with open(up / "new" / "UncleFarmer.exe", "rb"):
+        zf.writestr("Mist World Farmer/MistWorldFarmer.exe", "MZ2")
+    with open(up / "new" / "MistWorldFarmer.exe", "rb"):
         with pytest.raises(updater.UpdateError, match="still in use"):
             updater.unpack(str(z))
 
@@ -794,7 +794,7 @@ def test_a_whole_update_leaves_only_the_app_and_its_logs(home: Path, tmp_path: P
     assert untouched(keep)                           # settings, profiles, plans and logs as they were
     text = update_log(home)
     for stage in ("download of UncleFarmer-0.5.0.zip", "unpacked", "copier for 0.5.0 started", "copier: updating",
-                  "copier: updated UncleFarmer.exe", "the update to 0.5.0 finished", "staging folder cleaned"):
+                  "copier: updated MistWorldFarmer.exe", "the update to 0.5.0 finished", "staging folder cleaned"):
         assert stage in text, stage
 
 

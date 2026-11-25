@@ -33,7 +33,7 @@ from collections.abc import Callable
 from unclefarmer import updater
 
 REPO = os.environ.get("GITHUB_REPOSITORY") or updater.REPO      # the repository the app updates from
-EXE = "UncleFarmer.exe"
+EXE = "MistWorldFarmer.exe"
 BOOTSTRAP = "bootstrap.exe"
 WAIT = 300.0        # seconds for each step; a cold runner takes a while to start a new exe
 

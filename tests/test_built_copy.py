@@ -1,6 +1,6 @@
 # pyright: reportPrivateUsage=false
 # White-box tests: they call __main__'s _about and the update window's helpers directly.
-"""The built UncleFarmer.exe knows it is built, and every module agrees (paths.frozen).
+"""The built MistWorldFarmer.exe knows it is built, and every module agrees (paths.frozen).
 
 build_exe.py builds with Nuitka, which never sets sys.frozen: it puts __compiled__ in the
 globals of each module it compiles (checked against a real Nuitka 4.3 standalone build with
@@ -38,7 +38,7 @@ def source(monkeypatch: pytest.MonkeyPatch) -> None:
 @pytest.fixture
 def built(monkeypatch: pytest.MonkeyPatch, source: None, tmp_path: Path) -> Path:
     """The built exe's view: Nuitka's marker in paths' globals, and its sys.executable (a python.exe
-    beside UncleFarmer.exe) in a folder of its own. Returns that folder."""
+    beside MistWorldFarmer.exe) in a folder of its own. Returns that folder."""
     folder = tmp_path / "Mist World Farmer"
     folder.mkdir()
     monkeypatch.setitem(vars(paths), "__compiled__", object())
@@ -81,10 +81,10 @@ def test_sys_frozen_from_another_build_tool_still_counts(monkeypatch: pytest.Mon
 @pytest.mark.usefixtures("source")
 def test_the_environment_and_working_folder_do_not_make_a_build(monkeypatch: pytest.MonkeyPatch,
                                                                 tmp_path: Path) -> None:
-    (tmp_path / "UncleFarmer.exe").write_bytes(b"")
+    (tmp_path / "MistWorldFarmer.exe").write_bytes(b"")
     monkeypatch.chdir(tmp_path)
     monkeypatch.setenv("NUITKA_ONEFILE_PARENT", "1")
-    monkeypatch.setattr(sys, "argv", [str(tmp_path / "UncleFarmer.exe")])
+    monkeypatch.setattr(sys, "argv", [str(tmp_path / "MistWorldFarmer.exe")])
     assert paths.frozen() is False
 
 

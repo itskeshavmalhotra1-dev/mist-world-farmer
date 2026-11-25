@@ -95,7 +95,7 @@ Before getting started, you'll need:
 Ready to give it a try? Here's how to get started.
 
 1. Download `UncleFarmer-<version>.zip` from the [Releases page](https://github.com/afnannasir/uncle-farmer/releases/latest) and unzip it anywhere you like. This creates an `Mist World Farmer` folder.
-2. Run `UncleFarmer.exe`. The first time you start it, the program opens **Settings**. Choose your Mist World folder, or start the game and press **Find the running game**. Then press **Install**.
+2. Run `MistWorldFarmer.exe`. The first time you start it, the program opens **Settings**. Choose your Mist World folder, or start the game and press **Find the running game**. Then press **Install**.
 3. Restart Mist World and log in. Open the **Plans** tab and create a plan by choosing a map and how long to farm. When you're ready, open the **Bot** tab and press **Start**.
 
 That's it! Mist World Farmer is ready to work.

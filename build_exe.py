@@ -1,4 +1,4 @@
-"""Build the shareable Mist World Farmer folder: dist\\Mist World Farmer\\UncleFarmer.exe plus its data.
+"""Build the shareable Mist World Farmer folder: dist\\Mist World Farmer\\MistWorldFarmer.exe plus its data.
 
     python build_exe.py
     python build_exe.py --full     every core at normal priority (faster; CI builds this way)
@@ -142,7 +142,7 @@ def verify(folder: str) -> None:
 def build_bootstrap(folder: str) -> None:
     """bootstrap.exe: the small, stable native updater/bootstrapper (native/bootstrap.c), with no
     Python or application DLL dependency. It runs an update's copier, recovers an interrupted
-    update and starts UncleFarmer.exe afterwards."""
+    update and starts MistWorldFarmer.exe afterwards."""
     from build_native import compiler
     command = compiler()
     if command is None:
