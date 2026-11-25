@@ -27,7 +27,7 @@ def join_telegram(parent: wx.Window | None) -> None:
 
 def write_email() -> bool:
     """Open the player's email program on a new message to the developer."""
-    return webbrowser.open(contact.mailto("Uncle Farmer %s" % __version__))
+    return webbrowser.open(contact.mailto("Mist World Farmer %s" % __version__))
 
 
 class ContactDialog(Dialog):

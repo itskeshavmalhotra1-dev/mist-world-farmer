@@ -167,7 +167,7 @@ class ScriptDialog(Dialog):
 
     def on_close(self, _evt: wx.Event | None = None) -> None:
         if self.text.GetValue() != self.saved_text:
-            answer = wx.MessageBox(_("Save changes to the script?"), _("Uncle Farmer"),
+            answer = wx.MessageBox(_("Save changes to the script?"), _("Mist World Farmer"),
                                    wx.YES_NO | wx.CANCEL | wx.ICON_QUESTION, self)
             if answer == wx.CANCEL:
                 return

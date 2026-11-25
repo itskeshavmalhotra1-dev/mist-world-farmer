@@ -1,4 +1,4 @@
-# Everything Uncle Farmer needs, in one place. uv.lock pins the exact versions; `uv sync` installs
+# Everything Mist World Farmer needs, in one place. uv.lock pins the exact versions; `uv sync` installs
 # them into .venv (the app, the checking tools and Nuitka), and CI's `uv sync --locked` fails when
 # this file changed without `uv lock`.
 

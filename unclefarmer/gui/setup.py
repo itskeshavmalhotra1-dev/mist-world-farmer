@@ -148,7 +148,7 @@ class SetupDialog(Dialog):
         if not updater.REPO:          # nowhere to look for updates: no switches for it
             return
         f = group(panel, box, _("Updates"))
-        self.updates = f.check(_("Look for a new &version when Uncle Farmer starts"),
+        self.updates = f.check(_("Look for a new &version when Mist World Farmer starts"),
                                self.s.get("check_updates", True))
         self.channel = f.choice(_("Release &channel:"),
                                 [_("Master: stable releases"),
@@ -162,7 +162,7 @@ class SetupDialog(Dialog):
     def updater_status(self) -> str:
         """What the Updater tab says about this copy."""
         mine = updater.installed_version()
-        lines = [_("Uncle Farmer {v}", v=mine) + (" " + _("(a development build)") if updater.is_dev(mine) else "")]
+        lines = [_("Mist World Farmer {v}", v=mine) + (" " + _("(a development build)") if updater.is_dev(mine) else "")]
         if not updater.REPO:
             lines.append(_("This copy doesn't look for updates online. New versions come as a zip: unpack it over "
                            "this folder."))
@@ -198,10 +198,10 @@ class SetupDialog(Dialog):
             "nogame": _("Mist World isn't in this folder. Choose the folder that has mw.exe."),
             "missing": _("Not installed. Press Install, then restart the game."),
             "installed": _("Installed. If the game was running when you installed it, restart the game."),
-            "other": _("An older Uncle Farmer agent is installed. Press Install to update it."),
+            "other": _("An older Mist World Farmer agent is installed. Press Install to update it."),
         }.get(st, _("Mist World isn't in this folder. Choose the folder that has mw.exe."))
         if not os.path.exists(paths.AGENT_JAR):
-            text += " " + _("The agent file is missing from Uncle Farmer's agent folder.")
+            text += " " + _("The agent file is missing from Mist World Farmer's agent folder.")
         self.status.ChangeValue(text)
         self.install_btn.Enable(st in ("missing", "other"))
         self.remove_btn.Enable(st in ("installed", "other"))

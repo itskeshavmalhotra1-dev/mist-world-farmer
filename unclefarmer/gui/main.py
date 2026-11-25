@@ -42,7 +42,7 @@ BOT_STOP_WAIT = 5.0         # seconds each running bot gets to end when the app 
 def about_text() -> str:
     """Help, About: this copy's version as the update check knows it - a dev build's own number
     (1.2.2-dev.436) from its build.json, not only the release it was built from."""
-    return _("Uncle Farmer {v}\nA farming bot for Mist World.", v=updater.installed_version())
+    return _("Mist World Farmer {v}\nA farming bot for Mist World.", v=updater.installed_version())
 
 
 def action_menu_states(*, available: bool, running: bool, any_running: bool, has_items: bool,
@@ -81,7 +81,7 @@ class MainFrame(GamesMixin, RunsMixin, LogMixin, TalkMixin, ResultsMixin, Editin
     clock: Clock = CLOCK
 
     def __init__(self, clock: Clock = CLOCK) -> None:
-        super().__init__(None, title=_("Uncle Farmer"), size=wx.Size(860, 640))
+        super().__init__(None, title=_("Mist World Farmer"), size=wx.Size(860, 640))
         self.clock = clock
         self.s = settings.load_app()
         self.runs = {}           # pid -> Run, one per game client
@@ -353,7 +353,7 @@ class MainFrame(GamesMixin, RunsMixin, LogMixin, TalkMixin, ResultsMixin, Editin
                           command(_("Check for &updates"), lambda e: self.check_updates()),
                           command(_("Contact the &developer"), lambda e: self.contact_developer()),
                           command(_("Join the &Telegram group"), lambda e: self.join_telegram()),
-                          command(_("&About Uncle Farmer"), lambda e: info(self, about_text()))])
+                          command(_("&About Mist World Farmer"), lambda e: info(self, about_text()))])
         self.SetMenuBar(bar)
         plan_shortcuts: list[tuple[int, int, Handler]] = [
             (wx.ACCEL_CTRL, ord("E"), lambda e: self.edit_selected()),
@@ -503,7 +503,7 @@ class MainFrame(GamesMixin, RunsMixin, LogMixin, TalkMixin, ResultsMixin, Editin
             # the copier is being started (updates.py): the window closes by itself once it is ready,
             # and a close now would leave a paused copier nobody authorizes or cancels
             evt.Veto()
-            self.say(_("The update is being prepared: Uncle Farmer closes by itself in a moment."))
+            self.say(_("The update is being prepared: Mist World Farmer closes by itself in a moment."))
             down.end("cancelled: an update is being prepared")
             return
         if self.runs:
@@ -720,7 +720,7 @@ two). Search by item, cheapest first, by seller ID or browse; tick lots in Resul
 question names the gold coins in all; lots in their first hour are never bought).
 
 UPDATES
-At start Uncle Farmer looks on GitHub for a new version; if there is one it says what's new and
+At start Mist World Farmer looks on GitHub for a new version; if there is one it says what's new and
 asks. Yes: it downloads it, closes, updates and starts again, keeping your characters, plans,
 scripts and settings. Close the games and stop the bots first. Help, Check for updates looks any
 time; Settings, Updater turns the start-up check off and picks the release channel.
@@ -753,7 +753,7 @@ Game, Open another game window (Ctrl+O). Every game shows in the Games list with
 each runs its own plan. Inside a game window, Pause starts and stops that game's bot.
 Ctrl+Shift+S stops them all. Each game needs about 1 GB of memory.
 Run, Schedules (Ctrl+Shift+H) starts a plan or script for a character at a set time: once, every
-day or on chosen days. Each time runs once; a time missed while Uncle Farmer was closed doesn't run
+day or on chosen days. Each time runs once; a time missed while Mist World Farmer was closed doesn't run
 later, and a game busy with another run waits up to 15 minutes. History says what happened.
 
 7. RESULTS

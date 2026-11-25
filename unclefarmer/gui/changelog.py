@@ -18,8 +18,8 @@ class ChangelogDialog(Dialog):
         self.release = release
         layout = wx.BoxSizer(wx.VERTICAL)
         if release is not None:
-            message = _("Uncle Farmer {v} is out (you have {cur}).\n\n"
-                        "Uncle Farmer closes, updates and starts again; your characters, plans, scripts and settings "
+            message = _("Mist World Farmer {v} is out (you have {cur}).\n\n"
+                        "Mist World Farmer closes, updates and starts again; your characters, plans, scripts and settings "
                         "stay as they are.", v=release["version"], cur=updater.installed_version())
             if updater.is_dev(release["version"]):
                 message += "\n\n" + _("This is a development build from the dev branch: the newest changes, not yet a "
