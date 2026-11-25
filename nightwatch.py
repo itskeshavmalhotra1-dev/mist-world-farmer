@@ -47,7 +47,7 @@ from typing import Any, TypedDict
 ROOT = os.path.dirname(os.path.abspath(__file__))
 LOGS = os.path.join(ROOT, "logs")
 NIGHTS = os.path.join(LOGS, "nights")
-BOT_MARKS = ("unclefarmer.pyw", "-m unclefarmer", "unclefarmer\\__main__", "uncle farmer.exe", "unclefarmer.exe")
+BOT_MARKS = ("unclefarmer.pyw", "-m unclefarmer", "unclefarmer\\__main__", "mistworldfarmer.exe", "mist world farmer.exe", "uncle farmer.exe", "unclefarmer.exe")
 GAME_EXE = "mw.exe"
 PIECE = 900             # seconds of py-spy per profile file: py-spy writes its file only when a
                         # piece ends, so a PC shut down mid-piece (the bot's after-stop action, a

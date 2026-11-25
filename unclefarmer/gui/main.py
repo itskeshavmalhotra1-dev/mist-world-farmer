@@ -631,7 +631,7 @@ Script editor
 """
 
 
-GUIDE = """UNCLE FARMER - QUICK GUIDE
+GUIDE = """MIST WORLD FARMER - QUICK GUIDE
 
 1. FIRST TIME
 File, Settings, Game tab: choose the Mist World folder (or press "Find the running game" while it
