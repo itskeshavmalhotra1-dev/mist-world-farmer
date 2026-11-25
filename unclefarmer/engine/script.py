@@ -94,12 +94,12 @@ import shlex
 import time
 from typing import Any
 
-from .. import atlas, dungeons, jsonio, knowledge, sounds, stats
+from .. import atlas, dungeons, jsonio, knowledge, settings, sounds, stats
 from ..settings import LEVEL_KEEP_MOST
 from ..link import AgentError
 from ..clock import CLOCK, Clock, clock_for
 from ..i18n import N_, _
-from . import chores, constructionscan, crafting, gembreak, dungeon, follow, market, survey, town, triggers
+from . import chores, combat, constructionscan, crafting, gembreak, dungeon, follow, market, survey, town, triggers
 from .bot import Bot, Respawned, Stopped
 from collections.abc import Callable, Mapping
 
@@ -113,14 +113,14 @@ def _at(rest: str, n: int):
 
 BLOCKS = ("repeat", "while", "if", "sub", "on_stop")
 END_WORDS = ("start", "safe", "hearthstone", "here")
-COMMANDS = ("login", "end_at", "keep_drop", "keep_level", "travel", "go", "talk", "choose", "visit", "restock", "gem_maker", "gem_breaker", "enhance", "chores", "bounties", "construction_scan", "gather", "lose_xp", "dungeon", "sell_collection", "market", "sell_shards", "clean_bag", "update_shard_prices", "store_items", "survey", "follow", "come", "buy", "sell", "withdraw", "deposit", "walk", "farm", "key", "hold", "wait", "say", "set", "heal", "hearthstone",
+COMMANDS = ("login", "switch_character", "end_at", "keep_drop", "keep_level", "travel", "go", "talk", "choose", "visit", "restock", "gem_maker", "gem_breaker", "enhance", "make_crystals", "chores", "bounties", "construction_scan", "gather", "lose_xp", "dungeon", "sell_collection", "market", "sell_shards", "clean_bag", "update_shard_prices", "store_items", "survey", "follow", "come", "buy", "sell", "withdraw", "deposit", "breakdown", "walk", "farm", "key", "hold", "wait", "say", "set", "heal", "hearthstone",
             "stop_when", "stop", "break", "call", "elif", "else", "end",
             "sound_watch", "sound_mute", "sound_wait") + BLOCKS
 FARM_OPTIONS = ("map", "minutes", "kills", "patrol", "area", "only", "skip", "elites", "until")
 VARIABLES = ("hp", "maxhp", "hp_pct", "mp", "maxmp", "mp_pct", "level", "map", "map_name", "x", "y",
-             "kills", "minutes", "clock", "monsters", "arnebia_gained", "contribution_gained", "xp_gained",
+             "kills", "minutes", "clock", "monsters", "arnebia", "arnebia_gained", "contribution_gained", "xp_gained",
              "levels_gained", "shards_gained", "sound_received", "sound_id", "sound_x", "sound_y",
-             "sound_muted", "sound_positioned")
+             "sound_muted", "sound_positioned", "enhance_done", "enhance_result")
 
 
 class ScriptError(Exception):
@@ -144,7 +144,7 @@ _BIN: dict[type[ast.operator], Callable[[Any, Any], Any]] = {
     ast.Div: lambda a, b: a / b, ast.FloorDiv: lambda a, b: a // b, ast.Mod: operator.mod}
 _CMP: dict[type[ast.cmpop], Callable[[Any, Any], Any]] = {ast.Lt: operator.lt, ast.LtE: operator.le, ast.Gt: operator.gt, ast.GtE: operator.ge,
         ast.Eq: operator.eq, ast.NotEq: operator.ne}
-FUNCTIONS = ("bag", "random", "min", "max", "abs", "round", "int")
+FUNCTIONS = ("bag", "bag_refined", "bag_unrefined", "storehouse", "storehouse_count", "random", "min", "max", "abs", "round", "int", "default_weapon")
 
 # Scripts are player-written files: bound what one can make the app allocate. These are far above
 # any real script (a few dozen lines, a handful of nested blocks, short expressions) and keep a
@@ -385,14 +385,9 @@ def _parse_command(stack: list[Node], word: str, rest: str, n: int):
 def _check_script(main: list[Node], subs: dict[str, list[Node]], on_stop: list[Node]):
     """What can only be checked once the whole script is read: calls, recursion, breaks."""
     _check_calls(main, subs)
-    for node in main[1:]:
-        if node.kind == "login":
-            raise ScriptError(node.line, _("login must be the first command in a script"))
-    for body in list(subs.values()) + [on_stop]:
+    for body in subs.values():
         _check_calls(body, subs)
-        for node in body:
-            if node.kind == "login":
-                raise ScriptError(node.line, _("login must be the first command in a script"))
+    _check_calls(on_stop, subs)
     _check_recursion(subs)
     _check_breaks(main, False)
     for body in list(subs.values()) + [on_stop]:
@@ -622,6 +617,43 @@ def _prep_check_only(node: Node, rest: str, n: int):
     node.opts["check"] = rest.strip().lower() == "check"
 
 
+def _prep_enhance(node: Node, rest: str, n: int):
+    words = rest.strip().split()
+    check = False
+    where = None
+    up_to = None
+    protect = None
+    protect_from = None
+    for w in words:
+        if w.lower() == "check":
+            check = True
+        elif w.lower().startswith("where="):
+            where = w.split("=", 1)[1].strip('"').lower()
+        elif w.lower().startswith("up_to="):
+            try:
+                up_to = int(w.split("=", 1)[1].strip('"'))
+            except ValueError:
+                pass
+        elif w.lower().startswith("protect="):
+            protect = w.split("=", 1)[1].strip('"').lower()
+        elif w.lower().startswith("protect_from="):
+            try:
+                protect_from = int(w.split("=", 1)[1].strip('"'))
+            except ValueError:
+                pass
+        elif w.lower().startswith("item="):
+            node.opts["item"] = w.split("=", 1)[1].strip('"')
+        else:
+            raise ScriptError(n, _("write it as: enhance [check] [where=gang|city] [up_to=N]"))
+    node.opts["check"] = check
+    node.opts["where"] = where
+    node.opts["up_to"] = up_to
+    if protect is not None:
+        node.opts["protect"] = protect
+    if protect_from is not None:
+        node.opts["protect_from"] = protect_from
+
+
 def _prep_dungeon(node: Node, rest: str, n: int):
     """dungeon [check] [<cave>]: the cave named, or the one set in Tools, Dungeons."""
     words = rest.strip()
@@ -727,18 +759,94 @@ def _prep_visit(node: Node, rest: str, n: int):
 
 
 def _prep_count_item(node: Node, rest: str, n: int):
-    m = re.match(r"^\s*(\d+)\s+(.+?)\s*$", rest)
+    m_sh = re.search(r'\b(?:at|where|from)\s*=\s*(?:"([^"]+)"|\'([^\']+)\'|(\S+))', rest, re.I)
+    if m_sh:
+        storehouse = m_sh.group(1) or m_sh.group(2) or m_sh.group(3)
+        node.opts["storehouse"] = storehouse
+        rest = (rest[:m_sh.start()] + " " + rest[m_sh.end():]).strip()
+    m = re.match(r"^\s*(\{?[a-zA-Z_]\w*\}?|\d+)\s+(.+?)\s*$", rest)
     if not m:
         raise ScriptError(n, _("write it as: {cmd} 50 Large Red Potion", cmd=node.kind))
-    node.opts["count"], node.opts["item"] = int(m.group(1)), m.group(2).strip('"')
+    token = m.group(1).strip("{}")
+    node.opts["count"] = int(token) if token.isdigit() else token
+    node.opts["item"] = m.group(2).strip('"')
 
 
 def _prep_item_count(node: Node, rest: str, n: int):
-    m = re.match(r"^\s*(.+?)(?:\s+(\d+))?\s*$", rest)
+    rest = rest.strip()
+    if not rest:
+        raise ScriptError(n, _("write it as: {cmd} Milkfish 20", cmd=node.kind))
+    m_sh = re.search(r'\b(?:at|where|from)\s*=\s*(?:"([^"]+)"|\'([^\']+)\'|(\S+))', rest, re.I)
+    if m_sh:
+        storehouse = m_sh.group(1) or m_sh.group(2) or m_sh.group(3)
+        node.opts["storehouse"] = storehouse
+        rest = (rest[:m_sh.start()] + " " + rest[m_sh.end():]).strip()
+    m1 = re.match(r"^\s*(\{?[a-zA-Z_]\w*\}?|\d+)\s+([\"'].+?[\"']|[a-zA-Z].*)\s*$", rest)
+    if m1 and (m1.group(1).isdigit() or m1.group(2).startswith(('"', "'", "{"))):
+        token = m1.group(1).strip("{}")
+        node.opts["count"] = int(token) if token.isdigit() else token
+        node.opts["item"] = m1.group(2).strip('"\'')
+        return
+    m = re.match(r"^\s*(.+?)(?:\s+(\{?[a-zA-Z_]\w*\}?|\d+))?\s*$", rest)
     if not m or not m.group(1).strip():
         raise ScriptError(n, _("write it as: {cmd} Milkfish 20", cmd=node.kind))
-    node.opts["item"] = m.group(1).strip('"')
-    node.opts["count"] = int(m.group(2)) if m.group(2) else None
+    node.opts["item"] = m.group(1).strip('"\'')
+    if m.group(2):
+        token = m.group(2).strip("{}")
+        node.opts["count"] = int(token) if token.isdigit() else token
+    else:
+        node.opts["count"] = None
+
+
+def _prep_breakdown(node: Node, rest: str, n: int):
+    rest = rest.strip()
+    if not rest:
+        node.opts["item"], node.opts["count"] = None, None
+        return
+    m1 = re.match(r"^\s*(\{?[a-zA-Z_]\w*\}?|\d+)\s+(.+?)\s*$", rest)
+    if m1:
+        token = m1.group(1).strip("{}")
+        node.opts["count"] = int(token) if token.isdigit() else token
+        node.opts["item"] = m1.group(2).strip('"')
+        return
+    m2 = re.match(r"^\s*(.+?)(?:\s+(\{?[a-zA-Z_]\w*\}?|\d+))?\s*$", rest)
+    if m2:
+        item = m2.group(1).strip('"')
+        node.opts["item"] = item
+        if m2.group(2):
+            token = m2.group(2).strip("{}")
+            node.opts["count"] = int(token) if token.isdigit() else token
+        else:
+            node.opts["count"] = None
+        return
+    raise ScriptError(n, _("write it as: breakdown [count] [item]"))
+
+
+def _prep_make_crystals(node: Node, rest: str, n: int):
+    """make_crystals <kind> <level> [count] [where=gang|city]"""
+    words = rest.strip().split()
+    if len(words) < 2:
+        raise ScriptError(n, _("write it as: make_crystals weapon 2 [count] [where=gang|city]"))
+    node.opts["kind"] = words[0]
+    lvl_token = words[1].strip("{}")
+    if lvl_token.isdigit():
+        node.opts["level"] = int(lvl_token)
+    elif re.match(r"^[a-zA-Z_]\w*$", lvl_token):
+        node.opts["level"] = lvl_token
+    else:
+        raise ScriptError(n, _("make_crystals level must be a number or variable, e.g. 2 or {crystal_level}"))
+    count = None
+    where = None
+    for w in words[2:]:
+        if w.lower().startswith("where="):
+            where = w.split("=", 1)[1].strip('"').lower()
+        elif w.strip("{}").isdigit():
+            count = int(w.strip("{}"))
+        elif re.match(r"^\{?[a-zA-Z_]\w*\}?$", w):
+            count = w.strip("{}")
+    node.opts["count"] = count
+    if where:
+        node.opts["where"] = where
 
 
 def _prep_choose(node: Node, rest: str, n: int):
@@ -868,13 +976,15 @@ def _prep_sound(node: Node, rest: str, n: int):
 
 PREPARE = {
     "login": _prep_login,
+    "switch_character": _prep_login,
     "while": _prep_condition, "if": _prep_condition, "repeat": _prep_repeat, "set": _prep_set,
     "stop_when": _prep_stop_when, "end_at": _prep_end_at, "keep_drop": _prep_keep_drop, "keep_level": _prep_keep_level, "travel": _prep_travel, "go": _prep_go,
     "follow": _prep_player, "come": _prep_player, "talk": _prep_talk, "survey": _prep_survey,
-    "gem_maker": _prep_check_only, "gem_breaker": _prep_check_only, "enhance": _prep_check_only, "chores": _prep_chores, "bounties": _prep_check_only, "construction_scan": _prep_construction_scan, "visit": _prep_visit,
+    "gem_maker": _prep_check_only, "gem_breaker": _prep_check_only, "enhance": _prep_enhance, "make_crystals": _prep_make_crystals, "chores": _prep_chores, "bounties": _prep_check_only, "construction_scan": _prep_construction_scan, "visit": _prep_visit,
     "gather": _prep_check_only, "lose_xp": _prep_check_only, "dungeon": _prep_dungeon, "sell_collection": _prep_sell_collection,
     "market": _prep_market,
     "buy": _prep_count_item, "withdraw": _prep_count_item, "sell": _prep_item_count, "deposit": _prep_item_count,
+    "breakdown": _prep_breakdown,
     "choose": _prep_choose, "walk": _prep_walk, "key": _prep_key, "hold": _prep_hold, "wait": _prep_wait,
     "farm": _prep_farm, "say": _prep_say,
     "sound_watch": _prep_sound, "sound_mute": _prep_sound, "sound_wait": _prep_sound,
@@ -906,25 +1016,141 @@ class Runner:
                      map=snap_map.get("id"), map_name=snap_map.get("name"), x=me["x"], y=me["y"],
                      kills=b.kills, minutes=round(b.minutes(), 2), clock=time.strftime("%H:%M"))
         names["monsters"] = _Lazy(lambda: len(b.targets(b.snap())))
+        names["arnebia"] = _Lazy(lambda: town.counts(b).get("arnebia", 0))
         r: dict[str, Any] = b.tally.result() if b.tally else {}
         picked: dict[str, int] = r.get("picked") or {}
         names.update(arnebia_gained=r.get("arnebia", 0), contribution_gained=r.get("contribution", 0),
                      xp_gained=r.get("experience", 0), levels_gained=r.get("levels", 0),
-                     shards_gained=sum(v for n, v in picked.items() if stats.is_shard(n)))
+                     shards_gained=sum(v for n, v in picked.items() if stats.is_shard(n)),
+                     storehouse_full=getattr(b, "storehouse_is_full", False),
+                     last_deposited=self.vars.get("last_deposited", 0),
+                     last_withdrawn=self.vars.get("last_withdrawn", 0),
+                     enhance_done=_Lazy(lambda: bool(self.vars.get("enhance_done", False))),
+                     enhance_result=_Lazy(lambda: str(self.vars.get("enhance_result", ""))))
+        def _get_char_class() -> str:
+            p_cls = b.p.get("scan", {}).get("class")
+            if p_cls:
+                return str(p_cls)
+            cname = me.get("name")
+            if cname:
+                try:
+                    prof = settings.load_profile(cname)
+                    prof_cls = prof.get("scan", {}).get("class")
+                    if prof_cls:
+                        return str(prof_cls)
+                except Exception:
+                    pass
+            try:
+                sk = b.a.json("mem skills")
+                if isinstance(sk, dict):
+                    learned_rows = sk.get("combat", [])
+                    snames = {r["name"] for r in learned_rows if r.get("name")}
+                    if snames:
+                        know = combat.knowledge()
+                        cls = max(know, key=lambda c: len(snames & {s["name"] for s in know[c]}), default=None)
+                        if cls:
+                            return cls
+            except Exception:
+                pass
+            return "Hunter"
+
+        names["char_class"] = _Lazy(_get_char_class)
+        names["my_class"] = _Lazy(_get_char_class)
         return names
 
     def funcs(self) -> dict[str, Callable[..., Any]]:
         def bag(item: str) -> int:
+            want = str(item).strip().lower()
+            c = town.counts(self.bot)
+            if want in c:
+                return c[want]
             rows = self.bot.a.json("mem bag")
             if not jsonio.is_array(rows):
                 return 0
-            want = str(item).strip().lower()
             exact = [r["count"] for r in rows if (r.get("name") or "").strip().lower() == want]
             return sum(exact) if exact else sum(r["count"] for r in rows if want in (r.get("name") or "").lower())
+
+        def _is_enhanced(r: dict[str, Any], name: str) -> bool:
+            # Memory 'p' is binding/slot flags in Mist World, NOT enhancement level.
+            # Enhanced/refined equipment is strictly identified by name quality or explicit +level.
+            if re.search(r"\+\d+", name) or re.search(r"enhancement\s+level:\s*[1-9]\d*", name, re.I):
+                return True
+            if re.search(r"\b(Refined|Sophisticated|Flawless|Epic|Legendary|Heavenly|Godbless)\b", name, re.I):
+                return True
+            return False
+
+        def bag_refined(item: str) -> int:
+            want = str(item).strip().lower()
+            want_pat = r"\s+".join(re.escape(w) for w in want.split())
+            rx_want = re.compile(want_pat, re.I)
+            tot = 0
+            eq_rows = self.bot.a.json("mem equipment")
+            if jsonio.is_array(eq_rows):
+                for r in eq_rows:
+                    if jsonio.is_object(r) and int(r.get("equipped") or 0) <= 0:
+                        name = str(r.get("name") or "")
+                        if rx_want.search(name) and _is_enhanced(r, name):
+                            tot += max(1, int(r.get("count") or 1))
+            bag_rows = self.bot.a.json("mem bag")
+            if jsonio.is_array(bag_rows):
+                for r in bag_rows:
+                    if jsonio.is_object(r):
+                        name = str(r.get("name") or "")
+                        if rx_want.search(name) and _is_enhanced(r, name):
+                            tot += int(r.get("count") or 0)
+            return tot
+
+        def bag_unrefined(item: str) -> int:
+            want = str(item).strip().lower()
+            want_pat = r"\s+".join(re.escape(w) for w in want.split())
+            rx_want = re.compile(want_pat, re.I)
+            tot = 0
+            eq_rows = self.bot.a.json("mem equipment")
+            if jsonio.is_array(eq_rows):
+                for r in eq_rows:
+                    if jsonio.is_object(r) and int(r.get("equipped") or 0) <= 0:
+                        name = str(r.get("name") or "")
+                        if rx_want.search(name) and not _is_enhanced(r, name):
+                            tot += max(1, int(r.get("count") or 1))
+            bag_rows = self.bot.a.json("mem bag")
+            if jsonio.is_array(bag_rows):
+                for r in bag_rows:
+                    if jsonio.is_object(r):
+                        name = str(r.get("name") or "")
+                        if rx_want.search(name) and not _is_enhanced(r, name):
+                            tot += int(r.get("count") or 0)
+            return tot
+
         def rand(a: float, b: float) -> int:
             return random.randint(int(a), int(b))
-        return {"bag": bag, "random": rand, "min": min, "max": max,
-                "abs": abs, "round": round, "int": int}
+
+        def storehouse_count(item: str = "", storehouse: str = "") -> int:
+            return town.storehouse_count(self.bot, str(item).strip() if item else "",
+                                         storehouse=str(storehouse).strip() if storehouse else None)
+
+        def default_weapon(level: Any = 30, cls: Any = "") -> str:
+            try:
+                lvl = int(level)
+            except (ValueError, TypeError):
+                lvl = 30
+            c = str(cls or self.names().get("char_class") or "Hunter").strip()
+            from ..knowledge import DEFAULT_WEAPONS
+            return DEFAULT_WEAPONS.get((lvl, c)) or DEFAULT_WEAPONS.get((lvl, "Hunter")) or "Bow of chaser"
+
+        return {
+            "bag": bag,
+            "bag_refined": bag_refined,
+            "bag_unrefined": bag_unrefined,
+            "storehouse": storehouse_count,
+            "storehouse_count": storehouse_count,
+            "random": rand,
+            "min": min,
+            "max": max,
+            "abs": abs,
+            "round": round,
+            "int": int,
+            "default_weapon": default_weapon,
+        }
 
     def value(self, expr: ast.expr | None, line: int) -> Any:
         """An expression's value now (Any: see evaluate)."""
@@ -1134,16 +1360,151 @@ class Runner:
     def _do_survey(self, node: Node, b: Bot, o: dict[str, Any]):
         survey.survey(b, o["scope"])
 
-    def _do_gem_maker(self, node: Node, b: Bot, o: dict[str, Any]):
-        k = node.kind
-        cfg: dict[str, Any] = b.p.get("gem_maker" if k == "gem_maker" else "enhancer") or {}
-        if not cfg:
-            raise Stopped(_("set it up first: Tools, {tool}", tool=_("Gem Maker") if k == "gem_maker"
-                            else _("Equipment Enhancer")))
-        with stats.doing(b, k):          # its shards, gems and fees are no farming loot
-            (crafting.gem_maker if k == "gem_maker" else crafting.enhance)(b, cfg, o.get("check", False))
+    def _count(self, node: Node, o: dict[str, Any], default: int | None = None) -> int | None:
+        count = o.get("count")
+        if count is None:
+            count = o.get("count_expr")
+        if isinstance(count, str):
+            if count.isdigit():
+                return int(count)
+            val = self.names().get(count)
+            if val is not None:
+                try:
+                    return int(val)
+                except (ValueError, TypeError):
+                    pass
+            return default
+        if count is not None:
+            try:
+                return int(count)
+            except (ValueError, TypeError):
+                pass
+        return default
 
-    _do_enhance = _do_gem_maker
+    def _item_name(self, raw: Any) -> str | None:
+        if raw is None:
+            return None
+        text = str(raw).strip()
+        if text.startswith("{") and text.endswith("}"):
+            vname = text[1:-1].strip()
+            if vname in self.names():
+                return str(self.names()[vname])
+        if text in self.names():
+            return str(self.names()[text])
+        if "{" in text and "}" in text:
+            for k, v in self.names().items():
+                if f"{{{k}}}" in text:
+                    text = text.replace(f"{{{k}}}", str(v))
+            return text
+        return text
+
+    def _do_gem_maker(self, node: Node, b: Bot, o: dict[str, Any]):
+        cfg: dict[str, Any] = b.p.get("gem_maker") or {}
+        if not cfg:
+            raise Stopped(_("set it up first: Tools, {tool}", tool=_("Gem Maker")))
+        with stats.doing(b, "gem_maker"):
+            crafting.gem_maker(b, cfg, o.get("check", False))
+
+    def _do_enhance(self, node: Node, b: Bot, o: dict[str, Any]):
+        cfg: dict[str, Any] = dict(b.p.get("enhancer") or {})
+        if not cfg:
+            cfg = {"items": ["Bow of chaser"], "up_to": 5}
+        if o.get("item"):
+            cfg["items"] = [str(self._item_name(o.get("item")))]
+        elif "target_weapon" in self.names():
+            cfg["items"] = [str(self.names()["target_weapon"])]
+        elif "items" not in cfg or not cfg["items"]:
+            cfg["items"] = ["Bow of chaser"]
+        cfg["make_crystals"] = False
+        cfg["crystal_supply"] = "none"
+        cfg["max_fails"] = 99999
+        refill_qty = 10
+        if "shard_count" in self.names():
+            try:
+                sc = int(self.names()["shard_count"])
+                refill_qty = max(5, sc // 4)
+            except (ValueError, TypeError):
+                pass
+        cfg["crystal_refill"] = refill_qty
+        protect_val = "never"
+        if o.get("protect"):
+            protect_val = str(o.get("protect")).strip().lower()
+        elif "enhance_protect" in self.names():
+            p = str(self.names()["enhance_protect"]).strip().lower()
+            if p in ("always", "from", "never"):
+                protect_val = p
+            elif p in ("true", "1", "yes"):
+                protect_val = "always"
+            elif p in ("false", "0", "no"):
+                protect_val = "never"
+        cfg["protect"] = protect_val
+        if o.get("protect_from") is not None:
+            try:
+                cfg["protect_from"] = int(o["protect_from"])
+            except (ValueError, TypeError):
+                pass
+        elif "enhance_protect_from" in self.names():
+            try:
+                cfg["protect_from"] = int(self.names()["enhance_protect_from"])
+            except (ValueError, TypeError):
+                pass
+        if o.get("where"):
+            cfg["where"] = o.get("where")
+        elif "enhance_where" in self.names():
+            val = str(self.names()["enhance_where"]).strip()
+            if val.startswith("gang:"):
+                cfg["where"] = "other_gang"
+                cfg["gang_name"] = val[5:].strip()
+            elif val == "other_gang":
+                cfg["where"] = "other_gang"
+                cfg["gang_name"] = str(self.names().get("gang_name", "")).strip()
+            else:
+                cfg["where"] = val
+        if "gang_name" in self.names() and cfg.get("where") == "other_gang":
+            cfg["gang_name"] = str(self.names()["gang_name"]).strip()
+        if o.get("up_to") is not None:
+            cfg["up_to"] = o.get("up_to")
+        elif "enhance_up_to" in self.names():
+            try:
+                cfg["up_to"] = int(self.names()["enhance_up_to"])
+            except (ValueError, TypeError):
+                pass
+        if "keep_arnebia" in self.names():
+            try:
+                b.p["gem_keep_arnebia"] = int(self.names()["keep_arnebia"])
+            except (ValueError, TypeError):
+                pass
+        with stats.doing(b, "enhance"):
+            res = crafting.enhance(b, cfg, o.get("check", False))
+            self.vars["enhance_result"] = res or "done"
+            self.vars["enhance_done"] = (res == "done")
+
+    def _do_make_crystals(self, node: Node, b: Bot, o: dict[str, Any]):
+        kind = str(self._item_name(o.get("kind", "weapon")) or "weapon").title()
+        level_raw = o.get("level", 2)
+        if isinstance(level_raw, str):
+            lvl_val = self.names().get(level_raw.strip("{}"), level_raw)
+            try:
+                level = int(lvl_val)
+            except (ValueError, TypeError):
+                level = 2
+        else:
+            level = int(level_raw)
+        count = self._count(node, o, None)
+        n = 999999 if count is None else count
+        where = o.get("where") or self.names().get("enhance_where") or "gang"
+        if isinstance(where, str):
+            val = where.strip()
+            if val == "other_gang":
+                gname = str(self.names().get("gang_name", "")).strip()
+                where = f"gang:{gname}" if gname else "gang"
+        if "keep_arnebia" in self.names():
+            try:
+                b.p["gem_keep_arnebia"] = int(self.names()["keep_arnebia"])
+            except (ValueError, TypeError):
+                pass
+        with stats.doing(b, "make_crystals"):
+            crafting.make_crystals(b, kind, level, n, where)
 
     def _do_gem_breaker(self, node: Node, b: Bot, o: dict[str, Any]):
         with stats.doing(b, "gem_breaker"):
@@ -1209,16 +1570,36 @@ class Runner:
         triggers.run_job(b, "restock")
 
     def _do_buy(self, node: Node, b: Bot, o: dict[str, Any]):
-        town.buy(b, o["item"], o["count"])
+        if "keep_arnebia" in self.names():
+            try:
+                b.p["gem_keep_arnebia"] = int(self.names()["keep_arnebia"])
+            except (ValueError, TypeError):
+                pass
+        town.buy(b, self._item_name(o["item"]), self._count(node, o, 1))
 
     def _do_withdraw(self, node: Node, b: Bot, o: dict[str, Any]):
-        town.withdraw(b, o["item"], o["count"])
+        sh = o.get("storehouse")
+        item = self._item_name(o["item"])
+        if sh:
+            got = town.withdraw(b, item, self._count(node, o, 1), storehouse=sh)
+        else:
+            got = town.withdraw(b, item, self._count(node, o, 1))
+        self.vars["last_withdrawn"] = got
 
     def _do_sell(self, node: Node, b: Bot, o: dict[str, Any]):
-        town.sell(b, o["item"], o["count"])
+        town.sell(b, self._item_name(o["item"]), self._count(node, o, None))
 
     def _do_deposit(self, node: Node, b: Bot, o: dict[str, Any]):
-        town.deposit(b, o["item"], o["count"])
+        sh = o.get("storehouse")
+        item = self._item_name(o["item"])
+        if sh:
+            got = town.deposit(b, item, self._count(node, o, None), storehouse=sh)
+        else:
+            got = town.deposit(b, item, self._count(node, o, None))
+        self.vars["last_deposited"] = got
+
+    def _do_breakdown(self, node: Node, b: Bot, o: dict[str, Any]):
+        town.breakdown(b, self._item_name(o.get("item")), self._count(node, o, None))
 
     def _do_choose(self, node: Node, b: Bot, o: dict[str, Any]):
         if b.choose(o["pattern"]) is None:
@@ -1259,6 +1640,22 @@ class Runner:
 
     def _do_keep_level(self, node: Node, b: Bot, o: dict[str, Any]):
         b.level_keep = o["xp"]            # this run's, ahead of the character's (level_check)
+
+    def _do_login(self, node: Node, b: Bot, o: dict[str, Any]):
+        target = self._item_name(o.get("character"))
+        if target:
+            switch_fn = getattr(b, "switch_character", None)
+            if switch_fn:
+                switch_fn(target)
+            else:
+                b.log(_("login {name}", name=target))
+            b.storehouse_is_full = False
+            refused = getattr(b, "storehouse_refused", None)
+            if isinstance(refused, set):
+                refused.clear()
+
+    def _do_switch_character(self, node: Node, b: Bot, o: dict[str, Any]):
+        self._do_login(node, b, o)
 
     def _do_farm(self, node: Node, b: Bot, o: dict[str, Any]):
         until = o.get("until")
@@ -1320,7 +1717,100 @@ def check(text: str) -> str | None:
         return str(e)
 
 
+def _resolve_script_target(target: str | None, text: str) -> str | None:
+    """Resolve a target character name from script variables or account email."""
+    vars_map: dict[str, str] = {}
+    for m in re.finditer(r'^\s*set\s+([A-Za-z0-9_]+)\s*=\s*(["\']?)(.*?)\2\s*(?:#.*)?$', text, re.MULTILINE):
+        vars_map[m.group(1)] = m.group(3).strip()
+
+    if target:
+        target = target.strip()
+        if target.startswith("{") and target.endswith("}"):
+            vname = target[1:-1].strip()
+            if vname in vars_map and vars_map[vname]:
+                target = vars_map[vname]
+        elif "{" in target and "}" in target:
+            for k, v in vars_map.items():
+                target = target.replace(f"{{{k}}}", v)
+
+    if not target or (target.startswith("{") and target.endswith("}")):
+        if vars_map.get("enhancer_char"):
+            target = vars_map["enhancer_char"]
+
+    is_known = False
+    try:
+        from .. import settings
+        all_profs = settings.profiles()
+        if target:
+            is_known = any(target.casefold() in (
+                c.casefold(),
+                settings.profile_display(c).casefold(),
+                settings.profile_name(c).casefold(),
+            ) for c in all_profs)
+            srv_val = vars_map.get("server") or vars_map.get("server_name")
+            if not is_known and srv_val:
+                srv_base = "S1" if srv_val.startswith("S1") else "S2"
+                cand = f"{target} - {srv_base}"
+                if any(cand.casefold() == settings.profile_display(c).casefold() for c in all_profs):
+                    target = cand
+                    is_known = True
+    except Exception:
+        is_known = False
+
+    email_cand = ""
+    if target and "@" in target and "." in target:
+        email_cand = target
+    elif vars_map.get("account_email"):
+        email_cand = vars_map["account_email"]
+
+    if email_cand and (not is_known or target == email_cand):
+        try:
+            from .. import settings
+            known = [c for c, em in settings.automatic_login_profiles() if em.casefold() == email_cand.casefold()]
+            if known:
+                matched_for_email = [c for c in known if target and target.casefold() in (
+                    c.casefold(),
+                    settings.profile_display(c).casefold(),
+                    settings.profile_name(c).casefold(),
+                )]
+                if matched_for_email:
+                    target = settings.profile_display(matched_for_email[0])
+                else:
+                    target = settings.profile_display(known[0])
+        except Exception:
+            pass
+
+    return target if target and not (target.startswith("{") and target.endswith("}")) else None
+
+
 def login_target(text: str) -> str | None:
-    """The optional character named by a script's first `login` line."""
-    main, _subs, _on_stop = parse(text)
-    return main[0].opts["character"] if main and main[0].kind == "login" else None
+    """The optional character named by a script's login or switch_character line."""
+    try:
+        main, subs, _on_stop = parse(text)
+    except Exception:
+        import re
+        m = re.search(r'^\s*(?:login|switch_character)\s+["\']?([^"\']+)["\']?', text, re.MULTILINE | re.IGNORECASE)
+        raw_target = m.group(1).strip() if m else None
+        return _resolve_script_target(raw_target, text)
+
+    def find_target(nodes: list[Node]) -> str | None:
+        for node in nodes:
+            if node.kind in ("login", "switch_character") and "character" in node.opts:
+                return node.opts["character"]
+            if node.body:
+                found = find_target(node.body)
+                if found:
+                    return found
+            for _cond, branch_body in getattr(node, "branches", []):
+                found = find_target(branch_body)
+                if found:
+                    return found
+        return None
+
+    target = find_target(main)
+    if not target:
+        for sub_nodes in subs.values():
+            target = find_target(sub_nodes)
+            if target:
+                break
+    return _resolve_script_target(target, text)

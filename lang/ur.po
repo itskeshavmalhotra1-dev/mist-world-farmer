@@ -32,6 +32,9 @@ msgstr " - {n} istemal hui jin ki koi qeemat mahfooz nahi, gini nahi gayin"
 msgid "&About Uncle Farmer"
 msgstr "Uncle Farmer ke &baare mein"
 
+msgid "&Account / Email:"
+msgstr ""
+
 msgid "&Action:"
 msgstr "&Kaam:"
 
@@ -56,6 +59,9 @@ msgstr "&Doosra kirdaar"
 msgid "&Answer strangers:"
 msgstr "&Ajnabiyon ko jawab dein:"
 
+msgid "&Arnebia Transfer"
+msgstr ""
+
 msgid "&Assistant (it kills for you; you can't fight in there):"
 msgstr "&Madadgar (yeh aap ke liye maarta hai; wahan aap lad nahi sakte):"
 
@@ -70,6 +76,9 @@ msgstr "&Basta aur supplies"
 
 msgid "&Bot"
 msgstr "&Bot"
+
+msgid "&Breaker character:"
+msgstr ""
 
 msgid "&Browse"
 msgstr "&Dekhein"
@@ -169,6 +178,12 @@ msgstr "&Chalu"
 msgid "&End:"
 msgstr "&Aakhir:"
 
+msgid "&Enhance equipment up to level:"
+msgstr ""
+
+msgid "&Enhancer character:"
+msgstr ""
+
 msgid "&Equipment Enhancer"
 msgstr "&Equipment Enhancer"
 
@@ -207,6 +222,12 @@ msgstr "&Games:"
 
 msgid "&Gang name (another gang's):"
 msgstr "&Gang ka naam (kisi doosre gang ka):"
+
+msgid "&Gang number or name (for another gang):"
+msgstr ""
+
+msgid "&Gear level:"
+msgstr ""
 
 msgid "&Gem Maker"
 msgstr "&Gem Maker"
@@ -506,6 +527,9 @@ msgstr "&Bechein:"
 msgid "&Send"
 msgstr "&Bhejein"
 
+msgid "&Server:"
+msgstr ""
+
 msgid "&Settings"
 msgstr "&Tarteeb"
 
@@ -562,6 +586,9 @@ msgstr "&Waqt ki hadd"
 msgid "&Tools"
 msgstr "&Auzar"
 
+msgid "&Total Arnebia to spend (0 = no limit):"
+msgstr ""
+
 msgid "&Travel on fusion beast:"
 msgstr "Fusion beast par &safar:"
 
@@ -582,6 +609,15 @@ msgstr "&Script ki tarah dekhein"
 
 msgid "&Walk whenever the maps connect on foot"
 msgstr "Jab bhi maps paidal jude hon to &chalna"
+
+msgid "&Weapon Enhance Crystal Shards to buy per round:"
+msgstr ""
+
+msgid "&Weapon name:"
+msgstr ""
+
+msgid "&Weapons to buy per round:"
+msgstr ""
 
 msgid "&What to do:"
 msgstr "&Kya karna hai:"
@@ -761,6 +797,12 @@ msgstr "Un se &command qabool karein"
 msgid "Accept their team &invites"
 msgstr "Un ki team &invites qabool karein"
 
+msgid "Account and Characters"
+msgstr ""
+
+msgid "Account email is required. Please enter an email."
+msgstr ""
+
 msgid "Accumulation points"
 msgstr "Jama points"
 
@@ -865,6 +907,9 @@ msgstr "Sab waqt"
 msgid "Already following you."
 msgstr "Pehle se aap ke saath chal raha hoon."
 
+msgid "Already logged in as {name}"
+msgstr ""
+
 msgid "Already running."
 msgstr "Pehle se chal raha hai."
 
@@ -894,6 +939,9 @@ msgstr "Animal Shed par khilana"
 msgid "Another character"
 msgstr "Doosra kirdaar"
 
+msgid "Another gang's base (by number/name)"
+msgstr ""
+
 msgid "Another gang's, by its name"
 msgstr "Doosre gang ka, uske naam se"
 
@@ -910,6 +958,9 @@ msgstr "Mere a&as paas ka ilaqa"
 msgid "Arnebia"
 msgstr "Arnebia"
 
+msgid "Arnebia Transfer Settings"
+msgstr ""
+
 msgid ""
 "Arnebia paid out at shops and for fares: {n} (a bought item is an expense once it is used up)"
 msgstr ""
@@ -920,8 +971,14 @@ msgid ""
 msgstr ""
 "Istemal shuda cheezon par kharch hua arnebia (mahfooz qeematon se; khareedi hui cheezein yahan nahi gini jaatin):"
 
+msgid "Arnebia transfer settings saved successfully."
+msgstr ""
+
 msgid "As many as I can"
 msgstr "Jitne ban sakein"
+
+msgid "Assassin"
+msgstr ""
 
 msgid "At a &clock time"
 msgstr "&Ghadi ke waqt par"
@@ -935,6 +992,9 @@ msgstr "Dukaanon ki muqarrar qeematon par:"
 msgid "Attack keys: enter keys separated by spaces, for example: j y . h"
 msgstr ""
 "Attack keys: keys ko space se alag kar ke likhein, misal ke taur par: j y . h"
+
+msgid "Auto-Detect"
+msgstr ""
 
 msgid "Automatic, by class"
 msgstr "Khud-bakhud, class ke mutabiq"
@@ -1001,6 +1061,9 @@ msgstr "Kahan tak torna hai (&D):"
 
 msgid "Break them now?"
 msgstr "Abhi toren?"
+
+msgid "Breaker character is required."
+msgstr ""
 
 msgid "Breaking can't be undone."
 msgstr "Torna wapas nahi ho sakta."
@@ -1094,6 +1157,9 @@ msgstr "Channels"
 
 msgid "Character"
 msgstr "Kirdaar"
+
+msgid "Character &class:"
+msgstr ""
 
 msgid "Character settings - {name}"
 msgstr "Kirdaar ki tarteeb - {name}"
@@ -1274,6 +1340,9 @@ msgstr "Jura hua"
 msgid "Connecting..."
 msgstr "Jura ja raha hai..."
 
+msgid "Connection &Line / Relay:"
+msgstr ""
+
 msgid "Construction &scanner"
 msgstr "Construction &scanner"
 
@@ -1380,8 +1449,14 @@ msgstr "Raasta nahi nikal saka: {err}"
 msgid "Couldn't."
 msgstr "Nahi kar saka."
 
+msgid "Cra&ftsman location:"
+msgstr ""
+
 msgid "Cra&ftsman:"
 msgstr "&Craftsman:"
+
+msgid "Crafting and Enhancing Location"
+msgstr ""
 
 msgid "Craftsman and selling"
 msgstr "Craftsman aur bechna"
@@ -1457,6 +1532,9 @@ msgstr "Dev: development builds (sab se nayi tabdeeliyan, kharab ho sakti hain)"
 
 msgid "Ding"
 msgstr "Ding"
+
+msgid "Direct Connection"
+msgstr ""
 
 msgid "Disabled"
 msgstr "Band"
@@ -1548,11 +1626,17 @@ msgstr "Ab tak ki kamai: {n} arnebia (uthaye aur beche gaye)"
 msgid "East edge (x):"
 msgstr "Mashriqi kinara (x):"
 
+msgid "Edit &raw script"
+msgstr ""
+
 msgid "Edit filter"
 msgstr "Filter badlein"
 
 msgid "Edit schedule"
 msgstr "Schedule tabdeel karein"
+
+msgid "Elf"
+msgstr ""
 
 msgid "Elite"
 msgstr "Elite"
@@ -1601,6 +1685,9 @@ msgstr "Enhance Crystals"
 
 msgid "Enhance Crystals (breaking them costs arnebia)"
 msgstr "Enhance Crystals (inhen torne mein arnebia lagta hai)"
+
+msgid "Enhancer character is required."
+msgstr ""
 
 msgid "Enter a name for the plan."
 msgstr "Mansoobe ka naam likhein."
@@ -1798,6 +1885,12 @@ msgstr "Poora patrol loop"
 msgid "Game"
 msgstr "Game"
 
+msgid "Game executable mw.exe not found in {folder}"
+msgstr ""
+
+msgid "Game is currently {current}, switching to script character {target}..."
+msgstr ""
+
 msgid "Games muted."
 msgstr "Games ki awaaz band ho gayi."
 
@@ -1857,6 +1950,9 @@ msgstr "Level {lo} aur us se upar ka gear: Level {lv} crystals"
 
 msgid "Gear of levels {lo} to {hi}: Level {lv} crystals"
 msgstr "Level {lo} se {hi} tak ka gear: Level {lv} crystals"
+
+msgid "Gear, Class and Enhancing"
+msgstr ""
 
 msgid "Gem &level to stop at:"
 msgstr "Rukne ka gem &level:"
@@ -2058,6 +2154,9 @@ msgstr "Kaise kaam karta hai:"
 
 msgid "How the game works"
 msgstr "Game kaise kaam karti hai"
+
+msgid "Hunter"
+msgstr ""
 
 msgid "Hunting bount&ies"
 msgstr "Hunting bount&ies"
@@ -2362,6 +2461,9 @@ msgstr "Log"
 msgid "Log files"
 msgstr "Log files"
 
+msgid "Log in to a character first"
+msgstr ""
+
 msgid "Log in to a character in the game first."
 msgstr "Pehle game mein character se login karein."
 
@@ -2417,6 +2519,9 @@ msgstr "MP:"
 
 msgid "Made or received:"
 msgstr "Banaya ya mila:"
+
+msgid "Mage"
+msgstr ""
 
 msgid "Make a gem"
 msgstr "Gem banayein"
@@ -2606,6 +2711,9 @@ msgstr "Meri fehrist ({n})"
 msgid "My own gang's (gangs pay less)"
 msgstr "Mera apna gang (gang kam dete hain)"
 
+msgid "My own gang's base (cheaper)"
+msgstr ""
+
 msgid "NPCs"
 msgstr "NPCs"
 
@@ -2653,6 +2761,9 @@ msgstr "Nahin"
 
 msgid "No Gem Maker, Equipment Enhancer or chores runs."
 msgstr "Gem Maker, Equipment Enhancer ya roz ke kaam ka koi run nahi."
+
+msgid "No active game link"
+msgstr ""
 
 msgid "No bot is running."
 msgstr "Koi bot nahi chal raha."
@@ -2919,6 +3030,9 @@ msgstr "Ya &naam likhein (kai: a | b):"
 msgid "Or type its &name:"
 msgstr "Ya iska &naam likhein:"
 
+msgid "Orc"
+msgstr ""
+
 msgid "Other"
 msgstr "Deegar"
 
@@ -3084,6 +3198,9 @@ msgstr "Plans aur scripts"
 msgid "Players near:"
 msgstr "Qareeb ke khilari:"
 
+msgid "Please select your Mist World game folder."
+msgstr ""
+
 msgid ""
 "Polson Wetland: Poison Immunity isn't activated - its ground poisons us whenever we are off a fusion beast, and every fight there is on foot"
 msgstr ""
@@ -3109,6 +3226,9 @@ msgstr "Pichli cheez"
 
 msgid "Previous panel"
 msgstr "Pichla panel"
+
+msgid "Priest"
+msgstr ""
 
 msgid "Private channel"
 msgstr "Private channel"
@@ -3213,6 +3333,9 @@ msgstr "&Jab is se kam hon to bharein:"
 
 msgid "Reinstall the agent"
 msgstr "Agent dobara install karein"
+
+msgid "Relay Connection"
+msgstr ""
 
 msgid "Release &channel:"
 msgstr "Release ka &channel:"
@@ -3459,6 +3582,9 @@ msgstr "Pehle game chunein."
 msgid "Select a plan first."
 msgstr "Pehle plan chunein."
 
+msgid "Select your Mist World folder (containing mw.exe)"
+msgstr ""
+
 msgid "Sell and store by these lists, then come back"
 msgstr "In lists ke mutabiq bechein aur store karein, phir wapas aayein"
 
@@ -3508,6 +3634,12 @@ msgstr ""
 "Yeh poori gang ko is tarah bhejein: {where}?\n"
 "\n"
 "{report}"
+
+msgid "Server 1 (S1)"
+msgstr ""
+
+msgid "Server 2 (S2)"
+msgstr ""
 
 msgid "Set the attack &range myself"
 msgstr "Attack &range khud set karein"
@@ -3892,6 +4024,9 @@ msgstr "Cheezein storehouse mein rakhi ja rahi hain"
 msgid "Strangers"
 msgstr "Ajnabi"
 
+msgid "Successfully logged in as {name}"
+msgstr ""
+
 msgid "Summary:"
 msgstr "Khulasa:"
 
@@ -3900,6 +4035,9 @@ msgstr "Itwaar"
 
 msgid "Supplies"
 msgstr "Supplies"
+
+msgid "Switching character to {name}..."
+msgstr ""
 
 msgid "System message"
 msgstr "System message"
@@ -3996,11 +4134,6 @@ msgid ""
 "The agent isn't installed in the game yet, and without it a second game closes right after it starts. Open Settings now?"
 msgstr ""
 "Agent abhi game mein install nahi hai, aur is ke baghair doosra game shuru hote hi band ho jata hai. Abhi Tarteeb kholen?"
-
-msgid ""
-"The agent isn't installed in the game yet. Install it in Settings first."
-msgstr ""
-"Agent abhi game mein install nahi hai. Pehle tarteebat mein install karein."
 
 msgid "The area is now 40 tiles around you."
 msgstr "Ilaqa ab aap ke ird gird 40 tiles ka hai."
@@ -4398,6 +4531,12 @@ msgstr "Waqt: ghante:minute likhein, masalan 06:30"
 msgid "Time: {h} h {m} min"
 msgstr "Waqt: {h} ghante {m} minute"
 
+msgid "Timed out waiting for Mist World to start."
+msgstr ""
+
+msgid "Timed out waiting for game agent after starting mw.exe"
+msgstr ""
+
 msgid "Times"
 msgstr "Waqt"
 
@@ -4682,6 +4821,9 @@ msgstr ""
 msgid "Wa&lk to a dungeon or map"
 msgstr "Dungeon ya map tak &chalain"
 
+msgid "Waiting for game login screen to load..."
+msgstr ""
+
 msgid "Waiting {seconds} seconds after {job}"
 msgstr "{job} ke baad {seconds} seconds ka intezar"
 
@@ -4732,6 +4874,9 @@ msgstr "Random idhar udhar ghoomna"
 
 msgid "Warnings and errors"
 msgstr "Warnings aur errors"
+
+msgid "Warrior"
+msgstr ""
 
 msgid "Wednesday"
 msgstr "Budh"
@@ -4829,6 +4974,9 @@ msgid ""
 "Wildcards: * matches any text; ? matches one character. Not a regular expression."
 msgstr ""
 "Wildcard: * kisi bhi matn se milta hai; ? aik harf se. Yeh regular expression nahin hai."
+
+msgid "Witcher"
+msgstr ""
 
 msgid "With a heal skill, red &potions only below HP (%):"
 msgstr "Heal skill ke saath, red &potions sirf HP (%) se neeche:"
@@ -5139,6 +5287,9 @@ msgstr "{n} {shard} kharide: spare arnebia mazeed ke liye kaafi nahi"
 msgid "breaking gems"
 msgstr "gems torna"
 
+msgid "broke down {n} equipment at Blacksmith"
+msgstr ""
+
 msgid "broke {n} gems and crystals"
 msgstr "{n} gems aur crystals toote"
 
@@ -5283,6 +5434,9 @@ msgstr ""
 
 msgid "checked {n} lots"
 msgstr "{n} lots check kiye"
+
+msgid "checking storehouse for {item} before buying"
+msgstr ""
 
 msgid "checking the ticked lots..."
 msgstr "tick kiye hue lots check kar raha hai..."
@@ -5858,6 +6012,9 @@ msgstr "{x}, {y} ja rahe hain, jahan {name} ne kaha ke woh hain"
 msgid "gone (sold or taken back)"
 msgstr "chala gaya (bik gaya ya wapas le liya gaya)"
 
+msgid "got all {n} {item} from storehouse, skipping market purchase"
+msgstr ""
+
 msgid "got off {beast}"
 msgstr "{beast} se utar gaye"
 
@@ -5869,6 +6026,9 @@ msgstr "{way} dhakel kar nikal gaye"
 
 msgid "got out: walked to {cell}"
 msgstr "nikal gaye: {cell} tak chal kar"
+
+msgid "got {got} {item} from storehouse; buying remaining {rem} at market"
+msgstr ""
 
 msgid "got {n} Contribution Chests"
 msgstr "{n} Contribution Chests mile"
@@ -6099,8 +6259,8 @@ msgstr "{b} mein se {a} load"
 msgid "log in to a character first"
 msgstr "pehle kisi kirdaar mein log in karein"
 
-msgid "login must be the first command in a script"
-msgstr "login script ka pehla command hona chahiye"
+msgid "login {name}"
+msgstr ""
 
 msgid "looking after {pet}: HP {hp}/{max}"
 msgstr "{pet} ka khayal: HP {hp}/{max}"
@@ -6149,6 +6309,10 @@ msgstr "{n} {gem} banaye {used} {shard} se"
 
 msgid "made {n} {gem}; {have} in the bag"
 msgstr "{n} {gem} banaye; basta mein {have}"
+
+msgid ""
+"make_crystals level must be a number or variable, e.g. 2 or {crystal_level}"
+msgstr ""
 
 msgid "making gems"
 msgstr "Gems banana"
@@ -6416,6 +6580,9 @@ msgstr "haan/nahi ka koi sawal nahi aaya"
 
 msgid "no {card} in the bag - farming on without an experience card"
 msgstr "bag mein koi {card} nahi - experience card ke baghair farming jaari"
+
+msgid "no {item} in the bag to break down"
+msgstr ""
 
 msgid "no {item} in the storehouse"
 msgstr "storehouse mein koi {item} nahi"
@@ -7542,9 +7709,6 @@ msgid ""
 msgstr ""
 "game ki memory khatam ho gayi aur woh ruk gaya ({where}) - Mist World restart karein"
 
-msgid "the game refused the login request"
-msgstr "game ne login darkhwast se inkar kiya"
-
 msgid "the game said nothing - look in the bag"
 msgstr "game ne kuch nahi kaha - baste mein dekhein"
 
@@ -7919,6 +8083,9 @@ msgstr "{cell} wale teleport se guzar gaye"
 msgid "throwing away {n} {item} (the bag manager says so)"
 msgstr "{n} {item} phenk rahe hain (bag manager kehta hai)"
 
+msgid "timed out waiting for game window to load"
+msgstr ""
+
 msgid "to {name}"
 msgstr "{name} ko"
 
@@ -8115,6 +8282,9 @@ msgstr "yahan jayenge: {cave}"
 msgid "would {what}"
 msgstr "yeh karenge: {what}"
 
+msgid "write it as: breakdown [count] [item]"
+msgstr ""
+
 msgid "write it as: chores [check] [only=bank,donation]"
 msgstr "aise likhein: chores [check] [only=bank,donation]"
 
@@ -8123,11 +8293,17 @@ msgid ""
 msgstr ""
 "aise likho: construction_scan, construction_scan publish=broadcast ya construction_scan auto=broadcast (announcement, broadcast ya system)"
 
+msgid "write it as: enhance [check] [where=gang|city] [up_to=N]"
+msgstr ""
+
 msgid "write it as: hold key seconds"
 msgstr "aise likhein: hold key seconds"
 
 msgid "write it as: login  or  login <character>"
 msgstr "ise yun likhein: login  ya  login <character>"
+
+msgid "write it as: make_crystals weapon 2 [count] [where=gang|city]"
+msgstr ""
 
 msgid ""
 "write it as: market scan [sellers] | market search [item=\"<name>\"] [cheapest] [max=<price>] [category=<name>] [pages=<n>] | market seller <id>[,<id>] | market buy [check] [item=\"<name>\" count=<n> max=<price> [cap=<gold>]]"
@@ -9027,6 +9203,11 @@ msgstr "{w} bar {h} tiles, {n} exits."
 #~ msgstr "Rok dein jab din ka &drop waqt khatam ho jaye"
 
 #~ msgid ""
+#~ "The agent isn't installed in the game yet. Install it in Settings first."
+#~ msgstr ""
+#~ "Agent abhi game mein install nahi hai. Pehle tarteebat mein install karein."
+
+#~ msgid ""
 #~ "The bot finds a guard (in sight, where one was seen before, or in the nearest town), switches the PK mode to all mode, hits the guard once and lets it kill the character: no potions, no heals, no fighting back. It respawns in the city and goes again until the next level needs at least that much experience. At the nearest village, it walks into the nearest village first (the game brings a dead character back at the last town it walked into), then dies at its gates, so each death is quicker (on Tuneful Wetland, 11 seconds at Aria Village against 29 at Tulip City); if the game brings it back somewhere else, it dies at the nearest guard instead. The pet is put away first, and the PK mode is put back at the end. Deaths wear your gear like any death; a black-name character (Morality -1000 or lower) can lose worn gear when it dies, so the XP loser won't run for one."
 #~ msgstr ""
 #~ "Bot ek guard dhoondta hai (nazar mein, jahan pehle dekha gaya, ya qareebi shehar mein), PK mode all mode par karta hai, guard ko ek baar maarta hai aur character ko marne deta hai: na potion, na heal, na jawabi larai. Woh shehar mein dobara zinda hota hai aur tab tak dobara jata hai jab tak agle level ko kam az kam itni experience na chahiye. Qareebi gaon wale choice mein woh pehle qareebi gaon ke andar jata hai (game mare hue character ko us aakhri shehar mein wapas lata hai jis mein woh dakhil hua tha), phir us ke darwazon par marta hai, is liye har maut jaldi hoti hai (Tuneful Wetland par Aria Village mein 11 seconds, Tulip City mein 29); agar game use kahin aur wapas laye to woh is ke bajaye qareebi guard ke paas marta hai. Pehle pet wapas rakha jata hai, aur aakhir mein PK mode wapas lagaya jata hai. Har maut ki tarah gear ghista hai; black-name character (Morality -1000 ya kam) marne par pehna hua gear kho sakta hai, is liye XP loser us ke liye nahi chalega."
@@ -9067,11 +9248,17 @@ msgstr "{w} bar {h} tiles, {n} exits."
 #~ msgid "hunting bounty"
 #~ msgstr "hunting bounty"
 
+#~ msgid "login must be the first command in a script"
+#~ msgstr "login script ka pehla command hona chahiye"
+
 #~ msgid "our gang's highland"
 #~ msgstr "hamari gang ki highland"
 
 #~ msgid "the PK mode is still all mode - please set it back by hand"
 #~ msgstr "PK mode abhi bhi all mode hai - meharbani kar ke khud wapas lagayein"
+
+#~ msgid "the game refused the login request"
+#~ msgstr "game ne login darkhwast se inkar kiya"
 
 #~ msgid "the inner hall's East and West posts"
 #~ msgstr "inner hall ki East aur West posts"

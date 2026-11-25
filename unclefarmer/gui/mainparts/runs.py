@@ -43,9 +43,33 @@ def run_text_and_profile(item: Item, profile: str | None) -> tuple[str | None, s
     if target:
         matches = [known for known, _email in settings.automatic_login_profiles()
                    if target.casefold() in (known.casefold(), settings.profile_display(known).casefold())]
-        if len(matches) != 1:
+        if not matches:
+            matches = [known for known, _email in settings.automatic_login_profiles()
+                       if target.casefold() == settings.profile_name(known).casefold()]
+        if not matches:
+            matches = [known for known, em in settings.automatic_login_profiles()
+                       if target.casefold() == em.casefold()]
+        if not matches:
+            import re
+            m_srv = re.search(r'^\s*set\s+(?:server_name|server)\s*=\s*["\']?([^"\'\r\n]+)["\']?', text, re.MULTILINE | re.IGNORECASE)
+            srv_code = ("S1" if "s1" in m_srv.group(1).lower() else "S2") if m_srv else None
+            if srv_code:
+                cand_display = f"{target} - {srv_code}"
+                matches = [known for known in settings.profiles()
+                           if cand_display.casefold() in (known.casefold(), settings.profile_display(known).casefold())
+                           or (settings.profile_server(known) == srv_code and target.casefold() in (known.casefold(), settings.profile_name(known).casefold()))]
+        if not matches:
+            matches = [known for known in settings.profiles()
+                       if target.casefold() in (known.casefold(), settings.profile_display(known).casefold(), settings.profile_name(known).casefold())]
+        if not matches and profile:
+            if target.casefold() in (profile.casefold(), settings.profile_display(profile).casefold(), settings.profile_name(profile).casefold()):
+                matches = [profile]
+        if not matches:
             return None, None, _("The script's login character is not a known saved character: {name}", name=target)
-        target = matches[0]
+        if profile and profile in matches:
+            target = profile
+        else:
+            target = matches[0]
     if profile and target and not settings.same_character(profile, target):
         return None, None, _("The scheduled character and the script's login character are different.")
     return text, profile or target, None
@@ -131,7 +155,8 @@ class RunsMixin(FrameParts):
         """The buttons follow the selected game: another game can be started while one runs."""
         pid = self.selected_pid()
         on = pid in self.runs
-        self.start_btn.Enable(pid is not None and not on and bool(self.items))
+        can_start = (pid is not None and not on) or (pid is None)
+        self.start_btn.Enable(bool(self.items) and can_start)
         self.stop_btn.Enable(on)
         self.sync_pause()
         self.what.Enable(not on and bool(self.items))
@@ -180,7 +205,7 @@ class RunsMixin(FrameParts):
         else:
             self.start(pid)
 
-    def automatic_login_window(self, profile: str) -> tuple[int | None, str]:
+    def automatic_login_window(self, profile: str | None = None) -> tuple[int | None, str]:
         """Find a window for *profile*, opening exactly one if no usable client exists.
 
         The eventual sign-in remains in :class:`Run`, after the game's agent is reachable.  This
@@ -191,25 +216,28 @@ class RunsMixin(FrameParts):
         pending = getattr(self, "pending_logins", None)
         if pending is None:
             pending = self.pending_logins = {}
-        pid = next((g[0] for g in self.games if settings.is_profile_of(g[1], profile)), None)
-        if pid is not None:
-            pending.pop(profile, None)
-            return pid, ""
+        if profile:
+            pid = next((g[0] for g in self.games if settings.is_profile_of(g[1], profile)), None)
+            if pid is not None:
+                pending.pop(profile, None)
+                return pid, ""
         signed_out = [g[0] for g in self.games if not g[1] and g[0] not in self.runs]
         if len(signed_out) == 1:
-            pending.pop(profile, None)
+            if profile:
+                pending.pop(profile, None)
             return signed_out[0], ""
-        label = settings.profile_display(profile)
+        label = settings.profile_display(profile) if profile else _("Mist World")
         if len(signed_out) > 1:
             return None, _("{name} has more than one signed-out game; close the extras or log in first", name=label)
-        opened = pending.get(profile)
+        key = profile or "default"
+        opened = pending.get(key)
         if opened is not None and time.monotonic() - opened < LOGIN_OPEN_RETRY:
             return None, _("opening a game for {name}", name=label)
         problem = self.open_client_for_login()
         if problem:
-            pending.pop(profile, None)
+            pending.pop(key, None)
             return None, problem
-        pending[profile] = time.monotonic()
+        pending[key] = time.monotonic()
         return None, _("opening a game for {name}", name=label)
 
     def _game_to_start(self, profile: str | None) -> tuple[int | None, str]:
@@ -218,7 +246,19 @@ class RunsMixin(FrameParts):
         if pid is None:
             self.refresh_games()
             pid = self.selected_pid()
-        if pid is None and profile:
+        if pid is None:
+            if not profile:
+                profile = self.selected_character()
+            if not profile:
+                try:
+                    from .editing import active_profile
+                    profile = active_profile(self)
+                except Exception:
+                    pass
+            if not profile:
+                auto_profiles = settings.automatic_login_profiles()
+                if auto_profiles:
+                    profile = auto_profiles[0][0]
             return self.automatic_login_window(profile)
         return pid, ""
 
@@ -229,6 +269,18 @@ class RunsMixin(FrameParts):
         name = next((g[1] for g in self.games if g[0] == pid), None)
         last = settings.last_run_of(self.s, name)
         return saved_item(last) if last and saved_item(last) in self.items else item
+
+    def _wait_and_start(self, item: Item, profile: str | None, schedule_mark: tuple[str, str] | None, tries: int = 0) -> None:
+        """Poll until the newly launched game is reachable, then start the run automatically."""
+        if tries >= 40:
+            self.say(_("Timed out waiting for Mist World to start."))
+            return
+        self.refresh_games()
+        pid = next((g[0] for g in self.games if not g[1] or settings.is_profile_of(g[1], profile or "")), None)
+        if pid is not None and pid not in self.runs:
+            self.start(pid=pid, item=item, profile=profile, schedule_mark=schedule_mark)
+            return
+        wx.CallLater(1000, lambda: self._wait_and_start(item, profile, schedule_mark, tries + 1))
 
     def start(self, pid: int | None = None, item: Item | None = None, remote: bool = False,
               profile: str | None = None, schedule_mark: tuple[str, str] | None = None) -> str | None:
@@ -251,6 +303,8 @@ class RunsMixin(FrameParts):
             pid, waiting = self._game_to_start(profile)
             if pid is None and waiting:
                 self.say(waiting)
+                if not remote and item:
+                    self._wait_and_start(item, profile, schedule_mark)
                 return waiting if remote else None
         if pid is None:
             self.say(_("No game with the agent is running."))
@@ -280,6 +334,7 @@ class RunsMixin(FrameParts):
         run.schedule = schedule_mark  # set before the thread can complete a short tool
         run.character = settings.profile_name(name) or None   # for the log until the run reads it from the game itself
         run.profile = profile or name
+        run.on_pid_change = getattr(self, "on_run_pid_change", None)
         self.runs[pid] = run
         self.last_line[pid] = _("Starting")
         self.label_games()
@@ -380,6 +435,18 @@ class RunsMixin(FrameParts):
         self.say(_("Stopping every bot"))
         for run in list(self.runs.values()):
             run.stop()
+
+    def on_run_pid_change(self, old_pid: int, new_pid: int, run: Run) -> None:
+        def update():
+            if old_pid in self.runs:
+                del self.runs[old_pid]
+            self.runs[new_pid] = run
+            if hasattr(self, "last_line"):
+                self.last_line[new_pid] = self.last_line.pop(old_pid, _("Starting"))
+            self.refresh_games()
+            self.label_games()
+            self.update_buttons()
+        wx.CallAfter(update)
 
     def tagged(self) -> bool:
         """With more than one game, every log line says which character it is about."""

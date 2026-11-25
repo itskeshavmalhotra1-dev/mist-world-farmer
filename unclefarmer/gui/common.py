@@ -197,6 +197,11 @@ class Form:
             return c
         return self.add(label, make)
 
+    def combo(self, label: str, value: str = "", choices: Sequence[str] = (), style: int = 0) -> wx.ComboBox:
+        def make(p: wx.Window) -> wx.ComboBox:
+            return wx.ComboBox(p, value=str(value), choices=list(choices), style=style)
+        return self.add(label, make)
+
     def check(self, label: str, value: object) -> wx.CheckBox:
         c = wx.CheckBox(self.parent, label=label)
         c.SetValue(bool(value))
@@ -381,8 +386,12 @@ def ok_cancel(dialog: wx.Dialog, sizer: wx.Sizer, ok_label: str | None = None,
         row.Add(b, 0, wx.RIGHT, 8)
     row.AddStretchSpacer()
     std = dialog.CreateStdDialogButtonSizer(wx.OK | wx.CANCEL)
-    if ok_label:
-        std.GetAffirmativeButton().SetLabel(ok_label)
+    btn = std.GetAffirmativeButton()
+    if ok_label and btn:
+        btn.SetLabel(ok_label)
+    if btn:
+        dialog.SetDefaultItem(btn)
+        dialog.SetAffirmativeId(wx.ID_OK)
     row.Add(std, 0)
     sizer.Add(row, 0, wx.EXPAND | wx.ALL, 12)
 

@@ -271,6 +271,17 @@ def test_item_pattern_takes_the_marks_the_storehouse_list_writes_after_a_name() 
     assert not re.search(q, "47 Large Red Potion (restricted) Plus")
 
 
+def test_item_pattern_matches_enhanced_and_refined_equipment() -> None:
+    p = town.item_pattern("Bow of chaser")
+    assert re.search(p, "Refined  Bow of chaser; common  (bound) ", re.I)
+    assert re.search(p, "11; Refined  Bow of chaser; common  (bound) ", re.I)
+    assert re.search(p, "Bow of chaser +5", re.I)
+    assert re.search(p, "Flawless  Bow of chaser +5; rare (bound)", re.I)
+    assert re.search(p, "1; Bow of chaser", re.I)
+    assert not re.search(p, "Pet Bow of chaser", re.I)
+    assert not re.search(p, "Bow of chaser_plus", re.I)
+
+
 # ============================================================ gem_of
 @pytest.mark.parametrize("shard,gem", [("Level 1 Obsidian Shard", "Level 1 Obsidian"),
                                        ("level 3 ruby shard", "Level 3 ruby"),
@@ -1418,3 +1429,244 @@ def test_sell_one_shard_reports_how_many_left(monkeypatch: pytest.MonkeyPatch) -
         return 1
     monkeypatch.setattr(town, "sell_shards", fake)
     assert town._sell_one_shard(as_bot(b), "Level 1 Sapphire Shard", 5) == 3
+
+
+def test_counts_recognizes_refined_equipment() -> None:
+    b = TownBot(bag=[{"name": "Refined  Bow of chaser; common  (bound) ", "count": 2}])
+    c = town.counts(as_bot(b))
+    assert c.get("bow of chaser") == 2
+
+
+def test_breakdown_aborts_without_weapons_in_bag(monkeypatch: pytest.MonkeyPatch) -> None:
+    b = TownBot(bag=[])
+    visited = []
+    monkeypatch.setattr(town, "visit", lambda bot, role, **kwargs: visited.append(role))
+    res = town.breakdown(as_bot(b), "Bow of chaser", 5)
+    assert res == 0
+    assert visited == []
+    assert any("no Bow of chaser in the bag to break down" in line for line in b.lines)
+    assert any("no Bow of chaser in the bag to break down" in line for line in b.spoken)
+
+
+def test_buy_shards_checks_storehouse_first(monkeypatch: pytest.MonkeyPatch) -> None:
+    b = TownBot(bag=[])
+    withdrawn: list[tuple[str, int]] = []
+
+    def fake_withdraw(bot: TownBot, item: str, n: int) -> int:
+        withdrawn.append((item, n))
+        return n
+
+    monkeypatch.setattr(town, "withdraw", fake_withdraw)
+    market_bought: list[tuple[str, int]] = []
+    monkeypatch.setattr(town, "buy_shards_at_market", lambda bot, item, n: market_bought.append((item, n)) or n)
+    res = town.buy(as_bot(b), "Weapon Enhance Crystal Shard", 40)
+    assert res == 40
+    assert withdrawn == [("Weapon Enhance Crystal Shard", 40)]
+    assert market_bought == []
+
+
+def test_deposit_specific_storehouse(monkeypatch: pytest.MonkeyPatch) -> None:
+    tb = TownBot(bag=[{"name": "Bow of chaser", "count": 2}])
+    visited_candidates = []
+    monkeypatch.setattr(town, "visit", lambda b, role, candidates=None, **kw: visited_candidates.extend(candidates or []))
+    monkeypatch.setattr(town, "open_section", lambda b, s: True)
+    monkeypatch.setattr(town, "pick", lambda b, p, q: tb.remove("Bow of chaser", q or 0) or True)
+    tb.dialog = lambda: {"open": 1, "top": {"rows": [[{"options": ["Bow of chaser"]}]]}}
+    put = town.deposit(as_bot(tb), "Bow of chaser", storehouse="Soul Storehouse")
+    assert put == 2
+    assert any("Soul Storehouse" in c[1] for c in visited_candidates)
+
+
+def test_withdraw_specific_storehouse(monkeypatch: pytest.MonkeyPatch) -> None:
+    tb = TownBot()
+    visited_candidates = []
+    monkeypatch.setattr(town, "visit", lambda b, role, candidates=None, **kw: visited_candidates.extend(candidates or []))
+    monkeypatch.setattr(town, "open_section", lambda b, s: True)
+    monkeypatch.setattr(town, "pick", lambda b, p, q: tb.add("Bow of chaser", q or 0) or True)
+    tb.dialog = lambda: {"open": 1, "top": {"rows": [[{"options": ["Bow of chaser"]}]]}}
+    got = town.withdraw(as_bot(tb), "Bow of chaser", 5, storehouse="Ansible Space-Time Storehouse")
+    assert got == 5
+    assert any("Ansible Space-Time Storehouse" in c[1] for c in visited_candidates)
+
+
+def test_storehouse_count_specific_storehouse(monkeypatch: pytest.MonkeyPatch) -> None:
+    tb = TownBot()
+    visited_candidates = []
+    monkeypatch.setattr(town, "visit", lambda b, role, candidates=None, **kw: visited_candidates.extend(candidates or []))
+    monkeypatch.setattr(town, "open_section", lambda b, s: True)
+    tb.dialog = lambda: {
+        "open": 1,
+        "top": {
+            "rows": [
+                [{"options": ["Refined Bow of chaser"]}, {"options": ["Bow of chaser +5"]}],
+                [{"options": ["Small Red Potion"]}, None]
+            ]
+        }
+    }
+    cnt = town.storehouse_count(as_bot(tb), "Bow of chaser", storehouse="Soul Storehouse")
+    assert cnt == 2
+    assert any("Soul Storehouse" in c[1] for c in visited_candidates)
+    assert not tb.storehouse_is_full
+
+    total_cnt = town.storehouse_count(as_bot(tb), storehouse="Soul Storehouse")
+    assert total_cnt == 3
+
+
+def test_select_storehouse_branch(monkeypatch: pytest.MonkeyPatch) -> None:
+    tb = TownBot()
+    opened = []
+    monkeypatch.setattr(town, "open_section", lambda b, s: opened.append(s) or True)
+    tb.dialog = lambda: {
+        "open": 1,
+        "top": {
+            "rows": [
+                [{"options": [";Ansible Space-Time Storehouse;"]}],
+                [{"options": [";Soul Storehouse;"]}]
+            ]
+        }
+    }
+    assert town._select_storehouse_branch(as_bot(tb), "Soul Storehouse") is True
+    assert len(opened) == 1
+    assert "Soul" in opened[0]
+
+
+def test_withdraw_soul_storehouse_take_out(monkeypatch: pytest.MonkeyPatch) -> None:
+    tb = TownBot()
+    tb.known_counts = {"bow of chaser": 0}
+    visited = []
+    monkeypatch.setattr(town, "visit", lambda b, role, candidates=None: visited.append((role, candidates)))
+    monkeypatch.setattr(town, "counts", lambda b: tb.known_counts)
+
+    step = 0
+    def fake_open_section(b, pat):
+        nonlocal step
+        if "take" in pat and "out" in pat:
+            step = 1
+            return True
+        return False
+
+    def fake_dialog():
+        if step == 1:
+            return {
+                "open": 1,
+                "top": {
+                    "rows": [
+                        [{"text": "1; Bow of chaser +5; common (bound)", "flags": 0}]
+                    ]
+                }
+            }
+        return {"open": 1, "top": {"rows": []}}
+
+    def fake_pick(b, pat, qty):
+        tb.known_counts["bow of chaser"] = tb.known_counts.get("bow of chaser", 0) + 1
+        return True
+
+    monkeypatch.setattr(town, "open_section", fake_open_section)
+    monkeypatch.setattr(town, "pick", fake_pick)
+    tb.dialog = fake_dialog
+
+    got = town.withdraw(as_bot(tb), "Bow of chaser", 1, storehouse="Soul Storehouse")
+    assert got == 1
+    assert any("Soul Storehouse" in c[1] for c in visited[0][1])
+
+
+def test_storehouse_count_soul_storehouse_take_out(monkeypatch: pytest.MonkeyPatch) -> None:
+    tb = TownBot()
+    monkeypatch.setattr(town, "visit", lambda b, role, candidates=None: None)
+
+    opened = []
+    def fake_open_section(b, pat):
+        opened.append(pat)
+        return "take" in pat
+
+    tb.dialog = lambda: {
+        "open": 1,
+        "top": {
+            "rows": [
+                [{"text": "1; Bow of chaser +5; common (bound)"}],
+                [{"text": "2; Bow of chaser +5; common (bound)"}]
+            ]
+        }
+    }
+    monkeypatch.setattr(town, "open_section", fake_open_section)
+
+    count = town.storehouse_count(as_bot(tb), "Bow of chaser", storehouse="Soul Storehouse")
+    assert count == 2
+    assert any("take" in p for p in opened)
+
+
+def test_breakdown_all_weapons_with_dual_confirmation(monkeypatch: pytest.MonkeyPatch) -> None:
+    tb = TownBot(bag=[{"name": "Bow of chaser", "count": 3}])
+    tb.known_counts = {"bow of chaser": 3}
+    monkeypatch.setattr(town, "counts", lambda b: tb.known_counts)
+    monkeypatch.setattr(town, "visit", lambda b, role: setattr(b, "last_visited_npc", (1041, "Blacksmith Orisun", 10.0, 20.0)))
+
+    opened_sections = []
+    def fake_open_section(b, pat):
+        opened_sections.append(pat)
+        return True
+    monkeypatch.setattr(town, "open_section", fake_open_section)
+
+    state = "picker"  # "picker" -> "popup1" -> "popup2" -> "closed" -> "picker"
+    def fake_choose(pattern, row=None):
+        nonlocal state
+        if "confirm" in pattern.lower() or "ok" in pattern.lower():
+            if state == "popup1":
+                state = "popup2"
+            elif state == "popup2":
+                tb.known_counts["bow of chaser"] -= 1
+                state = "closed"
+        else:
+            state = "popup1"
+        return {"text": pattern}
+
+    tb.choose = fake_choose
+
+    def fake_dialog():
+        nonlocal state
+        if state == "popup1":
+            return {
+                "open": 1,
+                "top": {
+                    "rows": [
+                        [{"text": "Are you sure you want to decompose this equipment?"}],
+                        [{"text": "Confirm", "cmd": [2, 1]}]
+                    ]
+                }
+            }
+        elif state == "popup2":
+            return {
+                "open": 1,
+                "top": {
+                    "rows": [
+                        [{"text": "Refined Bow of chaser; enhance Level 5"}],
+                        [{"text": "confirm", "cmd": [2, 2]}]
+                    ]
+                }
+            }
+        elif state == "closed":
+            return {"open": 0, "top": None}
+        rem = tb.known_counts.get("bow of chaser", 0)
+        if rem > 0:
+            return {
+                "open": 1,
+                "top": {
+                    "rows": [[{"text": f"{i+1}; Bow of chaser +5; common"}] for i in range(rem)]
+                }
+            }
+        return {"open": 0, "top": None}
+
+    tb.dialog = fake_dialog
+
+    def fake_talk(npc, at=None):
+        nonlocal state
+        state = "picker"
+        return True
+    tb.talk = fake_talk
+
+    done = town.breakdown(as_bot(tb), "Bow of chaser")
+    assert done == 3
+    assert tb.known_counts["bow of chaser"] == 0
+
+
+

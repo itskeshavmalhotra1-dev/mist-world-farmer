@@ -476,10 +476,18 @@ final class Memory {
 
     /** Why the target keys would not take this entity, or null when they would (game.i.o). */
     private static String unselectable(Object world, Object e) throws Unavailable {
-        if ((intField(e, E_KIND) & F_UNSELECTABLE) != 0) return "can't be selected";
+        boolean isNpc = has(e, E_HP) && has(e, E_SIDE) && shortField(e, E_SIDE) == -1;
         int mx = intField(world, W_SELF_X), my = intField(world, W_SELF_Y);
         int ex = intField(e, E_X), ey = intField(e, E_Y);
-        if (Math.hypot(ex - mx, ey - my) > SELECT_REACH) return "is out of the target keys' reach";
+        double dist = Math.hypot(ex - mx, ey - my);
+        if (isNpc) {
+            // NPCs within talking reach (5 tiles = 5000 units) are always selectable to talk to
+            if (dist <= 5000.0) return null;
+            if (dist > SELECT_REACH) return "is out of the target keys' reach";
+        } else {
+            if ((intField(e, E_KIND) & F_UNSELECTABLE) != 0) return "can't be selected";
+            if (dist > SELECT_REACH) return "is out of the target keys' reach";
+        }
         Method m = sight;
         if (m == null) {
             try {

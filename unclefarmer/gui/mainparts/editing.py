@@ -64,8 +64,19 @@ class EditingMixin(FrameParts):
         without unexpectedly moving focus to Settings.
         """
         folder = self.remember_game_folder()
-        if not gameinstall.is_game_folder(folder) or gameinstall.status(folder) != "installed":
-            return _("The agent isn't installed in the game yet. Install it in Settings first.")
+        if not gameinstall.is_game_folder(folder):
+            dlg = wx.DirDialog(self, _("Select your Mist World folder (containing mw.exe)"), style=wx.DD_DEFAULT_STYLE | wx.DD_DIR_MUST_EXIST)
+            if dlg.ShowModal() == wx.ID_OK:
+                chosen = dlg.GetPath()
+                if gameinstall.is_game_folder(chosen):
+                    folder = chosen
+                    self.s["game_folder"] = chosen
+                    settings.save_app(self.s)
+            dlg.Destroy()
+        if not gameinstall.is_game_folder(folder):
+            return _("Please select your Mist World game folder.")
+        if gameinstall.status(folder) != "installed":
+            gameinstall.install(folder)
         try:
             subprocess.Popen([os.path.join(folder, "mw.exe")], cwd=folder, close_fds=True,
                              creationflags=getattr(subprocess, "DETACHED_PROCESS", 0x8))
@@ -112,6 +123,13 @@ class EditingMixin(FrameParts):
             name = d.original
         self.fill_runs(("script", name) if name else None)
 
+    def open_arnebia_settings(self) -> None:
+        from ..arnebia import ArnebiaTransferDialog
+        with ArnebiaTransferDialog(self) as d:
+            if d.ShowModal() == wx.ID_OK:
+                d.save()
+        self.fill_runs()
+
     def edit_selected(self) -> None:
         item = self.active_item()
         if not item:
@@ -121,6 +139,12 @@ class EditingMixin(FrameParts):
             with PlanDialog(self, plans.load(item[1]), self.snapshot) as d:
                 if d.ShowModal() == wx.ID_OK:
                     self.fill_runs(("plan", d.plan["name"]))
+        elif item[0] == "script" and item[1] == "arnebia_transfer":
+            from ..arnebia import ArnebiaTransferDialog
+            with ArnebiaTransferDialog(self, item[1]) as d:
+                if d.ShowModal() == wx.ID_OK:
+                    d.save()
+            self.fill_runs(("script", "arnebia_transfer"))
         else:
             with ScriptDialog(self, item[1]) as d:
                 d.ShowModal()

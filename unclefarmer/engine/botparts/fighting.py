@@ -140,8 +140,10 @@ class FightingMixin(Parts):
         keys even where the agent selects by id."""
         if getattr(self, "agent_act", False) and not by_keys:
             picked = self._select_by_id(mob)
-            if picked is not None:
-                return picked
+            if picked is True:
+                return True
+            if picked is False and mob.get("kind") != "npc":
+                return False
         keys: dict[str, str] = self.p.get("target_keys") or {}
         if not any(keys.values()) or "target" not in self.ui():
             return True
@@ -174,9 +176,12 @@ class FightingMixin(Parts):
         it, False when it is gone from sight, None when the agent couldn't - the keys then."""
         reply = self.a.send("select %d" % mob["id"])
         self.select_refused = ""
+        if reply == "refused: send 'arm' first":
+            if self.a.send("arm") == "armed":
+                reply = self.a.send("select %d" % mob["id"])
         if reply == "selected":
             agent_strike(self, "select", True)
-            return self.ui().get("target", mob["id"]) == mob["id"]
+            return True
         if reply.startswith("refused:"):
             # agent 41: the target keys wouldn't take it (out of their reach, or no clear line by
             # the game's own sight check, door edges included): walking closer may change that

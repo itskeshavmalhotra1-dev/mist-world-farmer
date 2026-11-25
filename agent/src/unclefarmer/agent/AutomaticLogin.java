@@ -57,11 +57,12 @@ final class AutomaticLogin {
         }
         synchronized (LOCK) {
             if (running) return "{\"ok\":false,\"error\":\"automatic login is already running\"}";
-            String connected = connectedAccount();
+            boolean alive = connectionAlive();
+            String connected = alive ? connectedAccount() : null;
             if (connected != null && !connected.equalsIgnoreCase(email)) {
                 return "{\"ok\":false,\"error\":\"another saved account is already connecting\"}";
             }
-            if (connected == null) {
+            if (connected == null && activeCharacterMenu() == null) {
                 String problem = selectSavedServer(server);
                 if (problem != null) return "{\"ok\":false,\"error\":\"" + Protocol.jsonEscape(problem) + "\"}";
                 problem = startSavedAccount(email);
@@ -96,8 +97,9 @@ final class AutomaticLogin {
             new Thread(new Runnable() { @Override public void run() { try {
                 Keys.tap("enter", 60L); Thread.sleep(300L); status = "logging in";
                 String problem = startSavedAccount(email);
-                status = problem == null && waitForCharacter(id, System.currentTimeMillis() + WORLD_TIMEOUT_MILLIS)
-                        ? "ready" : (problem == null ? "timed out loading character" : problem);
+                boolean loaded = problem == null && waitForCharacter(id, System.currentTimeMillis() + WORLD_TIMEOUT_MILLIS);
+                status = loaded ? "ready" : (problem == null ? "timed out loading character" : problem);
+                if (loaded) resetUiState();
             } catch (InterruptedException ignored) { Thread.currentThread().interrupt(); status = "cancelled"; }
               finally { running = false; } } }, "Uncle Farmer reconnect").start();
         }
@@ -122,7 +124,9 @@ final class AutomaticLogin {
                             }
                             status = "loading character";
                             long worldDeadline = System.currentTimeMillis() + WORLD_TIMEOUT_MILLIS;
-                            status = waitForCharacter(id, worldDeadline) ? "ready" : "timed out loading character";
+                            boolean loaded = waitForCharacter(id, worldDeadline);
+                            status = loaded ? "ready" : "timed out loading character";
+                            if (loaded) resetUiState();
                             return;
                         }
                         Thread.sleep(50L);
@@ -149,6 +153,32 @@ final class AutomaticLogin {
             Thread.sleep(50L);
         }
         return false;
+    }
+
+    /** Resets the game window typing lock and focus state so that all keys and menus respond. */
+    static void resetUiState() {
+        final Frame window = Memory.window();
+        if (window == null) return;
+        try {
+            Field fw = window.getClass().getDeclaredField("w");
+            fw.setAccessible(true);
+            fw.setInt(null, 0);
+        } catch (Throwable ignored) { }
+        try {
+            Field fv = window.getClass().getDeclaredField("v");
+            fv.setAccessible(true);
+            fv.setBoolean(null, true);
+        } catch (Throwable ignored) { }
+        try {
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                @Override public void run() {
+                    try {
+                        window.toFront();
+                        window.requestFocus();
+                    } catch (Throwable ignored) { }
+                }
+            });
+        } catch (Throwable ignored) { }
     }
 
     /**

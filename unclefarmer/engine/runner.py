@@ -9,11 +9,17 @@ share the day's log file; applog serialises the writes.
 
 from __future__ import annotations
 
+import ctypes
 import datetime as dt
+import os
+import subprocess
+import sys
 import threading
 import time
 from collections.abc import Callable
 from typing import Any
+
+import psutil
 
 from .. import applog, atlas, daily, gameinstall, phrases, scan, settings, stats, trust
 from ..clock import CLOCK, Clock, clock_for
@@ -24,6 +30,7 @@ from . import chores, keyslots, triggers, xpcard
 from .bot import Bot, Respawned, Stopped
 from .botparts.base import GameBroken
 from .botparts.parts import Sighting, Where
+from .kills import KillTracker
 from .script import Runner, ScriptError
 
 AGENT_VERSION = 5   # the agent's StateServer.VERSION this app needs (4: dialog, target; 5: typing quantities)
@@ -41,6 +48,34 @@ AGENT_SLOTS = 46    # from here `slot <n>` presses an attack key through the gam
 AGENT_SERVER = 58   # from here `server` identifies the live S1/S2 route without a game packet
 AGENT_LOGIN = 69    # from here automatic login also selects the profile's saved server
 AGENT_RECONNECT = 70 # from here `reconnect <id>` logs a dropped game back in with its saved account
+
+
+def focus_game_window(pid: int | None) -> bool:
+    """Brings the game window corresponding to pid to the foreground."""
+    if sys.platform != "win32" or not pid:
+        return False
+    try:
+        user32 = ctypes.WinDLL("user32", use_last_error=True)
+        found = [0]
+        WNDENUMPROC = ctypes.WINFUNCTYPE(ctypes.c_bool, ctypes.c_void_p, ctypes.c_void_p)
+
+        def enum_cb(hwnd: int, _: Any) -> bool:
+            proc_id = ctypes.c_ulong()
+            user32.GetWindowThreadProcessId(hwnd, ctypes.byref(proc_id))
+            if proc_id.value == pid and user32.IsWindowVisible(hwnd):
+                found[0] = hwnd
+                return False
+            return True
+
+        user32.EnumWindows(WNDENUMPROC(enum_cb), 0)
+        if found[0]:
+            user32.ShowWindow(found[0], 9)  # SW_RESTORE
+            user32.SetForegroundWindow(found[0])
+            return True
+    except Exception:
+        pass
+    return False
+
 
 def _write_log(line: str) -> None:
     """Every run line to today's log; a broken log must never stop a run (applog says so once)."""
@@ -200,9 +235,23 @@ class Run(threading.Thread):
             raise Stopped(_("the game is running an older Uncle Farmer agent - restart Mist World so it loads "
                             "the new one"))
         snap = link.json("mem state" if agent >= AGENT_STATE else "mem")
-        if not snap.get("ok") and self.profile:
-            self._login_saved_character(link, agent)
-            snap = link.json("mem state" if agent >= AGENT_STATE else "mem")
+        from .script import login_target
+        script_target = login_target(self.text)
+        if not snap.get("ok"):
+            if script_target:
+                self.profile = script_target
+            if self.profile:
+                self._wait_for_login_screen(link, settle=4.5)
+                self._login_saved_character(link, agent)
+                self.stop_event.wait(3.5)
+                try:
+                    link.send("typeesc")
+                    link.send("keysup")
+                    link.send("arm")
+                except Exception:
+                    pass
+                focus_game_window(self.pid)
+                snap = link.json("mem state" if agent >= AGENT_STATE else "mem")
         if not snap.get("ok"):
             raise Stopped(snap.get("error") or _("log in to a character first"))
         character = self.character = snap["self"]["name"]
@@ -219,7 +268,24 @@ class Run(threading.Thread):
         self.log(_("starting {what} as {name}", what=self.title, name=character), speak=True)
         bot = self._make_bot(link, profile, agent, guard, day_end, app)
         self._set_up(bot, snap, profile, found, agent, app)
+
+        if script_target and not settings.is_profile_of(self.profile, script_target):
+            self.log(_("Game is currently {current}, switching to script character {target}...",
+                       current=settings.profile_display(self.profile),
+                       target=script_target), speak=True)
+            self._switch_saved_character(bot, script_target)
+
         return bot
+
+    def _wait_for_login_screen(self, link: AgentLink, settle: float = 4.5) -> None:
+        """Wait until the game has rendered its login screen and TTS has settled."""
+        self.log(_("Waiting for game login screen to load..."), speak=True)
+        login_screen_deadline = time.monotonic() + 45.0
+        while time.monotonic() < login_screen_deadline and not self.stop_event.wait(0.5):
+            acc = link.json("loginaccount")
+            if acc.get("ok"):
+                break
+        self.stop_event.wait(settle)
 
     def _login_saved_character(self, link: AgentLink, agent: int) -> None:
         """Use this plan's saved account, then wait for the requested character to be selected."""
@@ -227,15 +293,47 @@ class Run(threading.Thread):
             raise Stopped(_("the game is running an older Uncle Farmer agent - restart Mist World so it loads "
                             "the new one"))
         character = self.profile or ""
+        matches = [known for known, _email in settings.automatic_login_profiles()
+                   if character.casefold() in (known.casefold(), settings.profile_display(known).casefold())]
+        if not matches:
+            matches = [known for known, _email in settings.automatic_login_profiles()
+                       if character.casefold() == settings.profile_name(known).casefold()]
+        if not matches:
+            matches = [known for known, em in settings.automatic_login_profiles()
+                       if character.casefold() == em.casefold()]
+        if not matches:
+            matches = [known for known in settings.profiles()
+                       if character.casefold() in (known.casefold(), settings.profile_display(known).casefold(), settings.profile_name(known).casefold())]
+        if matches:
+            character = self.profile = matches[0]
         email = settings.load_profile(character).get("login_email")
         entity_id, server = settings.profile_id(character), settings.profile_server(character)
         if not isinstance(email, str) or not email or not entity_id or not server:
             raise Stopped(_("the plan's character has no saved account or server. Log in to it once first."))
-        if link.send("arm") != "armed":
-            raise Stopped(_("the game refused the login request"))
-        reply = link.json("autologin %s %s %s" % (email, entity_id, server))
+
+        deadline = time.monotonic() + 45.0
+        reply: dict[str, Any] = {}
+        while time.monotonic() < deadline and not self.stop_event.wait(0):
+            if link.send("arm") != "armed":
+                self.stop_event.wait(0.5)
+                continue
+            reply = link.json("autologin %s %s %s" % (email, entity_id, server))
+            if reply.get("ok"):
+                break
+            err = str(reply.get("error") or "")
+            if any(transient in err for transient in (
+                "no game window",
+                "server selector is unavailable",
+                "game model is not ready",
+                "could not select the saved server",
+                "automatic login is already running",
+                "another saved account is already connecting"
+            )):
+                self.stop_event.wait(0.5)
+                continue
+            raise Stopped(err or _("automatic login could not start"))
         if not reply.get("ok"):
-            raise Stopped(str(reply.get("error") or _("automatic login could not start")))
+            raise Stopped(str(reply.get("error") or _("timed out waiting for game window to load")))
         self.log(_("starting automatic login"), speak=True)
         while not self.stop_event.wait(0.25):
             state = link.json("autologinstatus")
@@ -244,7 +342,15 @@ class Run(threading.Thread):
             if state.get("status") == "ready":
                 self.log(_("automatic login finished"))
                 return
-            raise Stopped(str(state.get("status") or _("automatic login stopped")))
+            status_msg = str(state.get("status") or "")
+            if any(transient in status_msg for transient in (
+                "server selector is unavailable",
+                "no game window",
+                "game model is not ready"
+            )):
+                self.stop_event.wait(1.0)
+                continue
+            raise Stopped(status_msg or _("automatic login stopped"))
         raise Stopped(_("stopped by you"))
 
     def _profile(self, link: AgentLink, character: str) -> tuple[dict[str, Any], dict[str, Any]]:
@@ -314,8 +420,172 @@ class Run(threading.Thread):
         bot.last_seen = getattr(self, "last_seen", None)   # where our games last saw a trusted player
         bot.tell = getattr(self, "tell", None)       # answers the player who asked for this run
         bot.reconnect = lambda: self._reconnect_saved_character(bot, agent)
+        bot.switch_character = lambda target: self._switch_saved_character(bot, target)
         self.bot = bot
         return bot
+
+    def _switch_saved_character(self, bot: Bot, target: str) -> bool:
+        """Switch to another character mid-script, logging into target and reconfiguring bot."""
+        if not target:
+            return False
+        if target.startswith("{") and target.endswith("}"):
+            if hasattr(self, "text"):
+                from .script import _resolve_script_target
+                resolved = _resolve_script_target(target, self.text)
+                if resolved:
+                    target = resolved
+        if self.character and target.casefold() in (
+            self.character.casefold(),
+            settings.profile_display(self.profile or "").casefold(),
+            settings.profile_name(self.profile or "").casefold(),
+        ):
+            self.log(_("Already logged in as {name}", name=self.character))
+            return True
+        matches = [known for known, _email in settings.automatic_login_profiles()
+                   if target.casefold() in (known.casefold(), settings.profile_display(known).casefold())]
+        if not matches:
+            matches = [known for known, _email in settings.automatic_login_profiles()
+                       if target.casefold() == settings.profile_name(known).casefold()]
+        if not matches:
+            matches = [known for known, em in settings.automatic_login_profiles()
+                       if target.casefold() == em.casefold()]
+        if not matches:
+            matches = [known for known in settings.profiles()
+                       if target.casefold() in (known.casefold(), settings.profile_display(known).casefold(), settings.profile_name(known).casefold())]
+        if matches and hasattr(self, "text") and self.text:
+            import re
+            m_srv = re.search(r'^\s*set\s+(?:server_name|server)\s*=\s*["\']?([^"\'\r\n]+)["\']?', self.text, re.MULTILINE | re.IGNORECASE)
+            if m_srv:
+                srv_code = "S1" if "s1" in m_srv.group(1).lower() else "S2"
+                cand_srv = [m for m in matches if settings.profile_server(m) == srv_code]
+                if cand_srv:
+                    matches = cand_srv
+        if not matches:
+            raise Stopped(_("The script's login character is not a known saved character: {name}", name=target))
+        target_profile = matches[0]
+
+        if self.profile and settings.same_character(self.profile, target_profile):
+            self.log(_("Already logged in as {name}", name=settings.profile_display(target_profile)))
+            return True
+
+        self.log(_("Switching character to {name}...", name=settings.profile_display(target_profile)), speak=True)
+        link = self.link
+        if link is not None:
+            try:
+                link.send("keysup")
+            except Exception:
+                pass
+        bot.held.clear()
+
+        old_pid = self.pid
+        if link is not None:
+            try:
+                link.send("arm")
+                link.send("closegame")
+            except Exception:
+                pass
+
+        deadline = time.monotonic() + 2.5
+        while time.monotonic() < deadline:
+            try:
+                if not psutil.pid_exists(old_pid):
+                    break
+            except Exception:
+                break
+            time.sleep(0.1)
+
+        try:
+            if psutil.pid_exists(old_pid):
+                psutil.Process(old_pid).kill()
+        except Exception:
+            pass
+
+        self.profile = target_profile
+        app = settings.load_app()
+        folder = self.game_folder() or settings.game_folder(app)
+        exe = os.path.join(folder, "mw.exe")
+        if not os.path.exists(exe):
+            raise Stopped(_("Game executable mw.exe not found in {folder}", folder=folder))
+
+        proc = subprocess.Popen([exe], cwd=folder, close_fds=True,
+                                creationflags=getattr(subprocess, "DETACHED_PROCESS", 0x8))
+        new_pid = proc.pid
+        self.pid = new_pid
+
+        new_link = None
+        connect_deadline = time.monotonic() + 35.0
+        while time.monotonic() < connect_deadline:
+            if self.stop_event.is_set():
+                raise Stopped(_("stopped by you"))
+            try:
+                test_link = AgentLink(pid=new_pid)
+                v = test_link.send("version")
+                if v.startswith("mwagent "):
+                    new_link = test_link
+                    break
+            except Exception:
+                pass
+            time.sleep(0.2)
+
+        if new_link is None:
+            raise Stopped(_("Timed out waiting for game agent after starting mw.exe"))
+
+        self.link = new_link
+        bot.a = new_link
+        bot.kill_tracker = KillTracker(new_link)
+        self._wait_for_login_screen(new_link, settle=4.5)
+
+        self.profile = target_profile
+        app = settings.load_app()
+        active_link = self.link
+        if active_link is None:
+            raise Stopped(_("No active game link"))
+
+        agent = int(active_link.send("version").split()[1])
+        self._login_saved_character(active_link, agent)
+        self.stop_event.wait(3.5)
+        try:
+            active_link.send("typeesc")
+            active_link.send("keysup")
+            active_link.send("arm")
+        except Exception:
+            pass
+        focus_game_window(new_pid)
+
+        snap = {}
+        snap_deadline = time.monotonic() + 15.0
+        while time.monotonic() < snap_deadline and not self.stop_event.wait(0.25):
+            snap = active_link.json("mem state" if agent >= AGENT_STATE else "mem")
+            if snap.get("ok") and snap.get("self") and snap["self"].get("name"):
+                break
+        if not snap.get("ok") or not snap.get("self"):
+            raise Stopped(snap.get("error") or _("Log in to a character first"))
+
+        self.character = snap["self"]["name"]
+        bot.character = self.character
+        bot.profile_key = self.profile
+
+        profile_data, found = self._profile(active_link, self.profile)
+        bot.p = profile_data
+        guard = self._arm(active_link, agent, profile_data, app)
+        bot.guarding = guard == "on"
+
+        name = self.profile or self.character or ""
+        def save_profile(data: dict[str, Any]) -> None:
+            settings.save_profile(name, data)
+        bot.save_profile = save_profile
+
+        self._set_up(bot, snap, profile_data, found, agent, app)
+
+        if hasattr(self, "on_pid_change") and callable(self.on_pid_change):
+            try:
+                self.on_pid_change(old_pid, new_pid, self)
+            except Exception:
+                pass
+
+        focus_game_window(new_pid)
+        self.log(_("Successfully logged in as {name}", name=self.character), speak=True)
+        return True
 
     def _reconnect_saved_character(self, bot: Bot, agent: int) -> bool:
         link = self.link

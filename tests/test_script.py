@@ -21,15 +21,18 @@ from unclefarmer.engine.script import Node
 
 # ---------------------------------------------------------------- helpers
 class FakeLink:
-    def __init__(self, bag: object = None, map_: dict[str, Any] | None = None) -> None:
+    def __init__(self, bag: object = None, map_: dict[str, Any] | None = None, equipment: object = None) -> None:
         self.bag = [{"name": "Milkfish", "count": 3}, {"name": "Small Fish", "count": 1}] if bag is None else bag
         self.map_ = {"id": 5121, "name": "Wolf Prairie"} if map_ is None else map_
+        self.equipment = [] if equipment is None else equipment
 
     def json(self, line: str) -> Any:
         if line == "mem bag":
             return self.bag
         if line == "mem map":
             return self.map_
+        if line == "mem equipment":
+            return self.equipment
         return {}
 
 
@@ -37,8 +40,9 @@ class FakeBot:
     """Everything the script Runner touches, recording what it is asked to do."""
 
     def __init__(self, bag: object = None, map_: dict[str, Any] | None = None, kills: int = 0, minutes: float = 0.0,
-                 targets: list[Any] | None = None, tally: object = None, mps: tuple[float, float] | None = None) -> None:
-        self.a = FakeLink(bag, map_)
+                 targets: list[Any] | None = None, tally: object = None, mps: tuple[float, float] | None = None,
+                 equipment: object = None) -> None:
+        self.a = FakeLink(bag, map_, equipment)
         self.kills = kills
         self._minutes = minutes
         self._targets = targets if targets is not None else []
@@ -499,6 +503,8 @@ def test_parse_visit() -> None:
 def test_parse_buy_and_withdraw() -> None:
     main, _, _ = S.parse("buy 5 Milkfish")
     assert main[0].opts == {"count": 5, "item": "Milkfish"}
+    main, _, _ = S.parse("buy weapon_count Milkfish")
+    assert main[0].opts == {"count": "weapon_count", "item": "Milkfish"}
     main, _, _ = S.parse('withdraw 2 "Large Red Potion"')
     assert main[0].opts == {"count": 2, "item": "Large Red Potion"}
     with pytest.raises(S.ScriptError, match="write it as"):
@@ -510,8 +516,30 @@ def test_parse_sell_and_deposit() -> None:
     assert main[0].opts == {"item": "Milkfish", "count": None}
     main, _, _ = S.parse("sell Milkfish 20")
     assert main[0].opts == {"item": "Milkfish", "count": 20}
+    main, _, _ = S.parse("sell Milkfish shard_count")
+    assert main[0].opts == {"item": "Milkfish", "count": "shard_count"}
     with pytest.raises(S.ScriptError, match="write it as"):
         S.parse("sell")
+
+
+def test_parse_breakdown() -> None:
+    main, _, _ = S.parse('breakdown 10 "Bow of chaser"')
+    assert main[0].opts == {"count": 10, "item": "Bow of chaser"}
+    main, _, _ = S.parse('breakdown weapon_count "Bow of chaser"')
+    assert main[0].opts == {"count": "weapon_count", "item": "Bow of chaser"}
+    main, _, _ = S.parse('breakdown "Bow of chaser"')
+    assert main[0].opts == {"item": "Bow of chaser", "count": None}
+    main, _, _ = S.parse("breakdown")
+    assert main[0].opts == {"item": None, "count": None}
+
+
+def test_parse_make_crystals_and_enhance() -> None:
+    main, _, _ = S.parse("make_crystals weapon 2")
+    assert main[0].opts == {"kind": "weapon", "level": 2, "count": None}
+    main, _, _ = S.parse("make_crystals weapon 2 5 where=gang")
+    assert main[0].opts == {"kind": "weapon", "level": 2, "count": 5, "where": "gang"}
+    main, _, _ = S.parse("enhance check where=gang up_to=5")
+    assert main[0].opts == {"check": True, "where": "gang", "up_to": 5}
 
 
 def test_parse_choose_text_and_pattern() -> None:
@@ -632,8 +660,11 @@ def test_check_reports_bad_scripts() -> None:
 def test_login_is_a_first_line_directive() -> None:
     assert S.login_target('login "Hero - S1"\nfarm minutes=1') == "Hero - S1"
     assert S.login_target('login "Hero - S2"\nfarm minutes=1') == "Hero - S2"
-    assert S.check('farm minutes=1\nlogin "Hero - S1"') == "line 2: login must be the first command in a script"
-    assert S.check('sub again\nlogin Hero\nend') == "line 2: login must be the first command in a script"
+    assert S.login_target('set enhancer_char = "Hero - S1"\nlogin "{enhancer_char}"') == "Hero - S1"
+    assert S.login_target('set enhancer_char = "Hero - S2"\nswitch_character "{enhancer_char}"') == "Hero - S2"
+    assert S.check('farm minutes=1\nlogin "Hero - S1"') is None
+    assert S.check('sub again\nlogin Hero\nend') is None
+    assert S.check('repeat 2\nswitch_character "Hero - S2"\nfarm minutes=5\nend') is None
 
 
 def test_check_reports_the_offending_line() -> None:
@@ -693,6 +724,38 @@ def test_bag_falls_back_to_a_substring_match() -> None:
 def test_bag_returns_zero_when_the_read_fails() -> None:
     run = S.Runner(as_bot(FakeBot(bag={"error": "no bag"})), "")
     assert run.funcs()["bag"]("Milkfish") == 0
+
+
+def test_bag_refined_and_unrefined() -> None:
+    eq = [
+        {"name": "Refined  Bow of chaser; common  (bound) ", "equipped": 0, "count": 1},
+        {"name": "Bow of chaser +5", "equipped": 0, "count": 1},
+        {"name": "11; Bow of chaser; sophisticated ", "equipped": 0, "count": 1},
+        {"name": "Bow of chaser; common ", "equipped": 0, "count": 1},
+        {"name": "Hero Helmet", "equipped": 1, "count": 1},
+    ]
+    bot = FakeBot(equipment=eq)
+    runner = S.Runner(as_bot(bot), "")
+    assert runner.funcs()["bag_refined"]("Bow of chaser") == 3
+    assert runner.funcs()["bag_unrefined"]("Bow of chaser") == 1
+
+    expr_ref = S.compile_expr('bag_refined("Bow of chaser")', 1)
+    assert runner.value(expr_ref, 1) == 3
+    expr_unref = S.compile_expr('bag_unrefined("Bow of chaser")', 1)
+    assert runner.value(expr_unref, 1) == 1
+
+    main, _, _ = S.parse('set r = bag_refined("Bow of chaser")\nset u = bag_unrefined("Bow of chaser")')
+    assert len(main) == 2
+
+
+def test_storehouse_count_expr(monkeypatch: pytest.MonkeyPatch) -> None:
+    bot = FakeBot()
+    monkeypatch.setattr(S.town, "storehouse_count", lambda b, item="", storehouse=None: 25 if storehouse == "Soul Storehouse" else 10)
+    runner = S.Runner(as_bot(bot), "")
+    expr1 = S.compile_expr('storehouse_count("Bow of chaser", "Soul Storehouse")', 1)
+    assert runner.value(expr1, 1) == 25
+    expr2 = S.compile_expr('storehouse("Bow of chaser")', 1)
+    assert runner.value(expr2, 1) == 10
 
 
 # ---------------------------------------------------------------- Runner: running blocks
@@ -810,10 +873,14 @@ def test_each_script_command_reports_its_failure(monkeypatch: pytest.MonkeyPatch
 
 def test_run_commands_reach_the_bot() -> None:
     bot = FakeBot()
-    script = "\n".join(["travel 5121 at 5,6", "go 5121 to Bob", "talk Bob", "choose Tulip",
+    switches: list[str] = []
+    bot.switch_character = lambda target: switches.append(target)
+    script = "\n".join(["login \"Hero - S1\"", "switch_character \"Hero - S2\"",
+                        "travel 5121 at 5,6", "go 5121 to Bob", "talk Bob", "choose Tulip",
                         "walk 3 4", "key a 100", "hold w 1", "heal", "hearthstone", "end_at start"])
     S.Runner(as_bot(bot), script).run()
     calls = bot.calls
+    assert switches == ["Hero - S1", "Hero - S2"]
     assert ("travel", 5121, (5, 6)) in calls
     assert ("go", 5121, None, "Bob", False) in calls
     assert ("talk", "Bob", None) in calls
@@ -960,3 +1027,273 @@ def test_keep_level_sets_this_runs_goal() -> None:
     b = FakeBot()
     S.Runner(as_bot(b), "keep_level 250000").run()
     assert vars(b)["level_keep"] == 250000
+
+
+def test_arnebia_variable_and_keep_reserve() -> None:
+    b = FakeBot(bag=[{"name": "Arnebia", "count": 125000}])
+    r = S.Runner(as_bot(b), "set keep_arnebia = 50000\nif arnebia > 100000\n  set ok = 1\nend")
+    r.run()
+    assert r.vars.get("ok") == 1
+    assert r.names()["arnebia"] == 125000
+
+
+def test_variable_count_in_commands(monkeypatch: pytest.MonkeyPatch) -> None:
+    b = FakeBot()
+    bought: list[tuple[Any, ...]] = []
+    withdrawn: list[tuple[Any, ...]] = []
+    deposited: list[tuple[Any, ...]] = []
+    broken: list[tuple[Any, ...]] = []
+    monkeypatch.setattr("unclefarmer.engine.town.buy", lambda bot, item, n: bought.append((item, n)))
+    monkeypatch.setattr("unclefarmer.engine.town.withdraw", lambda bot, item, n: withdrawn.append((item, n)))
+    monkeypatch.setattr("unclefarmer.engine.town.deposit", lambda bot, item, n: deposited.append((item, n)))
+    monkeypatch.setattr("unclefarmer.engine.town.breakdown", lambda bot, item, n: broken.append((item, n)))
+
+    script_text = """
+    set weapon_count = 10
+    set shard_count = weapon_count * 4
+    buy weapon_count "Bow of chaser"
+    buy shard_count "Weapon Enhance Crystal Shard"
+    withdraw weapon_count "Bow of chaser"
+    deposit weapon_count "Bow of chaser"
+    breakdown weapon_count "Bow of chaser"
+    """
+    r = S.Runner(as_bot(b), script_text)
+    r.run()
+    assert bought == [("Bow of chaser", 10), ("Weapon Enhance Crystal Shard", 40)]
+    assert withdrawn == [("Bow of chaser", 10)]
+    assert deposited == [("Bow of chaser", 10)]
+    assert broken == [("Bow of chaser", 10)]
+
+
+def test_counts_includes_backpack_equipment() -> None:
+    from unclefarmer.engine import town
+
+    class Link:
+        def json(self, line: str):
+            if line == "mem bag":
+                return [{"name": "Arnebia", "count": 1000}]
+            if line == "mem equipment":
+                return [
+                    {"name": "Bow of chaser", "equipped": 0},
+                    {"name": "Bow of chaser +5", "equipped": 0},
+                    {"name": "Hero Helmet", "equipped": 1},  # equipped on character: ignored
+                ]
+            return []
+
+    class DummyBot:
+        def __init__(self):
+            self.a = Link()
+
+    cnts = town.counts(DummyBot())
+    assert cnts.get("arnebia") == 1000
+    assert cnts.get("bow of chaser") == 2
+    assert cnts.get("bow of chaser +5") == 1
+    assert "hero helmet" not in cnts
+
+
+def test_item_row_prioritizes_unenhanced_item() -> None:
+    from unclefarmer.engine import crafting
+
+    class DummyBot:
+        def dialog(self):
+            return {
+                "ok": True,
+                "open": 1,
+                "top": {
+                    "rows": [
+                        [{"text": "11; Bow of chaser; sophisticated | enhancement level: 5"}],
+                        [{"text": "12; Bow of chaser"}],
+                    ]
+                }
+            }
+        def entry_texts(self, e):
+            t = e.get("text")
+            return [t] if t else []
+
+    bot = DummyBot()
+    # When target=5, it must bypass the +5 bow and pick row 1 (the +0 bow)
+    e, level = crafting._item_row(bot, "Bow of chaser", target=5)
+    assert e is not None
+    assert level == 0
+    assert "12; Bow of chaser" in bot.entry_texts(e)[0]
+
+    # When all bows are +5, it returns the +5 bow
+    class AllDoneBot:
+        def dialog(self):
+            return {
+                "ok": True,
+                "open": 1,
+                "top": {
+                    "rows": [
+                        [{"text": "11; Bow of chaser; sophisticated | enhancement level: 5"}],
+                    ]
+                }
+            }
+        def entry_texts(self, e):
+            t = e.get("text")
+            return [t] if t else []
+
+    e2, level2 = crafting._item_row(AllDoneBot(), "Bow of chaser", target=5)
+    assert e2 is not None
+    assert level2 == 5
+
+
+def test_arnebia_settings_load_save(tmp_path) -> None:
+    from unclefarmer.gui import arnebia
+
+    script_path = str(tmp_path / "arnebia_transfer.mwf")
+    with open(script_path, "w", encoding="utf-8") as f:
+        f.write("set weapon_count = 5\nset shard_count = 20\nset enhance_up_to = 6\nset spend_arnebia = 500000\nset enhance_where = \"other_gang\"\nset gang_name = \"99\"\n")
+
+    cfg = arnebia.load_settings(script_path)
+    assert cfg["weapon_count"] == 5
+    assert cfg["shard_count"] == 20
+    assert cfg["enhance_up_to"] == 6
+    assert cfg["spend_arnebia"] == 500000
+    assert cfg["enhance_where"] == "other_gang"
+    assert cfg["gang_name"] == "99"
+
+    new_cfg = {
+        "weapon_count": 15,
+        "shard_count": 60,
+        "enhance_up_to": 7,
+        "spend_arnebia": 1000000,
+        "enhance_where": "gang",
+        "gang_name": "",
+    }
+    arnebia.save_settings(script_path, new_cfg)
+    loaded = arnebia.load_settings(script_path)
+    assert loaded["weapon_count"] == 15
+    assert loaded["shard_count"] == 60
+    assert loaded["enhance_up_to"] == 7
+    assert loaded["spend_arnebia"] == 1000000
+    assert loaded["enhance_where"] == "gang"
+    assert loaded["gang_name"] == ""
+
+
+def test_storehouse_deposit_withdraw_script(monkeypatch: pytest.MonkeyPatch) -> None:
+    b = FakeBot()
+    withdrawn: list[tuple[Any, ...]] = []
+    deposited: list[tuple[Any, ...]] = []
+    monkeypatch.setattr("unclefarmer.engine.town.withdraw", lambda bot, item, n, storehouse=None: withdrawn.append((item, n, storehouse)) or n)
+    monkeypatch.setattr("unclefarmer.engine.town.deposit", lambda bot, item, n, storehouse=None: deposited.append((item, n, storehouse)) or (n if n is not None else 10))
+
+    script_text = """
+    deposit "Bow of chaser" at="Soul Storehouse"
+    deposit 5 "Bow of chaser" at="Soul Storehouse"
+    withdraw 10 "Bow of chaser" from="Soul Storehouse"
+    deposit "Weapon Enhance Crystal Shard" at="Ansible Space-Time Storehouse"
+    """
+    r = S.Runner(as_bot(b), script_text)
+    r.run()
+    assert deposited == [
+        ("Bow of chaser", None, "Soul Storehouse"),
+        ("Bow of chaser", 5, "Soul Storehouse"),
+        ("Weapon Enhance Crystal Shard", None, "Ansible Space-Time Storehouse"),
+    ]
+    assert withdrawn == [
+        ("Bow of chaser", 10, "Soul Storehouse"),
+    ]
+
+
+def test_enhance_done_variable(monkeypatch: pytest.MonkeyPatch) -> None:
+    b = FakeBot()
+    monkeypatch.setattr("unclefarmer.engine.crafting.enhance", lambda bot, cfg, check: "done")
+    script_text = """
+    enhance
+    set finished = enhance_done
+    """
+    r = S.Runner(as_bot(b), script_text)
+    r.run()
+    assert r.vars["finished"] is True
+    assert r.vars["enhance_result"] == "done"
+
+
+def test_enhance_protect_default_never(monkeypatch: pytest.MonkeyPatch) -> None:
+    b = FakeBot()
+    captured_cfg: dict[str, Any] = {}
+    monkeypatch.setattr("unclefarmer.engine.crafting.enhance", lambda bot, cfg, check: captured_cfg.update(cfg) or "done")
+    r = S.Runner(as_bot(b), "enhance")
+    r.run()
+    assert captured_cfg.get("protect") == "never"
+
+    captured_cfg.clear()
+    r2 = S.Runner(as_bot(b), 'set enhance_protect = "always"\nenhance')
+    r2.run()
+    assert captured_cfg.get("protect") == "always"
+
+    captured_cfg.clear()
+    r3 = S.Runner(as_bot(b), 'enhance protect=never up_to=7')
+    r3.run()
+    assert captured_cfg.get("protect") == "never"
+    assert captured_cfg.get("up_to") == 7
+
+
+def test_dynamic_target_weapon_and_crystals(monkeypatch: pytest.MonkeyPatch) -> None:
+    b = FakeBot()
+    made_crystals: list[tuple[str, int, int, str]] = []
+    bought: list[tuple[str, int]] = []
+    deposited: list[tuple[str, int | None, str | None]] = []
+
+    monkeypatch.setattr("unclefarmer.engine.crafting.make_crystals",
+                        lambda bot, kind, level, count, where: made_crystals.append((kind, level, count, where)))
+    monkeypatch.setattr("unclefarmer.engine.town.buy",
+                        lambda bot, item, count: bought.append((item, count)))
+    monkeypatch.setattr("unclefarmer.engine.town.deposit",
+                        lambda bot, item, count, storehouse=None: deposited.append((item, count, storehouse)) or 1)
+
+    script_text = """
+    set gear_level = 30
+    set character_class = "Hunter"
+    set target_weapon = default_weapon(gear_level, character_class)
+    set crystal_level = 2
+    make_crystals weapon crystal_level 10
+    buy 5 target_weapon
+    deposit target_weapon at="Soul Storehouse"
+    """
+    r = S.Runner(as_bot(b), script_text)
+    r.run()
+
+    assert r.vars["target_weapon"] == "Bow of chaser"
+    assert made_crystals == [("Weapon", 2, 10, "gang")]
+    assert bought == [("Bow of chaser", 5)]
+    assert deposited == [("Bow of chaser", None, "Soul Storehouse")]
+
+
+def test_arnebia_settings_smart_class(tmp_path: Any) -> None:
+    from unclefarmer.gui.arnebia import load_settings, save_settings
+    script_file = tmp_path / "test_arnebia.mwf"
+    initial_text = """
+    set weapon_count = 10
+    set shard_count = 40
+    set enhance_up_to = 5
+    """
+    script_file.write_text(initial_text, encoding="utf-8")
+
+    cfg = load_settings(str(script_file))
+    assert cfg["gear_level"] == 30
+    assert cfg["character_class"] == "auto"
+    assert cfg["enhancer_char"] == "nnatsu"
+    assert cfg["breaker_char"] == "asta"
+    assert cfg["server"] == "S2"
+    assert cfg["relay_type"] == "direct"
+
+    cfg["gear_level"] = 15
+    cfg["character_class"] = "Warrior"
+    cfg["target_weapon"] = "iron sword"
+    cfg["crystal_level"] = 1
+    cfg["account_email"] = "test@example.com"
+    save_settings(str(script_file), cfg)
+
+    reloaded = load_settings(str(script_file))
+    assert reloaded["gear_level"] == 15
+    assert reloaded["character_class"] == "Warrior"
+    assert reloaded["target_weapon"] == "iron sword"
+    assert reloaded["crystal_level"] == 1
+    assert reloaded["account_email"] == "test@example.com"
+
+
+
+
+
+

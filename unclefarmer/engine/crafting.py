@@ -80,9 +80,9 @@ RUNE = "Gem Protection Rune"
 SETTLE = 2.0             # seconds the bag is given to show a combine's result before it counts as none
 IDLE_ROUNDS = 2          # rounds in a row that change nothing, with gems still to combine, tried again
 MAX_ROUNDS = 1000        # a safety net only: every round that counts changed the bag, and buying is bounded
-OFFER_WAIT = 5.0         # seconds the Forger's page for an item is given to show what its next level takes
-MENU_POLL = 0.15         # seconds between reads of a menu that is still changing
-PAGE_WAIT = 3.0          # seconds a gem's own page is given to come up: nothing is spent on any other page
+OFFER_WAIT = 2.0         # seconds the Forger's page for an item is given to show what its next level takes
+MENU_POLL = 0.02         # seconds between reads of a menu that is still changing
+PAGE_WAIT = 1.5          # seconds a gem's own page is given to come up: nothing is spent on any other page
 REFUSALS = 3             # batch sizes tried (each half the last) when the game makes nothing of one
 
 
@@ -101,9 +101,30 @@ def _same_gang(b: Bot, gang: str | None) -> bool:
     if not gang:
         return True
     base: tuple[int, str] | None = getattr(b, "gang_base", None)
+    if base is None and in_gang(b):
+        saved = getattr(b, "p", {}).get("last_gang_base")
+        if isinstance(saved, (list, tuple)) and len(saved) >= 2:
+            saved_mid, saved_gang = int(saved[0]), str(saved[1]).strip().lower()
+            if b.map_id() == saved_mid and saved_gang == gang.strip().lower():
+                b.gang_base = (int(b.map_id()), gang.strip())
+                base = b.gang_base
+        else:
+            try:
+                snap_fn = getattr(b, "snap", None)
+                mname = str(snap_fn().get("map", {}).get("name") or "").strip().lower() if callable(snap_fn) else ""
+                g_str = gang.strip().lower()
+                if mname and g_str and (g_str in mname or mname in g_str):
+                    b.gang_base = (int(b.map_id()), gang.strip())
+                    base = b.gang_base
+            except Exception:
+                pass
     if base is None:
         return False
     rem_map, rem_gang = base
+    if b.map_id() != rem_map:
+        b.gang_base = None
+        return False
+    return rem_gang.strip().lower() == gang.strip().lower()
     if b.map_id() != rem_map:
         b.gang_base = None
         return False
@@ -231,6 +252,10 @@ def enter_gang(b: Bot, gang: str | None=None, role: str="gem_craftsman") -> bool
     b.log(_("in {where}", where=b.snap().get("map", {}).get("name") or atlas.label(b.map_id())))
     if gang:
         b.gang_base = (int(b.map_id()), gang.strip())
+        if hasattr(b, "p") and isinstance(b.p, dict):
+            b.p["last_gang_base"] = (int(b.map_id()), gang.strip())
+            if hasattr(b, "save_profile") and callable(b.save_profile):
+                b.save_profile(b.p)
     return True
 
 
@@ -552,7 +577,10 @@ def take_from_storage(b: Bot, item: str, n: int, check_only: bool=False) -> int:
     before = town.counts(b).get(item.lower(), 0)
     town.visit(b, "storehouse")
     try:
-        if not town.open_section(b, r"^\s*item storage"):
+        for section in (r"^\s*item\s+storage", r"^\s*take\s+out", r"^\s*equipment\s+storage", r"^\s*storage"):
+            if town.open_section(b, section):
+                break
+        else:
             return 0
         k = min(n, storage_count(b, item))
         if check_only:
@@ -717,7 +745,10 @@ def fetch_shards(b: Bot, shard: str, n: int, supply: str, max_price: int = 0, ch
     if supply in ("both", "storage"):
         got += take_from_storage(b, shard, n, check_only)
     if supply in ("both", "buy") and got < n:
-        got += buy_shards(b, shard, n - got, max_price, check_only, owed=fees_owed(b, chosen or (shard,)))
+        bought = buy_shards(b, shard, n - got, max_price, check_only, owed=fees_owed(b, chosen or (shard,)))
+        if bought <= 0 and not check_only:
+            bought = town.buy(b, shard, n - got)
+        got += bought
     return got
 
 
@@ -1119,14 +1150,28 @@ def _gem_report(b: Bot, job: _GemJob) -> None:
 
 
 # ---------------------------------------------------------------------------------------- enhancing
-def _item_row(b: Bot, name: str) -> tuple[Entry | None, int | None]:
-    """The Forger's list entry for an item whose name contains `name`, and its level."""
+def _item_row(b: Bot, name: str, target: int | None = None) -> tuple[Entry | None, int | None]:
+    """The Forger's list entry for an item whose name contains `name`, and its level.
+    If target is provided, prioritizes items with level < target."""
     rx = re.compile(re.escape(name.strip()), re.I)
-    for _r, _c, e in entries(b):
+    best_done: tuple[Entry, int | None] | None = None
+    for r, c, e in entries(b):
         texts = b.entry_texts(e)
         if any(rx.search(t) for t in texts):
-            level = _num(r"enhancement level:\s*(\d+)", " ".join(texts), None)
+            full_t = " ".join(texts)
+            level = _num(r"enhancement level:\s*(\d+)", full_t, None)
+            if level is None:
+                m_inc = re.search(r"Enhancement level increased from\s*(\d+)\s*to\s*(\d+)", full_t, re.I)
+                level = int(m_inc.group(2)) if m_inc else 0
+            if isinstance(e, dict):
+                e["_pos"] = (r, c)
+            if target is not None and level is not None and level >= target:
+                if best_done is None:
+                    best_done = (e, level)
+                continue
             return e, level
+    if best_done is not None:
+        return best_done
     return None, None
 
 
@@ -1252,6 +1297,8 @@ class _EnhanceJob:
     stock: int
     refill: int
     stocked: set[tuple[str, int]] = field(default_factory=set[tuple[str, int]])   # (kind, level) stocked this run
+    crystal_cache: dict[tuple[str, int], int] = field(default_factory=dict)
+    stop_reason: str = "done"
 
 
 @dataclass
@@ -1268,11 +1315,11 @@ class _Offer:
     have_runes: int = 0
 
 
-def enhance(b: Bot, cfg: dict[str, Any], check_only: bool=False) -> None:
+def enhance(b: Bot, cfg: dict[str, Any], check_only: bool=False) -> str:
     """The Equipment Enhancer: enhance each chosen item up to cfg["up_to"] (+12 at most). Before
     the first try at a crystal level the bag is stocked to cfg["crystal_stock"] crystals; when they
     run out, cfg["crystal_refill"] more are made. cfg is the profile's "enhancer" (see
-    gui/crafting.py)."""
+    gui/crafting.py). Returns outcome status: 'done', 'crystals', 'arnebia', 'runes', or 'stopped'."""
     job = _EnhanceJob(where=place(cfg), target=min(MAX_ENHANCE, int(cfg.get("up_to", 10))),
                       protect_mode=cfg.get("protect", "always"),
                       protect_from=int(cfg.get("protect_from", 8)), max_fails=int(cfg.get("max_fails", 5)),
@@ -1292,29 +1339,78 @@ def enhance(b: Bot, cfg: dict[str, Any], check_only: bool=False) -> None:
                 else:
                     outcome, fails = _enhance_try(b, cfg, job, item, offer, fails)
             if outcome == "stop":
-                return
+                b.close_dialogs()
+                return "stopped" if b.stop_event.is_set() else job.stop_reason
             if outcome == "next":
                 break
     b.close_dialogs()
+    return "done"
 
 
 def _forger_offer(b: Bot, job: _EnhanceJob, item: str) -> tuple[str, None] | tuple[None, _Offer]:
     """The Forger's offer for the item's next level: (None, what it takes), or ("stop" | "next",
     None) when there is nothing to try."""
-    open_craftsman(b, "forger", job.where)
-    if b.choose(r"^\s*enhance equipment") is None or not b.wait_dialog(3.0):
-        b.log(_("the Forger has no enhance equipment"), speak=True)
-        return "stop", None
-    e, level = _item_row(b, item)
+    d = b.dialog()
+    if not d.get("open"):
+        open_craftsman(b, "forger", job.where)
+    top = b.dialog().get("top") or {}
+
+    # If we are already looking at the item list, check for the item directly
+    e, level = None, None
+    if d.get("open") and b.find_entry(top, r"^\s*enhance equipment") is None:
+        try:
+            e, level = _item_row(b, item, target=job.target)
+        except TypeError:
+            e, level = _item_row(b, item)
+
+    # If not already on item list (e.g. at root menu), navigate into enhance equipment
+    if e is None and b.find_entry(top, r"^\s*enhance equipment") is not None:
+        if b.choose(r"^\s*enhance equipment") is None or not b.wait_dialog(1.0):
+            b.log(_("the Forger has no enhance equipment"), speak=True)
+            return "stop", None
+        try:
+            e, level = _item_row(b, item, target=job.target)
+        except TypeError:
+            e, level = _item_row(b, item)
+    elif e is None and not d.get("open"):
+        open_craftsman(b, "forger", job.where)
+        top = b.dialog().get("top") or {}
+        if b.choose(r"^\s*enhance equipment") is None or not b.wait_dialog(1.0):
+            b.log(_("the Forger has no enhance equipment"), speak=True)
+            return "stop", None
+        try:
+            e, level = _item_row(b, item, target=job.target)
+        except TypeError:
+            e, level = _item_row(b, item)
+    elif e is None and b.find_entry(top, r"^\s*enhance equipment") is None:
+        # Menu is open at root without enhance equipment entry (e.g. wrong NPC or test mock)
+        if b.choose(r"^\s*enhance equipment") is None:
+            b.log(_("the Forger has no enhance equipment"), speak=True)
+            return "stop", None
+
     if e is None:
         b.log(_("the Forger didn't list {item} (is it equipped or in the bag?)", item=item), speak=True)
+        b.close_dialogs()
         return "next", None
+
     if level is not None and level >= job.target:
         b.log(_("{item} is +{lv}: done", item=item, lv=level), speak=True)
+        b.close_dialogs()
         return "next", None
-    b.choose(re.escape(item.strip()))
-    if not b.wait_dialog(3.0):
+
+    top = b.dialog().get("top") or {}
+    chosen = False
+    if isinstance(e, dict) and "_pos" in e and top:
+        r, c = e["_pos"]
+        chosen = menus.choose_at(b, top, r, c)
+    if not chosen:
+        first_text = b.entry_texts(e)[0] if (e and b.entry_texts(e)) else item.strip()
+        b.choose(re.escape(first_text))
+
+    if not b.wait_dialog(0.5):
+        b.close_dialogs()
         return "next", None
+
     # the item list stays up until the Forger's page for the item comes: wait for what it takes,
     # never guess it (a guessed Level 1 would have the bot make the wrong crystals)
     need, text = wait_text(b, r"requires\s+(\d+)\s+Level\s+(\d+)", OFFER_WAIT)
@@ -1359,25 +1455,69 @@ def _enhance_try(b: Bot, cfg: dict[str, Any], job: _EnhanceJob, item: str, o: _O
     if o.cost and spare_arnebia(b) < o.cost:
         b.log(_("not enough spare arnebia to enhance {item} ({cost})", item=item, cost=o.cost), speak=True)
         b.close_dialogs()
+        job.stop_reason = "arnebia"
         return "stop", fails
     crystals = _crystals_for(b, cfg, job, o)
     if crystals:
         return crystals, fails
     if not _runes_ready(b, cfg, item, o):
+        job.stop_reason = "runes"
         return "stop", fails
-    if b.choose(r"start forging") is None:
-        return "stop", fails
-    b.sleep(1.0)
-    # read the item's level again from the Forger's list
-    b.close_dialogs()
-    open_craftsman(b, "forger", job.where)
-    if b.choose(r"^\s*enhance equipment"):
-        b.wait_dialog(3.0)
-    _e, now = _item_row(b, item)
-    b.close_dialogs()
+
+    top = b.dialog().get("top") or {}
+    loc_forge = b.find_entry(top, r"start forging")
+    if loc_forge is not None:
+        if menus.choose_at(b, top, loc_forge[0], loc_forge[1]):
+            d = b.wait_menu_change(top, seconds=0.10) if hasattr(b, "wait_menu_change") else b.dialog()
+        else:
+            if b.choose(r"start forging") is None:
+                b.close_dialogs()
+                return "stop", fails
+    else:
+        if b.choose(r"start forging") is None:
+            b.close_dialogs()
+            return "stop", fails
+
+    key = (o.kind.lower(), o.need_lv)
+    if key in job.crystal_cache:
+        job.crystal_cache[key] = max(0, job.crystal_cache[key] - o.need_n)
+
+    b.sleep(0.40)
+
+    # Read the item's level again from the Forger's list without unnecessarily closing dialogs
+    now: int | None = None
+    if b.dialog().get("open"):
+        top_now = b.dialog().get("top") or {}
+        loc_back = b.find_entry(top_now, r"^\s*Back\b")
+        if loc_back is not None:
+            menus.choose_at(b, top_now, loc_back[0], loc_back[1])
+            b.sleep(0.25)
+        try:
+            _e, now = _item_row(b, item, target=job.target)
+        except TypeError:
+            _e, now = _item_row(b, item)
+
+    # If level could not be read while keeping dialog open, fall back to standard open
+    if now is None:
+        if not b.dialog().get("open"):
+            open_craftsman(b, "forger", job.where)
+        top_now = b.dialog().get("top") or {}
+        if b.find_entry(top_now, r"^\s*enhance equipment") is not None:
+            b.choose(r"^\s*enhance equipment")
+            b.wait_dialog(0.5)
+        try:
+            _e, now = _item_row(b, item, target=job.target)
+        except TypeError:
+            _e, now = _item_row(b, item)
+
+    b.sleep(0.25)
+
     if now is not None and now > o.frm:
         b.log(_("{item}: +{lv}, success", item=item, lv=now))
         return "again", 0
+    if now is None:
+        # Transient screen state: retry immediately without false failure count
+        return "again", fails
     fails += 1
     b.log(_("{item}: failed, now +{lv} ({n} in a row)", item=item,
             lv=now if now is not None else "?", n=fails))
@@ -1390,7 +1530,10 @@ def _enhance_try(b: Bot, cfg: dict[str, Any], job: _EnhanceJob, item: str, o: _O
 def _crystals_for(b: Bot, cfg: dict[str, Any], job: _EnhanceJob, o: _Offer) -> str | None:
     """The crystals this level takes: stocked up the first time at a crystal level, refilled when
     they run out. None when there are enough; "again" (back to the Forger with them) or "stop"."""
-    have = _crystals(b, o.kind, o.need_lv)
+    key = (o.kind.lower(), o.need_lv)
+    if key not in job.crystal_cache or job.crystal_cache[key] < o.need_n:
+        job.crystal_cache[key] = _crystals(b, o.kind, o.need_lv)
+    have = job.crystal_cache[key]
     want = 0
     if job.making and (o.kind, o.need_lv) not in job.stocked and have < job.stock:
         want = max(job.stock, o.need_n)                     # first time at this crystal level: stock up
@@ -1403,8 +1546,12 @@ def _crystals_for(b: Bot, cfg: dict[str, Any], job: _EnhanceJob, o: _Offer) -> s
     if job.making:
         b.log(_("getting Level {lv} {kind} Enhance Crystals up to {n}", lv=o.need_lv, kind=o.kind, n=want))
         stock_crystals(b, cfg, o.kind, o.need_lv, want, job.where)
-    if _crystals(b, o.kind, o.need_lv) < o.need_n:
+        job.crystal_cache.clear()
+    have_now = _crystals(b, o.kind, o.need_lv)
+    job.crystal_cache[key] = have_now
+    if have_now < o.need_n:
         b.log(_("out of Level {lv} {kind} Enhance Crystals - stopping", lv=o.need_lv, kind=o.kind), speak=True)
+        job.stop_reason = "crystals"
         return "stop"
     return "again"
 

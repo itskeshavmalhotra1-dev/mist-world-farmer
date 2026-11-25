@@ -155,6 +155,8 @@ class TravelMixin(Parts):
         a teleport skill (Mage, Elf) or a travel item from the bag (teleport stones, the hearthstone). The route is planned again
         after every leg, so a wrong guess only costs a re-plan; whatever fails is left out after."""
         dst = int(dst)
+        if cell is None and self.map_id() == dst:
+            return
         if dst == POISON_MAP and self.map_id() != POISON_MAP:
             self._warn_poison_stay()               # before anything moves (see POISON_MAP)
         if dst != self.map_id() and (getattr(self, "on_farm_run", False) or getattr(self, "farmed", False)):

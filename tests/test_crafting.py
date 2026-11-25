@@ -1740,3 +1740,27 @@ def test_uf44_safety_and_state_invalidation(gang_atlas: pytest.MonkeyPatch, monk
     monkeypatch.setattr(crafting, "_reachable", stand_in(crafting._reachable, lambda b, role: False))
     assert crafting.enter_gang(as_bot(b5), "Harvest", "gem_craftsman") is False
     assert len(b5.visited) == 1
+
+
+def test_startup_inside_gang_base_reuses_gang(gang_atlas: pytest.MonkeyPatch, monkeypatch: pytest.MonkeyPatch) -> None:
+    """When the bot starts or logs in already inside a gang base where the craftsman is reachable,
+    it reuses the existing gang base rather than walking out and back in."""
+    b = Bot()
+    b.map = 4002
+    b.p["last_gang_base"] = (4002, "2")
+    monkeypatch.setattr(crafting, "in_gang", stand_in(crafting.in_gang, lambda bot: True))
+    monkeypatch.setattr(crafting, "_reachable", stand_in(crafting._reachable, lambda bot, role: True))
+
+    assert crafting.enter_gang(as_bot(b), "2", "forger") is True
+    assert len(b.visited) == 0
+    assert getattr(b, "gang_base", None) == (4002, "2")
+
+    # Also works by matching map name if last_gang_base is missing
+    b2 = Bot()
+    b2.map = 4002
+    b2.map_name = "Yakuza Guild encampment"
+    b2.snap = lambda: {"map": {"id": 4002, "name": "Yakuza Guild encampment"}}
+    assert crafting.enter_gang(as_bot(b2), "Yakuza", "forger") is True
+    assert len(b2.visited) == 0
+    assert getattr(b2, "gang_base", None) == (4002, "Yakuza")
+

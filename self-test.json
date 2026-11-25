@@ -1,0 +1,45 @@
+{
+ "ok": true,
+ "version": "1.2.2",
+ "frozen": false,
+ "app": "D:\\new progect\\mw bot\\uncle-farmer",
+ "python": "3.12.0",
+ "checks": [
+  {
+   "check": "imports",
+   "ok": true,
+   "detail": "wx 4.3.2, numpy 2.5.1, orjson 3.13.0, pydantic 2.14.3",
+   "required": true
+  },
+  {
+   "check": "native routing",
+   "ok": true,
+   "detail": "routing DLL ABI 3",
+   "required": true
+  },
+  {
+   "check": "data",
+   "ok": true,
+   "detail": "449 NPCs, 375 maps",
+   "required": true
+  },
+  {
+   "check": "translations",
+   "ok": true,
+   "detail": "Roman Urdu catalog loads",
+   "required": true
+  },
+  {
+   "check": "help texts",
+   "ok": true,
+   "detail": "trusted-player and script commands, 3 guides",
+   "required": true
+  },
+  {
+   "check": "game agent",
+   "ok": true,
+   "detail": "189462 bytes",
+   "required": false
+  }
+ ]
+}

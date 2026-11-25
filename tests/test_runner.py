@@ -584,3 +584,30 @@ def test_guard_swallows_a_second_defend_failure(allow_ignored_failures: None) ->
     bot.defend, bot.finish = defend, finish
     run.guard(as_bot(bot))                     # must not raise
     assert bot.events == ["defend", "finish", "defend"]
+
+
+def test_login_saved_character_autologin(monkeypatch: pytest.MonkeyPatch) -> None:
+    run = a_run()
+    run.profile = "asta--S2--4118"
+    monkeypatch.setattr(settings, "automatic_login_profiles", lambda: [("asta--S2--4118", "shivaay22022@gmail.com")])
+    monkeypatch.setattr(settings, "load_profile", lambda p: {"login_email": "shivaay22022@gmail.com"})
+    monkeypatch.setattr(settings, "profile_id", lambda p: "4118")
+    monkeypatch.setattr(settings, "profile_server", lambda p: "S2")
+
+    calls = []
+    class SwitchLink(FakeLink):
+        def send(self, line: str) -> str:
+            calls.append(line)
+            return "armed"
+        def json(self, line: str) -> Any:
+            calls.append(line)
+            if line.startswith("autologinstatus"):
+                return {"running": False, "status": "ready"}
+            if line.startswith("autologin "):
+                return {"ok": True}
+            return {"ok": False}
+
+    link = SwitchLink()
+    run._login_saved_character(link, 70)
+    assert any("autologin shivaay22022@gmail.com 4118 S2" in c for c in calls)
+

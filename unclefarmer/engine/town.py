@@ -35,9 +35,53 @@ INPUT_POLL = 0.025
 def counts(b: Bot) -> dict[str, int]:
     """{item name (lower): count} from the bag, summed over its rows."""
     out: dict[str, int] = {}
-    for r in b.bag_rows():
-        n = (r.get("name") or "").strip().lower()
-        out[n] = out.get(n, 0) + int(r.get("count") or 0)
+    rx_ref = re.compile(r"\b(Refined|Flawless|Epic|Legendary|Heavenly|Godbless|Sophisticated|Rare|Great|Super)\b|\+\d+", re.I)
+
+    def _add_item_names(raw: str, cnt: int, r: dict[str, Any] | None = None) -> None:
+        n = raw.lower()
+        out[n] = out.get(n, 0) + cnt
+        if not raw:
+            return
+        clean = re.sub(r"(lzs\d*)+", "", raw).strip().lower()
+        if clean and clean != n:
+            out[clean] = out.get(clean, 0) + cnt
+        unindexed = re.sub(r"^\d+\s*;\s*", "", clean).strip()
+        if unindexed and unindexed != clean and unindexed != n:
+            out[unindexed] = out.get(unindexed, 0) + cnt
+        base = unindexed.split(";")[0].strip().lower()
+        base_clean = re.sub(r"\s*\+\d+$", "", base).strip()
+        if base and base != n and base != clean and base != unindexed:
+            out[base] = out.get(base, 0) + cnt
+        if base_clean and base_clean != base and base_clean != n and base_clean != clean and base_clean != unindexed:
+            out[base_clean] = out.get(base_clean, 0) + cnt
+        base_pure = re.sub(r"^(?:Refined|Flawless|Epic|Legendary|Great|Heavenly|Godbless|Super|Good|Rare|Common|Sophisticated|Normal)\s+", "", base_clean, flags=re.I).strip()
+        if base_pure and base_pure != base_clean and base_pure != base and base_pure != n and base_pure != clean and base_pure != unindexed:
+            out[base_pure] = out.get(base_pure, 0) + cnt
+        base_norm = re.sub(r"\s+", " ", base_clean).strip()
+        if base_norm and base_norm != base_clean and base_norm != base_pure:
+            out[base_norm] = out.get(base_norm, 0) + cnt
+        is_ref = (rx_ref.search(raw) is not None) or bool(re.search(r"\+\d+", raw)) or bool(re.search(r"enhancement\s+level:\s*[1-9]\d*", raw, re.I))
+        if is_ref:
+            eff_pure = base_pure or base_clean or base or unindexed
+            if eff_pure:
+                out["refined " + eff_pure] = out.get("refined " + eff_pure, 0) + cnt
+                out["refined  " + eff_pure] = out.get("refined  " + eff_pure, 0) + cnt
+
+    rows = b.bag_rows() if hasattr(b, "bag_rows") else (b.a.json("mem bag") if hasattr(b, "a") and hasattr(b.a, "json") and json.is_array(b.a.json("mem bag")) else [])
+    for r in rows:
+        raw = str(r.get("name") or "").strip()
+        cnt = int(r.get("count") or 0)
+        _add_item_names(raw, cnt, r)
+
+    eq_rows = b.a.json("mem equipment") if hasattr(b, "a") and hasattr(b.a, "json") else []
+    if json.is_array(eq_rows):
+        for r in eq_rows:
+            if not json.is_object(r):
+                continue
+            if int(r.get("equipped") or 0) <= 0:
+                raw = str(r.get("name") or "").strip()
+                cnt = max(1, int(r.get("count") or 1))
+                _add_item_names(raw, cnt, r)
     return out
 
 
@@ -45,13 +89,19 @@ def counts(b: Bot) -> dict[str, int]:
 # (gamelang.MARKS): the storehouse's "deposit item" list reads "78 Memory Butterfly (restricted) ".
 ITEM_MARKS = r"(\s*\((" + "|".join(re.escape(m.strip("()")) for m in gamelang.MARKS) + r")\))*"
 
+ITEM_PREFIX = (
+    r"(?:^|[;|]\s*|\d+\s*;\s*|\d+\s+)"
+    r"(?:(?:Refined|Flawless|Epic|Legendary|Great|Heavenly|Godbless|Super|Good|Rare|Common|Sophisticated|Normal)\s+)?"
+)
+
 
 def item_pattern(item: str) -> str:
     """Matches the item in a menu entry ("187 Large Red Potion", "Large Red Potion; Unit price ...",
-    "78 Memory Butterfly (restricted) ") but not a longer name containing it ("Pet Large Red
-    Potion"). Without the marks nothing restricted, locked or bound could be put into the
-    storehouse: "the menu has no entry like ..."."""
-    return r"(^|[;|]\s*|\d\s+)" + re.escape(item.strip()) + ITEM_MARKS + r"\s*($|[|;,])"
+    "78 Memory Butterfly (restricted) ", "Refined  Bow of chaser; common (bound)") but not a longer
+    name containing it ("Pet Large Red Potion"). Without the marks nothing restricted, locked or
+    bound could be put into the storehouse: "the menu has no entry like ..."."""
+    escaped = r"\s+".join(re.escape(w) for w in item.strip().split())
+    return ITEM_PREFIX + escaped + r"(?:\s*\+\d+)?" + ITEM_MARKS + r"\s*($|[|;,])"
 
 
 # ---------------------------------------------------------------------------------------- getting there
@@ -137,8 +187,16 @@ def visit(b: Bot, role: str | None, name: str | None = None, candidates: Sequenc
     if candidates:
         target = find(candidates)
     elif name:
-        known = knowledge.describe_npc(name)
-        target = (known["map"], known["name"], known["x"], known["y"]) if known else None
+        named_candidates = [
+            (n["map"], n["name"], n["x"], n["y"])
+            for n in knowledge.data().get("npcs", [])
+            if n["name"].lower() == name.lower()
+        ]
+        if named_candidates:
+            target = find(named_candidates)
+        else:
+            known = knowledge.describe_npc(name)
+            target = (known["map"], known["name"], known["x"], known["y"]) if known else None
     else:
         target = find(None)
     if not name and _step_out_first(b, target):
@@ -150,6 +208,7 @@ def visit(b: Bot, role: str | None, name: str | None = None, candidates: Sequenc
         raise Stopped(_("I don't know where to find a {role} - visit one with the agent running first",
                         role=(role or name or "").replace("_", " ")))     # a named NPC has no role
     mid, npc, x, y = target
+    b.last_visited_npc = (mid, npc, x, y)
     b.log(_("going to {npc} on {map}", npc=npc, map=atlas.label(mid)))
     stats.reading(b)            # the results: loot before the trip, fares on it, the trade after it
     # The walk up to the NPC is travelling too: most visits stay on one map (the next buyer in the
@@ -160,6 +219,9 @@ def visit(b: Bot, role: str | None, name: str | None = None, candidates: Sequenc
         b.travel(mid)
         stats.reading(b)
         if not b.talk(npc, (x, y)):
+            alt_npc = "Ansible Space-Time Storehouse" if "soul" in npc.lower() else ("Soul Storehouse" if "storehouse" in npc.lower() else None)
+            if alt_npc and b.talk(alt_npc, (x, y)):
+                return npc
             raise Stopped(_("couldn't talk to {npc}", npc=npc))
     finally:
         b.traveling = was
@@ -220,7 +282,7 @@ def type_number(b: Bot, n: int) -> bool:
     if not r.startswith("typed"):
         b.log(_("couldn't type into the game: {why}", why=r), speak=True)
         return False
-    b.sleep(0.2)
+    b.sleep(0.05)
     b.a.send("typeenter")
     if not wait_input(b, False):
         b.log(_("the game didn't take the number"), speak=True)
@@ -229,15 +291,31 @@ def type_number(b: Bot, n: int) -> bool:
     # some menus ask "are you sure?" after the number
     d = b.dialog()
     if d["open"] and d.get("top") and b.find_entry(d["top"], CONFIRM) is not None:
-        b.choose(CONFIRM)
+        c_loc = b.find_entry(d["top"], CONFIRM)
+        if c_loc and menus.choose_at(b, d["top"], c_loc[0], c_loc[1]):
+            b.wait_menu_change(d["top"], seconds=0.15)
+        else:
+            b.choose(CONFIRM)
     return True
 
 
 def pick(b: Bot, pattern: str, quantity: int | None = None) -> bool:
     """Choose an entry; if the game then asks how many, type quantity."""
-    if b.choose(pattern) is None:
+    entry = b.choose(pattern)
+    if entry is None:
         return False
     if quantity is None:
+        return True
+    flags = int(entry.get("flags") or 0)
+    if "flags" in entry and not (flags & 1):
+        if (flags & 2) or entry.get("f"):
+            d = b.dialog()
+            if d.get("open") and d.get("top") and b.find_entry(d["top"], CONFIRM) is not None:
+                c_loc = b.find_entry(d["top"], CONFIRM)
+                if c_loc and menus.choose_at(b, d["top"], c_loc[0], c_loc[1]):
+                    b.wait_menu_change(d["top"], seconds=0.15)
+                else:
+                    b.choose(CONFIRM)
         return True
     return type_number(b, quantity)
 
@@ -245,12 +323,12 @@ def pick(b: Bot, pattern: str, quantity: int | None = None) -> bool:
 def open_section(b: Bot, pattern: str) -> bool:
     """Choose a section and wait for its menu, rather than accepting the still-open parent."""
     d = b.dialog()
-    if d["open"] and d.get("top") and b.find_entry(d["top"], pattern) is not None:
+    if d.get("open") and d.get("top") and b.find_entry(d["top"], pattern) is not None:
         before: dict[str, Any] = d["top"]
-        depth = max(1, int(d["open"]))
+        depth = max(1, int(d.get("open") or 1))
         if b.choose(pattern) is None:
             return False
-        after = b.wait_menu_change(before, seconds=3.0, depth=depth)
+        after = b.wait_menu_change(before, seconds=2.0, depth=depth)
         top: dict[str, Any] = after.get("top") or {}
         return bool(int(after.get("open") or 0) >= depth and top
                     and (top.get("sig") != before.get("sig") or top.get("rows") != before.get("rows")))
@@ -265,54 +343,337 @@ def in_town(b: Bot, npcs: Sequence[Npc]) -> list[Npc]:
     return list(npcs) if town_map is None else [n for n in npcs if n[0] == town_map]
 
 
-def withdraw(b: Bot, item: str, n: int, *, stock: int | None = None):
+def _is_equipment(top: dict[str, Any] | None, loc: tuple[int, int] | None) -> bool:
+    if not top or not loc:
+        return False
+    try:
+        r, c = loc
+        rows = top.get("rows") or []
+        e = rows[r][c]
+        if isinstance(e, dict) and "flags" in e:
+            return not bool(int(e.get("flags") or 0) & 1)
+    except (IndexError, TypeError, KeyError):
+        pass
+    return False
+
+
+def _select_storehouse_branch(b: Bot, storehouse: str | None) -> bool:
+    """If the open storehouse dialog presents choices between Soul Storehouse and
+    Ansible Space-Time Storehouse, choose the specified branch."""
+    if not storehouse:
+        return True
+    d = b.dialog()
+    if not d.get("open") or not d.get("top"):
+        return False
+    top = d["top"]
+    sh_clean = storehouse.strip()
+    pat = r"(?:^|[;|]\s*)" + re.escape(sh_clean) + r"(?:\s*\(restricted\))*\s*($|[|;,])"
+    if b.find_entry(top, pat) is not None:
+        open_section(b, pat)
+        return True
+    if b.find_entry(top, re.escape(sh_clean)) is not None:
+        open_section(b, re.escape(sh_clean))
+        return True
+    return False
+
+
+STOREHOUSE_WITHDRAW_SECTIONS = (
+    r"^\s*take\s+out\s+equipment",
+    r"^\s*take\s+equipment",
+    r"^\s*take\s+out\s+item",
+    r"^\s*take\s+item",
+    r"^\s*take\s+out",
+    r"^\s*take\b",
+    r"^\s*withdraw\s+equipment",
+    r"^\s*withdraw\s+item",
+    r"^\s*withdraw\b",
+    r"^\s*equipment\s+storage",
+    r"^\s*item\s+storage",
+    r"^\s*equipment\s+store",
+    r"^\s*item\s+store",
+    r"^\s*storage\b",
+    r"^\s*store\b",
+)
+
+STOREHOUSE_DEPOSIT_SECTIONS = (
+    r"^\s*deposit\s+equipment",
+    r"^\s*deposit\s+item",
+    r"^\s*deposit\b",
+    r"^\s*store\s+equipment",
+    r"^\s*store\s+item",
+    r"^\s*put\s+in",
+)
+
+
+def is_equipment_name(item: str) -> bool:
+    clean = re.sub(r"(lzs\d*)+", "", str(item)).strip().lower()
+    if any(k in clean for k in ("shard", "potion", "crystal", "scroll", "fish", "ore", "herb", "ticket", "card", "rune", "meat", "box", "key")):
+        return False
+    if any(k in clean for k in ("bow", "sword", "staff", "blade", "axe", "dagger", "wand", "shield", "helm", "armor", "armour", "boots", "gloves", "belt", "ring", "necklace", "cloak", "robe", "equipment")):
+        return True
+    return False
+
+
+def storehouse_sections(item: str, mode: str = "withdraw") -> tuple[str, ...]:
+    """Return appropriate storehouse sections prioritizing item storage vs equipment storage."""
+    is_eq = is_equipment_name(item)
+    if mode == "withdraw":
+        if is_eq:
+            return (
+                r"^\s*take\s+out\s+equipment",
+                r"^\s*take\s+equipment",
+                r"^\s*withdraw\s+equipment",
+                r"^\s*equipment\s+storage",
+                r"^\s*equipment\s+store",
+                r"^\s*take\s+out",
+                r"^\s*take\b",
+                r"^\s*withdraw\b",
+                r"^\s*item\s+storage",
+                r"^\s*take\s+out\s+item",
+                r"^\s*take\s+item",
+                r"^\s*withdraw\s+item",
+                r"^\s*item\s+store",
+                r"^\s*storage\b",
+                r"^\s*store\b",
+            )
+        else:
+            return (
+                r"^\s*item\s+storage",
+                r"^\s*take\s+out\s+item",
+                r"^\s*take\s+item",
+                r"^\s*withdraw\s+item",
+                r"^\s*item\s+store",
+                r"^\s*take\s+out",
+                r"^\s*take\b",
+                r"^\s*withdraw\b",
+                r"^\s*equipment\s+storage",
+                r"^\s*take\s+out\s+equipment",
+                r"^\s*take\s+equipment",
+                r"^\s*withdraw\s+equipment",
+                r"^\s*equipment\s+store",
+                r"^\s*storage\b",
+                r"^\s*store\b",
+            )
+    else:  # deposit
+        if is_eq:
+            return (
+                r"^\s*deposit\s+equipment",
+                r"^\s*store\s+equipment",
+                r"^\s*equipment\s+storage",
+                r"^\s*deposit\b",
+                r"^\s*put\s+in",
+                r"^\s*deposit\s+item",
+                r"^\s*store\s+item",
+                r"^\s*item\s+storage",
+            )
+        else:
+            return (
+                r"^\s*deposit\s+item",
+                r"^\s*store\s+item",
+                r"^\s*item\s+storage",
+                r"^\s*deposit\b",
+                r"^\s*put\s+in",
+                r"^\s*deposit\s+equipment",
+                r"^\s*store\s+equipment",
+                r"^\s*equipment\s+storage",
+            )
+
+
+def withdraw(b: Bot, item: str, n: int, *, stock: int | None = None, storehouse: str | None = None):
     """Take up to n of item out of the storehouse (the trip's town's, during a restock). Returns
     how many arrived in the bag, counted at the storehouse: a potion drunk on the way there is not a
     potion the storehouse failed to hand over (that used to send the trip on to a shop)."""
-    houses = in_town(b, knowledge.service_npcs("storehouse"))
+    houses: list[Npc] | None = None
+    if storehouse:
+        houses = [c for c in knowledge.service_npcs("storehouse") if storehouse.lower() in c[1].lower()]
+        if not houses:
+            houses = [
+                (c["map"], c["name"], c["x"], c["y"])
+                for c in knowledge.data().get("npcs", [])
+                if storehouse.lower() in c["name"].lower()
+            ]
+    else:
+        houses = in_town(b, knowledge.service_npcs("storehouse"))
     if not houses:
         b.log(_("no storehouse in {map} - not taking {item} out", map=atlas.label(getattr(b, "restock_town", 0) or 0),
                 item=item))
         return 0
     visit(b, "storehouse", candidates=houses)
+    target_npc: Npc = getattr(b, "last_visited_npc", None) or (b.map_id(), "storehouse", 0, 0)
+    _tmid, npc_name, nx, ny = target_npc
     before = counts(b).get(item.lower(), 0)
+    got_count = 0
+    consecutive_fails = 0
+
     try:
         if stock is not None:
             n = _restock_quantity(b, item, stock)
             if n <= 0:
                 return 0
-        if not open_section(b, r"^\s*item storage"):
+        _select_storehouse_branch(b, storehouse)
+        for section in storehouse_sections(item, "withdraw"):
+            if open_section(b, section):
+                break
+        else:
             b.log(_("the storehouse menu has no item storage"), speak=True)
             return 0
         d = b.dialog()
-        if b.find_entry(d["top"], item_pattern(item)) is None:
-            b.log(_("no {item} in the storehouse", item=item))
+        pat = item_pattern(item)
+        loc = b.find_entry(d.get("top"), pat)
+        if loc is None:
+            b.log(_("no {item} in the storehouse", item=item), speak=True)
             b.__dict__.setdefault("storehouse_lacks", set()).add(item.strip().lower())
             return 0
-        pick(b, item_pattern(item), n)
+
+        is_equip = _is_equipment(d.get("top"), loc)
+        if not is_equip:
+            # Stackable item: type quantity and take all in one go
+            if pick(b, pat, n):
+                for _w in range(5):
+                    b.sleep(0.02)
+                    cur_step = counts(b).get(item.lower(), 0)
+                    if cur_step > before:
+                        got_count = cur_step - before
+                        break
+                else:
+                    got_count = n
+        else:
+            # Non-stackable equipment: pick directly via choose_at for ultra-fast withdrawal
+            while got_count < n and not b.stop_event.is_set():
+                d = b.dialog()
+                if not d.get("open"):
+                    if hasattr(b, "key") and hasattr(b, "wait_dialog"):
+                        b.key(b.p.get("enter_key", "enter"))
+                        b.wait_dialog(0.25)
+                    if not b.dialog().get("open"):
+                        if not b.talk(npc_name, (nx, ny)):
+                            consecutive_fails += 1
+                            if consecutive_fails >= 2:
+                                break
+                            continue
+                    _select_storehouse_branch(b, storehouse)
+                    for section in storehouse_sections(item, "withdraw"):
+                        if open_section(b, section):
+                            break
+                    d = b.dialog()
+
+                top = d.get("top") or {}
+                loc = b.find_entry(top, pat)
+                if loc is None:
+                    # If item not visible directly, try opening withdraw section
+                    for section in storehouse_sections(item, "withdraw"):
+                        if b.find_entry(top, section) is not None:
+                            open_section(b, section)
+                            d = b.dialog()
+                            top = d.get("top") or {}
+                            loc = b.find_entry(top, pat)
+                            break
+
+                if loc is None:
+                    break
+
+                r, c = loc
+                chosen = False
+                if menus.choose_at(b, top, r, c):
+                    chosen = True
+                    b.wait_menu_change(top, seconds=0.15)
+                else:
+                    chosen = pick(b, pat, 1)
+
+                if not chosen:
+                    consecutive_fails += 1
+                    if consecutive_fails >= 2:
+                        break
+                    continue
+
+                got_count += 1
+                consecutive_fails = 0
     finally:
         b.close_dialogs()
+
     if stock is not None:
         transaction = InventoryTransaction({item.lower(): before})
         transaction.expect(item, n)
         after = transaction.settle(b)
     else:
         after = counts(b)
-    got = max(0, after.get(item.lower(), 0) - before)
+    got = max(after.get(item.lower(), 0) - before, got_count)
     if stock is not None and got > 0:
         getattr(b, "storehouse_lacks", set[str]()).discard(item.lower())
     if got > 0:
+        b.storehouse_is_full = False
         refused(b).clear()          # something came out: there may be room again
     b.log(_("took {n} {item} out of the storehouse", n=got, item=item))
     stats.moved(b, "withdrawn", item, got)
     return got
 
 
+def storehouse_count(b: Bot, item: str = "", *, storehouse: str | None = None) -> int:
+    """Count matching items (or all occupied slots if item is empty) in the storehouse equipment storage."""
+    houses: list[Npc] | None = None
+    if storehouse:
+        houses = [c for c in knowledge.service_npcs("storehouse") if storehouse.lower() in c[1].lower()]
+        if not houses:
+            houses = [
+                (c["map"], c["name"], c["x"], c["y"])
+                for c in knowledge.data().get("npcs", [])
+                if storehouse.lower() in c["name"].lower()
+            ]
+    else:
+        houses = in_town(b, knowledge.service_npcs("storehouse"))
+    if not houses:
+        return 0
+
+    visit(b, "storehouse", candidates=houses)
+    total_found = 0
+    total_occupied = 0
+    pattern = item_pattern(item) if item else None
+    try:
+        _select_storehouse_branch(b, storehouse)
+        for section in storehouse_sections(item, "withdraw"):
+            if open_section(b, section):
+                break
+        else:
+            return 0
+
+        d = b.dialog()
+        top = d.get("top") or {}
+        rows = top.get("rows") or []
+        for row in rows:
+            for e in row:
+                if not e:
+                    continue
+                texts = b.entry_texts(e)
+                if not any(texts):
+                    continue
+                total_occupied += 1
+                if pattern:
+                    if any(travel.matches(pattern, t) for t in texts):
+                        total_found += 1
+                else:
+                    total_found += 1
+
+        is_soul = bool(storehouse and "soul" in storehouse.lower())
+        if total_occupied >= (30 if is_soul else 60):
+            b.storehouse_is_full = True
+        else:
+            b.storehouse_is_full = False
+    finally:
+        b.close_dialogs()
+
+    return total_found
+
+
 # What the game says when the storehouse has no free place for an item it doesn't hold yet (seen
 # 2026-11-18, the menu closing after it as after every deposit). An item it already holds a stack
 # of still goes in: only that item is refused, not the rest of the trip.
-STOREHOUSE_FULL = re.compile(r"\b(item|equipment) storage is full", re.I)
-FULL_HEARD = 1.5      # seconds the game is given to say so after a deposit that took nothing
+STOREHOUSE_FULL = re.compile(
+    r"\b(?:item|equipment|soul|character|account|vault|warehouse|storehouse)?\s*"
+    r"(?:storage|warehouse|storehouse|space)?\s*"
+    r"(?:is\s+full|is\s+already\s+full|full|no\s+free\s+space|not\s+enough\s+space|has\s+no\s+room|no\s+room|cannot\s+store)\b",
+    re.I
+)
+FULL_HEARD = 0.5      # seconds the game is given to say so after a deposit that took nothing
 
 
 def refused(b: Bot) -> set[str]:
@@ -334,30 +695,155 @@ def _heard_full(b: Bot, since: int) -> bool:
         b.sleep(0.25)
 
 
-def deposit(b: Bot, item: str, n: int | None=None):
+def deposit(b: Bot, item: str, n: int | None=None, *, storehouse: str | None = None):
     """Put n (default: all) of item into the storehouse. One the storehouse turned away as full
     this run isn't taken there again (refused)."""
-    have = counts(b).get(item.lower(), 0)
+    item_clean = re.sub(r"\s+", " ", item.strip().lower())
+    have = counts(b).get(item.lower(), 0) or counts(b).get(item_clean, 0)
+    base_pure = ""
+    if have <= 0:
+        base_pure = re.sub(r"^(?:refined|flawless|epic|legendary|great|heavenly|godbless|super|good|rare|common|sophisticated|normal)\s+", "", item_clean).strip()
+        have = counts(b).get(base_pure, 0)
+        if have > 0:
+            item = base_pure
     if have <= 0:
         return 0
     if item.strip().lower() in refused(b):
         b.log(_("not taking {item} to the storehouse: it is full and holds none yet", item=item))
         return 0
-    n = have if n is None else min(n, have)
-    visit(b, "storehouse")
+    target_count = have if n is None else min(n, have)
+
+    houses: list[Npc] | None = None
+    if storehouse:
+        houses = [c for c in knowledge.service_npcs("storehouse") if storehouse.lower() in c[1].lower()]
+        if not houses:
+            houses = [
+                (c["map"], c["name"], c["x"], c["y"])
+                for c in knowledge.data().get("npcs", [])
+                if storehouse.lower() in c["name"].lower()
+            ]
+    else:
+        houses = in_town(b, knowledge.service_npcs("storehouse"))
+
+    visit(b, "storehouse", candidates=houses)
+    target_npc: Npc = getattr(b, "last_visited_npc", None) or (b.map_id(), "storehouse", 0, 0)
+    _tmid, npc_name, nx, ny = target_npc
+
     from .chores import said_mark
     since = said_mark(b)
+    put_count = 0
+    consecutive_fails = 0
+
     try:
-        if not open_section(b, r"^\s*deposit item"):
+        def _ensure_deposit_section() -> bool:
+            d = b.dialog()
+            if not d.get("open"):
+                if nx and ny:
+                    b.talk(npc_name, (nx, ny))
+                else:
+                    b.talk(npc_name)
+                b.wait_dialog(1.5)
+                d = b.dialog()
+                if not d.get("open"):
+                    return False
+            _select_storehouse_branch(b, storehouse)
+            top = b.dialog().get("top") or {}
+            pat = item_pattern(item)
+            if b.find_entry(top, pat) is not None or (base_pure and b.find_entry(top, item_pattern(base_pure)) is not None):
+                return True
+            for section in storehouse_sections(item, "deposit"):
+                if b.find_entry(top, section) is not None:
+                    if open_section(b, section):
+                        return True
+            return False
+
+        if not _ensure_deposit_section():
             b.log(_("the storehouse menu has no deposit"), speak=True)
             return 0
-        if not pick(b, item_pattern(item), n):
-            return 0
+
+        while put_count < target_count and not b.stop_event.is_set():
+            curr_have = counts(b).get(item.lower(), 0) or counts(b).get(item_clean, 0)
+            if curr_have <= 0 and base_pure:
+                curr_have = counts(b).get(base_pure, 0)
+            if curr_have <= have - target_count or curr_have <= 0:
+                break
+
+            if not _ensure_deposit_section():
+                consecutive_fails += 1
+                if consecutive_fails >= 2:
+                    break
+                continue
+
+            top = b.dialog().get("top") or {}
+            pat = item_pattern(item)
+            loc = b.find_entry(top, pat)
+            if loc is None and base_pure:
+                pat = item_pattern(base_pure)
+                loc = b.find_entry(top, pat)
+            if loc is None:
+                break
+
+            is_eq = _is_equipment(top, loc)
+            step_qty = 1 if is_eq else (target_count - put_count)
+            before_step = curr_have
+
+            if not pick(b, pat, step_qty):
+                consecutive_fails += 1
+                if consecutive_fails >= 2 or _heard_full(b, since):
+                    refused(b).add(item.strip().lower())
+                    b.storehouse_is_full = True
+                    b.log(_("the storehouse is full: {item} has no place in it", item=item))
+                    break
+                continue
+
+            for _conf in range(3):
+                d_conf = b.dialog()
+                if not d_conf.get("open") or not d_conf.get("top"):
+                    break
+                if b.find_entry(d_conf["top"], CONFIRM) is not None:
+                    b.choose(CONFIRM)
+                    b.sleep(0.04)
+                else:
+                    break
+
+            deposited = False
+            for _w in range(15):
+                b.sleep(0.02)
+                after_step = counts(b).get(item.lower(), 0) or counts(b).get(item_clean, 0)
+                if after_step <= 0 and base_pure:
+                    after_step = counts(b).get(base_pure, 0)
+                if after_step < before_step:
+                    put_count += (before_step - after_step)
+                    deposited = True
+                    consecutive_fails = 0
+                    break
+                if not b.dialog().get("open"):
+                    b.sleep(0.02)
+                    after_step = counts(b).get(item.lower(), 0) or counts(b).get(item_clean, 0)
+                    if after_step <= 0 and base_pure:
+                        after_step = counts(b).get(base_pure, 0)
+                    if after_step < before_step:
+                        put_count += (before_step - after_step)
+                        deposited = True
+                        consecutive_fails = 0
+                    break
+
+            if not deposited:
+                if not is_eq:
+                    break
+                consecutive_fails += 1
+                if consecutive_fails >= 2:
+                    break
     finally:
         b.close_dialogs()
-    put = have - counts(b).get(item.lower(), 0)
-    if put <= 0 and _heard_full(b, since):
+
+    curr_now = counts(b).get(item.lower(), 0) or counts(b).get(item_clean, 0)
+    if curr_now <= 0 and base_pure:
+        curr_now = counts(b).get(base_pure, 0)
+    put = max(have - curr_now, put_count)
+    if (curr_now > have - target_count and consecutive_fails > 0) or _heard_full(b, since):
         refused(b).add(item.strip().lower())
+        b.storehouse_is_full = True
         b.log(_("the storehouse is full: {item} has no place in it", item=item))
     if put > 0:
         b.__dict__.setdefault("storehouse_lacks", set()).discard(item.strip().lower())   # it has some now
@@ -502,7 +988,23 @@ def buy(b: Bot, item: str, n: int, *, stock: int | None = None) -> int:
     shop whose menu the game data held was ever used - a Priest farming Flaming Mountain went to
     Giant Rock City for potions every time. A shop whose menu turns out not to list it is
     remembered and the next nearest tried (BUY_TRIES). Returns how many arrived."""
+    if knowledge.shop_role(item) == "shard_market" or item.strip().lower().endswith("shard"):
+        got_storage = 0
+        if item.strip().lower() not in getattr(b, "storehouse_lacks", set()):
+            b.log(_("checking storehouse for {item} before buying", item=item))
+            got_storage = withdraw(b, item, n)
+        if got_storage >= n:
+            b.log(_("got all {n} {item} from storehouse, skipping market purchase", n=got_storage, item=item), speak=True)
+            return got_storage
+        needed = n - got_storage
+        if got_storage > 0:
+            b.log(_("got {got} {item} from storehouse; buying remaining {rem} at market",
+                    got=got_storage, item=item, rem=needed), speak=True)
+        return got_storage + buy_shards_at_market(b, item, needed)
     shops = shops_for(item)
+    if not shops:
+        if knowledge.category(item) == "weapon":
+            shops = knowledge.service_npcs("weapon_merchant")
     if not shops:
         raise Stopped(_("I don't know which shop sells {item}", item=item))
     shops = in_town(b, shops)
@@ -547,7 +1049,37 @@ def buy(b: Bot, item: str, n: int, *, stock: int | None = None) -> int:
                 continue
             else:
                 note_shop(target, item, True)
-                pick(b, item_pattern(item), n)
+                picked_count = 0
+                if pick(b, item_pattern(item), n):
+                    picked_count += 1
+                if n > 1 and (counts(b).get(item.lower(), 0) - before < n):
+                    pat = item_pattern(item)
+                    while (counts(b).get(item.lower(), 0) - before < n) and (picked_count < n) and not b.stop_event.is_set():
+                        if not _buy_menu(b, item):
+                            break
+                        d = b.dialog()
+                        top = d.get("top") or {}
+                        loc = b.find_entry(top, pat)
+                        if loc is None:
+                            break
+                        r, c = loc
+                        chosen = False
+                        if menus.choose_at(b, top, r, c):
+                            chosen = True
+                            d = b.wait_menu_change(top, seconds=0.15)
+                            if d.get("open") and d.get("top") and b.find_entry(d["top"], CONFIRM) is not None:
+                                c_loc = b.find_entry(d["top"], CONFIRM)
+                                if c_loc and menus.choose_at(b, d["top"], c_loc[0], c_loc[1]):
+                                    b.wait_menu_change(d["top"], seconds=0.12)
+                                else:
+                                    b.choose(CONFIRM)
+                        else:
+                            chosen = pick(b, pat, 1)
+
+                        if not chosen:
+                            break
+                        picked_count += 1
+                        b.sleep(0.02)
         finally:
             b.close_dialogs()
         if stock is not None:
@@ -556,7 +1088,7 @@ def buy(b: Bot, item: str, n: int, *, stock: int | None = None) -> int:
             after = transaction.settle(b)
         else:
             after = counts(b)
-        got = after.get(item.lower(), 0) - before
+        got = max(after.get(item.lower(), 0) - before, picked_count)
         b.log(_("bought {n} {item}", n=got, item=item))
         stats.moved(b, "bought", item, got)
         return got
@@ -571,11 +1103,14 @@ def _affordable_quantity(b: Bot, item: str, n: int, have: dict[str, int]) -> int
     """Apply the shop's existing currency limit to a requested quantity."""
     price = knowledge.unit_price(item)
     money = have.get(stats.ARNEBIA)
+    keep = int(b.p.get("gem_keep_arnebia", 0) or 0)
+    if keep > 0 and money is not None:
+        money = max(0, money - keep)
     if price and money is not None and n * price > money:
         afford = money // price
         if afford <= 0:
             b.log(_("not enough arnebia for one {item}: {price} each, {money} in the bag",
-                    item=item, price=price, money=money), speak=True)
+                    item=item, price=price, money=have.get(stats.ARNEBIA)), speak=True)
             return 0
         b.log(_("buying {n} {item}, not {want}: that is what {money} arnebia pays for at {price} each",
                 n=afford, item=item, want=n, money=money, price=price))
@@ -616,6 +1151,134 @@ def sell(b: Bot, item: str, n: int | None=None):
     b.log(_("sold {n} {item}", n=sold, item=item))
     stats.moved(b, "sold", item, sold)
     return sold
+
+
+def breakdown(b: Bot, item: str | None = None, n: int | None = None) -> int:
+    """Breakdown up to n equipment (or matching item) at the Blacksmith into Arnebia."""
+    item_clean = ""
+    base_pure = ""
+    if item:
+        item_clean = re.sub(r"\s+", " ", item.strip().lower())
+        have = counts(b).get(item.lower(), 0) or counts(b).get(item_clean, 0)
+        if have <= 0:
+            base_pure = re.sub(r"^(?:refined|flawless|epic|legendary|great|heavenly|godbless|super|good|rare|common|sophisticated|normal)\s+", "", item_clean).strip()
+            have = counts(b).get(base_pure, 0)
+            if have > 0:
+                item = base_pure
+        if have <= 0:
+            b.log(_("no {item} in the bag to break down", item=item), speak=True)
+            return 0
+    visit(b, "blacksmith")
+    pattern = item_pattern(item) if item else None
+    done = 0
+    npc_name = "blacksmith"
+    nx, ny = None, None
+    if getattr(b, "last_visited_npc", None):
+        _mid, npc_name, nx, ny = b.last_visited_npc
+
+    BREAKDOWN_SECTIONS = (
+        r"^\s*(?:Breakdown|Decompose)\s*(?:Equipment)?",
+        r"^\s*Breakdown\b",
+        r"^\s*Decompose\b",
+    )
+    try:
+        d = b.dialog()
+        top = d.get("top") or {}
+        if not (pattern and b.find_entry(top, pattern) is not None):
+            for sec in BREAKDOWN_SECTIONS:
+                if b.find_entry(top, sec) is not None:
+                    open_section(b, sec)
+                    break
+
+        consecutive_fails = 0
+        while not b.stop_event.is_set():
+            if n is not None and done >= n:
+                break
+            d = b.dialog()
+            if not d.get("open"):
+                # Dialog closed after decomposing equipment; talk to Blacksmith to reopen
+                if hasattr(b, "key") and hasattr(b, "wait_dialog"):
+                    b.key(b.p.get("enter_key", "enter"))
+                    b.wait_dialog(0.3)
+                if not b.dialog().get("open"):
+                    if nx is not None and ny is not None:
+                        b.talk(npc_name, (nx, ny))
+                    else:
+                        b.talk(npc_name)
+                d = b.dialog()
+                if not d.get("open"):
+                    consecutive_fails += 1
+                    if consecutive_fails >= 2:
+                        break
+                    continue
+
+            top = d.get("top") or {}
+            # If at NPC root menu, open Breakdown Equipment
+            for sec in BREAKDOWN_SECTIONS:
+                if b.find_entry(top, sec) is not None:
+                    open_section(b, sec)
+                    d = b.dialog()
+                    top = d.get("top") or {}
+                    break
+
+            where = b.find_entry(top, pattern) if pattern else None
+            if pattern and where is None:
+                # No more matching weapons in picker
+                break
+            if not pattern:
+                rows = top.get("rows") or []
+                found = False
+                for r, row in enumerate(rows):
+                    for c, e in enumerate(row):
+                        if e and (int(e.get("flags") or 0) & 8):
+                            where = (r, c)
+                            found = True
+                            break
+                    if found:
+                        break
+                if not found:
+                    break
+            if where is None:
+                break
+
+            target_entry = top["rows"][where[0]][where[1]]
+            target_pattern = item_pattern(item) if pattern else re.escape(target_entry.get("text") or target_entry.get("raw") or "")
+            if not target_pattern:
+                break
+
+            chosen = b.choose(target_pattern)
+            if chosen is None:
+                consecutive_fails += 1
+                if consecutive_fails >= 2:
+                    break
+                continue
+
+            # Handle confirmation popups:
+            # 1 popup for normal gear ("Are you sure...").
+            # 2 popups for refined/enhanced gear ("Please reconfirm...").
+            for _conf in range(3):
+                b.sleep(0.06)
+                d_conf = b.dialog()
+                if not d_conf.get("open") or not d_conf.get("top"):
+                    break
+                if b.find_entry(d_conf["top"], CONFIRM) is not None:
+                    b.choose(CONFIRM)
+                else:
+                    break
+
+            done += 1
+            consecutive_fails = 0
+
+            if item:
+                rem = counts(b).get(item.lower(), 0) or (counts(b).get(item_clean, 0) if item_clean else 0)
+                if rem <= 0 and base_pure:
+                    rem = counts(b).get(base_pure, 0)
+                if rem <= 0:
+                    break
+    finally:
+        b.close_dialogs()
+    b.log(_("broke down {n} equipment at Blacksmith", n=done), speak=True)
+    return done
 
 
 # ---------------------------------------------------------------------------------------- the collection
@@ -1142,6 +1805,44 @@ def _note_shard_sales(b: Bot, transaction: InventoryTransaction, todo: list[tupl
         b.log(_("sold {n} {item} at the Shard Market", n=gone, item=name))
         stats.moved(b, "sold", name, gone)
     return len(moved)
+
+
+def buy_shards_at_market(b: Bot, item: str, n: int) -> int:
+    """Buy n shards of item at the nearest Shard Market."""
+    _s, markets = shard_catalog()
+    if markets:
+        candidates = market_candidates(markets)
+    else:
+        candidates = knowledge.service_npcs("shard_market")
+    if not candidates:
+        raise Stopped(_("I don't know where a Shard Market is"))
+    have = counts(b)
+    before = have.get(item.lower(), 0)
+    broker = visit(b, None, candidates=candidates)
+    done = 0
+    try:
+        def open_market() -> bool:
+            if not market_lists(b, item):
+                b.close_dialogs()
+                if not b.talk(broker):
+                    return False
+            return market_lists(b, item, MARKET_OPEN)
+
+        while done < n and not b.stop_event.is_set():
+            if not open_market():
+                break
+            step = min(n - done, TRADE_MOST)
+            traded = shard_trade(b, item, "buy", step, reopen=open_market)
+            if traded <= 0:
+                break
+            done += traded
+    finally:
+        b.close_dialogs()
+    after = counts(b)
+    got = max(after.get(item.lower(), 0) - before, done)
+    b.log(_("bought {n} {item}", n=got, item=item))
+    stats.moved(b, "bought", item, got)
+    return got
 
 
 # ---------------------------------------------------------------------------------------- gems

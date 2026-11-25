@@ -139,6 +139,13 @@ class DialogsMixin(Parts):
         return self.dialog()
 
     def close_dialogs(self) -> None:
+        try:
+            inp = self.a.json("input")
+            if inp.get("ok") and inp.get("open"):
+                self.a.send("typeesc")
+                self.sleep(0.15)
+        except Exception:
+            pass
         for _i in range(6):
             if self.dialog()["open"] == 0:
                 return
@@ -250,7 +257,10 @@ class DialogsMixin(Parts):
         snap = self.snap()
         me = snap["self"]
         x0, y0 = near if near else (me["x"], me["y"])
-        hits = [e for e in snap["entities"] if (e.get("name") or "").strip().lower() == name.strip().lower()]
+        name_clean = name.strip().lower()
+        hits = [e for e in snap["entities"] if (e.get("name") or "").strip().lower() == name_clean]
+        if not hits and "storehouse" in name_clean:
+            hits = [e for e in snap["entities"] if "storehouse" in (e.get("name") or "").strip().lower()]
         if near and within is not None:
             hits = [e for e in hits if math.hypot(e["x"] - x0, e["y"] - y0) <= within]
         hits.sort(key=lambda e: math.hypot(e["x"] - x0, e["y"] - y0))
@@ -266,6 +276,9 @@ class DialogsMixin(Parts):
         npcs: list[dict[str, Any]] = knowledge.data().get("npcs", [])
         spots: list[tuple[int, int]] = [(int(n["x"]), int(n["y"])) for n in npcs
                  if n.get("map") == mid and (n.get("name") or "").strip().lower() == want]
+        if not spots and "storehouse" in want:
+            spots = [(int(n["x"]), int(n["y"])) for n in npcs
+                     if n.get("map") == mid and "storehouse" in (n.get("name") or "").strip().lower()]
         sweep: list[tuple[int, int]] = []
         for c in knowledge.cities():
             if c.get("map") == mid:
@@ -325,15 +338,25 @@ class DialogsMixin(Parts):
         self.modes_done = False
         if not self.set_target_mode(3):
             self.log(_("couldn't switch the target key to NPCs"), speak=True)
-        for attempt in range(3):
+        for attempt in range(4):
             npc = self.find_npc(name, at, self.NPC_SPOT if at else None) or npc
-            # the last try with the game's own target keys: whatever selecting by id leaves out,
-            # the keys did it before (live 2026-10-22 a Cable Car manager never answered)
-            if not self.select_target(npc, by_keys=attempt == 2):
-                continue
+            if npc:
+                self.select_target(npc, by_keys=(attempt >= 2))
+                self.sleep(0.08)
             self.key(self.p.get("enter_key", "enter"))
-            if self.wait_dialog(3.0):
+            if self.wait_dialog(2.0):
                 return True
+            try:
+                inp = self.a.json("input")
+                if inp.get("ok") and inp.get("open"):
+                    self.a.send("typeesc")
+            except Exception:
+                pass
+            if attempt == 1 and at:
+                m = atlas.model(self.map_id())
+                s = m.place_by(int(at[0]), int(at[1]), 1)
+                if s:
+                    self.walk_to(s)
         self.talk_problem = "no answer"
         self.log(_("{npc} didn't answer", npc=name), speak=True)
         return False
