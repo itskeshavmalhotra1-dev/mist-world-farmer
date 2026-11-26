@@ -6,6 +6,7 @@ import re
 from typing import TYPE_CHECKING, Any, cast
 
 from .. import atlas, jsonio, knowledge, settings
+from ..clock import clock_for
 from ..i18n import N_, _
 from . import chores, dungeon
 from .botparts.base import CONFIRM
@@ -224,18 +225,40 @@ def _can_redeem(d: dict[str, Any], pat: str) -> bool:
     return False
 
 
-def _open_redeem_menu(b: Bot) -> bool:
-    """Ensure the Redeem Thanksgiving Gifts dialog is open (re-talks to envoy if closed)."""
-    d = b.dialog()
-    if d.get("open"):
-        rows: list[list[dict[str, Any]]] = d.get("top", {}).get("rows", [])
-        opts = [opt for row in rows for col in row for opt in col.get("options", [])]
-        if any("today's exchanges" in opt.lower() or "please select the gift" in opt.lower() for opt in opts):
+def _dialog_options(d: dict[str, Any]) -> list[str]:
+    if not d.get("open"):
+        return []
+    rows: list[list[dict[str, Any]]] = d.get("top", {}).get("rows", [])
+    return [str(opt) for row in rows for col in row for opt in col.get("options", [])]
+
+
+def _is_redeem_submenu(d: dict[str, Any]) -> bool:
+    opts = _dialog_options(d)
+    return any(
+        "today's exchanges" in opt.lower()
+        or "please select the gift" in opt.lower()
+        or "sold out" in opt.lower()
+        for opt in opts
+    )
+
+
+def _wait_redeem_submenu(b: Bot, timeout: float = 4.0) -> bool:
+    end = clock_for(b).time() + timeout
+    while clock_for(b).time() < end:
+        if _is_redeem_submenu(b.dialog()):
             return True
-        if any("redeem thanksgiving gifts" in opt.lower() for opt in opts):
-            if b.choose(r"Redeem Thanksgiving Gifts") is not None:
-                b.wait_dialog(3.0)
-                return True
+        b.sleep(0.15)
+    return _is_redeem_submenu(b.dialog())
+
+
+def _open_redeem_menu(b: Bot) -> bool:
+    """Ensure the Redeem Thanksgiving Gifts submenu is open and loaded."""
+    d = b.dialog()
+    if _is_redeem_submenu(d):
+        return True
+    if any("redeem thanksgiving gifts" in opt.lower() for opt in _dialog_options(d)):
+        if b.choose(r"Redeem Thanksgiving Gifts") is not None and _wait_redeem_submenu(b):
+            return True
 
     if not talk_to_envoy(b):
         b.log(_("couldn't talk to Activity Envoy"))
@@ -245,8 +268,21 @@ def _open_redeem_menu(b: Bot) -> bool:
         b.close_dialogs()
         b.log(_("couldn't open Redeem Thanksgiving Gifts menu"))
         return False
-    b.wait_dialog(3.0)
+    if not _wait_redeem_submenu(b):
+        b.close_dialogs()
+        b.log(_("couldn't open Redeem Thanksgiving Gifts menu"))
+        return False
     return True
+
+
+def _wait_turkey_deducted(b: Bot, before: int, timeout: float = 2.5) -> bool:
+    """Wait until the server deducts turkeys from the bag after an exchange click."""
+    end = clock_for(b).time() + timeout
+    while clock_for(b).time() < end:
+        if turkey_count(b) < before:
+            return True
+        b.sleep(0.2)
+    return turkey_count(b) < before
 
 
 def redeem_thanksgiving(b: Bot, cfg: dict[str, Any], check_only: bool = False) -> tuple[int, list[str]]:
@@ -285,8 +321,9 @@ def redeem_thanksgiving(b: Bot, cfg: dict[str, Any], check_only: bool = False) -
             if not _can_redeem(b.dialog(), pat):
                 break
             if b.choose(pat) is not None:
-                b.sleep(0.8)
+                _wait_turkey_deducted(b, cur_turkeys)
                 b.close_dialogs()
+                b.sleep(0.3)
                 redeemed.append(key)
                 total_spent += cost
                 b.log(_("exchanged {name} for {cost} turkeys", name=item_name(key), cost=cost))

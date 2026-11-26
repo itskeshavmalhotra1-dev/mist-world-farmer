@@ -127,6 +127,7 @@ def main(full: bool = False) -> None:
         if os.path.exists(os.path.join(ROOT, name)):
             shutil.copy2(os.path.join(ROOT, name), OUT)
     verify(OUT)
+    updater.write_build(OUT, __version__, "master")
     print("built:", OUT)
 
 
