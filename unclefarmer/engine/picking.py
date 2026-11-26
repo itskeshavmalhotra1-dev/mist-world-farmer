@@ -38,6 +38,7 @@ class Rules:
     boss_keep: float = 40                    # keep this far from a boss (0: bosses aren't looked for)
     skip_elites: bool = False                # leave demonized elites alone (skip_demonized_elites)
     elites: Sequence[dict[str, Any]] = ()    # with skip_elites: the elites in sight, kept ELITE_CLEAR from
+    max_hp: int | None = None                # leave monsters with hp or maxhp above this alone
 
 
 @dataclass(frozen=True)
@@ -177,6 +178,8 @@ def left_out(e: dict[str, Any], map_id: Any, rules: Rules, notes: Notes, boss_li
     name = e["name"]
     if (rules.only and not re.search(rules.only, name, re.I)) or (rules.skip and re.search(rules.skip, name, re.I)):
         return "names"
+    if rules.max_hp is not None and (int(e.get("hp", 0)) > rules.max_hp or int(e.get("maxhp", 0)) > rules.max_hp):
+        return "hp"
     if boss_list and (bosses.is_boss(e) or bosses.too_close(e, boss_list, rules.boss_keep)):
         return "boss"
     if not hit and rules.skip_elites and (

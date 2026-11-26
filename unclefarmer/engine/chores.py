@@ -79,7 +79,7 @@ import re
 import time
 from collections.abc import Callable, Collection, Iterable
 from dataclasses import dataclass, field
-from typing import Any
+from typing import Any, cast
 
 from .. import atlas, daily, jsonio, knowledge, paths, settings
 from ..clock import clock_for
@@ -87,7 +87,8 @@ from ..i18n import _
 from . import crafting, town
 from .bot import CONFIRM, Bot, Stopped
 
-CHORES = ("bank", "pet_rebirth", "contribution_chests", "donation", "construction", "feed", "secret_room")
+CHORES = ("bank", "pet_rebirth", "contribution_chests", "donation", "construction", "feed",
+          "mission_missing_child", "mission_troubled_guard", "secret_room")
 DEFAULTS: dict[str, Any] = {
     "bank": True,
     "bounty_officers": [],            # Tools, Hunting bounties: the officers to visit (not a daily chore)
@@ -95,6 +96,8 @@ DEFAULTS: dict[str, Any] = {
     "donation": "off",                # off, 10000, 20000 or diamonds
     "construction": 0,                # builds a day, over every place to build (the game allows 2)
     "feed": False,                    # feed the gang's breed beast at the Animal Shed
+    "mission_missing_child": False,   # Gang mission: Missing Child (Little Jack -> Old Jack)
+    "mission_troubled_guard": False,  # Gang mission: Troubled Guard (Barr -> Merlin -> Silk -> Coat)
     "contribution_chests": False,     # exchange contribution for chests (5000 each; not gang contribution)
     "chest_count": 2,                 # ... this many a day (the game allows 2)
     "build_highlands": True,          # where builds may go: the gang's highlands,
@@ -174,6 +177,8 @@ def label(chore: str) -> str:
     return {"bank": _("bank income"), "pet_rebirth": _("pet rebirth"),
             "donation": _("gang donation"), "construction": _("gang construction"),
             "feed": _("Animal Shed feeding"),
+            "mission_missing_child": _("gang mission: Missing Child"),
+            "mission_troubled_guard": _("gang mission: Troubled Guard"),
             "contribution_chests": _("Contribution Chests"),
             "secret_room": _("secret room")}[chore]
 
@@ -1318,5 +1323,209 @@ def secret_room(b: Bot, cfg: dict[str, Any], check_only: bool):
         made >= SHARES_A_DAY
 
 
+def _my_missions(b: Bot) -> dict[str, str]:
+    """Open Action menu -> my mission and return {mission_key_lower: status_text}."""
+    b.close_dialogs()
+    b.key("lctrl+enter")
+    b.sleep(0.7)
+    if b.choose(r"my\s+mission") is None:
+        b.close_dialogs()
+        return {}
+    b.wait_dialog(2.0)
+    top = cast(dict[str, Any], b.dialog().get("top") or {})
+    rows = cast(list[list[dict[str, Any]]], top.get("rows") or [])
+    out: dict[str, str] = {}
+    for row in rows:
+        for cell in row:
+            raw_opts = cast(list[Any], cell.get("options") or [])
+            opts = [str(x).strip() for x in raw_opts if str(x).strip()]
+            if not opts:
+                continue
+            title = opts[0].lower()
+            status = " ".join(opts[1:]).lower()
+            if "missing child" in title:
+                out["missing child"] = status
+            elif "troubled guard" in title:
+                out["troubled guard"] = status
+    b.close_dialogs()
+    return out
+
+
+def _accept_gang_mission(b: Bot, name_pattern: str) -> bool:
+    """Open Head of inner hall -> take Mission -> <name_pattern> -> Accept."""
+    inner_hall(b)
+    _talk(b, *HEAD)
+    if b.choose(r"take\s+Mission") is None:
+        return False
+    b.wait_dialog(3.0)
+    if b.choose(name_pattern) is None:
+        return False
+    b.wait_dialog(3.0)
+    if b.choose(r"Accept") is None:
+        return False
+    b.sleep(0.5)
+    b.close_dialogs()
+    return True
+
+
+def mission_missing_child(b: Bot, _cfg: dict[str, Any], check_only: bool) -> tuple[str, bool]:
+    """Gang mission: Missing Child (Head of inner hall -> Little Jack -> Old Jack in Tari Village)."""
+    if check_only:
+        return _("would run Missing Child gang mission"), True
+    active = _my_missions(b)
+    if "missing child" not in active and not _accept_gang_mission(b, r"Missing\s+Child"):
+        return _("Missing Child not offered (already done today?)"), True
+    b.travel(1061, (129, 121))
+    b.close_dialogs()
+    jack_ok = False
+    for pt in ((129, 121), (100, 100), (140, 100), (120, 130)):
+        b.walk_to(pt)
+        if b.talk("Villager Little Jack"):
+            jack_ok = True
+            break
+    if not jack_ok:
+        return _("couldn't find Villager Little Jack"), False
+    b.wait_dialog(3.0)
+    if b.choose(r"Accept Little Jack|request") is not None:
+        b.wait_dialog(2.0)
+        b.choose(r"inform your father|early")
+    b.close_dialogs()
+    b.walk_to((288, 169))
+    if not b.talk("Villager Old Jack"):
+        return _("couldn't talk to Villager Old Jack"), False
+    b.wait_dialog(3.0)
+    b.choose(r"son")
+    b.wait_dialog(2.0)
+    if b.choose(r"Take the reward") is None:
+        return _("couldn't collect Missing Child reward from Old Jack"), False
+    b.close_dialogs()
+    return _("Missing Child mission completed"), True
+
+
+def _enter_outer_hall(b: Bot) -> str | None:
+    """Travel to Central Plains (1041), enter Gang Outer hall, and walk to Guard Barr (6, 83)."""
+    b.travel(1041, (250, 179))
+    if not b.talk("Gang Entrance", (250, 179)):
+        return _("couldn't talk to Gang Entrance")
+    b.wait_dialog(3.0)
+    if b.choose(r"Outer\s+hall") is None:
+        return _("couldn't enter Outer hall")
+    b.sleep(2.0)
+    b.walk_to((6, 83))
+    return None
+
+
+def _take_barr_letter(b: Bot) -> str | None:
+    for _try in range(2):
+        if b.talk("Guard Barr"):
+            b.wait_dialog(3.0)
+            b.choose(r"Accept the request")
+            b.close_dialogs()
+        if town.counts(b).get("barr's letter", 0) >= 1:
+            return None
+    return _("Guard Barr did not give Barr's Letter")
+
+
+def _merlin_and_silk(b: Bot, skip_letter: bool = False) -> str | None:
+    if not skip_letter:
+        b.travel(1061, (277, 169))
+        if not b.talk("Villager Merlin"):
+            return _("couldn't talk to Villager Merlin")
+        b.wait_dialog(3.0)
+        b.choose(r"Barr send you|letter")
+        b.sleep(0.5)
+        b.choose(r"Deliver the letter")
+        b.sleep(0.5)
+        b.choose(r"admire the bond|love to help")
+        b.close_dialogs()
+    if town.counts(b).get("silk", 0) < 1:
+        b.travel(1061, (330, 200))
+        b.walk_to((330, 200))
+        if not b.talk("Mulberry tree"):
+            return _("couldn't talk to Mulberry tree")
+        b.wait_dialog(3.0)
+        b.choose(r"silkworm cocoon")
+        b.sleep(1.0)
+        for _step in range(30):
+            if town.counts(b).get("silk", 0) >= 1:
+                break
+            if not b.dialog().get("open"):
+                if b.talk("Mulberry tree"):
+                    b.wait_dialog(2.0)
+                    b.choose(r"silkworm cocoon")
+                    b.sleep(0.5)
+            b.choose(r"Fetch the silk|Continue to fetch|click to continue")
+            b.sleep(2.5)
+        b.close_dialogs()
+        if town.counts(b).get("silk", 0) < 1:
+            return _("didn't get Silk from Mulberry tree")
+    b.travel(1061, (277, 169))
+    if not b.talk("Villager Merlin"):
+        return _("couldn't talk to Villager Merlin")
+    b.wait_dialog(3.0)
+    b.choose(r"Deliver the silk")
+    b.close_dialogs()
+    for _wait in range(20):
+        status = _my_missions(b).get("troubled guard", "")
+        if "production progress" in status or "ask merlin" in status:
+            break
+        b.sleep(3.0)
+    b.close_dialogs()
+    if not b.talk("Villager Merlin"):
+        return _("couldn't talk to Villager Merlin for coat")
+    b.wait_dialog(3.0)
+    b.choose(r"Take the leather coat")
+    b.sleep(0.5)
+    b.close_dialogs()
+    bag = town.counts(b)
+    if bag.get("merlin's letter", 0) < 1 or bag.get("snow leopard leather coat", 0) < 1:
+        return _("Villager Merlin did not give coat and letter")
+    return None
+
+
+def mission_troubled_guard(b: Bot, _cfg: dict[str, Any], check_only: bool) -> tuple[str, bool]:
+    """Gang mission: Troubled Guard (Barr -> Merlin -> Mulberry Silk -> Leather Coat -> Barr)."""
+    if check_only:
+        return _("would run Troubled Guard gang mission"), True
+    active = _my_missions(b)
+    status = active.get("troubled guard", "")
+    if "troubled guard" not in active and not _accept_gang_mission(b, r"Troubled\s+Guard"):
+        return _("Troubled Guard not offered (already done today?)"), True
+    if "production progress" in status or "ask merlin" in status:
+        b.travel(1061, (277, 169))
+        if not b.talk("Villager Merlin"):
+            return _("couldn't talk to Villager Merlin for coat"), False
+        b.wait_dialog(3.0)
+        b.choose(r"Take the leather coat")
+        b.close_dialogs()
+        err = _enter_outer_hall(b)
+    elif "deliver merlin" in status:
+        err = _enter_outer_hall(b)
+    elif "deliver barr" in status:
+        err = _merlin_and_silk(b, skip_letter=False) or _enter_outer_hall(b)
+    elif "mulberry" in status or "collect silk" in status:
+        b.travel(1061, (330, 200))
+        err = _merlin_and_silk(b, skip_letter=True) or _enter_outer_hall(b)
+    else:
+        err = _enter_outer_hall(b) or _take_barr_letter(b) or _merlin_and_silk(b) or _enter_outer_hall(b)
+    if err:
+        return err, False
+    b.close_dialogs()
+    if not b.talk("Guard Barr"):
+        return _("couldn't talk to Guard Barr"), False
+    b.wait_dialog(3.0)
+    b.choose(r"how is Merlin|coat")
+    b.sleep(0.5)
+    b.choose(r"Deliver Merlin's Letter")
+    b.sleep(0.5)
+    b.close_dialogs()
+    if "troubled guard" in _my_missions(b):
+        return _("Troubled Guard turn-in did not complete"), False
+    return _("Troubled Guard mission completed"), True
+
+
 DO = {"bank": bank, "pet_rebirth": pet_rebirth, "donation": donation,
-      "construction": construction, "feed": feed, "contribution_chests": contribution_chests, "secret_room": secret_room}
+      "construction": construction, "feed": feed,
+      "mission_missing_child": mission_missing_child,
+      "mission_troubled_guard": mission_troubled_guard,
+      "contribution_chests": contribution_chests, "secret_room": secret_room}

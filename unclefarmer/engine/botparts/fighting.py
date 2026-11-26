@@ -26,6 +26,7 @@ LEFT_OUT = {
     "kind": N_("of a kind that can't be attacked here"),
     "names": N_("left out by the only-fight / never-fight names"),
     "boss": N_("too close to a boss"),
+    "hp": N_("HP higher than maximum target HP"),
     "elite": N_("demonized elites or too close to one, left alone as the character settings say"),
     "area": N_("outside the farming area"),
     "avoid": N_("in an elite or boss zone we keep out of"),
@@ -117,6 +118,7 @@ class FightingMixin(Parts):
     SELECT_RANGE = 20.0   # how far the game's target keys pick a monster at most, as far as we can
     MOVE_SHOT_REACH = MOVE_SHOT_REACH   # shooting on the way only for a character that hits from this far
     move_shots: bool = False   # Tools, Dungeons' "shoot while walking", for the visit
+    max_mob_hp: int | None = None   # ignore monsters with HP or maxhp above this
     burst_target: tuple[int, float] | None = None   # the fight's monster while a burst presses at it
     _speech: str
     select_refused: str = ""   # agent 41's reason the last `select` was refused ("" when it wasn't)
@@ -608,7 +610,8 @@ class FightingMixin(Parts):
         rules = picking.Rules(area=area, only=only, skip=skip, avoid_rects=avoid_rects, limit=limit,
                               boss_keep=self.p.get("boss_distance", 40),
                               skip_elites=bool(self.p.get("skip_demonized_elites")),
-                              elites=bosses.elites_in_sight(as_bot(self), snap))
+                              elites=bosses.elites_in_sight(as_bot(self), snap),
+                              max_hp=getattr(self, "max_mob_hp", None))
         players = [(p["x"], p["y"]) for p in snap["entities"]
                    if p.get("kind") == "player" and p.get("id") != me.get("id")
                    and " belongs to " not in str(p.get("name") or "") and picking.placed(p, {})]

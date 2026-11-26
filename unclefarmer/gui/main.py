@@ -284,6 +284,7 @@ class MainFrame(GamesMixin, RunsMixin, LogMixin, TalkMixin, ResultsMixin, Editin
                            command(_("&Daily chores"), lambda e: self.open_tool("chores"), "Ctrl+Shift+D"),
                            command(_("Gathe&ring"), lambda e: self.open_tool("gather"), "Ctrl+Shift+F"),
                            command(_("D&ungeons"), lambda e: self.open_tool("dungeon"), "Ctrl+Shift+G"),
+                           command(_("&Events"), lambda e: self.open_tool("events")),
                            command(_("&XP loser"), lambda e: self.open_tool("xploss"), "Ctrl+Shift+X"),
                            command(_("&Market searcher and buyer"), lambda e: self.open_market(), "Ctrl+Shift+K"),
                            command(_("Hunting bount&ies"), lambda e: self.open_tool("bounties")),
@@ -296,7 +297,7 @@ class MainFrame(GamesMixin, RunsMixin, LogMixin, TalkMixin, ResultsMixin, Editin
                            command(_("Update shard &prices"), lambda e: self.update_shard_prices_now()),
                            command(_("Sound Silencer"), lambda e: self.open_silencer()),
                            command(_("&Keyboard Manager"), lambda e: self.open_tool("keyboard"))],
-                          ("tools_gem", "tools_breaker", "tools_potions", "tools_enhance", "tools_chores", "tools_gather", "tools_dungeon", "tools_xploss",
+                          ("tools_gem", "tools_breaker", "tools_potions", "tools_enhance", "tools_chores", "tools_gather", "tools_dungeon", "tools_events", "tools_xploss",
                            "tools_market", "tools_bounties", "tools_construction", "tools_collection", "tools_shards", "tools_clean", "tools_store", "tools_restock", "tools_prices",
                            "tools_silencer", "tools_keyboard"),
                           context=True)

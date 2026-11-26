@@ -255,6 +255,7 @@ class EditingMixin(FrameParts):
                 self.auto_scan(name)          # a fresh look at the bag and gear first
         from ..chores import BountiesDialog, ChoresDialog
         from ..dungeon import DungeonDialog
+        from ..events import EventsDialog
         from ..gathering import GatheringDialog
         from ..xploss import XpLoserDialog
         cls, cmd, title = {"gem": (GemMakerDialog, "gem_maker", _("Gem Maker")),
@@ -265,6 +266,7 @@ class EditingMixin(FrameParts):
                            "bounties": (BountiesDialog, "bounties", _("Hunting bounties")),
                            "gather": (GatheringDialog, "gather", _("Gathering")),
                            "dungeon": (DungeonDialog, "dungeon", _("Dungeons")),
+                           "events": (EventsDialog, "events", _("Events")),
                            "xploss": (XpLoserDialog, "lose_xp", _("XP loser"))}[which]
         # "Add where I stand" and "Use where I stand now" read the game
         extra = (self.snapshot,) if which in ("gather", "dungeon", "xploss") else ()

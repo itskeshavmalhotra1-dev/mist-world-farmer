@@ -74,6 +74,12 @@ class ChoresDialog(Dialog):
         self.keep_arnebia = f.number(_("Never spend arnebia belo&w:"), self.p.get("gem_keep_arnebia", 20000),
                                      0, 1000000000)
 
+        f = group(panel, box, _("Gang missions (once a day each)"))
+        self.mission_missing_child = f.check(_("&Missing Child (Little Jack -> Old Jack in Tari Village)"),
+                                             c["mission_missing_child"])
+        self.mission_troubled_guard = f.check(_("&Troubled Guard (Guard Barr -> Merlin -> Mulberry Silk -> Coat)"),
+                                              c["mission_troubled_guard"])
+
         panel, box = page(nb, _("Secret room"))
         f = group(panel, box, _("Sharing arnebia (both players get some; once in each half hour, 5 times a day)"))
         self.room_on = f.check(_("Share arnebia in a &secret room"), c["secret_room"])
@@ -131,7 +137,10 @@ class ChoresDialog(Dialog):
                         construction=self.construction.GetValue(),
                         build_highlands=self.build_highlands.GetValue(), build_cannon=self.build_cannon.GetValue(),
                         build_supply=self.build_supply.GetValue(), build_posts=self.build_posts.GetValue(),
-                        feed=self.feed.GetValue(), contribution_chests=self.chests.GetValue(),
+                        feed=self.feed.GetValue(),
+                        mission_missing_child=self.mission_missing_child.GetValue(),
+                        mission_troubled_guard=self.mission_troubled_guard.GetValue(),
+                        contribution_chests=self.chests.GetValue(),
                         chest_count=self.chest_count.GetValue(),
                         secret_room=self.room_on.GetValue(), room=self.room.GetValue().strip(),
                         assistant=self.assistant.GetSelection() + 1, practice_minutes=self.minutes.GetValue(),

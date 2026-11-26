@@ -58,6 +58,11 @@ def _chores(b: Bot, check: bool, o: Mapping[str, Any]) -> object:
     return chores.run(b, chores.config(b.p), check, o.get("only") or None)
 
 
+def _events(b: Bot, check: bool, _o: Mapping[str, Any]) -> object:
+    from . import events
+    return events.run(b, events.config(b.p), check)
+
+
 def _bounties(b: Bot, check: bool, _o: Mapping[str, Any]) -> object:
     from . import chores
     return chores.collect_bounties(b, chores.config(b.p), check)
@@ -122,6 +127,7 @@ ACTIVITIES: tuple[Activity, ...] = (
              checks=True),
     # a dungeon farms: its loot is farming loot, so it has no results part of its own
     Activity("dungeon", N_("running a dungeon"), _dungeon, farms=True, checks=True),
+    Activity("events", N_("running events"), _events, checks=True),
     Activity("sell_collection", N_("selling the collection"), _sell_collection),
     # on request only (Tools, Hunting bounties); the scanner is listed by how it publishes (triggers.TOOLS)
     Activity("bounties", N_("asking for hunting bounties"), _bounties, checks=True, listed=False),

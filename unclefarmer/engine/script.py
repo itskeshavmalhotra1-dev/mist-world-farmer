@@ -125,7 +125,7 @@ def _at(rest: str, n: int):
 BEST_MAP = "best"        # farm map=best: the best map for the character's level when the line runs
 BLOCKS = ("repeat", "while", "if", "sub", "on_stop")
 END_WORDS = ("start", "safe", "hearthstone", "here")
-COMMANDS = ("login", "end_at", "keep_drop", "keep_level", "travel", "go", "talk", "choose", "visit", "restock", "gem_maker", "gem_breaker", "potion_maker", "triggers", "enhance", "chores", "bounties", "construction_scan", "gather", "lose_xp", "dungeon", "sell_collection", "market", "sell_shards", "clean_bag", "update_shard_prices", "store_items", "survey", "follow", "come", "buy", "sell", "withdraw", "deposit", "walk", "farm", "key", "hold", "wait", "say", "set", "heal", "hearthstone", "manage_team",
+COMMANDS = ("login", "end_at", "keep_drop", "keep_level", "travel", "go", "talk", "choose", "visit", "restock", "gem_maker", "gem_breaker", "potion_maker", "triggers", "enhance", "chores", "bounties", "construction_scan", "gather", "lose_xp", "dungeon", "events", "sell_collection", "market", "sell_shards", "clean_bag", "update_shard_prices", "store_items", "survey", "follow", "come", "buy", "sell", "withdraw", "deposit", "walk", "farm", "key", "hold", "wait", "say", "set", "heal", "hearthstone", "manage_team",
             "stop_when", "stop", "break", "call", "elif", "else", "end",
             "sound_watch", "sound_mute", "sound_wait", keyboard.COMMAND) + BLOCKS
 FARM_OPTIONS = ("map", "minutes", "kills", "patrol", "area", "only", "skip", "elites", "until")
@@ -908,7 +908,7 @@ PREPARE = {
     "stop_when": _prep_stop_when, "end_at": _prep_end_at, "keep_drop": _prep_keep_drop, "keep_level": _prep_keep_level, "travel": _prep_travel, "go": _prep_go,
     "follow": _prep_player, "come": _prep_player, "talk": _prep_talk, "survey": _prep_survey,
     "triggers": _prep_triggers, "gem_maker": _prep_check_only, "gem_breaker": _prep_check_only, "potion_maker": _prep_check_only, "enhance": _prep_check_only, "chores": _prep_chores, "bounties": _prep_check_only, "construction_scan": _prep_construction_scan, "visit": _prep_visit,
-    "gather": _prep_check_only, "lose_xp": _prep_check_only, "dungeon": _prep_dungeon, "sell_collection": _prep_sell_collection,
+    "gather": _prep_check_only, "lose_xp": _prep_check_only, "dungeon": _prep_dungeon, "events": _prep_check_only, "sell_collection": _prep_sell_collection,
     "market": _prep_market,
     "buy": _prep_count_item, "withdraw": _prep_count_item, "sell": _prep_item_count, "deposit": _prep_item_count,
     "choose": _prep_choose, "walk": _prep_walk, "key": _prep_key, "hold": _prep_hold, "wait": _prep_wait,
@@ -1283,7 +1283,7 @@ class Runner:
         activities.run(b, node.kind, o.get("check", False), o)
 
     _do_gem_maker = _do_gem_breaker = _do_potion_maker = _do_enhance = _do_chores = _do_gather = _do_lose_xp = _do_activity
-    _do_dungeon = _do_sell_collection = _do_bounties = _do_construction_scan = _do_activity
+    _do_dungeon = _do_sell_collection = _do_bounties = _do_construction_scan = _do_events = _do_activity
 
     def _do_triggers(self, node: Node, b: Bot, o: dict[str, Any]):
         pass                      # read when the script is (own_lists): nothing to do as it runs
