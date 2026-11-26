@@ -323,15 +323,21 @@ def pick(b: Bot, pattern: str, quantity: int | None = None) -> bool:
 def open_section(b: Bot, pattern: str) -> bool:
     """Choose a section and wait for its menu, rather than accepting the still-open parent."""
     d = b.dialog()
-    if d.get("open") and d.get("top") and b.find_entry(d["top"], pattern) is not None:
-        before: dict[str, Any] = d["top"]
-        depth = max(1, int(d.get("open") or 1))
-        if b.choose(pattern) is None:
-            return False
-        after = b.wait_menu_change(before, seconds=2.0, depth=depth)
-        top: dict[str, Any] = after.get("top") or {}
-        return bool(int(after.get("open") or 0) >= depth and top
-                    and (top.get("sig") != before.get("sig") or top.get("rows") != before.get("rows")))
+    top_cur = d.get("top")
+    if d.get("open") and top_cur:
+        loc = b.find_entry(top_cur, pattern)
+        if loc is not None:
+            before: dict[str, Any] = top_cur
+            depth = max(1, int(d.get("open") or 1))
+            if menus.choose_at(b, before, loc[0], loc[1]):
+                after = b.wait_menu_change(before, seconds=1.5, depth=depth)
+            else:
+                if b.choose(pattern) is None:
+                    return False
+                after = b.wait_menu_change(before, seconds=2.0, depth=depth)
+            top: dict[str, Any] = after.get("top") or {}
+            return bool(int(after.get("open") or 0) >= depth and top
+                        and (top.get("sig") != before.get("sig") or top.get("rows") != before.get("rows")))
     return False
 
 
@@ -539,12 +545,21 @@ def withdraw(b: Bot, item: str, n: int, *, stock: int | None = None, storehouse:
                     got_count = n
         else:
             # Non-stackable equipment: pick directly via choose_at for ultra-fast withdrawal
+            from .chores import said_mark, said_since
+            bag_full_rx = re.compile(
+                r"(?i)(?:\b(?:bag|backpack|inventory|load|weight|space|slots?)\b.*\b(?:full|heavy|overloaded|exceed|not\s+enough|insufficient|max)\b"
+                r"|\b(?:can't|cannot|unable\s+to)\s+(?:carry|hold|take|put)\b|\boverweight\b)"
+            )
+            item_key = item.lower()
+            item_clean_key = re.sub(r"\s+", " ", item.strip().lower())
+            cur_bag = before
+            since = said_mark(b)
             while got_count < n and not b.stop_event.is_set():
                 d = b.dialog()
                 if not d.get("open"):
                     if hasattr(b, "key") and hasattr(b, "wait_dialog"):
                         b.key(b.p.get("enter_key", "enter"))
-                        b.wait_dialog(0.25)
+                        b.wait_dialog(0.20)
                     if not b.dialog().get("open"):
                         if not b.talk(npc_name, (nx, ny)):
                             consecutive_fails += 1
@@ -576,7 +591,20 @@ def withdraw(b: Bot, item: str, n: int, *, stock: int | None = None, storehouse:
                 chosen = False
                 if menus.choose_at(b, top, r, c):
                     chosen = True
-                    b.wait_menu_change(top, seconds=0.15)
+                    b.sleep(0.005)
+                    if any(bag_full_rx.search(line) for line in said_since(b, since)):
+                        b.log(_("bag or load is full - stopping withdrawal"), speak=True)
+                        break
+                    got_count += 1
+                    consecutive_fails = 0
+                    if got_count % 3 == 0:
+                        c_now = counts(b)
+                        cur_have = c_now.get(item_key, 0) or c_now.get(item_clean_key, 0)
+                        if cur_have <= cur_bag:
+                            b.log(_("bag or load is full - stopping withdrawal"), speak=True)
+                            break
+                        cur_bag = cur_have
+                    continue
                 else:
                     chosen = pick(b, pat, 1)
 
@@ -586,8 +614,38 @@ def withdraw(b: Bot, item: str, n: int, *, stock: int | None = None, storehouse:
                         break
                     continue
 
-                got_count += 1
-                consecutive_fails = 0
+                arrived = False
+                bag_full = False
+                for _w in range(25):
+                    if _w > 0:
+                        b.sleep(0.008)
+                    c_now = counts(b)
+                    cur_have = c_now.get(item_key, 0) or c_now.get(item_clean_key, 0)
+                    if cur_have > cur_bag:
+                        got_count += (cur_have - cur_bag)
+                        cur_bag = cur_have
+                        arrived = True
+                        consecutive_fails = 0
+                        break
+                    if _w >= 2:
+                        if any(bag_full_rx.search(line) for line in said_since(b, since)):
+                            bag_full = True
+                            break
+                        d_c = b.dialog()
+                        top_c = d_c.get("top") if d_c.get("open") else None
+                        if top_c:
+                            c_loc = b.find_entry(top_c, CONFIRM)
+                            if c_loc is not None:
+                                menus.choose_at(b, top_c, c_loc[0], c_loc[1]) or b.choose(CONFIRM)
+
+                if bag_full:
+                    b.log(_("bag or load is full - stopping withdrawal"), speak=True)
+                    break
+                if not arrived:
+                    consecutive_fails += 1
+                    if consecutive_fails >= 2:
+                        break
+                    continue
     finally:
         b.close_dialogs()
 
@@ -738,11 +796,15 @@ def deposit(b: Bot, item: str, n: int | None=None, *, storehouse: str | None = N
         def _ensure_deposit_section() -> bool:
             d = b.dialog()
             if not d.get("open"):
-                if nx and ny:
-                    b.talk(npc_name, (nx, ny))
-                else:
-                    b.talk(npc_name)
-                b.wait_dialog(1.5)
+                if hasattr(b, "key") and hasattr(b, "wait_dialog"):
+                    b.key(b.p.get("enter_key", "enter"))
+                    b.wait_dialog(0.45)
+                if not b.dialog().get("open"):
+                    if nx and ny:
+                        b.talk(npc_name, (nx, ny))
+                    else:
+                        b.talk(npc_name)
+                    b.wait_dialog(1.0)
                 d = b.dialog()
                 if not d.get("open"):
                     return False
@@ -761,10 +823,8 @@ def deposit(b: Bot, item: str, n: int | None=None, *, storehouse: str | None = N
             b.log(_("the storehouse menu has no deposit"), speak=True)
             return 0
 
+        curr_have = have
         while put_count < target_count and not b.stop_event.is_set():
-            curr_have = counts(b).get(item.lower(), 0) or counts(b).get(item_clean, 0)
-            if curr_have <= 0 and base_pure:
-                curr_have = counts(b).get(base_pure, 0)
             if curr_have <= have - target_count or curr_have <= 0:
                 break
 
@@ -787,7 +847,16 @@ def deposit(b: Bot, item: str, n: int | None=None, *, storehouse: str | None = N
             step_qty = 1 if is_eq else (target_count - put_count)
             before_step = curr_have
 
-            if not pick(b, pat, step_qty):
+            picked = bool(is_eq and menus.choose_at(b, top, loc[0], loc[1]))
+            if picked:
+                b.sleep(0.005)
+                put_count += 1
+                curr_have -= 1
+                consecutive_fails = 0
+                continue
+            if not picked:
+                picked = pick(b, pat, step_qty)
+            if not picked:
                 consecutive_fails += 1
                 if consecutive_fails >= 2 or _heard_full(b, since):
                     refused(b).add(item.strip().lower())
@@ -796,37 +865,26 @@ def deposit(b: Bot, item: str, n: int | None=None, *, storehouse: str | None = N
                     break
                 continue
 
-            for _conf in range(3):
-                d_conf = b.dialog()
-                if not d_conf.get("open") or not d_conf.get("top"):
-                    break
-                if b.find_entry(d_conf["top"], CONFIRM) is not None:
-                    b.choose(CONFIRM)
-                    b.sleep(0.04)
-                else:
-                    break
-
             deposited = False
-            for _w in range(15):
-                b.sleep(0.02)
+            for _w in range(28):
+                if _w > 0:
+                    b.sleep(0.008)
                 after_step = counts(b).get(item.lower(), 0) or counts(b).get(item_clean, 0)
                 if after_step <= 0 and base_pure:
                     after_step = counts(b).get(base_pure, 0)
                 if after_step < before_step:
                     put_count += (before_step - after_step)
+                    curr_have = after_step
                     deposited = True
                     consecutive_fails = 0
                     break
-                if not b.dialog().get("open"):
-                    b.sleep(0.02)
-                    after_step = counts(b).get(item.lower(), 0) or counts(b).get(item_clean, 0)
-                    if after_step <= 0 and base_pure:
-                        after_step = counts(b).get(base_pure, 0)
-                    if after_step < before_step:
-                        put_count += (before_step - after_step)
-                        deposited = True
-                        consecutive_fails = 0
-                    break
+                if _w >= 2:
+                    d_conf = b.dialog()
+                    if d_conf.get("open") and d_conf.get("top"):
+                        c_loc = b.find_entry(d_conf["top"], CONFIRM)
+                        if c_loc is not None:
+                            if not menus.choose_at(b, d_conf["top"], c_loc[0], c_loc[1]):
+                                b.choose(CONFIRM)
 
             if not deposited:
                 if not is_eq:
@@ -1213,13 +1271,29 @@ def breakdown(b: Bot, item: str | None = None, n: int | None = None) -> int:
                     continue
 
             top = d.get("top") or {}
+            # If a leftover confirm popup is open, clear it and continue
+            c_left = b.find_entry(top, CONFIRM)
+            if c_left is not None:
+                if not menus.choose_at(b, top, c_left[0], c_left[1]):
+                    b.choose(CONFIRM)
+                b.sleep(0.02)
+                continue
+
             # If at NPC root menu, open Breakdown Equipment
+            opened_sec = True
             for sec in BREAKDOWN_SECTIONS:
                 if b.find_entry(top, sec) is not None:
-                    open_section(b, sec)
+                    opened_sec = open_section(b, sec)
                     d = b.dialog()
                     top = d.get("top") or {}
                     break
+
+            if not opened_sec or any(b.find_entry(top, sec) is not None for sec in BREAKDOWN_SECTIONS):
+                consecutive_fails += 1
+                if consecutive_fails >= 3:
+                    break
+                b.sleep(0.02)
+                continue
 
             where = b.find_entry(top, pattern) if pattern else None
             if pattern and where is None:
@@ -1246,23 +1320,35 @@ def breakdown(b: Bot, item: str | None = None, n: int | None = None) -> int:
             if not target_pattern:
                 break
 
-            chosen = b.choose(target_pattern)
-            if chosen is None:
-                consecutive_fails += 1
-                if consecutive_fails >= 2:
-                    break
-                continue
+            if menus.choose_at(b, top, where[0], where[1]):
+                if hasattr(b, "wait_menu_change"):
+                    b.wait_menu_change(top, seconds=0.25, depth=max(1, int(d.get("open") or 1)))
+                chosen = target_entry
+            else:
+                chosen = b.choose(target_pattern)
+                if chosen is None:
+                    consecutive_fails += 1
+                    if consecutive_fails >= 2:
+                        break
+                    continue
 
             # Handle confirmation popups:
             # 1 popup for normal gear ("Are you sure...").
             # 2 popups for refined/enhanced gear ("Please reconfirm...").
             for _conf in range(3):
-                b.sleep(0.06)
+                if _conf > 0:
+                    b.sleep(0.015)
                 d_conf = b.dialog()
                 if not d_conf.get("open") or not d_conf.get("top"):
                     break
-                if b.find_entry(d_conf["top"], CONFIRM) is not None:
-                    b.choose(CONFIRM)
+                top_conf = d_conf["top"]
+                c_loc = b.find_entry(top_conf, CONFIRM)
+                if c_loc is not None:
+                    if menus.choose_at(b, top_conf, c_loc[0], c_loc[1]):
+                        if hasattr(b, "wait_menu_change"):
+                            b.wait_menu_change(top_conf, seconds=0.12, depth=max(1, int(d_conf.get("open") or 1)))
+                    else:
+                        b.choose(CONFIRM)
                 else:
                     break
 

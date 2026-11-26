@@ -135,7 +135,7 @@ class DialogsMixin(Parts):
             input_state = self.a.json("input")
             if input_state.get("ok") and input_state.get("open"):
                 return dialog
-            self.sleep(0.025)
+            self.sleep(0.003)
         return self.dialog()
 
     def close_dialogs(self) -> None:
@@ -360,7 +360,7 @@ class DialogsMixin(Parts):
                 pass
             if attempt == 1 and at:
                 m = atlas.model(self.map_id())
-                s = m.place_by(int(at[0]), int(at[1]), 1)
+                s = m.nearest_walkable(int(at[0]), int(at[1]), 1)
                 if s:
                     self.walk_to(s)
         self.talk_problem = "no answer"

@@ -81,7 +81,7 @@ SETTLE = 2.0             # seconds the bag is given to show a combine's result b
 IDLE_ROUNDS = 2          # rounds in a row that change nothing, with gems still to combine, tried again
 MAX_ROUNDS = 1000        # a safety net only: every round that counts changed the bag, and buying is bounded
 OFFER_WAIT = 2.0         # seconds the Forger's page for an item is given to show what its next level takes
-MENU_POLL = 0.02         # seconds between reads of a menu that is still changing
+MENU_POLL = 0.01         # seconds between reads of a menu that is still changing
 GANG_PAGE_WAIT = 4.0
 GANG_LISTS = (r"(?i)^\s*all\s+gangs\s*$", r"(?i)^\s*allied\s+gangs\s*$")
 GANG_NEXT = r"(?i)^\s*(?:next(?:\s+page)?(?:\s*:\s*\d+)?|>>)\s*$"
@@ -1465,17 +1465,18 @@ def _forger_offer(b: Bot, job: _EnhanceJob, item: str) -> tuple[str, None] | tup
                chance=_num(r"([\d.]+)%\s*success rate", text, None, float),
                runes=_num(r"Use\s+(\d+)\s+\w+ Enhance Protection Rune", text, 0))
     o.protect = job.protect_mode == "always" or (job.protect_mode == "from" and o.frm >= job.protect_from)
-    o.have_runes = town.counts(b).get(("%s Enhance Protection Rune" % o.kind).lower(), 0)
+    o.have_runes = town.counts(b).get(("%s Enhance Protection Rune" % o.kind).lower(), 0) if o.protect else 0
     return None, o
 
 
 def _enhance_check(b: Bot, cfg: dict[str, Any], job: _EnhanceJob, item: str, o: _Offer) -> None:
     """Check only: what the next level takes, what there is, and where crystal shards would come from."""
+    have_runes = o.have_runes if o.protect else town.counts(b).get(("%s Enhance Protection Rune" % o.kind).lower(), 0)
     b.log(_("{item}: +{a} to +{b} needs {n} Level {lv} {kind} Enhance Crystal (you have {have}), "
             "{cost} arnebia, {chance}% chance; protection takes {runes} runes (you have {hr})",
             item=item, a=o.frm, b=o.frm + 1, n=o.need_n, lv=o.need_lv, kind=o.kind,
             have=_crystals(b, o.kind, o.need_lv), cost=o.cost, chance=o.chance if o.chance is not None else "?",
-            runes=o.runes, hr=o.have_runes), speak=True)
+            runes=o.runes, hr=have_runes), speak=True)
     b.close_dialogs()
     shard = "%s Enhance Crystal Shard" % o.kind
     recipe = _recipe(b, o.kind, o.need_lv)
@@ -1506,7 +1507,7 @@ def _enhance_try(b: Bot, cfg: dict[str, Any], job: _EnhanceJob, item: str, o: _O
     loc_forge = b.find_entry(top, r"start forging")
     if loc_forge is not None:
         if menus.choose_at(b, top, loc_forge[0], loc_forge[1]):
-            d = b.wait_menu_change(top, seconds=0.10) if hasattr(b, "wait_menu_change") else b.dialog()
+            b.sleep(0.08)
         else:
             if b.choose(r"start forging") is None:
                 b.close_dialogs()
@@ -1520,35 +1521,42 @@ def _enhance_try(b: Bot, cfg: dict[str, Any], job: _EnhanceJob, item: str, o: _O
     if key in job.crystal_cache:
         job.crystal_cache[key] = max(0, job.crystal_cache[key] - o.need_n)
 
-    b.sleep(0.40)
-
-    # Read the item's level again from the Forger's list without unnecessarily closing dialogs
+    # Reopen the Forger quickly (Enter re-talks to the NPC we are standing at) without full travel/target_mode
     now: int | None = None
-    if b.dialog().get("open"):
-        top_now = b.dialog().get("top") or {}
+    d_now = b.dialog()
+    if not d_now.get("open"):
+        if hasattr(b, "key") and hasattr(b, "wait_dialog"):
+            b.key(b.p.get("enter_key", "enter"))
+            b.wait_dialog(0.45)
+        d_now = b.dialog()
+        if not d_now.get("open"):
+            open_craftsman(b, "forger", job.where)
+            d_now = b.dialog()
+
+    if d_now.get("open"):
+        top_now = d_now.get("top") or {}
         loc_back = b.find_entry(top_now, r"^\s*Back\b")
         if loc_back is not None:
-            menus.choose_at(b, top_now, loc_back[0], loc_back[1])
-            b.sleep(0.25)
+            if menus.choose_at(b, top_now, loc_back[0], loc_back[1]):
+                if hasattr(b, "wait_menu_change"):
+                    b.wait_menu_change(top_now, seconds=0.60)
+                else:
+                    b.sleep(0.05)
+            else:
+                b.choose(r"^\s*Back\b")
+        else:
+            loc_ee = b.find_entry(top_now, r"^\s*enhance equipment")
+            if loc_ee is not None:
+                if menus.choose_at(b, top_now, loc_ee[0], loc_ee[1]):
+                    if hasattr(b, "wait_menu_change"):
+                        b.wait_menu_change(top_now, seconds=0.80)
+                else:
+                    b.choose(r"^\s*enhance equipment")
+                    b.wait_dialog(0.5)
         try:
             _e, now = _item_row(b, item, target=job.target)
         except TypeError:
             _e, now = _item_row(b, item)
-
-    # If level could not be read while keeping dialog open, fall back to standard open
-    if now is None:
-        if not b.dialog().get("open"):
-            open_craftsman(b, "forger", job.where)
-        top_now = b.dialog().get("top") or {}
-        if b.find_entry(top_now, r"^\s*enhance equipment") is not None:
-            b.choose(r"^\s*enhance equipment")
-            b.wait_dialog(0.5)
-        try:
-            _e, now = _item_row(b, item, target=job.target)
-        except TypeError:
-            _e, now = _item_row(b, item)
-
-    b.sleep(0.25)
 
     if now is not None and now > o.frm:
         b.log(_("{item}: +{lv}, success", item=item, lv=now))
