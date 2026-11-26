@@ -22,10 +22,10 @@ from typing import Any
 
 import pytest
 
-from unclefarmer import __main__ as start, applog, paths, selftest, updater
+from mistworldfarmer import __main__ as start, applog, paths, selftest, updater
 from conftest import ROOT, failing, returning
 
-PATHS_PY = os.path.join(ROOT, "unclefarmer", "paths.py")
+PATHS_PY = os.path.join(ROOT, "mistworldfarmer", "paths.py")
 
 
 @pytest.fixture
@@ -151,7 +151,7 @@ class Window:
         self.said: list[str] = []
 
     def __getattr__(self, name: str) -> Any:
-        from unclefarmer.gui import main
+        from mistworldfarmer.gui import main
         attr = getattr(main.MainFrame, name)
         return attr.__get__(self) if callable(attr) and hasattr(attr, "__get__") else attr
 
@@ -186,7 +186,7 @@ REL: updater.Release = {"version": "99.0.0", "tag": "v99.0.0", "notes": "", "ass
 def window(monkeypatch: pytest.MonkeyPatch) -> dict[str, list[str]]:
     """The update window's messages and start notes, caught; no real dialog, thread or network."""
     pytest.importorskip("wx")
-    from unclefarmer.gui.mainparts import updates
+    from mistworldfarmer.gui.mainparts import updates
     said: dict[str, list[str]] = {"info": [], "error": [], "notes": [], "checked": []}
 
     def info(parent: object, message: str, title: str | None = None) -> None:
@@ -248,7 +248,7 @@ def test_failed_copier_start_keeps_original_window_open(window: dict[str, list[s
         raise OSError("copier did not start")
     def call_after(callback: Callable[..., Any], *args: Any) -> None:
         callback(*args)
-    from unclefarmer.gui.mainparts import updates
+    from mistworldfarmer.gui.mainparts import updates
     monkeypatch.setattr(updates.wx, "CallAfter", call_after)      # the worker's hand-back, run at once
     monkeypatch.setattr(w, "Close", close, raising=False)
     monkeypatch.setattr(updater, "start_apply", fail)
@@ -303,7 +303,7 @@ def test_the_help_menu_check_asks_the_chosen_channel(window: dict[str, list[str]
     monkeypatch.setattr(updater, "latest", latest)
     w = Window()
     w.s["update_channel"] = "dev"
-    from unclefarmer.gui.mainparts import updates
+    from mistworldfarmer.gui.mainparts import updates
 
     def append(self: Window, text: str, keep: bool) -> None:
         pass
@@ -339,7 +339,7 @@ def test_back_on_master_a_dev_build_is_told_why_nothing_is_offered(window: dict[
 def test_a_dev_build_is_offered_as_one(window: dict[str, list[str]], monkeypatch: pytest.MonkeyPatch) -> None:
     import wx
 
-    from unclefarmer.gui.mainparts import updates
+    from mistworldfarmer.gui.mainparts import updates
 
     offered: list[updater.Release] = []
 

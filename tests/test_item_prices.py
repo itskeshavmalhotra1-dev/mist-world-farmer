@@ -12,8 +12,8 @@ import pytest
 from conftest import as_bot, stand_in
 from test_town import TownBot, menu, opt
 
-from unclefarmer import knowledge, paths, stats
-from unclefarmer.engine import bagrules, town
+from mistworldfarmer import knowledge, paths, stats
+from mistworldfarmer.engine import bagrules, town
 
 PRICES = {"Pet Rice Roll": 1000, "Hearthstone": 10000, "Small Toolbox": 20000,
           "Large Toolbox": 40000, "Alloy Toolbox": 80000}
@@ -83,7 +83,7 @@ def test_the_bag_manager_names_the_shop_and_price() -> None:
 
 
 def test_a_pet_rice_roll_is_still_known_as_pet_food() -> None:
-    from unclefarmer.engine import dungeon
+    from mistworldfarmer.engine import dungeon
     assert "Pet Rice Roll" in dungeon.known_items("pet_food")
 
 

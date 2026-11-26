@@ -17,10 +17,10 @@ from typing import Any, TypeAlias
 
 import pytest
 
-from unclefarmer.engine import chores, gathering, script, town
-from unclefarmer.engine.bot import Stopped
+from mistworldfarmer.engine import chores, gathering, script, town
+from mistworldfarmer.engine.bot import Stopped
 from conftest import as_bot, stand_in
-from unclefarmer.clock import Waitable
+from mistworldfarmer.clock import Waitable
 
 ME = 1234
 SKILLS: dict[str, Any] = {"combat": [], "talents": [],

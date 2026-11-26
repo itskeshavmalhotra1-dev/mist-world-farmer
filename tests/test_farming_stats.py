@@ -16,8 +16,8 @@ from typing import Any
 
 from conftest import Clock, as_parts
 from test_stats import FakeBot, bag, sheet
-from unclefarmer import stats
-from unclefarmer.engine import script
+from mistworldfarmer import stats
+from mistworldfarmer.engine import script
 
 POTION = "Large Red Potion"
 

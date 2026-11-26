@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from unclefarmer import messages, trust
+from mistworldfarmer import messages, trust
 
 
 class Link:

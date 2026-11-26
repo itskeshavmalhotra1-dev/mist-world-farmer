@@ -1,6 +1,6 @@
 # pyright: reportPrivateUsage=false
 # White-box tests: they check this module's internal helpers (leading-underscore names) directly.
-"""Teleport skills for travel (engine/teleskill.py, the "skill" leg in unclefarmer/travel.py and
+"""Teleport skills for travel (engine/teleskill.py, the "skill" leg in mistworldfarmer/travel.py and
 TravelMixin.cast_teleport), shaped on what was recorded by hand 2026-11-13: press the skill's key,
 the menu lists the places, choose one, a 10 s channel, the new map on that place's marker - and any
 hit breaks the channel with nothing to say so; no skill works inside a safe zone."""
@@ -15,8 +15,8 @@ from typing import Any
 import pytest
 from conftest import stand_in
 
-from unclefarmer import atlas, travel
-from unclefarmer.engine import beasts, keyslots, teleskill
+from mistworldfarmer import atlas, travel
+from mistworldfarmer.engine import beasts, keyslots, teleskill
 from test_travel_part import Bot as TravelBot
 
 

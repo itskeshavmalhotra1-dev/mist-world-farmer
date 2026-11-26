@@ -20,8 +20,8 @@ from typing import Any
 
 import pytest
 
-from unclefarmer import catalog, settings, stats
-from unclefarmer.engine import bagrules, script
+from mistworldfarmer import catalog, settings, stats
+from mistworldfarmer.engine import bagrules, script
 
 
 def value(expr: str, monsters: int = 4) -> Any:

@@ -7,7 +7,7 @@ from __future__ import annotations
 
 import pytest
 
-from unclefarmer import dungeons, paths
+from mistworldfarmer import dungeons, paths
 from pathlib import Path
 from conftest import stand_in
 from typing import Any

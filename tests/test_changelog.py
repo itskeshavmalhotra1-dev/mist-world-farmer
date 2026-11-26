@@ -17,9 +17,9 @@ import pytest
 import wx
 
 from conftest import returning
-from unclefarmer import settings, updater
-from unclefarmer.gui import changelog
-from unclefarmer.gui.mainparts import updates
+from mistworldfarmer import settings, updater
+from mistworldfarmer.gui import changelog
+from mistworldfarmer.gui.mainparts import updates
 
 HISTORY = """# What's new
 

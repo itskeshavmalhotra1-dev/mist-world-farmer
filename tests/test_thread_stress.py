@@ -15,15 +15,15 @@ from typing import Any
 
 import pytest
 
-from unclefarmer import messages, settings
-from unclefarmer.engine import runner
-from unclefarmer.engine.bot import Bot
-from unclefarmer.engine.botparts.base import Stopped
+from mistworldfarmer import messages, settings
+from mistworldfarmer.engine import runner
+from mistworldfarmer.engine.bot import Bot
+from mistworldfarmer.engine.botparts.base import Stopped
 from conftest import as_kind, stand_in
-from unclefarmer.engine import combat
+from mistworldfarmer.engine import combat
 from collections.abc import Callable, Iterator
-from unclefarmer.engine.runner import Run
-from unclefarmer.messages import T, Ts
+from mistworldfarmer.engine.runner import Run
+from mistworldfarmer.messages import T, Ts
 
 
 class Link:
@@ -163,7 +163,7 @@ def start_fight(bot: Bot, errors: list[BaseException]) -> threading.Thread:
         except BaseException as e:      # noqa: BLE001 - reported by the test
             errors.append(e)
 
-    thread = threading.Thread(target=fight, name="unclefarmer-stress-fight", daemon=True)
+    thread = threading.Thread(target=fight, name="mistworldfarmer-stress-fight", daemon=True)
     thread.start()
     assert started.wait(2.0), "the fake fight didn't start"
     return thread
@@ -191,7 +191,7 @@ def _deadlock_watchdog() -> Iterator[None]:
 
 def test_gui_pause_and_stop_race_a_fake_fight(monkeypatch: pytest.MonkeyPatch):
     pytest.importorskip("wx")
-    from unclefarmer.gui.main import MainFrame
+    from mistworldfarmer.gui.main import MainFrame
 
     run, bot, link, _lines, paused = make_run(monkeypatch)
     frame = Frame(run)
@@ -219,7 +219,7 @@ def test_gui_pause_and_stop_race_a_fake_fight(monkeypatch: pytest.MonkeyPatch):
         except BaseException as e:      # noqa: BLE001
             errors.append(e)
 
-    gui_thread = threading.Thread(target=gui, name="unclefarmer-stress-gui", daemon=True)
+    gui_thread = threading.Thread(target=gui, name="mistworldfarmer-stress-gui", daemon=True)
     gui_thread.start()
     finish([fight, gui_thread], run, bot, errors)
 
@@ -257,7 +257,7 @@ def test_private_message_pause_resume_stop_race_a_fake_fight(monkeypatch: pytest
         except BaseException as e:      # noqa: BLE001
             errors.append(e)
 
-    msg_thread = threading.Thread(target=private_messages, name="unclefarmer-stress-pm", daemon=True)
+    msg_thread = threading.Thread(target=private_messages, name="mistworldfarmer-stress-pm", daemon=True)
     msg_thread.start()
     finish([fight, msg_thread], run, bot, errors)
 

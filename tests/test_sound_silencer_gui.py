@@ -8,9 +8,9 @@ import pytest
 pytest.importorskip("wx")
 import wx
 
-from unclefarmer.gui import silencer as gui
-from unclefarmer.silencer import save as actual_save, load as actual_load
-from unclefarmer.link import AgentError
+from mistworldfarmer.gui import silencer as gui
+from mistworldfarmer.silencer import save as actual_save, load as actual_load
+from mistworldfarmer.link import AgentError
 
 
 @pytest.fixture

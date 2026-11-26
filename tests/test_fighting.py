@@ -22,18 +22,18 @@ from typing import Any
 
 import pytest
 
-from unclefarmer.clock import CLOCK, StopFlag, Waitable
-from unclefarmer import paths, settings
-from unclefarmer.engine import picking
-from unclefarmer.engine.botparts import fighting
-from unclefarmer.engine.botparts.base import NPC_HP, LosingFight, Respawned, Stopped
-from unclefarmer.engine.botparts.fighting import FightingMixin
-from unclefarmer.engine.botparts.keys import KeysMixin
-from unclefarmer.engine.botparts.walking import WalkingMixin
-from unclefarmer.engine.kills import KillTracker
+from mistworldfarmer.clock import CLOCK, StopFlag, Waitable
+from mistworldfarmer import paths, settings
+from mistworldfarmer.engine import picking
+from mistworldfarmer.engine.botparts import fighting
+from mistworldfarmer.engine.botparts.base import NPC_HP, LosingFight, Respawned, Stopped
+from mistworldfarmer.engine.botparts.fighting import FightingMixin
+from mistworldfarmer.engine.botparts.keys import KeysMixin
+from mistworldfarmer.engine.botparts.walking import WalkingMixin
+from mistworldfarmer.engine.kills import KillTracker
 from collections.abc import Callable, Iterable, Iterator
 from conftest import as_kind, stand_in
-from unclefarmer.engine.combat import Press, SkillBook
+from mistworldfarmer.engine.combat import Press, SkillBook
 from contextlib import AbstractContextManager
 
 ME = 1001

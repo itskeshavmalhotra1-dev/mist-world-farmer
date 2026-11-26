@@ -8,8 +8,8 @@ import pytest
 from conftest import Clock, as_bot
 
 from test_beasts import Bot, row
-from unclefarmer.clock import CLOCK
-from unclefarmer.engine import beasts
+from mistworldfarmer.clock import CLOCK
+from mistworldfarmer.engine import beasts
 
 
 @pytest.fixture(autouse=True)

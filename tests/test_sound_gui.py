@@ -8,7 +8,7 @@ import pytest
 pytest.importorskip("wx")
 import wx
 
-from unclefarmer.gui.sounds import KEEP, LiveSoundsPanel, SoundWorker, event_text
+from mistworldfarmer.gui.sounds import KEEP, LiveSoundsPanel, SoundWorker, event_text
 
 
 def status() -> dict[str, Any]:

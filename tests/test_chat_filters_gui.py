@@ -7,13 +7,13 @@ from typing import TYPE_CHECKING, Any, cast
 import pytest
 import wx
 
-from unclefarmer import chat, chat_filters as filters, settings
-from unclefarmer.gui import chat as gui
-from unclefarmer.gui.chat_filters import FilterEditor, FilterManager
+from mistworldfarmer import chat, chat_filters as filters, settings
+from mistworldfarmer.gui import chat as gui
+from mistworldfarmer.gui.chat_filters import FilterEditor, FilterManager
 from conftest import returning
 
 if TYPE_CHECKING:
-    from unclefarmer.gui.mainparts.base import FrameParts
+    from mistworldfarmer.gui.mainparts.base import FrameParts
 
 
 @pytest.fixture

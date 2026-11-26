@@ -6,8 +6,8 @@ import pytest
 
 pytest.importorskip("wx")
 
-from unclefarmer import __version__, updater  # noqa: E402
-from unclefarmer.gui import main  # noqa: E402
+from mistworldfarmer import __version__, updater  # noqa: E402
+from mistworldfarmer.gui import main  # noqa: E402
 from conftest import returning  # noqa: E402
 
 

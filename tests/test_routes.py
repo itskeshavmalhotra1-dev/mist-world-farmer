@@ -9,8 +9,8 @@ import random
 
 import pytest
 
-from unclefarmer import atlas
-from unclefarmer.atlaslib import Cell
+from mistworldfarmer import atlas
+from mistworldfarmer.atlaslib import Cell
 
 
 def cost(dist: dict[int, float], reached: dict[int, int]) -> float | None:
@@ -57,7 +57,7 @@ def test_a_route_is_a_walk_of_single_steps_to_the_target() -> None:
 
 def test_a_gate_ignoring_fallback_is_not_cached(monkeypatch: pytest.MonkeyPatch) -> None:
     import numpy as np
-    from unclefarmer import atlaslib
+    from mistworldfarmer import atlaslib
     m = atlaslib.MapModel.__new__(atlaslib.MapModel)
     m.gate = np.ones((3, 3), dtype=np.int32)
     m._gate_list = b"\x01" * 9
@@ -76,7 +76,7 @@ def test_a_gate_ignoring_fallback_is_not_cached(monkeypatch: pytest.MonkeyPatch)
 
 def test_a_gate_respecting_route_is_cached(monkeypatch: pytest.MonkeyPatch) -> None:
     import numpy as np
-    from unclefarmer import atlaslib
+    from mistworldfarmer import atlaslib
     m = atlaslib.MapModel.__new__(atlaslib.MapModel)
     m.gate = np.zeros((3, 3), dtype=np.int32)      # no gates: no fallback
     m._gate_list = bytes(9)

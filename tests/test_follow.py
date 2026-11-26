@@ -9,15 +9,15 @@ import time
 
 import pytest
 
-from unclefarmer import atlas, messages
-from unclefarmer.engine import follow, script, team
-from unclefarmer.engine.bot import Bot, Stopped
+from mistworldfarmer import atlas, messages
+from mistworldfarmer.engine import follow, script, team
+from mistworldfarmer.engine.bot import Bot, Stopped
 from collections.abc import Callable
 from conftest import as_bot, as_kind, stand_in
-from unclefarmer.engine.botparts.parts import Sighting, Where
+from mistworldfarmer.engine.botparts.parts import Sighting, Where
 from typing import Any, TypeVar, TypeVarTuple
 
-from unclefarmer.engine.runner import Run
+from mistworldfarmer.engine.runner import Run
 
 T = TypeVar("T")
 Ts = TypeVarTuple("Ts")

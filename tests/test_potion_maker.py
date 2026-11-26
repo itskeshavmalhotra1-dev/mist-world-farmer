@@ -12,8 +12,8 @@ import pytest
 
 from conftest import Clock, as_bot
 from test_crafting import Bot as CraftBot, add, entry
-from unclefarmer.engine import activities, bagrules, chores, crafting, market, potionmaker as pm, script, town
-from unclefarmer.engine.bot import Stopped
+from mistworldfarmer.engine import activities, bagrules, chores, crafting, market, potionmaker as pm, script, town
+from mistworldfarmer.engine.bot import Stopped
 
 FEE = 608
 

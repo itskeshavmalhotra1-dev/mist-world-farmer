@@ -20,16 +20,16 @@ import re
 
 import pytest
 
-from unclefarmer import atlas, knowledge, paths, settings, travel
-from unclefarmer.engine import beasts, survey
-from unclefarmer.engine.botparts.base import Respawned, Stopped
+from mistworldfarmer import atlas, knowledge, paths, settings, travel
+from mistworldfarmer.engine import beasts, survey
+from mistworldfarmer.engine.botparts.base import Respawned, Stopped
 from pathlib import Path
 from collections.abc import Iterable
 from typing import Any
 from conftest import returning, JsonOnly, as_bot, stand_in
-from unclefarmer.link import GameLink
-from unclefarmer.atlaslib import Cell
-from unclefarmer.engine.survey import Record
+from mistworldfarmer.link import GameLink
+from mistworldfarmer.atlaslib import Cell
+from mistworldfarmer.engine.survey import Record
 
 
 @pytest.fixture(autouse=True)

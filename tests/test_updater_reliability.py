@@ -21,7 +21,7 @@ from typing import Any
 
 import pytest
 
-from unclefarmer import updater, update_recovery as recovery
+from mistworldfarmer import updater, update_recovery as recovery
 from conftest import failing, returning
 from test_updater import Resp, fake_open, release
 from test_updater_hardening import flat, snapshot
@@ -173,7 +173,7 @@ def Window() -> Any:
 def ui(app: Path, monkeypatch: pytest.MonkeyPatch) -> Iterator[dict[str, Any]]:
     """wx.CallAfter queues callbacks for the test to run as the window's thread would."""
     pytest.importorskip("wx")
-    from unclefarmer.gui.mainparts import updates
+    from mistworldfarmer.gui.mainparts import updates
     queued: list[tuple[Callable[..., Any], tuple[Any, ...], threading.Thread]] = []
     arrived = threading.Event()
     def call_after(callback: Callable[..., Any], *args: Any) -> None:
@@ -285,7 +285,7 @@ def test_a_window_closed_meanwhile_cancels_the_copier_without_wx(
 def test_call_after_failing_because_the_app_is_gone_cancels_the_copier(
         ui: dict[str, Any], monkeypatch: pytest.MonkeyPatch, problem: Exception) -> None:
     from test_built_copy import REL
-    from unclefarmer.gui.mainparts import updates
+    from mistworldfarmer.gui.mainparts import updates
     frame = Window()
     gate = Gate()
     monkeypatch.setattr(updater, "start_apply", gate)
@@ -466,7 +466,7 @@ def test_clean_defers_while_another_holds_the_recovery_lock(ntfs_app: Path) -> N
 
 def test_clean_defers_while_another_process_holds_it(ntfs_app: Path) -> None:
     script = ("import sys, time; sys.path[:0] = %r\n"
-              "from unclefarmer import update_recovery as r\n"
+              "from mistworldfarmer import update_recovery as r\n"
               "with r.locked(%r):\n    print('held', flush=True); time.sleep(30)\n" % (sys.path, str(ntfs_app)))
     child = subprocess.Popen([PYTHON, "-c", script], stdout=subprocess.PIPE)
     try:
@@ -679,7 +679,7 @@ def test_every_journal_a_real_update_writes_reads_back(tmp_path: Path, monkeypat
 # ------------------------------------------------------------------ 7. the bootstrap hand-off
 @pytest.fixture
 def entry(app: Path, monkeypatch: pytest.MonkeyPatch) -> dict[str, list[Any]]:
-    from unclefarmer import __main__ as main_module, paths
+    from mistworldfarmer import __main__ as main_module, paths
     launched: list[list[str]] = []
     shown: list[str] = []
     def popen(args: list[str], **kwargs: object) -> None:
@@ -706,7 +706,7 @@ def test_a_current_bootstrap_is_handed_the_relaunch(app: Path, entry: dict[str, 
 
 
 @pytest.mark.parametrize("body", [None, b"MZ an older bootstrap", b"UNCLEFARMER-BOOTSTRAP-1",
-                                  b"UNCLEFARMER-BOOTSTRAP-", b"unclefarmer-bootstrap-2", b""])
+                                  b"UNCLEFARMER-BOOTSTRAP-", b"mistworldfarmer-bootstrap-2", b""])
 def test_a_missing_or_incompatible_bootstrap_is_never_started(app: Path, entry: dict[str, list[Any]],
                                                                body: bytes | None) -> None:
     if body is not None:

@@ -7,7 +7,7 @@ import sys
 
 import pytest
 
-from unclefarmer import filelock, jsonio, paths
+from mistworldfarmer import filelock, jsonio, paths
 from pathlib import Path
 from conftest import stand_in
 from collections.abc import Iterator

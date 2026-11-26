@@ -8,7 +8,7 @@ from __future__ import annotations
 import pytest
 
 from test_farming import Farm
-from unclefarmer.engine.botparts.base import Stopped
+from mistworldfarmer.engine.botparts.base import Stopped
 
 KEEP = {"stop_on_drop_time": True, "drop_keep_minutes": 10, "drop_tail_seconds": 300}
 
@@ -55,7 +55,7 @@ def test_the_farm_check_still_stops_and_counts_the_same() -> None:
 
 def test_the_plans_keep_drop_is_read_before_the_check() -> None:
     from conftest import as_bot
-    from unclefarmer.engine import runner as R, script as script_mod
+    from mistworldfarmer.engine import runner as R, script as script_mod
 
     class Seen:
         drop_keep: int | None = None

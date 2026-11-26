@@ -14,7 +14,7 @@ from conftest import ME
 from test_bosses import mob
 from test_wrong_target import Fighter
 
-from unclefarmer.engine.botparts.fighting import FightingMixin
+from mistworldfarmer.engine.botparts.fighting import FightingMixin
 
 
 def player(pid: int, x: float, y: float = 100.0, name: str = "Bob") -> dict[str, Any]:

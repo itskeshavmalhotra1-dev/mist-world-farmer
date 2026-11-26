@@ -5,7 +5,7 @@ from typing import Any
 
 import pytest
 
-from unclefarmer import chat, chat_filters as filters, settings
+from mistworldfarmer import chat, chat_filters as filters, settings
 
 
 @pytest.mark.parametrize(("mode", "pattern", "text", "expected"), [

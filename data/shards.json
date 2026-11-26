@@ -9,7 +9,7 @@
    "makes": ""
   },
   "Level 1 Ruby Shard": {
-   "price": 1780,
+   "price": 1800,
    "makes": "can make Ruby that increase maximum HP"
   },
   "Level 1 Sapphire Shard": {
@@ -17,11 +17,11 @@
    "makes": "can make Sapphire that increase maximum mana"
   },
   "Level 1 Tiger Eye Stone Shard": {
-   "price": 2180,
+   "price": 2155,
    "makes": "can make Tiger Eye Stone that increase physical attack"
   },
   "Level 1 Opal Shard": {
-   "price": 2145,
+   "price": 2245,
    "makes": "can make Opal that increase magic attack"
   },
   "Level 1 Spinel Shard": {
@@ -33,15 +33,15 @@
    "makes": "can make Aquamarine that increase magic defense"
   },
   "Level 1 Garnet Shard": {
-   "price": 5040,
+   "price": 5050,
    "makes": "can make Garnet that increase hit chance"
   },
   "Level 1 Blond Jade Shard": {
-   "price": 5005,
+   "price": 5025,
    "makes": "can make Blond Jade that increase dodge chance"
   },
   "Level 1 Grape Stone Shard": {
-   "price": 56,
+   "price": 29,
    "makes": "can make Grape Stone that increase defense break chance"
   },
   "Level 1 Olivine Shard": {
@@ -53,19 +53,19 @@
    "makes": "can make Topaz that increase toughness"
   },
   "Level 1 Obsidian Shard": {
-   "price": 3970,
+   "price": 3955,
    "makes": "can make Obsidian that increase critical hit chance"
   },
   "Level 1 Sunlight Stone Shard": {
-   "price": 21,
+   "price": 20,
    "makes": "can make Sunlight Stone that increase critical hit damage"
   },
   "Level 1 Moonstone Shard": {
-   "price": 2460,
+   "price": 2515,
    "makes": "can make Moonstone that increase critical hit resistance"
   },
   "Level 1 Turquoise Shard": {
-   "price": 1925,
+   "price": 1860,
    "makes": "can make Turquoise that increase movement speed"
   }
  },

@@ -11,18 +11,18 @@ import threading
 
 import pytest
 
-from unclefarmer import applog
-from unclefarmer.engine import follow, keyslots, runner as R
-from unclefarmer.engine.botparts import dialogs
-from unclefarmer.engine.botparts.base import Respawned, Stopped, note_failure
-from unclefarmer.engine.botparts.fighting import FightingMixin
-from unclefarmer.engine.botparts.travel import TravelMixin
-from unclefarmer.engine.botparts.walking import WalkingMixin
-from unclefarmer.link import AgentError
+from mistworldfarmer import applog
+from mistworldfarmer.engine import follow, keyslots, runner as R
+from mistworldfarmer.engine.botparts import dialogs
+from mistworldfarmer.engine.botparts.base import Respawned, Stopped, note_failure
+from mistworldfarmer.engine.botparts.fighting import FightingMixin
+from mistworldfarmer.engine.botparts.travel import TravelMixin
+from mistworldfarmer.engine.botparts.walking import WalkingMixin
+from mistworldfarmer.link import AgentError
 from pathlib import Path
 from conftest import as_bot, stand_in
 from conftest import raising_with
-from unclefarmer.engine.botparts import walking
+from mistworldfarmer.engine.botparts import walking
 from typing import Any
 
 
@@ -57,7 +57,7 @@ def test_a_control_exception_is_never_swallowed_by_clear_shot(monkeypatch: pytes
     def boom(mid: int):
         raise exc
 
-    monkeypatch.setattr("unclefarmer.engine.botparts.fighting.atlas.model", boom)
+    monkeypatch.setattr("mistworldfarmer.engine.botparts.fighting.atlas.model", boom)
     with pytest.raises(type(exc)):
         b.clear_shot({"x": 1, "y": 1}, {"x": 2, "y": 2}, mid=5)
 
@@ -68,7 +68,7 @@ def test_clear_shot_logs_an_unknown_map_once_and_still_shoots(monkeypatch: pytes
     def boom(mid: int):
         raise KeyError("no geometry")
 
-    monkeypatch.setattr("unclefarmer.engine.botparts.fighting.atlas.model", boom)
+    monkeypatch.setattr("mistworldfarmer.engine.botparts.fighting.atlas.model", boom)
     assert b.clear_shot({"x": 1, "y": 1}, {"x": 2, "y": 2}, mid=5) is True
     assert b.clear_shot({"x": 1, "y": 1}, {"x": 2, "y": 2}, mid=5) is True
     assert len(b.lines) == 1
@@ -148,7 +148,7 @@ def test_follow_locate_logs_a_shape_error_and_says_not_found(allow_ignored_failu
 
 
 def test_a_lost_agent_while_setting_phrases_is_not_swallowed(monkeypatch: pytest.MonkeyPatch) -> None:
-    from unclefarmer import gamekeys, phrases
+    from mistworldfarmer import gamekeys, phrases
     monkeypatch.setattr(phrases, "read", stand_in(phrases.read, lambda game_folder, char_id: {}))
     monkeypatch.setattr(phrases, "known", stand_in(phrases.known, lambda game_folder, char_id: True))
     monkeypatch.setattr(phrases, "wanted", stand_in(phrases.wanted, lambda class_name: ["/6"]))
@@ -171,7 +171,7 @@ def test_a_lost_agent_while_setting_phrases_is_not_swallowed(monkeypatch: pytest
 
 
 def test_stats_re_raise_a_stopped_reading() -> None:
-    from unclefarmer import stats
+    from mistworldfarmer import stats
     b = Bot()
     b.bag_rows = lambda: []
     b.map_id = lambda: 1

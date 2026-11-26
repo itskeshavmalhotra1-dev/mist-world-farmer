@@ -7,7 +7,7 @@ from typing import Any
 
 from conftest import ME, Clock, fight
 
-from unclefarmer.engine import combat
+from mistworldfarmer.engine import combat
 
 ARROW = {"name": "Ice Arrow", "cast": 1.5}
 

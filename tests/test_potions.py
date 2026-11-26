@@ -6,7 +6,7 @@ game hasn't described yet."""
 
 from __future__ import annotations
 
-from unclefarmer.engine import potions
+from mistworldfarmer.engine import potions
 import pytest
 from conftest import stand_in
 

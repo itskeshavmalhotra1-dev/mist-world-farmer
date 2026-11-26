@@ -14,7 +14,7 @@ from conftest import as_bot, Clock
 
 from test_beast_quiet_and_refusals import Bot, clock, fierce
 from test_beasts import row
-from unclefarmer.engine import beasts
+from mistworldfarmer.engine import beasts
 
 assert clock is not None      # the fixture, used by name
 REFUSED_FOR = 6.0             # what the server did live: refused 4 s after the death, took it at 6

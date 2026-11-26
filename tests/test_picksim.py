@@ -1,8 +1,8 @@
 """The forward simulation of target picking (picksim.py, master plan Phase 2): whole cave visits whose
 every pick goes through the bot's own picking.choose with the order under test."""
 
-from unclefarmer import atlas, picksim
-from unclefarmer.engine import picking
+from mistworldfarmer import atlas, picksim
+from mistworldfarmer.engine import picking
 
 
 def test_the_bot_order_through_choose_plays_like_the_cave_simulator() -> None:

@@ -26,9 +26,9 @@ import numpy.typing as npt
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from unclefarmer import atlas, atlaslib, shortloop, travel
-from unclefarmer.atlaslib import Cell
-from unclefarmer.engine.botparts.walking import WalkingMixin
+from mistworldfarmer import atlas, atlaslib, shortloop, travel
+from mistworldfarmer.atlaslib import Cell
+from mistworldfarmer.engine.botparts.walking import WalkingMixin
 
 if TYPE_CHECKING:
     from cachebox import Cache, LRUCache
@@ -281,7 +281,7 @@ def load_bench():
 def link_bench():
     """One agent reply turned into Python objects: a 'mem state' answer of 30 monsters."""
     print("\n=== agent reply parsing ===")
-    from unclefarmer import jsonio
+    from mistworldfarmer import jsonio
     ents = [{"id": i, "kind": "npc", "name": "Wolf %d" % i, "x": 100.5 + i, "y": 80.25, "hp": 900,
              "maxhp": 1000, "level": 40, "target": 0} for i in range(30)]
     raw = jsonio.dumps({"ok": True, "map": {"id": 5121, "name": "Wolf Prairie"},
@@ -351,7 +351,7 @@ def lru_cache_bench():
     (what the caches were), lru.get (what they are: a hit moves the entry to the end) and
     functools.lru_cache around the same lookup."""
     import functools
-    from unclefarmer import lru
+    from mistworldfarmer import lru
     print("\n=== cache hit cost: dict vs lru.get vs functools.lru_cache (ns/op, best of 3) ===")
     n = 300_000
     keys = [((i % 97, i % 89), (i % 83, i % 79), bool(i % 2)) for i in range(512)]
@@ -441,7 +441,7 @@ def numba_bench():
 def main() -> None:
     quick = "--quick" in sys.argv
     try:
-        from unclefarmer import native
+        from mistworldfarmer import native
     except ImportError:            # a checkout from before the C searches: the baseline
         print("searches: Python (no native module in this checkout)")
     else:

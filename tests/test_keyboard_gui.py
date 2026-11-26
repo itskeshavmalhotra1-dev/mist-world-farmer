@@ -7,10 +7,10 @@ import pytest
 import wx
 from conftest import returning
 
-from unclefarmer import settings
-from unclefarmer.engine import keyboard, triggers
-from unclefarmer.gui.keyboard import KeyboardDialog
-from unclefarmer.gui.triggers import StepEditor
+from mistworldfarmer import settings
+from mistworldfarmer.engine import keyboard, triggers
+from mistworldfarmer.gui.keyboard import KeyboardDialog
+from mistworldfarmer.gui.triggers import StepEditor
 
 
 def test_keyboard_manager_has_tabs_above_profile_controls_and_one_footer() -> None:

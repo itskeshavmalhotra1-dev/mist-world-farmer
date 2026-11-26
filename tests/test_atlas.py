@@ -8,11 +8,11 @@ from __future__ import annotations
 
 import pytest
 
-from unclefarmer import atlas, atlaslib, paths
+from mistworldfarmer import atlas, atlaslib, paths
 from pathlib import Path
 from conftest import stand_in
-from unclefarmer.atlaslib import MapModel
-from unclefarmer.atlaslib import Cell
+from mistworldfarmer.atlaslib import MapModel
+from mistworldfarmer.atlaslib import Cell
 
 
 # ------------------------------------------------------------------- atlas
@@ -234,7 +234,7 @@ def test_rolling_mountain_is_walked_round_not_through_its_one_way_stone_gate() -
     ledge-free way, route() fell back to ignoring the gates and the walk stood stuck at the gate
     (LaSombra's "stuck before entering Dark pit City"). The way round, over the slope at x 80-89,
     obeys the gate - and that is the way the bot took live, into Dark pit City."""
-    from unclefarmer.engine.botparts.walking import WalkingMixin
+    from mistworldfarmer.engine.botparts.walking import WalkingMixin
 
     m = atlas.model(1102)
     assert m.gate[30, 27] == 2                              # no step north off the gate

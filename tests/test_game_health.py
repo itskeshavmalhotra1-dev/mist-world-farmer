@@ -7,8 +7,8 @@ import threading
 
 import pytest
 
-from unclefarmer.engine.botparts.base import GameBroken, Stopped
-from unclefarmer.engine.botparts.reading import ReadingMixin
+from mistworldfarmer.engine.botparts.base import GameBroken, Stopped
+from mistworldfarmer.engine.botparts.reading import ReadingMixin
 from typing import Any
 
 

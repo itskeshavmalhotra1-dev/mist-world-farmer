@@ -18,10 +18,10 @@ import pytest
 
 wx = pytest.importorskip("wx")
 
-from unclefarmer import chat, messages, settings, speech, stats, tones  # noqa: E402
-from unclefarmer.gui import main  # noqa: E402
-from unclefarmer.gui.mainparts import games as games_part, results as results_part, runs as runs_part, talk as talk_part  # noqa: E402
-from unclefarmer.gui.mainparts.base import LOG_LIMIT, SNAP_FRESH  # noqa: E402
+from mistworldfarmer import chat, messages, settings, speech, stats, tones  # noqa: E402
+from mistworldfarmer.gui import main  # noqa: E402
+from mistworldfarmer.gui.mainparts import games as games_part, results as results_part, runs as runs_part, talk as talk_part  # noqa: E402
+from mistworldfarmer.gui.mainparts.base import LOG_LIMIT, SNAP_FRESH  # noqa: E402
 
 from conftest import returning, stand_in, Clock  # noqa: E402
 
@@ -142,7 +142,7 @@ class Win:
 
 
 def test_restock_now_tool_dispatches_the_shared_script_job() -> None:
-    from unclefarmer.gui.mainparts import editing
+    from mistworldfarmer.gui.mainparts import editing
 
     calls: list[tuple[str, str]] = []
     def run_errand(text: str, title: str) -> None:
@@ -242,7 +242,7 @@ def test_failed_game_kill_reports_the_error_and_refreshes_without_stopping_the_b
 
 
 def test_force_close_worker_checks_game_identity_and_keeps_the_requested_scope(monkeypatch: pytest.MonkeyPatch) -> None:
-    from unclefarmer.gui import agentfix
+    from mistworldfarmer.gui import agentfix
 
     closed: list[list[int]] = []
     results: list[list[int]] = []
@@ -703,8 +703,8 @@ def test_other_programs_keys_are_switched_only_when_the_setting_changes(monkeypa
 
 
 def test_an_empty_game_folder_setting_is_filled_in_from_the_installed_agent(monkeypatch: pytest.MonkeyPatch) -> None:
-    from unclefarmer import gameinstall
-    from unclefarmer.gui.mainparts import editing
+    from mistworldfarmer import gameinstall
+    from mistworldfarmer.gui.mainparts import editing
 
     saved: list[dict[str, Any]] = []
     monkeypatch.setattr(gameinstall, "status", stand_in(gameinstall.status, lambda folder: "installed" if folder == "D:/Game" else "nogame"))

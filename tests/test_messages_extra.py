@@ -1,6 +1,6 @@
 # pyright: reportPrivateUsage=false
 # White-box tests: they check this module's internal helpers (leading-underscore names) directly.
-"""The rest of unclefarmer/messages.py: the text files, the reply book, the messenger loop,
+"""The rest of mistworldfarmer/messages.py: the text files, the reply book, the messenger loop,
 stranger replies, and every trusted-player command handler.
 
 tests/test_messages.py already covers parse_command's common cases, details(), cmd_help and
@@ -17,16 +17,16 @@ import types
 
 import pytest
 
-from unclefarmer import messages
-from unclefarmer.clock import CLOCK
+from mistworldfarmer import messages
+from mistworldfarmer.clock import CLOCK
 from pathlib import Path
 from conftest import as_kind, stand_in, Clock
-from unclefarmer.engine.bot import Bot
-from unclefarmer.engine.botparts.parts import Where
+from mistworldfarmer.engine.bot import Bot
+from mistworldfarmer.engine.botparts.parts import Where
 from typing import Any, TypeVar, TypeVarTuple
 from collections.abc import Callable
-from unclefarmer.engine.runner import Run
-from unclefarmer.messages import Messenger
+from mistworldfarmer.engine.runner import Run
+from mistworldfarmer.messages import Messenger
 
 
 # ---------------------------------------------------------------- helpers
@@ -269,7 +269,7 @@ def test_messenger_init_and_stop() -> None:
     host = FakeHost()
     m = messages.Messenger(3, host)
     assert m.pid == 3 and m.host is host
-    assert m.name == "unclefarmer-pm-3"
+    assert m.name == "mistworldfarmer-pm-3"
     assert m.outbox == collections.deque() and m.pending == set()
     assert isinstance(m.book, messages.ReplyBook)
     m.stop()
@@ -680,7 +680,7 @@ def test_cmd_home_queues_for_a_running_bot() -> None:
 
 
 def test_cmd_home_takes_a_farming_run_back_to_where_it_started() -> None:
-    from unclefarmer.engine.bot import Stopped
+    from mistworldfarmer.engine.bot import Stopped
     bot = types.SimpleNamespace(requests=queue.Queue(), start_place=(1503, 40, 60), end_place=None)
     m = make(FakeHost(run=types.SimpleNamespace(bot=bot, walk=False)))
     assert m.cmd_home(1, "Ann", "") == "Going back to where farming started."
@@ -700,7 +700,7 @@ def test_cmd_home_with_nothing_running_goes_where_the_last_farm_started(monkeypa
 
 
 def test_cmd_home_raises_stopped_when_a_run_is_going(monkeypatch: pytest.MonkeyPatch) -> None:
-    from unclefarmer.engine.bot import Stopped
+    from mistworldfarmer.engine.bot import Stopped
     m = make()
     bot = types.SimpleNamespace(go_home=lambda tries=1: True)
     monkeypatch.setattr(m, "idle_bot", stand_in(m.idle_bot, lambda: bot))
@@ -733,14 +733,14 @@ def test_cmd_home_failure_and_not_logged_in(monkeypatch: pytest.MonkeyPatch) -> 
 
 def test_cmd_come_with_an_unreadable_location(monkeypatch: pytest.MonkeyPatch) -> None:
     m = make()
-    import unclefarmer.engine.follow as follow
+    import mistworldfarmer.engine.follow as follow
     monkeypatch.setattr(follow, "parse_location", stand_in(follow.parse_location, lambda text: (None, None)))
     answer = m.cmd_come(1, "Ann", "gibberish")
     assert answer is not None and answer.startswith("I can't tell the map")
 
 
 def test_cmd_come_from_a_running_bot(monkeypatch: pytest.MonkeyPatch) -> None:
-    import unclefarmer.engine.follow as follow
+    import mistworldfarmer.engine.follow as follow
     monkeypatch.setattr(follow, "parse_location", stand_in(follow.parse_location, lambda text: (None, None)))
     bot = types.SimpleNamespace(requests=queue.Queue())
     m = make(FakeHost(run=types.SimpleNamespace(bot=bot)))
@@ -749,7 +749,7 @@ def test_cmd_come_from_a_running_bot(monkeypatch: pytest.MonkeyPatch) -> None:
 
 
 def test_cmd_come_while_following(monkeypatch: pytest.MonkeyPatch) -> None:
-    import unclefarmer.engine.follow as follow
+    import mistworldfarmer.engine.follow as follow
     monkeypatch.setattr(follow, "parse_location", stand_in(follow.parse_location, lambda text: (None, None)))
     bot = types.SimpleNamespace(requests=queue.Queue())
     run = types.SimpleNamespace(bot=bot, follows="ann")
@@ -759,7 +759,7 @@ def test_cmd_come_while_following(monkeypatch: pytest.MonkeyPatch) -> None:
 
 
 def test_cmd_come_when_idle_opens_an_errand(monkeypatch: pytest.MonkeyPatch) -> None:
-    import unclefarmer.engine.follow as follow
+    import mistworldfarmer.engine.follow as follow
     monkeypatch.setattr(follow, "parse_location", stand_in(follow.parse_location, lambda text: (5, (1, 2))))
     host = FakeHost(errand_result="busy")
     m = make(host)
@@ -770,7 +770,7 @@ def test_cmd_come_when_idle_opens_an_errand(monkeypatch: pytest.MonkeyPatch) -> 
 
 
 def test_cmd_come_idle_tells_through_the_errand(monkeypatch: pytest.MonkeyPatch) -> None:
-    import unclefarmer.engine.follow as follow
+    import mistworldfarmer.engine.follow as follow
     monkeypatch.setattr(follow, "parse_location", stand_in(follow.parse_location, lambda text: (None, None)))
     host = FakeHost()
     m = make(host)
@@ -787,7 +787,7 @@ def test_cmd_come_idle_tells_through_the_errand(monkeypatch: pytest.MonkeyPatch)
 
 
 def test_cmd_come_closer_when_the_run_is_following(monkeypatch: pytest.MonkeyPatch) -> None:
-    import unclefarmer.engine.follow as follow
+    import mistworldfarmer.engine.follow as follow
     monkeypatch.setattr(follow, "parse_location", stand_in(follow.parse_location, lambda text: (None, None)))
     monkeypatch.setattr(follow, "come_to", stand_in(follow.come_to, lambda bot, name, map_id, cell: "Here!"))
     m = make()
@@ -799,8 +799,8 @@ def test_cmd_come_closer_when_the_run_is_following(monkeypatch: pytest.MonkeyPat
 
 
 def test_cmd_come_job_ends_the_run_beside_them(monkeypatch: pytest.MonkeyPatch) -> None:
-    from unclefarmer.engine.bot import Stopped
-    import unclefarmer.engine.follow as follow
+    from mistworldfarmer.engine.bot import Stopped
+    import mistworldfarmer.engine.follow as follow
     monkeypatch.setattr(follow, "parse_location", stand_in(follow.parse_location, lambda text: (None, None)))
     monkeypatch.setattr(follow, "come_to", stand_in(follow.come_to, lambda bot, name, map_id, cell: "Here!"))
     m = make()
@@ -861,7 +861,7 @@ def test_chore_without_a_bot(monkeypatch: pytest.MonkeyPatch) -> None:
 
 # ---------------------------------------------------------------- team commands
 def test_cmd_add_when_idle(monkeypatch: pytest.MonkeyPatch) -> None:
-    import unclefarmer.engine.team as team
+    import mistworldfarmer.engine.team as team
     monkeypatch.setattr(team, "accept_application", stand_in(team.accept_application, lambda bot, name: (True, "Accepted.")))
     m = make()
     bot = object()
@@ -872,7 +872,7 @@ def test_cmd_add_when_idle(monkeypatch: pytest.MonkeyPatch) -> None:
 
 
 def test_cmd_leader_and_leave_when_idle(monkeypatch: pytest.MonkeyPatch) -> None:
-    import unclefarmer.engine.team as team
+    import mistworldfarmer.engine.team as team
     monkeypatch.setattr(team, "make_leader", stand_in(team.make_leader, lambda bot, name: (True, "You lead.")))
     monkeypatch.setattr(team, "leave", stand_in(team.leave, lambda bot: (True, "Left.")))
     m = make()
@@ -923,7 +923,7 @@ def test_idle_invites_accepts_a_trusted_invite(monkeypatch: pytest.MonkeyPatch) 
     m.fake.dialog = {"ok": True, "open": True,
                      "top": {"rows": [[{"text": "Ann invites you to join the \"Wolves\" team"}]]}}
     monkeypatch.setattr(messages, "config", stand_in(messages.config, lambda: default_cfg(pm_trusted=["Ann"])))
-    import unclefarmer.engine.team as team
+    import mistworldfarmer.engine.team as team
     monkeypatch.setattr(team, "invite_in", stand_in(team.invite_in, lambda texts: ("Ann", "Wolves")))
     monkeypatch.setattr(team, "accept_invite", stand_in(team.accept_invite, lambda bot: True))
     monkeypatch.setattr(m, "idle_bot", stand_in(m.idle_bot, lambda: object()))
@@ -937,7 +937,7 @@ def test_idle_invites_leaves_strangers_and_closed_dialogs(monkeypatch: pytest.Mo
     monkeypatch.setattr(messages, "config", stand_in(messages.config, lambda: default_cfg(pm_trusted=["Ann"])))
     m.idle_invites()                                   # nothing open
     m.fake.dialog = {"ok": True, "open": True, "top": {"rows": [[{"text": "x"}]]}}
-    import unclefarmer.engine.team as team
+    import mistworldfarmer.engine.team as team
     monkeypatch.setattr(team, "invite_in", stand_in(team.invite_in, lambda texts: ("Stranger", "Wolves")))
     m.idle_invites()
     assert not any("joined" in item[0] for item in host.logs)
@@ -948,7 +948,7 @@ def test_idle_invites_disabled(monkeypatch: pytest.MonkeyPatch) -> None:
     m = make(host)
     m.fake.dialog = {"ok": True, "open": True, "top": {"rows": [[{"text": "y"}]]}}
     monkeypatch.setattr(messages, "config", stand_in(messages.config, lambda: default_cfg(pm_accept_invites=False)))
-    import unclefarmer.engine.team as team
+    import mistworldfarmer.engine.team as team
     monkeypatch.setattr(team, "invite_in", stand_in(team.invite_in, lambda texts: ("Ann", "Wolves")))
     m.idle_invites()
     assert not host.logs

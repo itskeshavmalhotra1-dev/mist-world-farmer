@@ -33,7 +33,7 @@ import socket
 import threading
 from typing import Any
 
-from unclefarmer import atlas, gamekeys, settings
+from mistworldfarmer import atlas, gamekeys, settings
 
 ME = 4242
 NAME = "Simchar"
@@ -970,7 +970,7 @@ class Soak:
     as hung. Measurements: `mark(minutes, callback)` calls back at that game minute."""
 
     def __init__(self, game: SimGame, script: str, watchdog: float = 300.0):
-        from unclefarmer.engine.runner import Run
+        from mistworldfarmer.engine.runner import Run
         self.game = game
         import collections
         # the last lines, and every line worth asserting on; not all of a night's lines, or the

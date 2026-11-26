@@ -1,8 +1,8 @@
 {
   "include": [
-    "unclefarmer",
+    "mistworldfarmer",
     "tests",
-    "UncleFarmer.pyw",
+    "MistWorldFarmer.pyw",
     "build_exe.py",
     "release.py",
     "docs_html.py",

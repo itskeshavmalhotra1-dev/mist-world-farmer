@@ -6,7 +6,7 @@ import pytest
 
 from conftest import Clock
 from test_fighting import Bot, Link, monster
-from unclefarmer import atlas
+from mistworldfarmer import atlas
 
 
 @pytest.mark.parametrize("mid", [5302, 5303, 1503, 5121])

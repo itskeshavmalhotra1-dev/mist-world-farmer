@@ -8,7 +8,7 @@ from typing import Any
 
 import pytest
 
-from unclefarmer import gamekeys, phrases
+from mistworldfarmer import gamekeys, phrases
 from pathlib import Path
 from conftest import as_bot, stand_in
 

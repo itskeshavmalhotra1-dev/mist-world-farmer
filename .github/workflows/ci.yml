@@ -96,7 +96,7 @@ jobs:
         run: uv sync --locked
 
       # The same tests and floors as on a developer's PC (python check.py): the whole suite with
-      # coverage of unclefarmer/, a report of the lines missed, and a failure under
+      # coverage of mistworldfarmer/, a report of the lines missed, and a failure under
       # [tool.coverage.report] fail_under (78%). Then the engine's own floor (check.py CORE_FLOOR,
       # 92%) from the same run's data. The Java tests run in the agent job.
       - name: uv run pytest (whole suite, coverage)

@@ -11,8 +11,8 @@ from typing import Any
 import pytest
 from conftest import as_bot, Clock, ME
 
-from unclefarmer.engine import watchdog
-from unclefarmer.engine.botparts.base import Stopped
+from mistworldfarmer.engine import watchdog
+from mistworldfarmer.engine.botparts.base import Stopped
 
 
 class Farmer:

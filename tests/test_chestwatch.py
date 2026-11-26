@@ -12,7 +12,7 @@ import pytest
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import chestwatch as cw  # noqa: E402
-from unclefarmer import link, paths  # noqa: E402
+from mistworldfarmer import link, paths  # noqa: E402
 
 CHEST = {"id": -129, "kind": "monster", "side": -2, "name": "Chest", "x": 110.0, "y": 104.0,
          "type": 0, "facing": 7203, "hp": 19998239, "maxhp": 20000000}

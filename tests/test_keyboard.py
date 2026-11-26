@@ -9,10 +9,10 @@ from typing import Any
 import pytest
 from conftest import Clock, as_bot, stand_in
 
-from unclefarmer import settings
-from unclefarmer.engine import keyboard, script, triggers
-from unclefarmer.engine.bot import Stopped
-from unclefarmer.engine.combat import SkillBook
+from mistworldfarmer import settings
+from mistworldfarmer.engine import keyboard, script, triggers
+from mistworldfarmer.engine.bot import Stopped
+from mistworldfarmer.engine.combat import SkillBook
 
 
 class Game:

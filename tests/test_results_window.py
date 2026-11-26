@@ -13,8 +13,8 @@ import pytest
 
 wx = pytest.importorskip("wx")
 
-from unclefarmer import stats  # noqa: E402
-from unclefarmer.gui import results  # noqa: E402
+from mistworldfarmer import stats  # noqa: E402
+from mistworldfarmer.gui import results  # noqa: E402
 
 
 @pytest.fixture(scope="module")

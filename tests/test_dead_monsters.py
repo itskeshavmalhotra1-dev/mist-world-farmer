@@ -14,10 +14,10 @@ from typing import Any
 
 from conftest import as_kind
 from test_fighting import Clock, FakeTracker, Pick, monster, profile, until_bot
-from unclefarmer.clock import CLOCK
+from mistworldfarmer.clock import CLOCK
 import pytest
-from unclefarmer.engine.combat import SkillBook
-from unclefarmer.engine.kills import KillTracker
+from mistworldfarmer.engine.combat import SkillBook
+from mistworldfarmer.engine.kills import KillTracker
 
 ME = 4242
 

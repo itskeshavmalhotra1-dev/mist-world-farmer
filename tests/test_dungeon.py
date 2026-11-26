@@ -11,8 +11,8 @@ from typing import Any
 
 import pytest
 
-from unclefarmer.engine import beasts, chores, dungeon, pets, script, town
-from unclefarmer.engine.bot import Stopped
+from mistworldfarmer.engine import beasts, chores, dungeon, pets, script, town
+from mistworldfarmer.engine.bot import Stopped
 from conftest import as_bot, as_kind, stand_in
 from collections.abc import Callable
 
@@ -459,7 +459,7 @@ def test_settings_never_share_the_defaults() -> None:
 
 
 def test_every_cave_has_a_known_entrance_and_a_patrol() -> None:
-    from unclefarmer import atlas, dungeons
+    from mistworldfarmer import atlas, dungeons
     for cave, v in dungeon.CAVES.items():
         e = dungeon.entrance(cave)
         assert e is not None and v["map"] in e["dungeon_maps"]
@@ -469,7 +469,7 @@ def test_every_cave_has_a_known_entrance_and_a_patrol() -> None:
 
 
 def test_the_two_caves_the_games_files_dont_place_carry_their_entrance() -> None:
-    from unclefarmer import atlas, travel
+    from mistworldfarmer import atlas, travel
     for cave, mid, at in (("Bottomless pit", 1631, (150, 19)), ("White Bone Cave", 1761, (61, 110))):
         e = dungeon.entrance(cave)
         assert e is not None and e["map"] == mid and tuple(e["at"]) == at and e["npc"]
@@ -705,7 +705,7 @@ def test_wraith_cave_config_script_and_floor_helpers() -> None:
     cfg = dungeon.config({"dungeon": {"cave": "Wraith Cave Floor 2"}})
     assert cfg["cave"] == "Wraith Cave Floor 2"
     assert 'dungeon "Wraith Cave Floor 2"' in dungeon.script(cfg)
-    from unclefarmer.engine.script import parse
+    from mistworldfarmer.engine.script import parse
     main, _subs, _stop = parse('dungeon "Wraith Cave Floor 2"\ndungeon check "Wraith Cave"')
     assert main[0].opts["cave"] == "Wraith Cave Floor 2"
     assert main[1].opts["cave"] == "Wraith Cave" and main[1].opts["check"] is True

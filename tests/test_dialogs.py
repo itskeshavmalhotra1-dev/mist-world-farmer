@@ -7,16 +7,16 @@ from __future__ import annotations
 
 import pytest
 
-from unclefarmer import atlas, knowledge, paths, trust
+from mistworldfarmer import atlas, knowledge, paths, trust
 from conftest import JsonOnly, stand_in, Clock
 
-from unclefarmer.engine.botparts import dialogs as dialogs_mod
-from unclefarmer.engine.botparts.dialogs import DialogsMixin
-from unclefarmer.engine.botparts.base import Stopped
+from mistworldfarmer.engine.botparts import dialogs as dialogs_mod
+from mistworldfarmer.engine.botparts.dialogs import DialogsMixin
+from mistworldfarmer.engine.botparts.base import Stopped
 from pathlib import Path
 from collections.abc import Callable, Iterable
 from typing import Any
-from unclefarmer.atlaslib import Cell
+from mistworldfarmer.atlaslib import Cell
 
 
 @pytest.fixture(autouse=True)

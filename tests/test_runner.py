@@ -7,24 +7,24 @@ from __future__ import annotations
 
 
 
-from unclefarmer import paths, settings, stats
-from unclefarmer.engine import runner as R
-from unclefarmer.engine import script as script_mod
-from unclefarmer.engine.bot import Respawned
-from unclefarmer.link import AgentError
+from mistworldfarmer import paths, settings, stats
+from mistworldfarmer.engine import runner as R
+from mistworldfarmer.engine import script as script_mod
+from mistworldfarmer.engine.bot import Respawned
+from mistworldfarmer.link import AgentError
 from pathlib import Path
 import datetime as dt
 import types
 
 import pytest
 from conftest import as_bot, as_kind, returning, stand_in, Clock
-from unclefarmer.engine.bot import Bot
+from mistworldfarmer.engine.bot import Bot
 from typing import Any, NoReturn
 from collections.abc import Callable
-from unclefarmer.engine.botparts.parts import Parts
-from unclefarmer.stats import Record
+from mistworldfarmer.engine.botparts.parts import Parts
+from mistworldfarmer.stats import Record
 from threading import Event
-from unclefarmer.engine.runner import Run
+from mistworldfarmer.engine.runner import Run
 
 
 # ---------------------------------------------------------------- fakes
@@ -184,10 +184,10 @@ def make(monkeypatch: pytest.MonkeyPatch, tmp_path: Path, *, text: str = "wait 1
     monkeypatch.setattr(stats, "report", stand_in(stats.report, lambda r, title: "report"))
     monkeypatch.setattr(stats, "short", stand_in(stats.short, lambda r, drop=None: "short"))
 
-    from unclefarmer import daily as daily_mod
-    from unclefarmer import phrases as phrases_mod
-    from unclefarmer import scan as scan_mod
-    from unclefarmer.engine import keyslots
+    from mistworldfarmer import daily as daily_mod
+    from mistworldfarmer import phrases as phrases_mod
+    from mistworldfarmer import scan as scan_mod
+    from mistworldfarmer.engine import keyslots
     monkeypatch.setattr(daily_mod, "plan", stand_in(daily_mod.plan, lambda app: plan))
     monkeypatch.setattr(phrases_mod, "arrange", stand_in(phrases_mod.arrange, returning({})))
     monkeypatch.setattr(keyslots, "arrange", stand_in(keyslots.arrange, returning(None)))
@@ -233,7 +233,7 @@ def test_run_init_defaults() -> None:
     assert run.character is None and run.tally is None and run.bot is None
     assert run.speech_choice is None and run.ended_by_itself is False
     assert run.after_stop == "nothing" and run.walk is False
-    assert run.daemon is True and run.name == "unclefarmer-run-42"
+    assert run.daemon is True and run.name == "mistworldfarmer-run-42"
     assert isinstance(run.started, float)
 
 

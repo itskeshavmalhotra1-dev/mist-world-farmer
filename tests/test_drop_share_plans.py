@@ -14,8 +14,8 @@ from typing import Any
 from conftest import as_bot, as_parts, Clock
 from test_script import FakeBot as ScriptBot
 
-from unclefarmer import stats
-from unclefarmer.engine import plan, script as S
+from mistworldfarmer import stats
+from mistworldfarmer.engine import plan, script as S
 
 
 def two_spots(first: int = 180, rotation: str = "round") -> dict[str, Any]:
@@ -158,7 +158,7 @@ def test_a_day_adds_the_maps_up() -> None:
 def test_the_kill_that_ends_a_spot_counts_for_its_map() -> None:
     """The farm read its last kill after closing its map: one kill in the run's total and none
     in the map's (replayed in review). The farm's end reads once more while the map still counts."""
-    from unclefarmer.engine.botparts.farming import FarmingMixin
+    from mistworldfarmer.engine.botparts.farming import FarmingMixin
     clock = Clock()
     t = stats.Tally("Hero", "Two", clock=clock)
     b = Reader()
@@ -173,7 +173,7 @@ def test_the_kill_that_ends_a_spot_counts_for_its_map() -> None:
 
 
 def test_a_failing_last_reading_still_closes_the_map() -> None:
-    from unclefarmer.engine.botparts.farming import FarmingMixin
+    from mistworldfarmer.engine.botparts.farming import FarmingMixin
 
     class Gone(Reader):
         def bag_rows(self) -> list[dict[str, Any]]:

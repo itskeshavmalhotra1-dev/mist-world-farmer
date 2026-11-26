@@ -10,7 +10,7 @@ from pathlib import Path
 
 import pytest
 
-from unclefarmer import updater, update_recovery as recovery
+from mistworldfarmer import updater, update_recovery as recovery
 
 pytestmark = pytest.mark.skipif(os.name != "nt", reason="Windows/NTFS recovery integration")
 ROOT = Path(__file__).resolve().parents[1]
@@ -50,7 +50,7 @@ def trees(tmp_path: Path) -> tuple[Path, Path]:
 WORKER = r'''
 import io, os, sys, time, zipfile
 from pathlib import Path
-from unclefarmer import updater as u, update_recovery as r
+from mistworldfarmer import updater as u, update_recovery as r
 app, source, boundary, ready, action = sys.argv[1:]
 u.paths.APP = app
 u.UPDATE = os.path.join(app, "update")
@@ -106,7 +106,7 @@ def interrupt(app: Path, source: Path, boundary: str, action: str = "apply") -> 
 
 def fresh_recovery(app: Path, success: bool = True) -> subprocess.CompletedProcess[str]:
     result = subprocess.run([PYTHON, "-c",
-                             "import sys; from unclefarmer import update_recovery as r; "
+                             "import sys; from mistworldfarmer import update_recovery as r; "
                              "assert 'wx' not in sys.modules and 'orjson' not in sys.modules; "
                              "print(r.recover(sys.argv[1]))", str(app)], cwd=ROOT, env=ENV,
                             capture_output=True, text=True, timeout=30)
@@ -388,7 +388,7 @@ def test_failed_staged_copier_keeps_a_known_working_old_rescue_runtime(
 
 def test_recovery_dispatch_precedes_application_initialization(
         trees: tuple[Path, Path], monkeypatch: pytest.MonkeyPatch) -> None:
-    from unclefarmer import __main__ as entry
+    from mistworldfarmer import __main__ as entry
     app, _ = trees
     calls: list[str] = []
     monkeypatch.setattr(sys, "argv", ["MistWorldFarmer.exe", "--recover-update", str(app)])
@@ -404,7 +404,7 @@ def test_recovery_dispatch_precedes_application_initialization(
 
 def test_source_recovery_entry_cannot_select_an_arbitrary_destination(
         trees: tuple[Path, Path], monkeypatch: pytest.MonkeyPatch) -> None:
-    from unclefarmer import __main__ as entry
+    from mistworldfarmer import __main__ as entry
     app, _ = trees
     before = contents(app)
     monkeypatch.setattr(sys, "argv", ["python", "--recover-update", str(app)])
@@ -647,7 +647,7 @@ def test_killing_the_bootstrap_takes_the_paused_copier_with_it(
 
 def test_the_app_hands_an_unfinished_update_to_the_bootstrap(
         trees: tuple[Path, Path], monkeypatch: pytest.MonkeyPatch) -> None:
-    from unclefarmer import __main__ as entry
+    from mistworldfarmer import __main__ as entry
     app, _ = trees
     (app / recovery.BOOTSTRAP).write_bytes(b"bootstrap " + updater.BOOTSTRAP_MARKER)
     recovery.begin(str(app), "0.4.0", "0.5.0", "DOWNLOADING")        # an interrupted, unfinished update
@@ -655,7 +655,7 @@ def test_the_app_hands_an_unfinished_update_to_the_bootstrap(
     def popen(args: list[str], **kwargs: object) -> None:
         launched.append(args)
     monkeypatch.setattr(subprocess, "Popen", popen)
-    from unclefarmer import paths
+    from mistworldfarmer import paths
     monkeypatch.setattr(paths, "APP", str(app))
     monkeypatch.setattr(paths, "frozen", lambda: True)
     monkeypatch.setattr(sys, "argv", ["MistWorldFarmer.exe"])
@@ -668,7 +668,7 @@ def test_the_app_hands_an_unfinished_update_to_the_bootstrap(
 def test_the_app_never_hands_the_update_back_right_after_a_recovery(
         trees: tuple[Path, Path], monkeypatch: pytest.MonkeyPatch) -> None:
     import ctypes
-    from unclefarmer import __main__ as entry, paths
+    from mistworldfarmer import __main__ as entry, paths
     app, _ = trees
     (app / recovery.BOOTSTRAP).write_bytes(b"bootstrap " + updater.BOOTSTRAP_MARKER)
     recovery.begin(str(app), "0.4.0", "0.5.0", "DOWNLOADING")
@@ -690,7 +690,7 @@ def test_the_app_never_hands_the_update_back_right_after_a_recovery(
 
 
 def test_a_finished_or_absent_update_needs_no_bootstrap(trees: tuple[Path, Path]) -> None:
-    from unclefarmer import __main__ as entry
+    from mistworldfarmer import __main__ as entry
     app, _ = trees
     assert not entry._unfinished_update(str(app))  # pyright: ignore[reportPrivateUsage]
     record = recovery.begin(str(app), "0.4.0", "0.5.0", "DOWNLOADING")
@@ -730,7 +730,7 @@ def test_the_rescue_runtime_accepts_its_own_short_name(trees: tuple[Path, Path],
     """Found by the real-binary test, and why an updated copy never opened again: a frozen app's
     sys.executable is the 8.3 short name when a folder has spaces ("Mist World Farmer"), bootstrap.exe
     passes the long one, and the rescue runtime refused to run, so nothing was started."""
-    from unclefarmer import __main__ as entry
+    from mistworldfarmer import __main__ as entry
     app, _ = trees
     runtime = app / recovery.HERE / "runtime"
     runtime.mkdir(parents=True)
@@ -768,7 +768,7 @@ def test_the_rescue_runtime_accepts_nuitkas_python_exe(trees: tuple[Path, Path],
     """Found by the real-binary test: in a Nuitka build sys.executable is a python.exe beside
     MistWorldFarmer.exe. The rescue entry compared it with the exe's own name and refused every
     recovery, so the old front door never started an updated copy."""
-    from unclefarmer import __main__ as entry
+    from mistworldfarmer import __main__ as entry
     app, _ = trees
     runtime = app / recovery.HERE / "runtime"
     runtime.mkdir(parents=True)
@@ -785,7 +785,7 @@ def test_the_rescue_runtime_accepts_nuitkas_python_exe(trees: tuple[Path, Path],
 
 
 def test_python_exe_elsewhere_is_still_refused(trees: tuple[Path, Path], monkeypatch: pytest.MonkeyPatch) -> None:
-    from unclefarmer import __main__ as entry
+    from mistworldfarmer import __main__ as entry
     app, _ = trees
     monkeypatch.setattr(sys, "argv", ["MistWorldFarmer.exe", "--recover-update", str(app)])
     monkeypatch.setattr(sys, "executable", str(app / "python.exe"))       # the installation, not the rescue copy

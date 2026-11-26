@@ -15,7 +15,7 @@ from typing import Any
 
 import pytest
 
-from unclefarmer import __version__, settings, updater
+from mistworldfarmer import __version__, settings, updater
 
 BASE = ".".join(str(n) for n in updater.version_tuple(__version__)[:3])
 

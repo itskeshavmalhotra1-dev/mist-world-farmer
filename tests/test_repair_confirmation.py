@@ -7,7 +7,7 @@ import pytest
 
 from conftest import Clock, as_bot
 from test_toolbox_tiers import GameBot, dlg
-from unclefarmer.engine import repair
+from mistworldfarmer.engine import repair
 
 
 class ConfirmationBot(GameBot):

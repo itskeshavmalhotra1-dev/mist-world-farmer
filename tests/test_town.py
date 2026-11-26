@@ -17,10 +17,10 @@ import threading
 import pytest
 from conftest import as_bot, returning, stand_in, Clock
 
-from unclefarmer.clock import CLOCK
-from unclefarmer import knowledge, paths, settings
-from unclefarmer.engine import bagrules, town
-from unclefarmer.engine.botparts.base import Stopped
+from mistworldfarmer.clock import CLOCK
+from mistworldfarmer import knowledge, paths, settings
+from mistworldfarmer.engine import bagrules, town
+from mistworldfarmer.engine.botparts.base import Stopped
 from pathlib import Path
 from typing import Any
 

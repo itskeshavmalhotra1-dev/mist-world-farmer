@@ -11,12 +11,12 @@ import pytest
 from conftest import as_kind, stand_in
 from test_walking import MOVE_KEYS, Map
 
-from unclefarmer import atlas
-from unclefarmer.atlaslib import MapModel
-from unclefarmer.clock import Clock as RealClock
-from unclefarmer.engine import combat
-from unclefarmer.engine.botparts import walking
-from unclefarmer.engine.botparts.walking import WalkingMixin
+from mistworldfarmer import atlas
+from mistworldfarmer.atlaslib import MapModel
+from mistworldfarmer.clock import Clock as RealClock
+from mistworldfarmer.engine import combat
+from mistworldfarmer.engine.botparts import walking
+from mistworldfarmer.engine.botparts.walking import WalkingMixin
 
 FACING = {"left": 1, "up": 2, "right": 4, "down": 8}       # the facing a tap of each key gives
 

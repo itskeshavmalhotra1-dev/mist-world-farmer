@@ -13,9 +13,9 @@ import pytest
 from conftest import JsonOnly, stand_in
 
 from test_travel_part import Bot, quiet  # quiet: the travel tests' autouse fixture, used here too
-from unclefarmer import travel as travel_mod
-from unclefarmer.engine.botparts import travel as part
-from unclefarmer.engine.botparts.base import Stopped
+from mistworldfarmer import travel as travel_mod
+from mistworldfarmer.engine.botparts import travel as part
+from mistworldfarmer.engine.botparts.base import Stopped
 
 FERTILE_WILDS, POLSON, WATER_CAVE = 1061, 5141, 5142
 WARNING = "Polson Wetland: Poison Immunity isn't activated"

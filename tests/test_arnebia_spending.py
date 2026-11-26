@@ -14,7 +14,7 @@ from typing import Any
 
 import pytest
 
-from unclefarmer import paths, stats
+from mistworldfarmer import paths, stats
 
 POTION = "Large Red Potion"            # Apothecary Phillips sells it for 450 arnebia (knowledge.json)
 PET_POTION = "Pet Small Blue Potion"   # 120 arnebia there

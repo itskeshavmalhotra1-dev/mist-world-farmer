@@ -10,7 +10,7 @@ from typing import Any, NoReturn
 
 import pytest
 
-from unclefarmer import jsonio
+from mistworldfarmer import jsonio
 from pathlib import Path
 
 
@@ -143,8 +143,8 @@ def test_save_creates_a_missing_folder(tmp_path: Path) -> None:
 
 
 def test_plan_save_goes_through_the_atomic_writer(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
-    from unclefarmer import paths
-    from unclefarmer.engine import plan as plans
+    from mistworldfarmer import paths
+    from mistworldfarmer.engine import plan as plans
 
     monkeypatch.setattr(paths, "PLANS", str(tmp_path))
     plans.save(dict(plans.PLAN_DEFAULTS, name="Atomic"))

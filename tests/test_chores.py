@@ -10,7 +10,7 @@ from pathlib import Path
 
 import pytest
 
-from unclefarmer.engine import chores, crafting, script, town
+from mistworldfarmer.engine import chores, crafting, script, town
 from collections.abc import Callable, Generator
 from conftest import as_bot, stand_in
 
@@ -936,7 +936,7 @@ def test_a_share_trip_is_due_just_before_an_unused_half_hour(world: type[Game]) 
 def test_a_farming_run_goes_to_share_and_comes_back(monkeypatch: pytest.MonkeyPatch) -> None:
     from contextlib import contextmanager
 
-    from unclefarmer.engine.botparts.farming import FarmingMixin
+    from mistworldfarmer.engine.botparts.farming import FarmingMixin
 
     class Trip(FarmingMixin):
         def __init__(self) -> None:

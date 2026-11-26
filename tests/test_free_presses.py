@@ -7,7 +7,7 @@ from typing import Any
 
 from conftest import ME, Bot, Clock, Game, as_parts, fight
 
-from unclefarmer.engine import combat
+from mistworldfarmer.engine import combat
 
 
 def book(clock: Clock, skills: list[str], profile: dict[str, Any] | None = None,

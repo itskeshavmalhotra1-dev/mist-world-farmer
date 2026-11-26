@@ -19,7 +19,7 @@ import os
 
 import pytest
 
-from unclefarmer import gametexts, paths, settings
+from mistworldfarmer import gametexts, paths, settings
 from pathlib import Path
 from conftest import stand_in
 

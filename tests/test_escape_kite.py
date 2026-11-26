@@ -10,9 +10,9 @@ import pytest
 from conftest import ME, Clock, as_kind, fight, stand_in
 from test_walking import Map
 
-from unclefarmer import atlas
-from unclefarmer.atlaslib import MapModel
-from unclefarmer.engine import combat
+from mistworldfarmer import atlas
+from mistworldfarmer.atlaslib import MapModel
+from mistworldfarmer.engine import combat
 
 
 def swing(t: float, caster: int) -> dict[str, Any]:

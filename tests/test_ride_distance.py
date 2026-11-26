@@ -10,9 +10,9 @@ import pytest
 from conftest import as_bot
 from test_beast_after_death import clock as clock
 from test_beast_after_death import riding, swift
-from unclefarmer.engine import beasts
-from unclefarmer.engine.botparts.travel import TravelMixin
-from unclefarmer.engine.botparts.walking import WalkingMixin
+from mistworldfarmer.engine import beasts
+from mistworldfarmer.engine.botparts.travel import TravelMixin
+from mistworldfarmer.engine.botparts.walking import WalkingMixin
 
 
 @pytest.mark.parametrize("left, rides", [(6.0, False), (29.0, False), (30.0, True), (float("inf"), True), (None, True)])

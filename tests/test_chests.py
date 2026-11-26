@@ -9,8 +9,8 @@ from typing import Any
 
 from conftest import as_bot, Clock
 
-from unclefarmer import settings, stats
-from unclefarmer.engine import chests
+from mistworldfarmer import settings, stats
+from mistworldfarmer.engine import chests
 
 
 def chest(cid: int = -129, x: float = 137.0, y: float = 238.0) -> dict[str, Any]:
@@ -110,7 +110,7 @@ def test_in_sight_lists_the_chests_or_one_of_them() -> None:
 
 def test_targets_still_leave_the_chest_out() -> None:
     """The chest carries a town NPC's hp: the fight code must keep ignoring it (it doesn't die)."""
-    from unclefarmer.engine.botparts.base import NPC_HP
+    from mistworldfarmer.engine.botparts.base import NPC_HP
     assert chest()["maxhp"] >= NPC_HP
 
 

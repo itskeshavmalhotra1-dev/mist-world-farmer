@@ -7,9 +7,9 @@ from __future__ import annotations
 
 from conftest import as_bot, stand_in, Clock
 
-from unclefarmer.clock import CLOCK
-from unclefarmer import settings
-from unclefarmer.engine import pets
+from mistworldfarmer.clock import CLOCK
+from mistworldfarmer import settings
+from mistworldfarmer.engine import pets
 import pytest
 from typing import Any
 
@@ -309,7 +309,7 @@ def test_recall_nothing_when_no_pet_is_out(monkeypatch: pytest.MonkeyPatch) -> N
 def test_the_fights_beast_is_seen_to_before_the_pet_is_called(monkeypatch: pytest.MonkeyPatch) -> None:
     # The server ignores a fusion change pressed right after a pet came out (recorded: 0.6 s
     # after, ignored twice), so the first fight's "get off the Swift beast" cost 8.5 s.
-    from unclefarmer.engine import beasts
+    from mistworldfarmer.engine import beasts
     clock = Clock()
     monkeypatch.setattr(CLOCK, "time", clock)
     bot = Bot(rows(("Cat", 0)))
@@ -325,7 +325,7 @@ def test_the_fights_beast_is_seen_to_before_the_pet_is_called(monkeypatch: pytes
 
 
 def test_no_beast_change_when_no_pet_is_to_be_called(monkeypatch: pytest.MonkeyPatch) -> None:
-    from unclefarmer.engine import beasts
+    from mistworldfarmer.engine import beasts
     clock = Clock()
     monkeypatch.setattr(CLOCK, "time", clock)
     bot = Bot(rows(("Cat", -1)))

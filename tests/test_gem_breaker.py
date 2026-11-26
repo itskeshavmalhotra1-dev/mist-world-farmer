@@ -9,8 +9,8 @@ import pytest
 
 from conftest import as_bot, returning, stand_in
 from test_crafting import Bot, add, entry
-from unclefarmer.engine import chores, crafting, gembreak, script, town
-from unclefarmer.engine.bot import Stopped
+from mistworldfarmer.engine import chores, crafting, gembreak, script, town
+from mistworldfarmer.engine.bot import Stopped
 
 FEE = 357
 

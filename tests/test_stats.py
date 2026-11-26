@@ -12,7 +12,7 @@ import time
 
 import pytest
 
-from unclefarmer import stats
+from mistworldfarmer import stats
 from pathlib import Path
 from conftest import as_parts, Clock
 from typing import Any

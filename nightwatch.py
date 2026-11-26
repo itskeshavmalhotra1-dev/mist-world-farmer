@@ -47,7 +47,7 @@ from typing import Any, TypedDict
 ROOT = os.path.dirname(os.path.abspath(__file__))
 LOGS = os.path.join(ROOT, "logs")
 NIGHTS = os.path.join(LOGS, "nights")
-BOT_MARKS = ("unclefarmer.pyw", "-m unclefarmer", "unclefarmer\\__main__", "mistworldfarmer.exe", "mist world farmer.exe", "uncle farmer.exe", "unclefarmer.exe")
+BOT_MARKS = ("mistworldfarmer.pyw", "-m mistworldfarmer", "mistworldfarmer\\__main__", "mistworldfarmer.exe", "mist world farmer.exe")
 GAME_EXE = "mw.exe"
 PIECE = 900             # seconds of py-spy per profile file: py-spy writes its file only when a
                         # piece ends, so a PC shut down mid-piece (the bot's after-stop action, a
@@ -684,12 +684,12 @@ WAITING = {"sleep", "wait", "_wait", "acquire", "recv", "recv_into", "readline",
            "MainLoop", "get", "_wait_for_tstate_lock", "join", "poll", "WaitForSingleObject", "_recv", "Yield",
            "ShowModal"}
 WAITING_FILES = ("socket.py", "selectors.py", "queue.py", "threading.py", "ssl.py")
-AGENT_FILES = ("unclefarmer\\link.py", "unclefarmer/link.py")
+AGENT_FILES = ("mistworldfarmer\\link.py", "mistworldfarmer/link.py")
 
 
 def _ours(path: str) -> str | None:
     p = path.replace("/", "\\").lower()
-    i = p.find("unclefarmer\\")
+    i = p.find("mistworldfarmer\\")
     return p[i:] if i >= 0 and "site-packages" not in p else None
 
 

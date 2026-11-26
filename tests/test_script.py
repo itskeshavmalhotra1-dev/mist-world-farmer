@@ -11,12 +11,12 @@ import types
 
 import pytest
 
-from unclefarmer.engine import script as S
-from unclefarmer.engine.bot import Respawned, Stopped
+from mistworldfarmer.engine import script as S
+from mistworldfarmer.engine.bot import Respawned, Stopped
 from typing import Any, NoReturn
 from collections.abc import Callable
 from conftest import as_bot, returning, stand_in
-from unclefarmer.engine.script import Node
+from mistworldfarmer.engine.script import Node
 
 
 # ---------------------------------------------------------------- helpers

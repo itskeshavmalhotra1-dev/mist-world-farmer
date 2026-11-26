@@ -5,7 +5,7 @@ paying/confirming its menu, using a travel item (teleport stone, hearthstone), l
 through the Action menu, crossing a map exit, and the walking assistant (go / go_dungeon).
 
 This is the *Bot mixin*; tests/test_travel.py already covers the pure graph/plan builder in
-unclefarmer/travel.py and is not repeated here. Everything is driven through a stand-in Bot that
+mistworldfarmer/travel.py and is not repeated here. Everything is driven through a stand-in Bot that
 carries only the few methods TravelMixin calls (log, map_id, me, walk_to, choose, dialog, ...),
 with the slow/outside pieces monkeypatched: beasts.ensure, atlas.label/name, travel.plan.
 """
@@ -17,15 +17,15 @@ import threading
 import pytest
 from conftest import as_kind, failing, returning, stand_in, Clock, JsonOnly
 
-from unclefarmer.clock import CLOCK
-from unclefarmer import atlas, dungeons, knowledge
-from unclefarmer import travel as travel_mod
-from unclefarmer.engine import beasts
-from unclefarmer.engine.botparts.base import CONFIRM, Stopped
-from unclefarmer.engine.botparts.travel import TravelMixin, rides_free
+from mistworldfarmer.clock import CLOCK
+from mistworldfarmer import atlas, dungeons, knowledge
+from mistworldfarmer import travel as travel_mod
+from mistworldfarmer.engine import beasts
+from mistworldfarmer.engine.botparts.base import CONFIRM, Stopped
+from mistworldfarmer.engine.botparts.travel import TravelMixin, rides_free
 from collections.abc import Callable, Collection
 from typing import Any
-from unclefarmer.atlaslib import Cell, MapModel
+from mistworldfarmer.atlaslib import Cell, MapModel
 import typing
 
 

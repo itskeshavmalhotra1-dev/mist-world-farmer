@@ -16,10 +16,10 @@ import pytest
 
 from conftest import as_bot, stand_in
 from test_runner import FakeRunner, FarmingRunner, bot_of, make
-from unclefarmer import settings, stats
-from unclefarmer.engine import gathering, runner as R, script as script_mod, town, triggers
-from unclefarmer.engine.bot import Stopped
-from unclefarmer.link import AgentError
+from mistworldfarmer import settings, stats
+from mistworldfarmer.engine import gathering, runner as R, script as script_mod, town, triggers
+from mistworldfarmer.engine.bot import Stopped
+from mistworldfarmer.link import AgentError
 
 ORDER = ["sell_shards", "clean_bag", "update_shard_prices", "gather", "store_items", "restock"]
 
@@ -67,7 +67,7 @@ class MarkingRunner(FarmingRunner):
 def triggered(monkeypatch: pytest.MonkeyPatch, tmp_path: Path, profile: dict[str, Any],
               runner: type[FakeRunner] = MarkingRunner, **kw: Any) -> tuple[R.Run, list[tuple[str, bool]], Jobs]:
     run, _links, logs, _done = make(monkeypatch, tmp_path, runner=runner, **kw)
-    from unclefarmer import scan as scan_mod
+    from mistworldfarmer import scan as scan_mod
     monkeypatch.setattr(scan_mod, "scan_and_save",
                         stand_in(scan_mod.scan_and_save, lambda link, character, game_folder="": (dict(profile), {})))
     jobs = Jobs(monkeypatch)
@@ -118,7 +118,7 @@ def test_both_ticks_of_a_job_stay_on_together_after_a_restart(job: str) -> None:
 
 
 def test_an_old_profile_keeps_its_after_farming_ticks() -> None:
-    from unclefarmer import jsonio, paths
+    from mistworldfarmer import jsonio, paths
     import os
     jsonio.save(os.path.join(paths.PROFILES, "Old.json"), {"sell_shards_after_farming": True,
                                                             "clean_bag_after_farming": True})
@@ -128,7 +128,7 @@ def test_an_old_profile_keeps_its_after_farming_ticks() -> None:
 
 
 def test_a_setting_of_the_wrong_kind_is_off() -> None:
-    from unclefarmer import jsonio, paths
+    from mistworldfarmer import jsonio, paths
     import os
     jsonio.save(os.path.join(paths.PROFILES, "Odd.json"), {"gather_before_farming": "yes please",
                                                             "store_items_after_farming": [1]})

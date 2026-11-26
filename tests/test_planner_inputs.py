@@ -17,7 +17,7 @@ from typing import Any, cast
 
 import pytest
 
-from unclefarmer import atlas, atlaslib, travel
+from mistworldfarmer import atlas, atlaslib, travel
 
 
 @pytest.mark.parametrize("mid", [1041, 1061, 5121, 5302])

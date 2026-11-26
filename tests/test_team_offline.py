@@ -8,7 +8,7 @@ from typing import Any
 
 from conftest import as_bot
 from test_team_requests import LEADER_ID, Bot, Game, entry
-from unclefarmer.engine import teamlead
+from mistworldfarmer.engine import teamlead
 
 
 class TeamGame(Game):

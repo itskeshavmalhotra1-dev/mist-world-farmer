@@ -11,10 +11,10 @@ import pytest
 from conftest import Clock, returning, stand_in
 
 from test_farming import Farm
-from unclefarmer.clock import CLOCK
-from unclefarmer.engine.botparts.base import LosingFight, Stopped
-from unclefarmer.engine.botparts import health
-from unclefarmer.engine.botparts.health import HealthMixin
+from mistworldfarmer.clock import CLOCK
+from mistworldfarmer.engine.botparts.base import LosingFight, Stopped
+from mistworldfarmer.engine.botparts import health
+from mistworldfarmer.engine.botparts.health import HealthMixin
 
 FLEE = {"flee_on_panic": True, "panic_below": 30, "panic_after": 3.0}
 

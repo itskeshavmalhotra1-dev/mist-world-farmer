@@ -14,13 +14,13 @@ import threading
 
 import pytest
 
-from unclefarmer import atlas, knowledge, settings, travel
-from unclefarmer.engine import bagrules, crafting, town
-from unclefarmer.engine.botparts.base import Stopped
+from mistworldfarmer import atlas, knowledge, settings, travel
+from mistworldfarmer.engine import bagrules, crafting, town
+from mistworldfarmer.engine.botparts.base import Stopped
 from typing import Any
 from collections.abc import Callable
 from conftest import Clock, failing, as_bot, as_kind, returning, stand_in
-from unclefarmer.atlaslib import MapModel
+from mistworldfarmer.atlaslib import MapModel
 
 
 def entry(text: str, cmd: int=0) -> dict[str, Any]:

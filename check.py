@@ -17,7 +17,7 @@ import shutil
 import subprocess
 import sys
 
-CORE_FLOOR = 92              # unclefarmer/engine, the bot itself (the whole app's floor is
+CORE_FLOOR = 92              # mistworldfarmer/engine, the bot itself (the whole app's floor is
                              # [tool.coverage.report] fail_under in pyproject.toml)
 # The tests with coverage, as CI's tests job runs them (`uv run pytest` + these): the overall floor
 # comes from pyproject.toml, so a plain pytest run of a few files never fails on coverage.
@@ -74,7 +74,7 @@ def main(argv: list[str] | None = None) -> int:
     if "--quick" in argv:
         tests += ["-m", "not slow"]
     core = [sys.executable, "-m", "coverage", "report",
-            "--include=unclefarmer/*", "--omit=unclefarmer/gui/*",
+            "--include=mistworldfarmer/*", "--omit=mistworldfarmer/gui/*",
             "--fail-under=%d" % CORE_FLOOR]
     # check-manifest builds the source distribution (MANIFEST.in) with the locked setuptools, not
     # one downloaded for the build, and compares it with what git tracks.
@@ -93,7 +93,7 @@ def main(argv: list[str] | None = None) -> int:
         else:
             print("== agent java tests: skipped, no JDK (install one, or set JAVA_HOME)", flush=True)
     failed: list[str] = []
-    egg = os.path.join(ROOT, "unclefarmer.egg-info")
+    egg = os.path.join(ROOT, "mistworldfarmer.egg-info")
     for name, cmd in steps:
         print("== %s" % name, flush=True)
         made_egg = name == "manifest" and not os.path.exists(egg)

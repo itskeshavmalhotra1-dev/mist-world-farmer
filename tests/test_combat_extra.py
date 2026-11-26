@@ -12,13 +12,13 @@ from __future__ import annotations
 
 import pytest
 
-from unclefarmer.clock import CLOCK
-from unclefarmer import settings
-from unclefarmer.engine import combat
+from mistworldfarmer.clock import CLOCK
+from mistworldfarmer import settings
+from mistworldfarmer.engine import combat
 from conftest import as_parts, stand_in, Clock
 from collections.abc import Callable, Sequence
 from typing import Any
-from unclefarmer.engine.combat import SkillBook
+from mistworldfarmer.engine.combat import SkillBook
 
 
 DEFAULTS = settings.PROFILE_DEFAULTS

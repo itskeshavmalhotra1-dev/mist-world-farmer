@@ -16,8 +16,8 @@ if TYPE_CHECKING:
 
 wx = pytest.importorskip("wx")
 
-from unclefarmer.gui import common, walk  # noqa: E402
-from unclefarmer.gui.mainparts import base as main, editing  # noqa: E402  (the helpers moved here from gui/main.py)
+from mistworldfarmer.gui import common, walk  # noqa: E402
+from mistworldfarmer.gui.mainparts import base as main, editing  # noqa: E402  (the helpers moved here from gui/main.py)
 from conftest import as_kind, stand_in
 
 
@@ -132,7 +132,7 @@ def test_a_quoted_script_word_cannot_break_the_line() -> None:
 
 
 def test_the_early_fire_setting_says_what_range_it_adds_to() -> None:
-    from unclefarmer.gui import profile
+    from mistworldfarmer.gui import profile
     hunter = profile.pull_label({"attack_range": "auto", "scan": {"class": "Hunter"}})
     assert "Arcane Shot reaches 20" in hunter and "beyond the 19.5 tiles" in hunter
     warrior = profile.pull_label({"attack_range": "auto", "scan": {"class": "Warrior"}})

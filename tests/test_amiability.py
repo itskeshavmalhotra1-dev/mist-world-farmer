@@ -17,7 +17,7 @@ import pytest
 
 from conftest import as_bot
 from test_pets import Bot, snap
-from unclefarmer.engine import pets
+from mistworldfarmer.engine import pets
 
 
 def points(reply: str) -> dict[str, Any]:

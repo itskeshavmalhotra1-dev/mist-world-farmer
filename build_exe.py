@@ -20,7 +20,7 @@ import subprocess
 import sys
 
 from docs_html import build as build_docs
-from unclefarmer import __version__, native, updater
+from mistworldfarmer import __version__, native, updater
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DIST = os.path.join(ROOT, "dist")
@@ -88,14 +88,14 @@ def main(full: bool = False) -> None:
     jobs = (os.cpu_count() or 4) if full else max(1, (os.cpu_count() or 4) // 2)
     priority = 0 if full else getattr(subprocess, "BELOW_NORMAL_PRIORITY_CLASS", 0)
     subprocess.check_call([
-        sys.executable, "-m", "nuitka", os.path.join(ROOT, "UncleFarmer.pyw"),
+        sys.executable, "-m", "nuitka", os.path.join(ROOT, "MistWorldFarmer.pyw"),
         "--standalone", "--windows-console-mode=disable", "--assume-yes-for-downloads",
         "--output-filename=" + updater.EXE, "--output-dir=" + DIST, "--remove-output",
         "--windows-product-name=Mist World Farmer",
         "--windows-product-version=" + windows_version(__version__),
         "--jobs=%d" % jobs, "--lto=auto", PYTHON_FLAG,
         "--enable-plugin=upx", "--upx-binary=" + upx,
-        "--include-package=unclefarmer",
+        "--include-package=mistworldfarmer",
     ], creationflags=priority)
     if os.path.exists(OUT):
         shutil.rmtree(OUT)
@@ -110,12 +110,12 @@ def main(full: bool = False) -> None:
     shutil.copy2(JAR, os.path.join(OUT, "agent"))
     os.remove(JAR)
     shutil.copy2(os.path.join(ROOT, "nvdaControllerClient64.dll"), OUT)
-    # The C map searches: loaded with ctypes from beside the compiled unclefarmer.native module,
+    # The C map searches: loaded with ctypes from beside the compiled mistworldfarmer.native module,
     # which Nuitka doesn't know to carry. Without it the app runs the (slower) Python searches.
     searches = native.dll_path()
     if searches and os.path.exists(searches):
-        os.makedirs(os.path.join(OUT, "unclefarmer", "native"), exist_ok=True)
-        shutil.copy2(searches, os.path.join(OUT, "unclefarmer", "native"))
+        os.makedirs(os.path.join(OUT, "mistworldfarmer", "native"), exist_ok=True)
+        shutil.copy2(searches, os.path.join(OUT, "mistworldfarmer", "native"))
     else:
         # the DLL is committed (build_native.py makes it): a build without it is a mistake
         sys.exit("no DLL for routing.c (python build_native.py): a build without it routes in Python")
@@ -147,7 +147,7 @@ def build_bootstrap(folder: str) -> None:
     command = compiler()
     if command is None:
         sys.exit("a C compiler is required for the independent updater recovery launcher")
-    source = os.path.join(ROOT, "unclefarmer", "native", "bootstrap.c")
+    source = os.path.join(ROOT, "mistworldfarmer", "native", "bootstrap.c")
     env = dict(os.environ)
     if os.path.isabs(command[0]):
         env["PATH"] = os.path.dirname(command[0]) + os.pathsep + env.get("PATH", "")

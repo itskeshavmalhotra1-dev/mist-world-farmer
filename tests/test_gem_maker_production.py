@@ -24,7 +24,7 @@ import pytest
 from conftest import as_bot, returning, stand_in
 from test_crafting import Bot, add, entry, menu
 from test_gem_maker_no_break import Craftsman, count
-from unclefarmer.engine import bagrules, crafting, town
+from mistworldfarmer.engine import bagrules, crafting, town
 
 PRICE = 50            # arnebia a Level 1 Topaz Shard at the pretend market
 GEM_FEE = 100         # the craftsman's fee for a Level 1 Topaz from 4 shards

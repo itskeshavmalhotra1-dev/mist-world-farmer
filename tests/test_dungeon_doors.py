@@ -17,8 +17,8 @@ import pytest
 from conftest import stand_in
 
 from test_walking import MapBot
-from unclefarmer import atlas
-from unclefarmer.atlaslib import MapModel
+from mistworldfarmer import atlas
+from mistworldfarmer.atlaslib import MapModel
 
 MOUNTAIN, PRISON = 1563, 1741
 LANDING = (219, 230)

@@ -13,7 +13,7 @@ from typing import ClassVar
 
 import pytest
 
-from unclefarmer import catalog, i18n, paths
+from mistworldfarmer import catalog, i18n, paths
 from pathlib import Path
 from collections.abc import Iterator
 from typing import Any
@@ -68,7 +68,7 @@ def test_a_broken_catalog_is_english_not_a_crash(tmp_path: Path, monkeypatch: py
     monkeypatch.setattr(paths, "LANG", str(tmp_path))
     folder = tmp_path / "de" / "LC_MESSAGES"
     folder.mkdir(parents=True)
-    (folder / "unclefarmer.mo").write_bytes(b"not a catalog")
+    (folder / "mistworldfarmer.mo").write_bytes(b"not a catalog")
     i18n.load("de")
     assert i18n._("Anything") == "Anything"
 
@@ -84,7 +84,7 @@ def test_languages_lists_english_plus_the_catalogs(tmp_path: Path, monkeypatch: 
     catalog.compile_catalog(str(tmp_path), "fr", {"language": "fr"}, [("Hi", "Salut")])
     broken = tmp_path / "zz" / "LC_MESSAGES"
     broken.mkdir(parents=True)
-    (broken / "unclefarmer.mo").write_bytes(b"not a catalog")
+    (broken / "mistworldfarmer.mo").write_bytes(b"not a catalog")
     (tmp_path / "en" / "LC_MESSAGES").mkdir(parents=True)          # English is not listed twice
     assert i18n.languages() == [("en", "English"), ("de", "Deutsch"), ("fr", "fr")]
 
@@ -132,7 +132,7 @@ def test_system_locale_failure_is_not_a_language_offer(monkeypatch: pytest.Monke
 def test_first_launch_language_choice_is_saved_and_never_asked_again(
         monkeypatch: pytest.MonkeyPatch, accept: bool) -> None:
     import wx
-    from unclefarmer import __main__ as start, settings
+    from mistworldfarmer import __main__ as start, settings
     monkeypatch.setattr(i18n, "system_locale", lambda: "ur_PK")
     monkeypatch.setattr(i18n, "languages", lambda: [("en", "English"), ("ur", "Urdu (Roman)")])
     prompts: list[str] = []
@@ -175,7 +175,7 @@ def test_first_launch_language_choice_is_saved_and_never_asked_again(
 def test_no_prompt_for_unsupported_same_or_explicit_language(
         monkeypatch: pytest.MonkeyPatch, detected: str, current: str) -> None:
     import wx
-    from unclefarmer import __main__ as start, settings
+    from mistworldfarmer import __main__ as start, settings
     monkeypatch.setattr(i18n, "system_locale", lambda: detected)
     monkeypatch.setattr(i18n, "languages", lambda: [("en", "English"), ("ur", "Urdu (Roman)")])
     def unexpected(*args: Any, **kwargs: Any) -> None:
@@ -190,7 +190,7 @@ def test_no_prompt_for_unsupported_same_or_explicit_language(
 
 @pytest.mark.parametrize("existing", [{"language": "en"}, {"language": "ur"}, {"speak": False}])
 def test_legacy_settings_are_never_treated_as_a_first_launch(existing: dict[str, Any], monkeypatch: pytest.MonkeyPatch) -> None:
-    from unclefarmer import __main__ as start, jsonio, settings
+    from mistworldfarmer import __main__ as start, jsonio, settings
     jsonio.save(paths.SETTINGS, existing)
     def unexpected() -> str:
         pytest.fail("existing installations must not run locale detection")
@@ -257,7 +257,7 @@ def test_roman_urdu_standard_buttons_are_translated() -> None:
 def test_write_template_collects_strings(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setattr(paths, "LANG", str(tmp_path / "lang"))
     path, count = i18n.write_template()
-    assert path == str(tmp_path / "lang" / "unclefarmer.pot")
+    assert path == str(tmp_path / "lang" / "mistworldfarmer.pot")
     assert count > 0
     header, entries = catalog.parse_po(open(path, encoding="utf-8").read())
     assert header["project-id-version"] == "Mist World Farmer"
@@ -310,7 +310,7 @@ def test_write_template_merges_translations_and_compiles(tmp_path: Path, monkeyp
     assert header["language"] == "de"
     i18n.load("de")
     assert i18n._("Ready") == "Bereit"
-    assert (tmp_path / "de" / "LC_MESSAGES" / "unclefarmer.mo").is_file()
+    assert (tmp_path / "de" / "LC_MESSAGES" / "mistworldfarmer.mo").is_file()
     _pot, _count = i18n.write_template()               # a second run keeps the obsolete translation
     assert "#~ msgid \"Gone\"" in po.read_text(encoding="utf-8")
     assert "#~ msgstr \"Weg\"" in po.read_text(encoding="utf-8")
@@ -404,7 +404,7 @@ def test_wx_is_pointed_at_the_same_catalogs(tmp_path: Path, monkeypatch: pytest.
     instance = Translations.instance
     assert instance is not None
     assert instance.language == "de" and instance.std
-    assert instance.domains == ["unclefarmer"]
+    assert instance.domains == ["mistworldfarmer"]
     assert str(wx_dir / "locale") in Loader.prefixes
 
     Translations.instance = None
@@ -414,4 +414,4 @@ def test_wx_is_pointed_at_the_same_catalogs(tmp_path: Path, monkeypatch: pytest.
     # wxstd catalog instead of wx's Nastaliq Urdu strings.
     assert Translations.instance.language == "ur"
     assert not Translations.instance.std
-    assert Translations.instance.domains == ["wxstd", "unclefarmer"]
+    assert Translations.instance.domains == ["wxstd", "mistworldfarmer"]

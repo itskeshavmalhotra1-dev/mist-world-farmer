@@ -11,9 +11,9 @@ import pytest
 
 wx = pytest.importorskip("wx")
 
-from unclefarmer import settings  # noqa: E402
-from unclefarmer.engine import triggers  # noqa: E402
-from unclefarmer.gui import common  # noqa: E402
+from mistworldfarmer import settings  # noqa: E402
+from mistworldfarmer.engine import triggers  # noqa: E402
+from mistworldfarmer.gui import common  # noqa: E402
 
 
 @pytest.fixture(scope="module")
@@ -51,7 +51,7 @@ def labels(window: Any) -> list[str]:
 
 
 def test_triggers_tab_saves_both_stages_independently(frame: Any) -> None:
-    from unclefarmer.gui.profile import ProfileDialog
+    from mistworldfarmer.gui.profile import ProfileDialog
     p = settings.load_profile("Hero")
     p.update(sell_shards_after_farming=True, clean_bag_after_farming=True)     # ticked on the old tab
     settings.save_profile("Hero", p)
@@ -77,7 +77,7 @@ def test_triggers_tab_saves_both_stages_independently(frame: Any) -> None:
 
 
 def test_travel_and_pets_keeps_only_travel_and_pets(frame: Any) -> None:
-    from unclefarmer.gui.profile import ProfileDialog
+    from mistworldfarmer.gui.profile import ProfileDialog
     d = ProfileDialog(frame, "Hero")
     try:
         travel = labels(tab(d, "Travel and pets"))
@@ -89,8 +89,8 @@ def test_travel_and_pets_keeps_only_travel_and_pets(frame: Any) -> None:
 
 
 def test_updater_tab_holds_every_update_setting(frame: Any) -> None:
-    from unclefarmer import updater
-    from unclefarmer.gui.setup import SetupDialog
+    from mistworldfarmer import updater
+    from mistworldfarmer.gui.setup import SetupDialog
     s = dict(settings.load_app(), check_updates=False, update_channel="dev", skip_version="9.9.9")
     d = SetupDialog(frame, s)
     try:
@@ -111,8 +111,8 @@ def test_updater_tab_holds_every_update_setting(frame: Any) -> None:
 
 
 def test_every_tab_scrolls_and_windows_fit_the_screen(frame: Any) -> None:
-    from unclefarmer.gui.profile import AdvancedDialog, ProfileDialog
-    from unclefarmer.gui.setup import SetupDialog
+    from mistworldfarmer.gui.profile import AdvancedDialog, ProfileDialog
+    from mistworldfarmer.gui.setup import SetupDialog
     for d in (ProfileDialog(frame, "Hero"), AdvancedDialog(frame, "Hero", settings.load_profile("Hero")),
               SetupDialog(frame, dict(settings.load_app()))):
         try:
@@ -129,7 +129,7 @@ def test_every_tab_scrolls_and_windows_fit_the_screen(frame: Any) -> None:
 def test_experience_cards_are_one_tick_per_kind(frame: Any) -> None:
     """One tick per kind, weakest first, each with what the last scan saw in the bag. A ticked kind
     that ran out stays ticked."""
-    from unclefarmer.gui.profile import ProfileDialog
+    from mistworldfarmer.gui.profile import ProfileDialog
     p = settings.load_profile("Hero")
     p["scan"] = {"bag": [{"name": "Red Potion", "count": 9},
                          {"name": "3x experience acceleration card", "count": 2},

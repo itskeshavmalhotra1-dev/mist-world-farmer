@@ -10,9 +10,9 @@ import pytest
 from conftest import as_bot, stand_in
 from test_town import TownBot
 
-from unclefarmer import settings
-from unclefarmer.engine import town
-from unclefarmer.engine.bot import Stopped
+from mistworldfarmer import settings
+from mistworldfarmer.engine import town
+from mistworldfarmer.engine.bot import Stopped
 
 
 def store_rules(**rules: tuple[str, int]) -> dict[str, dict[str, Any]]:
@@ -151,7 +151,7 @@ def test_storing_by_hand_changes_no_setting_or_list(monkeypatch: pytest.MonkeyPa
 
 def test_the_tools_menu_runs_it_by_hand(monkeypatch: pytest.MonkeyPatch) -> None:
     pytest.importorskip("wx")
-    from unclefarmer.gui.mainparts import editing
+    from mistworldfarmer.gui.mainparts import editing
     p = settings.load_profile("Hero")
     p["bag_rules"] = store_rules(Wolf_Fur=("store", 0))
     settings.save_profile("Hero", p)

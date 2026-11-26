@@ -11,12 +11,12 @@ from __future__ import annotations
 
 import pytest
 
-from unclefarmer.clock import CLOCK, Waitable
-from unclefarmer import gamekeys
-from unclefarmer.engine import follow
-from unclefarmer.engine.bot import Stopped
-from unclefarmer.engine.botparts.base import NoWay
-from unclefarmer.engine.botparts.parts import Sighting, Where
+from mistworldfarmer.clock import CLOCK, Waitable
+from mistworldfarmer import gamekeys
+from mistworldfarmer.engine import follow
+from mistworldfarmer.engine.bot import Stopped
+from mistworldfarmer.engine.botparts.base import NoWay
+from mistworldfarmer.engine.botparts.parts import Sighting, Where
 from collections.abc import Callable, Sequence
 from typing import Any
 from conftest import as_bot, returning, stand_in

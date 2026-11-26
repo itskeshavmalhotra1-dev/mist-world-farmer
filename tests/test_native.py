@@ -1,6 +1,6 @@
 # pyright: reportPrivateUsage=false
 # White-box tests: they check this module's internal helpers (leading-underscore names) directly.
-"""The C map searches (unclefarmer/native/routing.c) against the Python ones they replace.
+"""The C map searches (mistworldfarmer/native/routing.c) against the Python ones they replace.
 
 Every C search must give exactly what its Python body gives - the same costs, the same paths (ties
 between equal routes broken the same way), the same fields, the same yes or no - so these tests
@@ -19,12 +19,12 @@ from functools import partial
 import numpy as np
 import pytest
 
-from unclefarmer import atlas, atlaslib, lru, native, shortloop, travel
+from mistworldfarmer import atlas, atlaslib, lru, native, shortloop, travel
 from pathlib import Path
 from conftest import as_kind, returning, stand_in
 from typing import Any, TypeVar
 from collections.abc import Callable
-from unclefarmer.atlaslib import Cell, MapModel
+from mistworldfarmer.atlaslib import Cell, MapModel
 
 R = TypeVar("R")
 

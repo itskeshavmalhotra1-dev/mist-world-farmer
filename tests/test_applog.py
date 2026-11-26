@@ -10,7 +10,7 @@ import time
 
 import pytest
 
-from unclefarmer import applog
+from mistworldfarmer import applog
 from pathlib import Path
 from collections.abc import Iterator
 

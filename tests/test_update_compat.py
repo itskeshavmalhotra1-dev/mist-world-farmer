@@ -18,7 +18,7 @@ from typing import Any
 
 import pytest
 
-from unclefarmer import updater
+from mistworldfarmer import updater
 from test_updater_hardening import app as app, flat  # noqa: F401  (app is a fixture)
 
 COMPAT = Path(__file__).parent / "data" / "compat"
@@ -93,7 +93,7 @@ def test_this_copier_continues_the_journal_a_1_2_0_app_began(app: Path, tmp_path
     ["agent/run", ".recovery", "bootstrap.exe", "data/game_texts.json", "logs", "market", "messages", "plans",
      "profiles", "results", "schedules.json", "scripts", "settings.json", "survey", "update"],   # dev.364-.370
     [".recovery", "agent/run", "data/game_texts.json", "logs", "messages", "plans", "profiles", "results",
-     "schedules.json", "scripts", "settings.json", "survey", "unclefarmer.exe", "update"],       # front-door layout
+     "schedules.json", "scripts", "settings.json", "survey", "mistworldfarmer.exe", "update"],       # front-door layout
     ["a-future-folder", "agent/run", ".recovery", "bootstrap.exe", "data/game_texts.json", "logs", "messages",
      "plans", "profiles", "results", "schedules.json", "scripts", "settings.json", "survey", "update"],  # later
 ])

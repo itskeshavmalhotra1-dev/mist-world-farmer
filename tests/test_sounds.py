@@ -6,10 +6,10 @@ import pytest
 
 from conftest import Clock, as_bot
 from test_script import FakeBot, FakeLink
-from unclefarmer import sounds
-from unclefarmer.engine import script
-from unclefarmer.engine.bot import Stopped
-from unclefarmer.link import AgentError
+from mistworldfarmer import sounds
+from mistworldfarmer.engine import script
+from mistworldfarmer.engine.bot import Stopped
+from mistworldfarmer.link import AgentError
 
 
 def status_reply(**changes: Any) -> dict[str, Any]:

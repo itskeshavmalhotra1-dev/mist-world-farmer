@@ -7,11 +7,11 @@ from typing import Any
 
 import pytest
 
-from unclefarmer import __version__, contact
+from mistworldfarmer import __version__, contact
 
 wx = pytest.importorskip("wx")
 
-from unclefarmer.gui import contact as gui_contact, main  # noqa: E402
+from mistworldfarmer.gui import contact as gui_contact, main  # noqa: E402
 
 
 def test_the_mailto_link_is_the_address_with_an_optional_subject() -> None:
@@ -102,6 +102,6 @@ def test_the_help_menu_opens_the_contact_window(monkeypatch: pytest.MonkeyPatch)
 def test_the_address_is_never_in_the_translations() -> None:
     from pathlib import Path
     lang = Path(__file__).resolve().parent.parent / "lang"
-    for name in ("unclefarmer.pot", "ur.po"):
+    for name in ("mistworldfarmer.pot", "ur.po"):
         text = (lang / name).read_text(encoding="utf-8")
         assert contact.EMAIL not in text and contact.TELEGRAM not in text

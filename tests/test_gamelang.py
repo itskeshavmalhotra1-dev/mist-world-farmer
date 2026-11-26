@@ -9,7 +9,7 @@ import os
 
 import pytest
 
-from unclefarmer import gamelang
+from mistworldfarmer import gamelang
 from pathlib import Path
 from conftest import stand_in
 

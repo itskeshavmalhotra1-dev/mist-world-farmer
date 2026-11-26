@@ -17,7 +17,7 @@ make_zip zips it, as for a release. Then:
      the finished zip and checked again by reading the file back.
 
 Names: UncleFarmer-dev-<short sha>.zip for a development build, UncleFarmer-master-<version>-<short
-sha>.zip for a production one. The version is the project's own (unclefarmer/__init__.py): this
+sha>.zip for a production one. The version is the project's own (mistworldfarmer/__init__.py): this
 script never changes it. GITHUB_* variables say the branch, commit and run; outside GitHub git does.
 
 The release version is what the updater compares: the version itself for a production build,
@@ -64,7 +64,7 @@ DEV_TAG = re.compile(r"^v\d+\.\d+\.\d+-dev\.\d+$")
 DEV_KEEP = 10               # dev pre-releases kept on GitHub (the updater looks through 30)
 SMOKE_SECONDS = 120
 JAVA8 = 52                  # class file major version of Java 8, the game's own Java
-PREMAIN = "unclefarmer.agent.BotAgent"
+PREMAIN = "mistworldfarmer.agent.BotAgent"
 
 
 def fail(why: str) -> None:
@@ -235,12 +235,12 @@ def smoke_test(zip_path: str, work: str) -> dict[str, Any]:
 def build(build_type: str, out: str) -> None:
     import build_exe
     import release
-    from unclefarmer import __version__
+    from mistworldfarmer import __version__
     sha, branch = commit()
     head = git("rev-parse", "HEAD")
     if head != sha:
         fail("the checkout is at %s, not the commit that was tested (%s)" % (head, sha))
-    from unclefarmer import updater
+    from mistworldfarmer import updater
     name = zip_name(build_type, __version__, sha)
     rv = release_version(build_type, __version__, run_number())
     print("== building %s (%s %s, %s at %s)" % (name, build_type, rv, branch, sha), flush=True)

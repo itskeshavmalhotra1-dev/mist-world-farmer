@@ -13,11 +13,11 @@ pytest.importorskip("wx")
 
 from conftest import Clock, as_bot, returning  # noqa: E402
 from test_script import FakeBot  # noqa: E402
-from unclefarmer import gameinstall, settings  # noqa: E402
-from unclefarmer.engine import resume, script as S  # noqa: E402
-from unclefarmer.engine.runner import Run  # noqa: E402
-from unclefarmer.gui import agentfix  # noqa: E402
-from unclefarmer.gui.mainparts import carryon as carry_part, runs as runs_part  # noqa: E402
+from mistworldfarmer import gameinstall, settings  # noqa: E402
+from mistworldfarmer.engine import resume, script as S  # noqa: E402
+from mistworldfarmer.engine.runner import Run  # noqa: E402
+from mistworldfarmer.gui import agentfix  # noqa: E402
+from mistworldfarmer.gui.mainparts import carryon as carry_part, runs as runs_part  # noqa: E402
 
 HERO = settings.character_profile("Hero", 1, "S1")
 

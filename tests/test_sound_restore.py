@@ -1,7 +1,7 @@
 """Saved rules are restored once per game, without overwriting later script choices."""
 from typing import Any
 
-from unclefarmer import soundrestore
+from mistworldfarmer import soundrestore
 
 
 def test_restore_on_new_game_and_configuration_change(monkeypatch: Any) -> None:

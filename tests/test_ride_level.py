@@ -12,9 +12,9 @@ from typing import Any
 import pytest
 
 from conftest import as_bot
-from unclefarmer import travel
-from unclefarmer.engine.botparts import travel as bottravel
-from unclefarmer.engine.botparts.travel import TravelMixin
+from mistworldfarmer import travel
+from mistworldfarmer.engine.botparts import travel as bottravel
+from mistworldfarmer.engine.botparts.travel import TravelMixin
 
 TULIP = 1081                    # Tuneful Wetland, Tulip City
 VIOLET = 1161                   # where its south airship flies, from level 76

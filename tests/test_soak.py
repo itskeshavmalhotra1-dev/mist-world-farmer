@@ -39,14 +39,14 @@ import pytest
 import simgame
 from collections.abc import Callable
 
-from unclefarmer import paths
+from mistworldfarmer import paths
 
 pytestmark = pytest.mark.soak
 
 HOURS = float(os.environ.get("UNCLEFARMER_SOAK_HOURS", "3"))
 MAP = 1503                 # Spider cave: walls to walk round, monsters in its own zones
 # the app's own code: what it keeps is what must level off (not the test's or the simulator's)
-APP_CODE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "unclefarmer", "*")
+APP_CODE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "mistworldfarmer", "*")
 
 
 @pytest.fixture
@@ -105,7 +105,7 @@ def settled_handles() -> int:
 def test_a_night_of_farming_levels_off(soak_env: Callable[..., simgame.SimGame], monkeypatch: pytest.MonkeyPatch):
     # The bounded caches fill slowly: 512 routes take longer than a test night. Small bounds fill
     # in minutes, so whatever still grows in the second half is a leak, not a cache filling up.
-    from unclefarmer import atlaslib
+    from mistworldfarmer import atlaslib
     monkeypatch.setattr(atlaslib.MapModel, "ROUTE_CACHE_MAX", 32)
     game = soak_env()
     s = simgame.Soak(game, farm(60 * HOURS), watchdog=1800)

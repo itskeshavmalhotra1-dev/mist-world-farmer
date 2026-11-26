@@ -8,8 +8,8 @@ from __future__ import annotations
 import pytest
 from conftest import as_bot, stand_in
 
-from unclefarmer import gamekeys, settings
-from unclefarmer.engine import keyslots
+from mistworldfarmer import gamekeys, settings
+from mistworldfarmer.engine import keyslots
 from typing import Any, NoReturn
 
 
@@ -373,7 +373,7 @@ def test_shift_attack_key_is_a_key_press_not_a_slot() -> None:
     """The agent's `slot` knows plain, Alt (sustain) and Left Ctrl (lock). The self-cast,
     Shift + key, has to go out as a real key press - and counts as its own key for the
     fast-switch wait."""
-    from unclefarmer.engine.botparts.keys import KeysMixin
+    from mistworldfarmer.engine.botparts.keys import KeysMixin
     b = _Keys()
     assert KeysMixin.slot_command(b, "y") == "slot 1"                    # type: ignore[arg-type]
     assert KeysMixin.slot_command(b, "alt+y") == "slot 1 sustain"        # type: ignore[arg-type]

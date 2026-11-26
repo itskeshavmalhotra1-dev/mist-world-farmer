@@ -74,6 +74,9 @@ msgstr "Teclas de &ataque cuando no se pueden leer las habilidades:"
 msgid "&Attack style:"
 msgstr "Estilo de &ataque:"
 
+msgid "&Automatically redeem gifts at Activity Envoy"
+msgstr ""
+
 msgid "&Autopilot: the whole day"
 msgstr ""
 
@@ -97,9 +100,6 @@ msgstr ""
 
 msgid "&Category:"
 msgstr ""
-
-msgid "&Cave:"
-msgstr "&Cueva:"
 
 msgid "&Change key"
 msgstr "&Cambiar tecla"
@@ -190,6 +190,9 @@ msgstr "&Editar filtro"
 msgid "&Email address:"
 msgstr "Correo &electrónico:"
 
+msgid "&Enable this event"
+msgstr ""
+
 msgid "&Enabled"
 msgstr "Activado (&E)"
 
@@ -201,6 +204,12 @@ msgstr "Mejorador de &equipo"
 
 msgid "&Equipment to enhance:"
 msgstr "&Equipo a mejorar:"
+
+msgid "&Event:"
+msgstr ""
+
+msgid "&Events"
+msgstr ""
 
 msgid "&Experience:"
 msgstr "&Experiencia:"
@@ -379,6 +388,9 @@ msgstr "&Mensajes"
 
 msgid "&Messages:"
 msgstr "&Mensajes:"
+
+msgid "&Missing Child (Little Jack -> Old Jack in Tari Village)"
+msgstr ""
 
 msgid "&Most a unit (0 = any):"
 msgstr ""
@@ -586,6 +598,9 @@ msgstr ""
 msgid "&Show the time after each message"
 msgstr "Mo&strar la hora después de cada mensaje"
 
+msgid "&Skip monsters with HP over:"
+msgstr ""
+
 msgid "&Sounds:"
 msgstr "&Sonidos:"
 
@@ -639,6 +654,9 @@ msgstr "Herramien&tas"
 
 msgid "&Travel on fusion beast:"
 msgstr "Viajar en bes&tia de fusión:"
+
+msgid "&Troubled Guard (Guard Barr -> Merlin -> Mulberry Silk -> Coat)"
+msgstr ""
 
 msgid "&Unmute this game"
 msgstr "Activar el sonido de este j&uego"
@@ -1101,6 +1119,9 @@ msgstr "Entre combates"
 msgid "Binding for {key}"
 msgstr "Asignación para {key}"
 
+msgid "Black Gold Teleportation Stones"
+msgstr ""
+
 msgid "Bot"
 msgstr "Bot"
 
@@ -1408,6 +1429,10 @@ msgstr "Comandos para jugadores de confianza"
 msgid "Commands: {list}"
 msgstr "Comandos: {list}"
 
+msgid ""
+"Configure seasonal and special game events. Currently active event: Thanksgiving Hunt. Defeating turkeys in the event hunt map grants turkeys that can be exchanged for valuable gifts."
+msgstr ""
+
 msgid "Connected"
 msgstr "Conectado"
 
@@ -1618,6 +1643,9 @@ msgstr "¿Eliminar el horario de {what} ({who})?"
 msgid "Delete {name}? This can't be undone."
 msgstr "¿Eliminar {name}? No se puede deshacer."
 
+msgid "Description:"
+msgstr ""
+
 msgid "Details:"
 msgstr "Detalles:"
 
@@ -1695,6 +1723,9 @@ msgstr "Entrada de mazmorra"
 
 msgid "Dungeons"
 msgstr "Mazmorras"
+
+msgid "Dungeons to run (ticked ones run one after another)"
+msgstr ""
 
 msgid "Dungeons whose entrance the game's files don't show: {names}"
 msgstr "Mazmorras cuya entrada no aparece en los archivos del juego: {names}"
@@ -1831,6 +1862,15 @@ msgstr "Mejorador de equipo"
 msgid "Errors only"
 msgstr "Solo errores"
 
+msgid "Event"
+msgstr ""
+
+msgid "Event &entries (times to run):"
+msgstr ""
+
+msgid "Events"
+msgstr ""
+
 msgid "Every (minutes):"
 msgstr "Cada (minutos):"
 
@@ -1865,6 +1905,9 @@ msgstr ""
 
 msgid "Exact message"
 msgstr "Mensaje exacto"
+
+msgid "Exchange"
+msgstr ""
 
 msgid "Experience"
 msgstr "Experiencia"
@@ -1943,6 +1986,9 @@ msgstr "Texto o &patrón del filtro:"
 msgid "Fishing"
 msgstr "Pesca"
 
+msgid "Floor {n} (level {lvl}+)"
+msgstr ""
+
 msgid "Following a leader"
 msgstr ""
 
@@ -1985,6 +2031,9 @@ msgstr "De jugadores de confianza"
 msgid "Full bag"
 msgstr "Bolsa llena"
 
+msgid "Full event duration (until game auto-exits)"
+msgstr ""
+
 msgid "Full loop (every lane, a longer lap)"
 msgstr "Circuito completo (todos los carriles, una vuelta más larga)"
 
@@ -2004,6 +2053,9 @@ msgid "Gang"
 msgstr "Pandilla"
 
 msgid "Gang announcement"
+msgstr ""
+
+msgid "Gang missions (once a day each)"
 msgstr ""
 
 msgid "Gang mode"
@@ -2071,6 +2123,9 @@ msgstr "Creador de gemas"
 msgid "Gem Maker, Equipment Enhancer and chores"
 msgstr "Creador de gemas, Mejorador de equipo y tareas"
 
+msgid "Gem Shards"
+msgstr ""
+
 msgid "Gems"
 msgstr "Gemas"
 
@@ -2085,6 +2140,9 @@ msgstr "Obtener más &fragmentos de nivel 1 de:"
 
 msgid "Getting there"
 msgstr "Camino hacia allí"
+
+msgid "Gifts to redeem with turkeys (up to 2 times a day each)"
+msgstr ""
 
 msgid "Give the script a name."
 msgstr "Ponle un nombre al script."
@@ -2150,11 +2208,17 @@ msgstr "Continuando."
 msgid "Grand Master"
 msgstr "Gran maestro"
 
+msgid "Guard Barr did not give Barr's Letter"
+msgstr ""
+
 msgid "HP"
 msgstr "Salud"
 
 msgid "HP and MP are read with the key again: {why}"
 msgstr "La salud y el mana se vuelven a leer con la tecla: {why}"
+
+msgid "HP higher than maximum target HP"
+msgstr ""
 
 msgid "HP isn't coming back while resting ({pct}%) - fighting on"
 msgstr "La salud no se recupera descansando ({pct} %): se sigue peleando"
@@ -2220,6 +2284,9 @@ msgstr "Curando a la mascota"
 msgid "Hearthstone hotkey"
 msgstr "Tecla de la Piedra de Hogar"
 
+msgid "Hearthstones"
+msgstr ""
+
 msgid "Here, next to you."
 msgstr "Aquí, a tu lado."
 
@@ -2236,6 +2303,9 @@ msgstr ""
 
 msgid "Highest l&evel to make:"
 msgstr "Niv&el máximo a fabricar:"
+
+msgid "Highest unlocked floor"
+msgstr ""
 
 msgid "History of {what} for {who}"
 msgstr "Historial de {what} de {who}"
@@ -2266,6 +2336,9 @@ msgstr ""
 
 msgid "How the game works"
 msgstr "Cómo funciona el juego"
+
+msgid "Hunt &until:"
+msgstr ""
 
 msgid "Hunting bount&ies"
 msgstr ""
@@ -2533,6 +2606,12 @@ msgstr "Idioma"
 msgid "Large"
 msgstr ""
 
+msgid "Large Blue Potions"
+msgstr ""
+
+msgid "Large Red Potions"
+msgstr ""
+
 msgid "Last 30 days"
 msgstr "Últimos 30 días"
 
@@ -2770,10 +2849,16 @@ msgstr ""
 msgid "Materials"
 msgstr ""
 
+msgid "Maximum &monster HP:"
+msgstr ""
+
 msgid "Medium"
 msgstr ""
 
 msgid "Medium and Large potions"
+msgstr ""
+
+msgid "Memory Butterflies"
 msgstr ""
 
 msgid "Messa&ge to {where}:"
@@ -2803,6 +2888,12 @@ msgstr "Minutos:"
 msgid "Missing Bloods and Pelts"
 msgstr ""
 
+msgid "Missing Child mission completed"
+msgstr ""
+
+msgid "Missing Child not offered (already done today?)"
+msgstr ""
+
 msgid "Mist World"
 msgstr "Mist World"
 
@@ -2810,18 +2901,18 @@ msgid "Mist World Farmer"
 msgstr ""
 
 msgid ""
-"Mist World Farmer character settings and profiles (*.unclefarmer-profile.json;*.json)|*.unclefarmer-profile.json;*.json|"
+"Mist World Farmer character settings and profiles (*.mistworldfarmer-profile.json;*.json)|*.mistworldfarmer-profile.json;*.json|"
 msgstr ""
 
 msgid "Mist World Farmer is updated to {v}."
 msgstr ""
 
 msgid ""
-"Mist World Farmer plan exports (*.unclefarmer-plan.json)|*.unclefarmer-plan.json|"
+"Mist World Farmer plan exports (*.mistworldfarmer-plan.json)|*.mistworldfarmer-plan.json|"
 msgstr ""
 
 msgid ""
-"Mist World Farmer plan exports and plans (*.unclefarmer-plan.json;*.json)|*.unclefarmer-plan.json;*.json|"
+"Mist World Farmer plan exports and plans (*.mistworldfarmer-plan.json;*.json)|*.mistworldfarmer-plan.json;*.json|"
 msgstr ""
 
 msgid "Mist World Farmer {v}"
@@ -3418,6 +3509,9 @@ msgstr "Pociones de salud de la mascota"
 msgid "Pet MP potions"
 msgstr "Pociones de mana de la mascota"
 
+msgid "Pet Rice Balls"
+msgstr ""
+
 msgid "Pet Rice Roll, or the pet food in Character, Settings"
 msgstr ""
 "Rollitos de arroz para mascotas, o la comida para mascotas de Personaje, Ajustes"
@@ -3496,8 +3590,14 @@ msgstr "Planes y &scripts:"
 msgid "Plans and scripts"
 msgstr "Planes y scripts"
 
+msgid "Platinum Teleportation Stones"
+msgstr ""
+
 msgid "Players near:"
 msgstr "Jugadores cerca:"
+
+msgid "Pliers (Small/Large/Alloy)"
+msgstr ""
 
 msgid ""
 "Polson Wetland: Poison Immunity isn't activated - its ground poisons us whenever we are off a fusion beast, and every fight there is on foot"
@@ -3642,6 +3742,9 @@ msgid ""
 msgstr ""
 "Grabando para {where}: pulsa Grabar voz otra vez para enviarla, Escape para cancelar. Si dura más de 20 segundos, se envía en partes."
 
+msgid "Redeem {item}"
+msgstr ""
+
 msgid "Refill when fewer &than:"
 msgstr "Reponer cuando haya menos de (&t):"
 
@@ -3758,6 +3861,9 @@ msgstr "Resultados de {what}"
 
 msgid ""
 "Results of {what}, its {n} parts added up (it was interrupted and carried on)"
+msgstr ""
+
+msgid "Resurrection Crystals"
 msgstr ""
 
 msgid "Revive on the spot with &Resurrection Crystals"
@@ -4082,6 +4188,9 @@ msgstr "Apagando"
 
 msgid "Skill"
 msgstr "Habilidad"
+
+msgid "Skill Proficiency Pills (large)"
+msgstr ""
 
 msgid "Skills"
 msgstr "Habilidades"
@@ -4440,6 +4549,31 @@ msgstr "Decirles de vez en cuando que estoy ausente (&w)"
 msgid "Test &message:"
 msgstr "&Mensaje de prueba:"
 
+msgid "Thanksgiving"
+msgstr ""
+
+msgid "Thanksgiving Hunt already done today (2/2)"
+msgstr ""
+
+msgid "Thanksgiving Hunt daily entries (2/2) finished - proceeding to exchange"
+msgstr ""
+
+msgid "Thanksgiving Hunt daily entries already used up (2/2)"
+msgstr ""
+
+msgid ""
+"Thanksgiving Hunt is already done (2/2) for today - proceeding to exchange"
+msgstr ""
+
+msgid "Thanksgiving Hunt is not available in Activity Envoy's menu"
+msgstr ""
+
+msgid "Thanksgiving event finished (already had required turkeys)"
+msgstr ""
+
+msgid "Thanksgiving event finished ({n} entries)"
+msgstr ""
+
 msgid "That filter already exists."
 msgstr "Ese filtro ya existe."
 
@@ -4548,9 +4682,6 @@ msgstr "El bot lee el valor real del forjador en cada intento."
 
 msgid "The bot stops buying before it would spend more than {cap}."
 msgstr ""
-
-msgid "The cave (a character goes into one cave a game day)"
-msgstr "La cueva (un personaje entra en una cueva por día de juego)"
 
 msgid "The character hasn't learned {skill}."
 msgstr "El personaje no ha aprendido {skill}."
@@ -4706,6 +4837,10 @@ msgstr "La más cercana de la ciudad"
 
 msgid "The nearest map where no monsters spawn."
 msgstr "El mapa más cercano donde no aparecen monstruos."
+
+msgid ""
+"The pet's rows count only with a pet active, and the blue potions only for a character that uses MP. Between two entries the bot tops up again."
+msgstr ""
 
 msgid ""
 "The pet's rows count only with a pet ticked in Character, Settings, and the blue potions only for a character that uses MP. Between two caves the bot tops up again."
@@ -4964,6 +5099,12 @@ msgstr "Hoy"
 msgid "Today, {n} runs: {r}"
 msgstr "Hoy, {n} ejecuciones: {r}"
 
+msgid "Today: already done (2/2)"
+msgstr ""
+
+msgid "Today: available (not 2/2 yet)"
+msgstr ""
+
 msgid "Today: no cave yet."
 msgstr "Hoy: aún ninguna cueva."
 
@@ -4981,6 +5122,9 @@ msgid "Tone from &trusted players:"
 msgstr "&Tono para los jugadores de confianza:"
 
 msgid "Too little &means under this much experience:"
+msgstr ""
+
+msgid "Toolboxes (Small/Large/Alloy)"
 msgstr ""
 
 msgid "Tools"
@@ -5011,6 +5155,15 @@ msgstr "Secuencia de disparadores terminada con fallos."
 msgid "Triggers"
 msgstr "Disparadores"
 
+msgid "Troubled Guard mission completed"
+msgstr ""
+
+msgid "Troubled Guard not offered (already done today?)"
+msgstr ""
+
+msgid "Troubled Guard turn-in did not complete"
+msgstr ""
+
 msgid "Trusted players"
 msgstr "Jugadores de confianza"
 
@@ -5024,6 +5177,9 @@ msgstr ""
 
 msgid "Tuesday"
 msgstr "Martes"
+
+msgid "Turkeys required for {item}:"
+msgstr ""
 
 msgid "Turn on or o&ff"
 msgstr "Activar o desactivar (&f)"
@@ -5053,6 +5209,10 @@ msgstr "Activar el sonido de todos los jue&gos"
 
 msgid "Unpacking"
 msgstr "Descomprimiendo"
+
+msgid ""
+"Until required exchange turkeys are collected (then quit via Action menu)"
+msgstr ""
 
 msgid "Until the bag holds this many"
 msgstr ""
@@ -5143,6 +5303,9 @@ msgstr ""
 "Usa la Piedra de Hogar; si no puede, termina en el mapa sin monstruos más cercano."
 
 msgid "Usual"
+msgstr ""
+
+msgid "Villager Merlin did not give coat and letter"
 msgstr ""
 
 msgid "Vitality is down to {n}"
@@ -5345,6 +5508,9 @@ msgstr "Peor golpe normal recibido: {hit}"
 msgid "Would you like to switch to {language}?"
 msgstr "¿Quieres cambiar a {language}?"
 
+msgid "Wraith Cave &floor:"
+msgstr ""
+
 msgid "Write the time as HH:MM, for example 06:30."
 msgstr ""
 
@@ -5454,6 +5620,10 @@ msgstr "vivo otra vez en {map}"
 msgid "all goods"
 msgstr ""
 
+msgid ""
+"all required turkeys ({n}/{target}) collected; skipping remaining entries"
+msgstr ""
+
 msgid "all the gear repaired with a {tool}"
 msgstr "todo el equipo reparado con {tool}"
 
@@ -5468,6 +5638,10 @@ msgstr "ya hecho hoy"
 
 msgid "already fed today"
 msgstr "ya alimentado hoy"
+
+msgid ""
+"already have {n} turkeys (target {target}); skipping hunt and proceeding to exchange"
+msgstr ""
 
 msgid "already in a town - staying here"
 msgstr ""
@@ -5560,6 +5734,9 @@ msgstr "atacando guardias con la tecla {key}"
 
 msgid "attacks {how}"
 msgstr "ataca {how}"
+
+msgid "auto-redeeming Thanksgiving gifts at Activity Envoy..."
+msgstr ""
 
 msgid "automatic login could not start"
 msgstr "no se pudo iniciar el inicio de sesión automático"
@@ -5849,6 +6026,10 @@ msgstr "cobrados los ingresos del depósito"
 msgid "collected {n} Value Product incomes"
 msgstr "cobrados {n} ingresos de Productos de valor"
 
+msgid ""
+"collected {n} turkeys (reached target {target}); quitting event via Action menu..."
+msgstr ""
+
 msgid "collections"
 msgstr ""
 
@@ -5863,6 +6044,9 @@ msgid ""
 "come: I walk to you. Best: press E, copy it with Shift+C and send come and what you copied. come and a map's name works too."
 msgstr ""
 "come: camino hasta ti. Lo mejor: pulsa E, cópialo con Shift+C y envía come y lo que copiaste. También sirve come y el nombre de un mapa."
+
+msgid "completed Thanksgiving Hunt entry {cur} of {total}"
+msgstr ""
 
 msgid "construction report published"
 msgstr ""
@@ -5902,15 +6086,30 @@ msgid ""
 msgstr ""
 "la cosecha de cadáveres necesita el agente del juego {need} o más nuevo: reinicia el juego para que cargue el agente nuevo"
 
+msgid "could not enter Thanksgiving Hunt (limit reached or entrance failed)"
+msgstr ""
+
 msgid "couldn't add the {shard}"
 msgstr "no se pudo añadir el {shard}"
 
 msgid "couldn't cast {skill} ({why}) - trying again in 5 minutes"
 msgstr "no se pudo lanzar {skill} ({why}): se reintenta en 5 minutos"
 
+msgid "couldn't choose Thanksgiving Hunt from dialog"
+msgstr ""
+
+msgid "couldn't collect Missing Child reward from Old Jack"
+msgstr ""
+
 msgid "couldn't confirm the repair with a {tool} - not marked repaired"
 msgstr ""
 "no se pudo confirmar la reparación con {tool}: no se marca como reparado"
+
+msgid "couldn't enter Outer hall"
+msgstr ""
+
+msgid "couldn't find Villager Little Jack"
+msgstr ""
 
 msgid "couldn't finish at the game's end: {err}"
 msgstr "no se pudo terminar al final del juego: {err}"
@@ -5984,6 +6183,9 @@ msgstr "no se pudo enviar un mensaje a {name}: {why}"
 
 msgid "couldn't move to the menu entry"
 msgstr "no se pudo mover a la opción del menú"
+
+msgid "couldn't open Redeem Thanksgiving Gifts menu"
+msgstr ""
 
 msgid "couldn't open the Gem Craftsman's shard synthesis"
 msgstr "no se pudo abrir la síntesis de fragmentos del sintetizador de gemas"
@@ -6060,6 +6262,27 @@ msgstr "no se pudo cambiar la tecla de objetivo a NPC"
 msgid "couldn't take {item} out of the storehouse: {why}"
 msgstr "no se pudo sacar {item} del almacén: {why}"
 
+msgid "couldn't talk to Activity Envoy"
+msgstr ""
+
+msgid "couldn't talk to Gang Entrance"
+msgstr ""
+
+msgid "couldn't talk to Guard Barr"
+msgstr ""
+
+msgid "couldn't talk to Mulberry tree"
+msgstr ""
+
+msgid "couldn't talk to Villager Merlin"
+msgstr ""
+
+msgid "couldn't talk to Villager Merlin for coat"
+msgstr ""
+
+msgid "couldn't talk to Villager Old Jack"
+msgstr ""
+
 msgid "couldn't talk to the Pharmacist"
 msgstr ""
 
@@ -6077,6 +6300,9 @@ msgstr ""
 
 msgid "couldn't tick the protection rune - not forging without it"
 msgstr "no se pudo marcar la runa de protección: no se forja sin ella"
+
+msgid "couldn't travel to Activity Envoy in Mario Basin"
+msgstr ""
 
 msgid "couldn't turn to the attack page {skill} is on"
 msgstr "no se pudo pasar a la página de ataque donde está {skill}"
@@ -6116,6 +6342,9 @@ msgid ""
 "demonized elites or too close to one, left alone as the character settings say"
 msgstr ""
 "élites demonizados o demasiado cerca de uno, dejados en paz según los ajustes del personaje"
+
+msgid "didn't get Silk from Mulberry tree"
+msgstr ""
 
 msgid "died and came back outside {map}"
 msgstr "murió y volvió fuera de {map}"
@@ -6197,6 +6426,9 @@ msgstr "todos los farm del script ya están hechos - deteniendo"
 
 msgid "everything"
 msgstr "todo"
+
+msgid "exchanged {name} for {cost} turkeys"
+msgstr ""
 
 msgid "experience card paused ({card}): {why}"
 msgstr "tarjeta de experiencia en pausa ({card}): {why}"
@@ -6335,6 +6567,12 @@ msgstr "donación a la pandilla"
 msgid "gang map"
 msgstr "mapa de la pandilla"
 
+msgid "gang mission: Missing Child"
+msgstr ""
+
+msgid "gang mission: Troubled Guard"
+msgstr ""
+
 msgid "gathered at {place}"
 msgstr "recolectado en {place}"
 
@@ -6447,6 +6685,17 @@ msgstr ""
 msgid "harvested by someone else, or dried, before we got there"
 msgstr "otro lo recolectó, o se secó, antes de que llegáramos"
 
+msgid ""
+"have {n} turkeys (target {target} for exchange); would run Thanksgiving Hunt up to {entries} time(s)"
+msgstr ""
+
+msgid "have {n} turkeys; would exchange selected gifts with Activity Envoy"
+msgstr ""
+
+msgid ""
+"have {n} turkeys; would run Thanksgiving Hunt {entries} time(s) (full duration)"
+msgstr ""
+
 msgid "heal"
 msgstr "curar"
 
@@ -6492,6 +6741,14 @@ msgid "how many? write count=<n>"
 msgstr ""
 
 msgid "hunting bounties: {list}"
+msgstr ""
+
+msgid ""
+"in Thanksgiving Hunt map {mid} ({cur} of {total}): hunting until auto-exit..."
+msgstr ""
+
+msgid ""
+"in Thanksgiving Hunt map {mid} ({cur} of {total}): hunting until {target} turkeys collected..."
 msgstr ""
 
 msgid "in an elite or boss zone we keep out of"
@@ -6900,6 +7157,9 @@ msgid ""
 msgstr ""
 "no hay Piedra de Hogar en una tecla ni en la bolsa: un combate que va mal se sigue peleando"
 
+msgid "no items selected for Thanksgiving exchange"
+msgstr ""
+
 msgid "no kill for {n} minutes"
 msgstr "ninguna muerte en {n} minutos"
 
@@ -6993,6 +7253,9 @@ msgstr "no existe esa tarea: {names} (existen: {all})"
 
 msgid "no such dungeon: {name} (there are: {all})"
 msgstr "no existe esa mazmorra: {name} (existen: {all})"
+
+msgid "no turkey in bag to redeem"
+msgstr ""
 
 msgid ""
 "no village with a guard to fight nearby - dying at the nearest guard instead"
@@ -7540,6 +7803,9 @@ msgstr "en marcha"
 msgid "running a dungeon"
 msgstr "ejecutando una mazmorra"
 
+msgid "running events"
+msgstr ""
+
 msgid "running on_stop"
 msgstr "ejecutando on_stop"
 
@@ -7695,6 +7961,9 @@ msgstr ""
 
 msgid "started"
 msgstr "iniciado"
+
+msgid "starting Thanksgiving Hunt entry {cur} of {total}"
+msgstr ""
 
 msgid "starting automatic login"
 msgstr "iniciando el inicio de sesión automático"
@@ -8705,6 +8974,9 @@ msgstr "ciudad y viaje"
 msgid "travel to {map} didn't arrive"
 msgstr "el viaje a {map} no llegó"
 
+msgid "traveling to Activity Envoy in Mario Basin..."
+msgstr ""
+
 msgid "trying the {npc} once more"
 msgstr "probando el {npc} una vez más"
 
@@ -8728,6 +9000,9 @@ msgstr "desconocido"
 
 msgid "unknown command: {cmd}"
 msgstr "comando desconocido: {cmd}"
+
+msgid "unknown event: {name}"
+msgstr ""
 
 msgid "unknown function in: {expr}"
 msgstr "función desconocida en: {expr}"
@@ -8870,6 +9145,15 @@ msgstr "alimentaría a: {beast}"
 msgid "would go to: {cave}"
 msgstr "iría a: {cave}"
 
+msgid "would run Missing Child gang mission"
+msgstr ""
+
+msgid "would run Thanksgiving Hunt {n} time(s)"
+msgstr ""
+
+msgid "would run Troubled Guard gang mission"
+msgstr ""
+
 msgid "would {what}"
 msgstr "{what}"
 
@@ -8969,6 +9253,9 @@ msgid "{card} ({n} in the bag)"
 msgstr "{card} ({n} en la bolsa)"
 
 msgid "{cave} (highest unlocked floor) - level {n}+ - {where}"
+msgstr ""
+
+msgid "{cave} (single-player dungeon - {where})"
 msgstr ""
 
 msgid "{cave} - level {n} - {where}"
@@ -9795,6 +10082,9 @@ msgstr "{w} por {h} casillas, {n} salidas."
 #~ msgid "&About Mist World Farmer"
 #~ msgstr "&Acerca de Mist World Farmer"
 
+#~ msgid "&Cave:"
+#~ msgstr "&Cueva:"
+
 #~ msgid "(no notes)"
 #~ msgstr "(sin notas)"
 
@@ -9930,6 +10220,9 @@ msgstr "{w} por {h} casillas, {n} salidas."
 #~ msgid "The agent file is missing from Mist World Farmer's agent folder."
 #~ msgstr ""
 #~ "Falta el archivo del agente en la carpeta del agente de Mist World Farmer."
+
+#~ msgid "The cave (a character goes into one cave a game day)"
+#~ msgstr "La cueva (un personaje entra en una cueva por día de juego)"
 
 #~ msgid ""
 #~ "The update is being prepared: Mist World Farmer closes by itself in a moment."

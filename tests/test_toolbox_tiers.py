@@ -11,7 +11,7 @@ import pytest
 from conftest import as_bot
 from test_repair import Bot, Link, dlg
 
-from unclefarmer.engine import repair
+from mistworldfarmer.engine import repair
 
 # The game's two forms of the question (both in the language packs): Small/Large carry their level
 # limit, the Alloy Toolbox's has none.

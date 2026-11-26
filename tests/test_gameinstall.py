@@ -17,7 +17,7 @@ from types import SimpleNamespace
 
 import pytest
 
-from unclefarmer import gameinstall, paths
+from mistworldfarmer import gameinstall, paths
 from pathlib import Path
 from conftest import Clock, stand_in
 from conftest import returning
@@ -143,7 +143,7 @@ def test_status_ignores_unrelated_lines(tmp_path: Path) -> None:
 def test_install_backs_up_and_appends_our_line(tmp_path: Path) -> None:
     folder = game_folder(tmp_path, b"-Xmx2g\n-XX:+UseG1GC\n")
     gameinstall.install(str(folder))
-    assert (folder / (gameinstall.VMOPTIONS + ".bak-unclefarmer")).read_bytes() == \
+    assert (folder / (gameinstall.VMOPTIONS + ".bak-mistworldfarmer")).read_bytes() == \
         b"-Xmx2g\n-XX:+UseG1GC\n"
     assert (folder / gameinstall.VMOPTIONS).read_bytes() == \
         ("-Xmx2g\n-XX:+UseG1GC\n" + gameinstall.agent_line() + "\n").encode()
@@ -152,9 +152,9 @@ def test_install_backs_up_and_appends_our_line(tmp_path: Path) -> None:
 
 def test_install_does_not_overwrite_an_existing_backup(tmp_path: Path) -> None:
     folder = game_folder(tmp_path, b"original\n")
-    (folder / (gameinstall.VMOPTIONS + ".bak-unclefarmer")).write_bytes(b"keep me\n")
+    (folder / (gameinstall.VMOPTIONS + ".bak-mistworldfarmer")).write_bytes(b"keep me\n")
     gameinstall.install(str(folder))
-    assert (folder / (gameinstall.VMOPTIONS + ".bak-unclefarmer")).read_bytes() == b"keep me\n"
+    assert (folder / (gameinstall.VMOPTIONS + ".bak-mistworldfarmer")).read_bytes() == b"keep me\n"
 
 
 def test_install_replaces_our_old_and_legacy_lines(tmp_path: Path) -> None:
@@ -175,7 +175,7 @@ def test_install_creates_vmoptions_when_absent(tmp_path: Path) -> None:
     gameinstall.install(str(folder))
     assert (folder / gameinstall.VMOPTIONS).read_bytes() == \
         (gameinstall.agent_line() + "\r\n").encode()
-    assert not (folder / (gameinstall.VMOPTIONS + ".bak-unclefarmer")).exists()
+    assert not (folder / (gameinstall.VMOPTIONS + ".bak-mistworldfarmer")).exists()
 
 
 def test_install_is_idempotent(tmp_path: Path) -> None:
@@ -376,7 +376,7 @@ def test_agent_version_is_the_one_the_agent_source_answers() -> None:
 
 
 def test_stale_games_are_those_without_this_versions_agent(monkeypatch: pytest.MonkeyPatch) -> None:
-    from unclefarmer import link
+    from mistworldfarmer import link
     folder = os.path.join("C:", "MW")
     monkeypatch.setattr(gameinstall, "running_games", returning([(1, folder), (2, folder), (3, folder)]))
     # game 1 has this version's agent, game 2 an older one, game 3 none at all
@@ -469,7 +469,7 @@ class _Agent:
 
     def __init__(self, pid: int | None = None, timeout: float = 3, **_kw: object) -> None:
         if _Agent.replies.get("connect") == "boom":
-            from unclefarmer.link import AgentError
+            from mistworldfarmer.link import AgentError
             raise AgentError("no agent in that game")
 
     def __enter__(self) -> "_Agent":
@@ -488,7 +488,7 @@ class _Agent:
 
 @pytest.fixture
 def agent_link(monkeypatch: pytest.MonkeyPatch) -> type[_Agent]:
-    from unclefarmer import link
+    from mistworldfarmer import link
     _Agent.replies, _Agent.sent = {}, []
     monkeypatch.setattr(link, "AgentLink", _Agent)
     return _Agent

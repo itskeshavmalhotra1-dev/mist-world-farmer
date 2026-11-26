@@ -13,13 +13,13 @@ from typing import Any
 
 import pytest
 
-from unclefarmer import applog, paths
+from mistworldfarmer import applog, paths
 
 wx = pytest.importorskip("wx")
 
-from unclefarmer import __main__ as start, filelock, instance, settings  # noqa: E402
-from unclefarmer.gui import main  # noqa: E402
-from unclefarmer.gui.mainparts import editing, updates  # noqa: E402
+from mistworldfarmer import __main__ as start, filelock, instance, settings  # noqa: E402
+from mistworldfarmer.gui import main  # noqa: E402
+from mistworldfarmer.gui.mainparts import editing, updates  # noqa: E402
 
 
 @pytest.fixture(autouse=True)
@@ -143,7 +143,7 @@ def test_a_log_that_can_t_be_written_never_stops_the_app(monkeypatch: pytest.Mon
 @pytest.fixture
 def quiet_start(monkeypatch: pytest.MonkeyPatch) -> None:
     """The start without touching the real data files or the one-copy lock of this PC."""
-    monkeypatch.setattr(sys, "argv", ["unclefarmer"])
+    monkeypatch.setattr(sys, "argv", ["mistworldfarmer"])
     monkeypatch.setattr(instance, "acquire", lambda: True)
     monkeypatch.setattr(instance, "release", lambda: None)
     monkeypatch.setattr(filelock, "acquire_startup", lambda: None)

@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import pytest
 
-from unclefarmer import atlas, travel
+from mistworldfarmer import atlas, travel
 from typing import Any
 
 from conftest import stand_in
@@ -332,7 +332,7 @@ def test_every_place_stone_lands_on_its_place_with_no_menu() -> None:
 
 
 def test_the_place_stones_are_the_games_own_items() -> None:
-    from unclefarmer import knowledge
+    from mistworldfarmer import knowledge
     for item in travel.ITEMS:
         assert knowledge.item(item), item
 
@@ -421,7 +421,7 @@ def test_a_learned_landing_is_kept_on_disk_and_planned_with() -> None:
 
 def test_a_damaged_landings_file_is_read_as_far_as_it_makes_sense() -> None:
     import os
-    from unclefarmer import paths
+    from mistworldfarmer import paths
     with open(os.path.join(paths.PROFILES, travel.LANDINGS_FILE), "w", encoding="utf-8") as f:
         f.write('{"1731|201": [85, 301], "nonsense": [1, 2], "1731|202": "x", "1731|203": [true, 2]}')
     travel._landings = None
@@ -439,7 +439,7 @@ def test_an_exit_left_out_is_not_planned_through() -> None:
 
 
 def test_a_learned_landing_is_written_as_the_atlas_arrival_to_report() -> None:
-    from unclefarmer import jsonio
+    from mistworldfarmer import jsonio
     row = jsonio.loads(travel.arrival_row(5042, 0, (396.6, 90.4)))
     assert row == {"marker": 3, "sources": [5042], "point": [397, 90],
                    "comp": int(atlas.model(5041).comp_of(397, 90))}
@@ -447,7 +447,7 @@ def test_a_learned_landing_is_written_as_the_atlas_arrival_to_report() -> None:
 
 
 def test_a_landing_far_from_the_atlas_is_given_as_the_arrival_to_report() -> None:
-    from unclefarmer import jsonio
+    from mistworldfarmer import jsonio
     assert travel.wrong_landing(1732, 0, 1731, (84, 301)) is None          # where the atlas says
     off = travel.wrong_landing(1732, 0, 1731, (120, 300))
     assert off is not None and off[0] == (83, 300)

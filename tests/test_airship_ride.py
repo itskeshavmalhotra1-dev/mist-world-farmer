@@ -17,10 +17,10 @@ import pytest
 from conftest import Clock, stand_in
 
 from test_travel_part import Bot, entry
-from unclefarmer import atlas
-from unclefarmer import travel as travel_mod
-from unclefarmer.engine import beasts
-from unclefarmer.engine.botparts.base import Stopped
+from mistworldfarmer import atlas
+from mistworldfarmer import travel as travel_mod
+from mistworldfarmer.engine import beasts
+from mistworldfarmer.engine.botparts.base import Stopped
 
 FROM, HALL, DEST, OTHER = 1061, 1069, 1041, 5121   # Fertile Wilds -> its flight hall -> central plains
 BOARD_AT = (71.0, 83.0)                             # beside the Fertile Wilds administrator

@@ -10,8 +10,8 @@ from pathlib import Path
 
 from test_health import H, Link
 
-from unclefarmer.engine import pets
-from unclefarmer.engine.botparts import health
+from mistworldfarmer.engine import pets
+from mistworldfarmer.engine.botparts import health
 from conftest import as_bot, Clock
 from typing import Any
 

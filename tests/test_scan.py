@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import json
 
-from unclefarmer import paths, scan
+from mistworldfarmer import paths, scan
 from pathlib import Path
 import pytest
 from conftest import stand_in

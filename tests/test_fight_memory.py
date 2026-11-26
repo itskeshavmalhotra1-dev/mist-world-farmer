@@ -7,9 +7,9 @@ from __future__ import annotations
 import inspect
 import re
 
-from unclefarmer.engine import combat
-from unclefarmer.engine.botparts import parts
-from unclefarmer.engine.botparts.fighting import FightingMixin
+from mistworldfarmer.engine import combat
+from mistworldfarmer.engine.botparts import parts
+from mistworldfarmer.engine.botparts.fighting import FightingMixin
 
 ID_KEYED = re.compile(r"^(dict\[int|set\[int\]|dict\[tuple\[str, int)")
 

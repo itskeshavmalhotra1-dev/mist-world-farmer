@@ -9,8 +9,8 @@ from typing import Any
 
 import pytest
 
-from unclefarmer import gamekeys, settings
-from unclefarmer.engine import combat
+from mistworldfarmer import gamekeys, settings
+from mistworldfarmer.engine import combat
 from conftest import as_parts, stand_in
 from test_combat_extra import TB, TLink, pinned, sb
 
