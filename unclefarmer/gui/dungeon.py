@@ -36,15 +36,32 @@ class DungeonDialog(Dialog):
         self.game = game
         self.p = settings.load_profile(character)
         c = self.cfg = dungeon.config(self.p)
-        self.cave_keys = [dungeon.BEST] + list(dungeon.CAVES) + list(dungeon.WRAITH_CHOICES)
+        selected_caves = set(c.get("caves") or [])
         self.done = dungeon.done_today(character)
         root = wx.BoxSizer(wx.VERTICAL)
         nb = tabs(self)
 
         panel, box = page(nb, _("Caves"))
-        f = group(panel, box, _("The cave (a character goes into one cave a game day)"))
-        self.cave = f.choice(_("&Cave:"), [self.cave_line(x) for x in self.cave_keys],
-                             self.cave_keys.index(c["cave"]) if c["cave"] in self.cave_keys else 0)
+        f = group(panel, box, _("Dungeons to run (ticked ones run one after another)"))
+        self.xp_checks: dict[str, wx.CheckBox] = {}
+        for key in [dungeon.BEST] + list(dungeon.CAVES):
+            cb = f.check(self.cave_line(key), key in selected_caves)
+            cb.Bind(wx.EVT_CHECKBOX, lambda e, k=key: self._on_xp_check(k))
+            self.xp_checks[key] = cb
+        wraith_picked = next((x for x in selected_caves if dungeon.is_wraith(x)), "")
+        self.wraith_check = f.check(
+            _("{cave} (single-player dungeon - {where})",
+              cave=dungeon.WRAITH_CAVE, where=dungeon.entrance_text(dungeon.WRAITH_CAVE)),
+            bool(wraith_picked),
+        )
+        floor_choices = [_("Highest unlocked floor")] + [
+            _("Floor {n} (level {lvl}+)", n=n, lvl=v["level"])
+            for n, v in dungeon.WRAITH_FLOORS.items()
+        ]
+        cur_fl = dungeon.wraith_floor(wraith_picked) if wraith_picked else None
+        fl_keys = list(dungeon.WRAITH_FLOORS)
+        fl_idx = (fl_keys.index(cur_fl) + 1) if cur_fl in fl_keys else 0
+        self.wraith_floor = f.choice(_("Wraith Cave &floor:"), floor_choices, fl_idx)
         f.box.Add(wx.StaticText(f.parent, label=self.today_line()), 0, wx.TOP, 6)
         f = group(panel, box, _("Inside"))
         self.patrol = f.choice(_("&Going round:"), [_(t) for _k, t in PATROL_LABELS],
@@ -122,6 +139,12 @@ class DungeonDialog(Dialog):
         self.sync_end()
 
     # ------------------------------------------------------------ caves
+    def _on_xp_check(self, chosen: str) -> None:
+        if self.xp_checks[chosen].GetValue():
+            for key, cb in self.xp_checks.items():
+                if key != chosen and cb.GetValue():
+                    cb.SetValue(False)
+
     def cave_line(self, cave: str) -> str:
         if cave == dungeon.BEST:
             return _("The highest cave my level lets in")
@@ -192,7 +215,17 @@ class DungeonDialog(Dialog):
             end["map"] = self.all_maps[self.end_map.GetSelection()][0]
             x, y = self.end_x.GetValue(), self.end_y.GetValue()
             end["cell"] = [x, y] if x or y else None
-        self.cfg.update(cave=self.cave_keys[max(0, self.cave.GetSelection())], supplies=supplies, source=SOURCE_LABELS[self.source.GetSelection()][0],
+        caves: list[str] = [k for k, cb in self.xp_checks.items() if cb.GetValue()]
+        if self.wraith_check.GetValue():
+            fl_i = self.wraith_floor.GetSelection()
+            if fl_i > 0:
+                fl_num = list(dungeon.WRAITH_FLOORS)[fl_i - 1]
+                caves.append(f"{dungeon.WRAITH_CAVE} Floor {fl_num}")
+            else:
+                caves.append(dungeon.WRAITH_CAVE)
+        if not caves:
+            caves = [dungeon.BEST]
+        self.cfg.update(cave=caves[0], caves=caves, supplies=supplies, source=SOURCE_LABELS[self.source.GetSelection()][0],
                         when_short=WHEN_SHORT[self.short.GetSelection()],
                         patrol=PATROL_LABELS[self.patrol.GetSelection()][0], pack=self.pack.GetValue(), pet=pet,
                         move_shots=self.move_shots.GetValue(),

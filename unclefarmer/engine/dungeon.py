@@ -120,6 +120,7 @@ SUPPLY_NAMES = {"pet_mp": N_("Pet blue potions"), "pet_food": N_("Pet Rice Rolls
 SOURCES = ("both", "storage", "buy")
 DEFAULTS: dict[str, Any] = {
     "cave": BEST,             # the one cave a game day: a CAVES name, or BEST
+    "caves": [BEST],          # ticked caves in Tools, Dungeons (run in order)
     "supplies": {"pet_mp": {"item": "", "min": 25},     # item "": the one on the hotkey (or the
                  "pet_food": {"item": "", "min": 3},    # strongest in the bag); min 0: not looked at
                  "mp": {"item": "", "min": 50},
@@ -142,11 +143,16 @@ def config(p: dict[str, Any]) -> dict[str, Any]:
     """The profile's dungeon settings, with every setting filled in."""
     mine: dict[str, Any] = p.get("dungeon") or {}
     cfg: dict[str, Any] = {**copy.deepcopy(DEFAULTS), **mine}   # never the defaults' own lists and dicts
-    old: object = cfg.pop("caves", None)   # before one cave a day: a ticked list, the first was the one
-    if "cave" not in mine and jsonio.is_array(old):
-        cfg["cave"] = next((str(c) for c in old if str(c) in CAVES), BEST)
+    raw_caves: object = mine.get("caves")
+    if "cave" not in mine and jsonio.is_array(raw_caves):
+        cfg["cave"] = next((str(c) for c in raw_caves if str(c) in CAVES or is_wraith(str(c))), BEST)
     if cfg["cave"] != BEST and cfg["cave"] not in CAVES and not is_wraith(cfg["cave"]):
         cfg["cave"] = BEST
+    if jsonio.is_array(raw_caves):
+        valid = [str(c) for c in raw_caves if str(c) == BEST or str(c) in CAVES or is_wraith(str(c))]
+        cfg["caves"] = valid or [cfg["cave"]]
+    else:
+        cfg["caves"] = [cfg["cave"]]
     supplies: dict[str, dict[str, Any]] = {k: dict(v) for k, v in DEFAULTS["supplies"].items()}
     chosen: dict[str, Any] = cfg.get("supplies") or {}
     for k, v in chosen.items():
@@ -190,11 +196,12 @@ def known_items(kind: str) -> list[str]:
 
 
 def script(cfg: dict[str, Any]) -> str:
-    """The run the window starts: its end place, then the cave. A cave the player chose is named in
-    the script, so the run goes where the window said - not where a profile saved earlier (or
-    another copy of it) happens to point."""
+    """The run the window starts: its end place, then the cave(s)."""
     from .plan import end_line
-    cave = cfg.get("cave")
+    caves: list[str] = list(cfg.get("caves") or [])
+    if len(caves) > 1:
+        return end_line(cfg.get("end")) + "\ndungeon\n"
+    cave = caves[0] if caves else cfg.get("cave")
     if is_wraith(cave):
         arg = f' "{cave}"'
     elif cave in CAVES:
@@ -344,7 +351,8 @@ def make_ready(b: Bot, cave: str, cfg: dict[str, Any]) -> None:
         b.sleep(DOOR_LOOK)
     keyslots.refill(b)
     xpcard.at_the_door(b)
-    mid = CAVES[cave]["map"]
+    fl = wraith_floor(cave) if is_wraith(cave) else None
+    mid = WRAITH_FLOORS[fl]["map"] if fl else (1801 if is_wraith(cave) else CAVES[cave]["map"])
     atlas.model(mid)
     if cfg.get("patrol") in PATROLS:
         atlas.patrol_loop(mid, cfg["patrol"])
@@ -441,7 +449,8 @@ def visit(b: Bot, cfg: dict[str, Any], cave: str) -> str:
 
 def hunt(b: Bot, cfg: dict[str, Any], cave: str) -> str:
     """Inside a cave: the fight until the game moves us out, then a line about it."""
-    mid = CAVES[cave]["map"]
+    fl = wraith_floor(cave) if is_wraith(cave) else None
+    mid = WRAITH_FLOORS[fl]["map"] if fl else (1801 if is_wraith(cave) else CAVES[cave]["map"])
     began, kills = b.clock.time(), b.kills
     seen = report_at(b)
 
@@ -509,16 +518,12 @@ def game_report(b: Bot, seen: int | None) -> str | None:
     return line
 
 
-def run(b: Bot, cfg: dict[str, Any], check_only: bool = False, cave: str | None = None) -> list[str]:
-    """Today's cave (the one a script names, else the window's), supplies first, unless this
-    character has been in one today. [what happened]."""
-    chosen = cave if (cave in CAVES or is_wraith(cave)) else cfg.get("cave")
-    if is_wraith(chosen):
-        return run_wraith(b, cfg, check_only, str(chosen))
-    if b.map_id() in WRAITH_MAPS:
-        return [hunt_wraith(b, cfg, WRAITH_CAVE)]
+def _run_xp_cave(b: Bot, cfg: dict[str, Any], check_only: bool = False, cave: str | None = None) -> list[str]:
+    """Run one Experience Cave (once a day)."""
     if cave in CAVES:
         cfg = dict(cfg, cave=cave)
+    elif cave == BEST:
+        cfg = dict(cfg, cave=BEST)
     inside = cave_of(b.map_id())
     if inside is not None:
         return rejoin(b, cfg, inside, check_only)
@@ -528,25 +533,45 @@ def run(b: Bot, cfg: dict[str, Any], check_only: bool = False, cave: str | None 
         b.log(_("{cave} is done for today - a character goes into one cave a day", cave=_(done[0])), speak=True)
         return []
     level = level_of(b)
-    cave = pick(cfg, level)
-    if cave is None:
+    picked = pick(cfg, level)
+    if picked is None:
         b.log(_("no cave lets in level {n} yet (the lowest needs level {low})", n=level,
                 low=min(v["level"] for v in CAVES.values())), speak=True)
         return []
-    if level and level < CAVES[cave]["level"]:
-        b.log(_("{cave} needs level {n}", cave=_(cave), n=CAVES[cave]["level"]), speak=True)
+    if level and level < CAVES[picked]["level"]:
+        b.log(_("{cave} needs level {n}", cave=_(picked), n=CAVES[picked]["level"]), speak=True)
         return []
-    if too_close_to_level(b, cave):
+    if too_close_to_level(b, picked):
         return []
     was = getattr(b, "pets_for_run", None)
     try:
         choose_pet(b, cfg)
         get_supplies(b, cfg, check_only)
         if check_only:
-            return [_("would go to: {cave}", cave=_(cave))]
-        return [visit(b, cfg, cave)]
+            return [_("would go to: {cave}", cave=_(picked))]
+        return [visit(b, cfg, picked)]
     finally:
         b.pets_for_run = was            # the rest of the run goes by Character, Settings again
+
+
+def run(b: Bot, cfg: dict[str, Any], check_only: bool = False, cave: str | None = None) -> list[str]:
+    """Today's cave(s) (the one a script names, else the ticked ones in Tools, Dungeons)."""
+    if cave in CAVES:
+        return _run_xp_cave(b, cfg, check_only, cave)
+    if is_wraith(cave):
+        return run_wraith(b, cfg, check_only, str(cave))
+    if b.map_id() in WRAITH_MAPS:
+        return [hunt_wraith(b, cfg, WRAITH_CAVE)]
+    if cave_of(b.map_id()) is not None:
+        return _run_xp_cave(b, cfg, check_only, None)
+    targets: list[str] = list(cfg.get("caves") or [cfg.get("cave", BEST)])
+    out: list[str] = []
+    for target in targets:
+        if is_wraith(target):
+            out.extend(run_wraith(b, cfg, check_only, target))
+        else:
+            out.extend(_run_xp_cave(b, cfg, check_only, target))
+    return out
 
 
 def too_close_to_level(b: Bot, cave: str) -> bool:
