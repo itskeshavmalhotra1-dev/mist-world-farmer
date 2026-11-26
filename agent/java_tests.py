@@ -28,8 +28,8 @@ def main() -> int:
         subprocess.check_call([tool("javac"), "--release", "8", "-encoding", "UTF-8", "-Xlint:-options", "-d", build]
                               + java_files(SRC) + java_files(TEST))
         java = [tool("java"), "-cp", build]
-        subprocess.check_call(java + ["mistworldfarmer.agent.AgentTests", CONTRACT])
-        subprocess.check_call(java + ["mistworldfarmer.agent.PacketFuzz", "0x5EED", "100000"])
+        subprocess.check_call(java + ["unclefarmer.agent.AgentTests", CONTRACT])
+        subprocess.check_call(java + ["unclefarmer.agent.PacketFuzz", "0x5EED", "100000"])
     except subprocess.CalledProcessError as e:
         return e.returncode or 1
     finally:

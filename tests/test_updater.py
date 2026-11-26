@@ -849,15 +849,15 @@ def test_open_sends_the_token_only_when_set(monkeypatch: pytest.MonkeyPatch) -> 
 
 
 @pytest.mark.parametrize("update_channel, body, url", [
-    ("master", b"{}", "https://api.github.com/repos/afnannasir/uncle-farmer/releases/latest"),
-    ("dev", b"[]", "https://api.github.com/repos/afnannasir/uncle-farmer/releases?per_page=30"),
+    ("master", b"{}", "https://api.github.com/repos/itskeshavmalhotra1-dev/mist-world-farmer/releases/latest"),
+    ("dev", b"[]", "https://api.github.com/repos/itskeshavmalhotra1-dev/mist-world-farmer/releases?per_page=30"),
 ])
 def test_the_update_check_asks_only_our_own_repository(monkeypatch: pytest.MonkeyPatch, update_channel: str,
                                                        body: bytes, url: str) -> None:
     """Every copy installs what this address offers, so it must stay the project's own repository
     on GitHub's API. The addresses are written out, not built from REPO, LATEST or RELEASES: a
     changed owner, host or path fails here instead of being followed."""
-    assert updater.REPO == "afnannasir/uncle-farmer"
+    assert updater.REPO == "itskeshavmalhotra1-dev/mist-world-farmer"
     asked: list[str] = []
 
     class Opener:
