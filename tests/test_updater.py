@@ -22,7 +22,7 @@ from typing import Any, NoReturn, Self, cast
 
 import pytest
 
-from unclefarmer import updater
+from mistworldfarmer import updater
 from pathlib import Path
 from conftest import as_kind, failing, stand_in
 

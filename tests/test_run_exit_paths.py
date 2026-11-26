@@ -20,11 +20,11 @@ import pytest
 from test_runner import FakeBot, FakeLink, FakeRunner, FakeTally, FarmingRunner, bot_of, make
 from conftest import as_kind
 
-from unclefarmer.engine import script as script_mod
-from unclefarmer.engine.bot import Stopped
-from unclefarmer.link import AgentError
+from mistworldfarmer.engine import script as script_mod
+from mistworldfarmer.engine.bot import Stopped
+from mistworldfarmer.link import AgentError
 from pathlib import Path
-from unclefarmer.engine.botparts.parts import Parts
+from mistworldfarmer.engine.botparts.parts import Parts
 
 
 class Raises(FakeRunner):
@@ -80,7 +80,7 @@ def test_every_ending_closes_the_link_and_lets_go_of_the_keys(monkeypatch: pytes
 @pytest.mark.parametrize("ending", ENDINGS)
 def test_every_ending_prefers_letting_go_of_only_its_own_keys(monkeypatch: pytest.MonkeyPatch, tmp_path: Path, ending: str,
                                                               allow_ignored_failures: None):
-    from unclefarmer.engine import runner as R
+    from mistworldfarmer.engine import runner as R
     run, links, _, _ = make(monkeypatch, tmp_path, runner=ENDINGS[ending])
     monkeypatch.setattr(R, "Bot", LetGoBot)
     run.run()
@@ -224,7 +224,7 @@ def test_a_failing_tell_does_not_kill_the_run_thread(monkeypatch: pytest.MonkeyP
 
 # ---------------------------------------------------------------- cleanup that itself fails
 def test_a_dead_link_during_cleanup_is_logged_and_the_link_still_closed(monkeypatch: pytest.MonkeyPatch, tmp_path: Path):
-    from unclefarmer.engine import runner as R
+    from mistworldfarmer.engine import runner as R
     run, links, logs, _ = make(monkeypatch, tmp_path, runner=FarmingRunner, app={"after_stop": "close_game"})
     make_link = R.AgentLink
 
@@ -248,7 +248,7 @@ def test_a_dead_link_during_cleanup_is_logged_and_the_link_still_closed(monkeypa
 
 
 def test_results_are_saved_even_when_finishing_them_fails_twice(monkeypatch: pytest.MonkeyPatch, tmp_path: Path, allow_ignored_failures: None):
-    from unclefarmer import stats
+    from mistworldfarmer import stats
     run, _, logs, _ = make(monkeypatch, tmp_path, runner=FarmingRunner)
 
     class BrokenTally(FakeTally):

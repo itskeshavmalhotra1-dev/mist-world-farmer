@@ -7,9 +7,9 @@ from __future__ import annotations
 from typing import Any
 
 from conftest import Clock, as_bot
-from unclefarmer import trust
-from unclefarmer.engine import teamlead
-from unclefarmer.engine.botparts.dialogs import DialogsMixin
+from mistworldfarmer import trust
+from mistworldfarmer.engine import teamlead
+from mistworldfarmer.engine.botparts.dialogs import DialogsMixin
 
 LEADER_ID = 27000
 

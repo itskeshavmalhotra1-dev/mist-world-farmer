@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import pytest
 
-from unclefarmer import knowledge, paths
+from mistworldfarmer import knowledge, paths
 from pathlib import Path
 from collections.abc import Iterator
 

@@ -37,7 +37,7 @@ from typing import Any
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from unclefarmer import jsonio as json, link, paths  # noqa: E402
+from mistworldfarmer import jsonio as json, link, paths  # noqa: E402
 
 # Names that look like a chest, in the languages the game ships and the map files' Chinese.
 CHEST = re.compile(r"chest|box|treasure|coffre|cofre|caja|ba[uú]l|宝箱|箱", re.I)

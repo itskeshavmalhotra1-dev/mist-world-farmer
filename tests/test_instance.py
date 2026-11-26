@@ -8,7 +8,7 @@ from collections.abc import Iterator
 
 import pytest
 
-from unclefarmer import instance
+from mistworldfarmer import instance
 
 pytestmark = pytest.mark.skipif(sys.platform != "win32", reason="Windows named mutex")
 

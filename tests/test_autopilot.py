@@ -9,11 +9,11 @@ from typing import Any
 
 import pytest
 
-from unclefarmer import schedule, settings
-from unclefarmer.engine import autopilot, script, triggers
-from unclefarmer.engine.plan import script_path
-from unclefarmer.gui.autopilot import default_plan, plan_choices, sync_schedule
-from unclefarmer.gui.main import action_menu_states
+from mistworldfarmer import schedule, settings
+from mistworldfarmer.engine import autopilot, script, triggers
+from mistworldfarmer.engine.plan import script_path
+from mistworldfarmer.gui.autopilot import default_plan, plan_choices, sync_schedule
+from mistworldfarmer.gui.main import action_menu_states
 
 
 def profile(**kw: Any) -> dict[str, Any]:
@@ -89,7 +89,7 @@ class SheetBot:
 
 
 def test_the_best_map_is_the_first_that_fits_the_level_now() -> None:
-    from unclefarmer import atlas
+    from mistworldfarmer import atlas
     b = SheetBot(40)
     mid = script.best_map(b)  # type: ignore[arg-type]
     assert mid == atlas.maps_for_level(40)[0][0] and "best map for level 40" in b.lines[0]
@@ -135,7 +135,7 @@ def test_every_day_at_keeps_one_schedule_in_step(tmp_path: Path) -> None:
 def test_the_window_shows_the_lists_and_saves_every_choice(monkeypatch: pytest.MonkeyPatch) -> None:
     import wx
 
-    from unclefarmer.gui.autopilot import AutopilotDialog
+    from mistworldfarmer.gui.autopilot import AutopilotDialog
     _app = wx.GetApp() or wx.App(False)
     settings.save_profile("Hero", profile(trigger_sequences=lists([triggers.step("chores")], [])))
     frame = wx.Frame(None)

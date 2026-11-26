@@ -12,10 +12,10 @@ from collections.abc import Callable, Generator
 from contextlib import contextmanager
 from typing import Any
 
-from unclefarmer.engine import corpses
-from unclefarmer.engine.bot import Stopped
+from mistworldfarmer.engine import corpses
+from mistworldfarmer.engine.bot import Stopped
 from conftest import as_bot
-from unclefarmer.clock import Waitable
+from mistworldfarmer.clock import Waitable
 
 ME = 1234
 DRAW_BLOOD = 21

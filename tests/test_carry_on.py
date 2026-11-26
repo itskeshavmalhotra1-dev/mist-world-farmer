@@ -9,9 +9,9 @@ import pytest
 
 from conftest import as_bot
 from test_script import FakeBot
-from unclefarmer.engine import resume, script as S
-from unclefarmer.engine.botparts.base import GameLost
-from unclefarmer.engine.runner import Run
+from mistworldfarmer.engine import resume, script as S
+from mistworldfarmer.engine.botparts.base import GameLost
+from mistworldfarmer.engine.runner import Run
 
 LOOP = """stop_when minutes >= 300 : time limit reached
 set n = 1
@@ -187,7 +187,7 @@ def test_a_lost_game_is_not_guarded_and_keeps_its_place() -> None:
 
 # ---------------------------------------------------------------- the results of a run carried on
 def test_a_run_carried_on_reports_all_its_parts_added_up(tmp_path: Any, monkeypatch: pytest.MonkeyPatch) -> None:
-    from unclefarmer import stats
+    from mistworldfarmer import stats
     monkeypatch.setattr(stats, "RESULTS", str(tmp_path))
     first = {"kind": "farming", "character": "Hero", "run": "Night", "start": "2026-11-22 01:00:00",
              "minutes": 30.0, "kills": 100, "arnebia": 5000}

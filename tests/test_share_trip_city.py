@@ -15,11 +15,11 @@ from typing import Any
 
 import pytest
 
-from unclefarmer.clock import Waitable
-from unclefarmer.engine import chores, town
-from unclefarmer.engine.bot import Stopped
-from unclefarmer.engine.botparts.farming import FarmingMixin
-from unclefarmer.settings import PROFILE_DEFAULTS
+from mistworldfarmer.clock import Waitable
+from mistworldfarmer.engine import chores, town
+from mistworldfarmer.engine.bot import Stopped
+from mistworldfarmer.engine.botparts.farming import FarmingMixin
+from mistworldfarmer.settings import PROFILE_DEFAULTS
 from conftest import as_bot
 
 GIANT_ROCK, TULIP, HOLY_BLOOD = 1041, 1081, 1121

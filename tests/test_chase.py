@@ -5,9 +5,9 @@ from __future__ import annotations
 
 import math
 
-from unclefarmer import atlas
-from unclefarmer.engine.botparts.walking import WalkingMixin
-from unclefarmer.atlaslib import MapModel
+from mistworldfarmer import atlas
+from mistworldfarmer.engine.botparts.walking import WalkingMixin
+from mistworldfarmer.atlaslib import MapModel
 
 CHASE = 40
 MACHINE_FORTRESS = 1635       # a cave of narrow corridors: the wall cost counts double and more there

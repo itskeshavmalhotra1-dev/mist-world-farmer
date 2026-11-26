@@ -10,8 +10,8 @@ from typing import Any
 import pytest
 
 from conftest import Clock, as_bot, returning
-from unclefarmer.engine import chores, crafting
-from unclefarmer.engine.bot import Stopped
+from mistworldfarmer.engine import chores, crafting
+from mistworldfarmer.engine.bot import Stopped
 
 BASE = 4001
 START = (41, 49)

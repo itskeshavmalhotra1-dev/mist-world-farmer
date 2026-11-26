@@ -12,8 +12,8 @@ import pytest
 from test_xploss import Game, lose
 from test_xploss import isolated as isolated   # the same pretend world (autouse)
 from conftest import as_bot
-from unclefarmer.engine import xploss
-from unclefarmer.engine.botparts.health import HealthMixin
+from mistworldfarmer.engine import xploss
+from mistworldfarmer.engine.botparts.health import HealthMixin
 
 SHARE = 0.0181
 TOP = 3_734_600

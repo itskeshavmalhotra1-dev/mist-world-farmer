@@ -1,6 +1,6 @@
 from typing import Any
 
-from unclefarmer.engine import events
+from mistworldfarmer.engine import events
 
 
 def test_events_config_defaults():
@@ -94,7 +94,7 @@ def test_events_run_check():
 
 
 def test_picking_max_hp_rule():
-    from unclefarmer.engine import picking
+    from mistworldfarmer.engine import picking
 
     snap = {
         "self": {"x": 50, "y": 50, "id": 1},
@@ -113,7 +113,7 @@ def test_picking_max_hp_rule():
 
 
 def test_script_runner_events():
-    from unclefarmer.engine import script
+    from mistworldfarmer.engine import script
 
     called: list[str] = []
 

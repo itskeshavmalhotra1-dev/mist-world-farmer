@@ -10,9 +10,9 @@ from typing import Any
 import pytest
 from conftest import as_bot, returning, stand_in, Clock
 
-from unclefarmer import knowledge, stats
-from unclefarmer.engine import town, transactions
-from unclefarmer.engine.transactions import InventoryTransaction
+from mistworldfarmer import knowledge, stats
+from mistworldfarmer.engine import town, transactions
+from mistworldfarmer.engine.transactions import InventoryTransaction
 
 
 class Bag:

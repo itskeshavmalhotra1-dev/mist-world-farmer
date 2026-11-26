@@ -24,20 +24,20 @@ DATA = os.path.join(ROOT, "tests", "data")
 if ROOT not in sys.path:
     sys.path.insert(0, ROOT)
 
-from unclefarmer import paths, settings  # noqa: E402
-from unclefarmer.clock import CLOCK  # noqa: E402
-from unclefarmer.engine import combat  # noqa: E402
-from unclefarmer.link import GameLink  # noqa: E402
+from mistworldfarmer import paths, settings  # noqa: E402
+from mistworldfarmer.clock import CLOCK  # noqa: E402
+from mistworldfarmer.engine import combat  # noqa: E402
+from mistworldfarmer.link import GameLink  # noqa: E402
 from collections.abc import Callable, Generator, Iterable, Sequence
 from pathlib import Path
 from typing import TYPE_CHECKING, Any, NoReturn, ParamSpec, TypeVar, TypeVarTuple, cast
 
 if TYPE_CHECKING:
     import simgame
-    from unclefarmer.clock import Waitable
-    from unclefarmer.engine.bot import Bot as RealBot
-    from unclefarmer.engine.botparts.parts import Parts
-    from unclefarmer.engine.runner import Run
+    from mistworldfarmer.clock import Waitable
+    from mistworldfarmer.engine.bot import Bot as RealBot
+    from mistworldfarmer.engine.botparts.parts import Parts
+    from mistworldfarmer.engine.runner import Run
 
 ME = 1001
 
@@ -190,7 +190,7 @@ def user_dirs(_user_base: str, monkeypatch: pytest.MonkeyPatch) -> None:
         monkeypatch.setattr(paths, name, os.path.join(app, sub))
         os.makedirs(os.path.join(app, sub))
     monkeypatch.setattr(paths, "SETTINGS", os.path.join(app, "settings.json"))
-    from unclefarmer import messages          # imported here: conftest must stay cheap to import
+    from mistworldfarmer import messages          # imported here: conftest must stay cheap to import
     monkeypatch.setattr(messages, "MESSAGES_DIR", os.path.join(app, "messages"))
     monkeypatch.setattr(messages, "REPLIES_FILE", os.path.join(app, "messages", "replies.txt"))
     monkeypatch.setattr(messages, "GOODBYES_FILE", os.path.join(app, "messages", "goodbyes.txt"))
@@ -202,7 +202,7 @@ def sim_env(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Generator[Callab
     failures carried on from (not raised), its agent folder and results inside the test's own
     folder, the farming day's stop off (a game night here crosses it in seconds)."""
     import simgame                   # imported here: conftest must stay cheap to import
-    from unclefarmer import jsonio, stats
+    from mistworldfarmer import jsonio, stats
     monkeypatch.delenv("UNCLEFARMER_TESTING", raising=False)
     monkeypatch.setattr(paths, "AGENT_RUN", str(tmp_path / "run"))
     monkeypatch.setattr(stats, "RESULTS", str(tmp_path / "results"))

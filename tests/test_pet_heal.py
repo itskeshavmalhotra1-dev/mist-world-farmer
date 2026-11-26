@@ -6,7 +6,7 @@ from __future__ import annotations
 
 from test_pets import PET_ID, Bot, snap
 
-from unclefarmer.engine import pets
+from mistworldfarmer.engine import pets
 from conftest import as_bot, Clock
 from typing import Any
 

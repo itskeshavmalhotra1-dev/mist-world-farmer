@@ -19,12 +19,12 @@ import re
 import pytest
 from conftest import as_kind, returning, stand_in, Clock
 
-from unclefarmer.clock import CLOCK
-from unclefarmer import gamekeys, settings
-from unclefarmer.engine.botparts import health
-from unclefarmer.engine.botparts.base import CONFIRM, RESPAWN, Respawned, Stopped
-from unclefarmer.engine.botparts.health import HealthMixin
-from unclefarmer.engine.combat import SkillBook
+from mistworldfarmer.clock import CLOCK
+from mistworldfarmer import gamekeys, settings
+from mistworldfarmer.engine.botparts import health
+from mistworldfarmer.engine.botparts.base import CONFIRM, RESPAWN, Respawned, Stopped
+from mistworldfarmer.engine.botparts.health import HealthMixin
+from mistworldfarmer.engine.combat import SkillBook
 
 
 class Link:

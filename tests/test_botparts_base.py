@@ -10,10 +10,10 @@ import re
 
 import pytest
 
-from unclefarmer import settings
-from unclefarmer.engine.botparts.base import (CONFIRM, DIRECTIONS, NPC_HP, Respawned, Stopped,
+from mistworldfarmer import settings
+from mistworldfarmer.engine.botparts.base import (CONFIRM, DIRECTIONS, NPC_HP, Respawned, Stopped,
                                               _steps, potion_kind, skill_things, snap_map)
-from unclefarmer.engine.botparts.keys import KeysMixin
+from mistworldfarmer.engine.botparts.keys import KeysMixin
 from typing import Any
 
 

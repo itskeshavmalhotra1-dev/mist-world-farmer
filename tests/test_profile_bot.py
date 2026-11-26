@@ -20,7 +20,7 @@ def test_yappi_splits_the_report_by_thread(tmp_path: Path):
     def work(n: int = 400000) -> int:
         return sum(i * i for i in range(n))
 
-    worker = threading.Thread(target=work, name="unclefarmer-run-7")
+    worker = threading.Thread(target=work, name="mistworldfarmer-run-7")
     worker.start()
     work()
     worker.join()
@@ -29,7 +29,7 @@ def test_yappi_splits_the_report_by_thread(tmp_path: Path):
     path = os.path.join(str(tmp_path), "yappi-wall.txt")
     text = open(path, encoding="utf-8").read()
     assert "Read each thread on its own" in text
-    assert "unclefarmer-run-7" in text            # names are captured when the thread starts
+    assert "mistworldfarmer-run-7" in text            # names are captured when the thread starts
     assert "MainThread" in text
     assert "thread_s" in text and "function" in text
 
@@ -44,8 +44,8 @@ def test_wait_frames_are_recognised_across_modules():
     assert profile_bot.is_wait(Fn("socket.recv", r"C:\Python314\Lib\socket.py"))
     assert profile_bot.is_wait(Fn("Queue.get", r"C:\Python314\Lib\queue.py"))
     assert profile_bot.is_wait(Fn("MainFrame.MainLoop", r"C:\Python314\Lib\site-packages\wx\core.py"))
-    assert not profile_bot.is_wait(Fn("AgentLink.send", r"F:\work\unclefarmer\unclefarmer\link.py"))
-    assert not profile_bot.is_wait(Fn("Bot.fight", r"F:\work\unclefarmer\unclefarmer\engine\botparts\fighting.py"))
+    assert not profile_bot.is_wait(Fn("AgentLink.send", r"F:\work\mistworldfarmer\mistworldfarmer\link.py"))
+    assert not profile_bot.is_wait(Fn("Bot.fight", r"F:\work\mistworldfarmer\mistworldfarmer\engine\botparts\fighting.py"))
 
 
 def test_the_main_thread_is_not_given_other_threads_work(tmp_path: Path):
@@ -115,12 +115,12 @@ def test_names_are_captured_for_threads_that_override_run(tmp_path: Path):
 
     tool = profile_bot.Yappi(str(tmp_path), 0)
     tool.MIN_SECONDS = 0.0
-    farm = Farm(name="unclefarmer-run-42")
+    farm = Farm(name="mistworldfarmer-run-42")
     farm.start()
     farm.join()
     tool.dump()
     text = open(os.path.join(str(tmp_path), "yappi-wall.txt"), encoding="utf-8").read()
-    assert "=== unclefarmer-run-42 (tid" in text
+    assert "=== mistworldfarmer-run-42 (tid" in text
 
 
 def test_the_harness_timer_thread_is_left_out(tmp_path: Path):

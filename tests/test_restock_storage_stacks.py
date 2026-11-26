@@ -8,7 +8,7 @@ import pytest
 
 from conftest import as_bot, returning
 from test_town import TownBot
-from unclefarmer.engine import town
+from mistworldfarmer.engine import town
 
 
 ITEM = "Large Red Potion"

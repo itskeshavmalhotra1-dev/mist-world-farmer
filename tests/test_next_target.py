@@ -15,8 +15,8 @@ from __future__ import annotations
 
 import pytest
 
-from unclefarmer.engine import combat
-from unclefarmer.engine.botparts.fighting import FightingMixin
+from mistworldfarmer.engine import combat
+from mistworldfarmer.engine.botparts.fighting import FightingMixin
 from typing import Any
 
 PACK = combat.PACK_RADIUS

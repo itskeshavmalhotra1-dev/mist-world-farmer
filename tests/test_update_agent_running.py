@@ -14,7 +14,7 @@ from typing import Any
 
 import pytest
 
-from unclefarmer import updater, update_recovery as recovery
+from mistworldfarmer import updater, update_recovery as recovery
 from test_updater_hardening import app as app, flat, snapshot  # noqa: F401  (app is a fixture)
 
 LOG = "agent/run/agent.log"

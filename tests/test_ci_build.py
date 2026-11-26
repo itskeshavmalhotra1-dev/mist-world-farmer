@@ -18,7 +18,7 @@ from conftest import returning, stand_in
 
 import build_exe
 import ci_build
-from unclefarmer import selftest
+from mistworldfarmer import selftest
 
 SHA = "0123456789abcdef0123456789abcdef01234567"
 
@@ -89,11 +89,11 @@ def klass(major: int) -> bytes:
     return b"\xca\xfe\xba\xbe" + struct.pack(">HH", 0, major) + b"\x00" * 8
 
 
-def agent_jar(path: Path, major: int = 52, manifest: str = "Premain-Class: unclefarmer.agent.BotAgent\r\n") -> Path:
+def agent_jar(path: Path, major: int = 52, manifest: str = "Premain-Class: mistworldfarmer.agent.BotAgent\r\n") -> Path:
     with zipfile.ZipFile(path, "w") as z:
         z.writestr("META-INF/MANIFEST.MF", "Manifest-Version: 1.0\r\n" + manifest)
-        z.writestr("unclefarmer/agent/BotAgent.class", klass(52))
-        z.writestr("unclefarmer/agent/World.class", klass(major))
+        z.writestr("mistworldfarmer/agent/BotAgent.class", klass(52))
+        z.writestr("mistworldfarmer/agent/World.class", klass(major))
     return path
 
 
@@ -177,7 +177,7 @@ def test_the_build_keeps_docstrings_the_help_windows_show() -> None:
 
 
 def test_the_self_test_fails_when_the_help_texts_are_gone(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
-    from unclefarmer import messages
+    from mistworldfarmer import messages
     monkeypatch.setattr(messages, "__doc__", None)
     path = tmp_path / "report.json"
     assert selftest.run(str(path)) == 1
@@ -227,7 +227,7 @@ def test_build_info_says_the_release_version_and_channel(tmp_path: Path, monkeyp
 def test_every_build_carries_its_build_json(tmp_path: Path, monkeypatch: pytest.MonkeyPatch, build_type: str,
                                             want_version: str, want_channel: str) -> None:
     import release
-    from unclefarmer import __version__
+    from mistworldfarmer import __version__
     out = tmp_path / "dist" / "Mist World Farmer"
     monkeypatch.setattr(build_exe, "OUT", str(out))
     monkeypatch.setattr(release, "OUT", str(out))

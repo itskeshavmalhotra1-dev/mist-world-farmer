@@ -1,6 +1,6 @@
 """Who is near us and how our pet is doing, for the status and the "players" / "pet" commands."""
 
-from unclefarmer import nearby
+from mistworldfarmer import nearby
 from typing import Any
 
 

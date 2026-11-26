@@ -12,8 +12,8 @@ import pytest
 from conftest import as_bot, Clock, stand_in
 
 from test_beasts import Bot as BeastBot, row
-from unclefarmer.clock import CLOCK
-from unclefarmer.engine import beasts
+from mistworldfarmer.clock import CLOCK
+from mistworldfarmer.engine import beasts
 
 
 class Bot(BeastBot):

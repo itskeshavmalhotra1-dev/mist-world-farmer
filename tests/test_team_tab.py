@@ -10,8 +10,8 @@ import pytest
 
 wx = pytest.importorskip("wx")
 
-from unclefarmer import settings  # noqa: E402
-from unclefarmer.gui.teamtab import names_list, names_text  # noqa: E402
+from mistworldfarmer import settings  # noqa: E402
+from mistworldfarmer.gui.teamtab import names_list, names_text  # noqa: E402
 
 
 @pytest.fixture(scope="module")
@@ -55,7 +55,7 @@ def test_every_leader_choice_is_off_by_default() -> None:
 
 
 def test_the_tab_comes_after_travel_with_its_two_groups(frame: Any) -> None:
-    from unclefarmer.gui.profile import AdvancedDialog, ProfileDialog
+    from mistworldfarmer.gui.profile import AdvancedDialog, ProfileDialog
     d = ProfileDialog(frame, "Hero")
     try:
         nb: Any = next(c for c in d.GetChildren() if isinstance(c, wx.Notebook))
@@ -76,7 +76,7 @@ def test_the_tab_comes_after_travel_with_its_two_groups(frame: Any) -> None:
 
 
 def test_the_tab_saves_what_was_typed(frame: Any) -> None:
-    from unclefarmer.gui.profile import ProfileDialog
+    from mistworldfarmer.gui.profile import ProfileDialog
     d = ProfileDialog(frame, "Hero")
     try:
         ui = d.team_ui
@@ -109,8 +109,8 @@ def test_the_tab_saves_what_was_typed(frame: Any) -> None:
     {"hand_over": True, "hand_to": " , "},           # nobody to hand it to
 ])
 def test_a_ticked_choice_missing_what_it_needs_is_not_saved(frame: Any, change: dict[str, Any]) -> None:
-    from unclefarmer.gui import profile
-    from unclefarmer.gui.teamtab import save_team
+    from mistworldfarmer.gui import profile
+    from mistworldfarmer.gui.teamtab import save_team
     d = profile.ProfileDialog(frame, "Hero")
     try:
         ui: Any = d.team_ui

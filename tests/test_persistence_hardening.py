@@ -25,9 +25,9 @@ from typing import Any, cast
 import pytest
 
 from conftest import Clock, as_kind, as_parts
-from unclefarmer import dungeons, gameinstall, jsonio, paths, schedule, settings, silencer, stats, travel
-from unclefarmer.engine import bagrules, chores, runner, survey, town
-from unclefarmer.engine.botparts.travel import TravelMixin
+from mistworldfarmer import dungeons, gameinstall, jsonio, paths, schedule, settings, silencer, stats, travel
+from mistworldfarmer.engine import bagrules, chores, runner, survey, town
+from mistworldfarmer.engine.botparts.travel import TravelMixin
 
 real_open = open
 
@@ -248,7 +248,7 @@ def test_a_failed_options_write_keeps_the_game_file_whole(tmp_path: Path, monkey
 def test_install_then_uninstall_is_repeatable_and_keeps_the_first_backup(tmp_path: Path) -> None:
     original = b"-Xmx2g\r\n-XX:+UseG1GC\r\n"
     folder, vm = vm_folder(tmp_path, original)
-    backup = folder / (gameinstall.VMOPTIONS + ".bak-unclefarmer")
+    backup = folder / (gameinstall.VMOPTIONS + ".bak-mistworldfarmer")
     for _round in range(3):
         gameinstall.install(str(folder))
         gameinstall.install(str(folder))
@@ -272,7 +272,7 @@ def test_a_failed_backup_copy_leaves_no_backup(tmp_path: Path, monkeypatch: pyte
     monkeypatch.setattr(gameinstall.shutil, "copyfile", copyfile)
     with pytest.raises(OSError):
         gameinstall.install(str(folder))
-    assert not (folder / (gameinstall.VMOPTIONS + ".bak-unclefarmer")).exists()
+    assert not (folder / (gameinstall.VMOPTIONS + ".bak-mistworldfarmer")).exists()
     assert vm.read_bytes() == b"-Xmx2g\n"
     assert temp_files(folder) == []
 

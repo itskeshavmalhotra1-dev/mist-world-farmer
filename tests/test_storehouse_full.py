@@ -18,7 +18,7 @@ from conftest import as_bot, returning, stand_in
 from test_store_items import store_rules
 from test_town import Link, TownBot, _unload_bot
 
-from unclefarmer.engine import bagrules, town
+from mistworldfarmer.engine import bagrules, town
 
 
 class SaidLink(Link):

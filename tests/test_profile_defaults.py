@@ -9,11 +9,11 @@ import glob
 import os
 import re
 
-from unclefarmer import settings
+from mistworldfarmer import settings
 
 # reads of the character's profile (a plan spot's own dict in gui/plan.py is not one)
 READ = re.compile(r"""\b(?:self\.p|self\.b\.p|b\.p|bot\.p)\.get\(\s*["']([a-z_0-9]+)["']\s*,\s*([^()\n]+?)\)""")
-ROOT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "unclefarmer")
+ROOT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "mistworldfarmer")
 
 
 def test_every_inline_default_of_a_profile_read_is_the_settings_one() -> None:

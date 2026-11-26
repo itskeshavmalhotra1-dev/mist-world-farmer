@@ -7,8 +7,8 @@ import re
 import pytest
 from conftest import ROOT
 
-from unclefarmer import atlas, travel
-from unclefarmer.engine import combat, script
+from mistworldfarmer import atlas, travel
+from mistworldfarmer.engine import combat, script
 
 
 def test_every_map_is_there() -> None:

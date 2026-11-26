@@ -10,8 +10,8 @@ from typing import Any
 
 import pytest
 
-from unclefarmer import pickreplay
-from unclefarmer.engine import picking
+from mistworldfarmer import pickreplay
+from mistworldfarmer.engine import picking
 
 ME = 4242
 

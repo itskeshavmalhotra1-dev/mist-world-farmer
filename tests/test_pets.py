@@ -6,7 +6,7 @@ from __future__ import annotations
 
 import pytest
 
-from unclefarmer.engine import pets
+from mistworldfarmer.engine import pets
 from conftest import as_bot, stand_in
 from typing import Any
 

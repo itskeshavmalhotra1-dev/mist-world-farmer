@@ -12,7 +12,7 @@ from typing import Any, NoReturn
 
 import pytest
 
-from unclefarmer import paths, settings
+from mistworldfarmer import paths, settings
 from pathlib import Path
 
 
@@ -248,7 +248,7 @@ def test_character_settings_export_round_trips_choices_but_not_game_facts(tmp_pa
                     scan={"class": "Hunter", "pets": ["Source pet"]}, hearth_home="Source town",
                     login_email="source@example.com", future_key=7)
     settings.save_profile("Source", original)
-    export = tmp_path / "source.unclefarmer-profile.json"
+    export = tmp_path / "source.mistworldfarmer-profile.json"
     settings.export_profile("Source", str(export))
     source, imported = settings.read_profile_export(str(export))
     assert source == "Source"

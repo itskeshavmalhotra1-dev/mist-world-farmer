@@ -10,7 +10,7 @@ import contextlib
 from conftest import as_bot, Clock, ME
 from test_wrong_target import Fighter
 
-from unclefarmer.engine import bosses
+from mistworldfarmer.engine import bosses
 from collections.abc import Callable, Sequence
 from typing import Any
 from pathlib import Path

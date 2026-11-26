@@ -3,8 +3,8 @@
 # this file changed without `uv lock`.
 
 [project]
-name = "unclefarmer"
-version = "1.2.3"            # release.py sets this together with unclefarmer/__init__.py
+name = "mistworldfarmer"
+version = "1.2.3"            # release.py sets this together with mistworldfarmer/__init__.py
 description = "A farming bot for Mist World."
 readme = "README.md"
 license = "GPL-3.0-only"
@@ -48,7 +48,7 @@ py-modules = []
 
 [tool.check-manifest]
 # The compiled catalogs are tracked on purpose: the app and its build read them as they are (the
-# app's own is compiled from lang/ur.po by `python -m unclefarmer --strings`, wxstd.mo is
+# app's own is compiled from lang/ur.po by `python -m mistworldfarmer --strings`, wxstd.mo is
 # wxPython's own catalog, with no source here).
 ignore-bad-ideas = ["lang/*/LC_MESSAGES/*.mo"]
 
@@ -94,7 +94,7 @@ markers = ["slow: takes a second or more of real time (CPU measurements, fights,
 addopts = "-ra -n auto"
 
 [tool.coverage.run]
-source = ["unclefarmer"]
+source = ["mistworldfarmer"]
 branch = true
 omit = ["*/__main__.py"]
 

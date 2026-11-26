@@ -6,10 +6,10 @@ import threading
 
 import pytest
 
-from unclefarmer.clock import CLOCK
+from mistworldfarmer.clock import CLOCK
 
-from unclefarmer.engine import chores, crafting, town
-from unclefarmer.engine.bot import Bot, Stopped
+from mistworldfarmer.engine import chores, crafting, town
+from mistworldfarmer.engine.bot import Bot, Stopped
 from conftest import as_bot
 from typing import Any
 

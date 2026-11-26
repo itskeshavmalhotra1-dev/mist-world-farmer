@@ -11,9 +11,9 @@ import math
 
 import numpy as np
 
-from unclefarmer import atlas
-from unclefarmer.atlaslib import MapModel
-from unclefarmer.engine.botparts.walking import WalkingMixin
+from mistworldfarmer import atlas
+from mistworldfarmer.atlaslib import MapModel
+from mistworldfarmer.engine.botparts.walking import WalkingMixin
 
 VOLCANIC_CAVE = 5242
 LAVA_ISLAND = (73, 158)            # the spot the player named: safe ground

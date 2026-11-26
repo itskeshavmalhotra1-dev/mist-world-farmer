@@ -20,8 +20,8 @@ from conftest import Clock, as_bot
 
 from test_shard_prices import data, market, update  # noqa: F401 (data: a fixture)
 from test_triggers import FarmHereRunner, said, ticks, triggered
-from unclefarmer import paths, settings
-from unclefarmer.engine import town, triggers
+from mistworldfarmer import paths, settings
+from mistworldfarmer.engine import town, triggers
 
 HOUR = 3600.0
 

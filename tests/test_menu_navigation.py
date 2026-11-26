@@ -15,8 +15,8 @@ from typing import Any
 
 import pytest
 
-from unclefarmer import paths
-from unclefarmer.engine import menus, town
+from mistworldfarmer import paths
+from mistworldfarmer.engine import menus, town
 from conftest import as_bot, returning
 from test_dialogs import DlgBot, entry, menu
 from test_menu_index import PHILLIPS, PretendShop, ShopBot, nowhere_to_walk, sell

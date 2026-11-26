@@ -7,8 +7,8 @@ from typing import Any
 
 from conftest import Bot, Clock, Game, as_parts
 
-from unclefarmer.engine import combat
-from unclefarmer.engine.botparts.walking import WalkingMixin as Walking
+from mistworldfarmer.engine import combat
+from mistworldfarmer.engine.botparts.walking import WalkingMixin as Walking
 
 
 def book(clock: Clock, skills: list[str], profile: dict[str, Any] | None = None) -> combat.SkillBook:

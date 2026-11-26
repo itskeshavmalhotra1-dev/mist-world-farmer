@@ -17,7 +17,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, "src")
 BUILD = os.path.join(HERE, "build")
 JAR = os.path.join(HERE, "unclefarmer-agent.jar")
-PREMAIN = "unclefarmer.agent.BotAgent"
+PREMAIN = "mistworldfarmer.agent.BotAgent"
 
 
 def javac() -> str:

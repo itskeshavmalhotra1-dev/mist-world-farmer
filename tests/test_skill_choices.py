@@ -6,7 +6,7 @@ from __future__ import annotations
 
 from conftest import as_parts, fight, Bot, Game, ME
 
-from unclefarmer.engine import combat
+from mistworldfarmer.engine import combat
 from conftest import Clock
 
 WARRIOR = ["Bash", "Cleave", "Sweep Attack"]   # no Execute: the pretend game has no rage to hold it back

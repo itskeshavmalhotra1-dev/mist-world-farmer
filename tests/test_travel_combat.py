@@ -16,10 +16,10 @@ import pytest
 
 from conftest import as_kind, stand_in
 from test_walking import Clock, MapBot, Map, Walker
-from unclefarmer import atlas
-from unclefarmer.atlaslib import MapModel
-from unclefarmer.clock import CLOCK
-from unclefarmer.engine import beasts
+from mistworldfarmer import atlas
+from mistworldfarmer.atlaslib import MapModel
+from mistworldfarmer.clock import CLOCK
+from mistworldfarmer.engine import beasts
 
 
 @pytest.fixture

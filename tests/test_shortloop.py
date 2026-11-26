@@ -1,4 +1,4 @@
-"""The short patrol loop builder (unclefarmer/shortloop.py).
+"""The short patrol loop builder (mistworldfarmer/shortloop.py).
 
 build() only needs a handful of MapModel features - walkability, components, the two-way ground
 behind one-way gates, walking distances and a route - so these tests drive it with a small hand-made
@@ -12,12 +12,12 @@ from collections import deque
 
 import numpy as np
 
-from unclefarmer import jsonio, shortloop
+from mistworldfarmer import jsonio, shortloop
 from pathlib import Path
 import pytest
 from conftest import stand_in
 from collections.abc import Collection, Sequence
-from unclefarmer.atlaslib import Cell, Point
+from mistworldfarmer.atlaslib import Cell, Point
 import numpy.typing as npt
 from typing import Any
 

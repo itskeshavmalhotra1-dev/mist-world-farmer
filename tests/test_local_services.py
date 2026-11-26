@@ -17,10 +17,10 @@ from typing import Any
 import pytest
 from conftest import as_bot, failing, returning, stand_in, Clock
 
-from unclefarmer import knowledge, settings, travel
-from unclefarmer.engine import crafting, script as S, town
-from unclefarmer.engine.botparts.base import Stopped
-from unclefarmer.engine.botparts.travel import TravelMixin, note_way_out, ways_out
+from mistworldfarmer import knowledge, settings, travel
+from mistworldfarmer.engine import crafting, script as S, town
+from mistworldfarmer.engine.botparts.base import Stopped
+from mistworldfarmer.engine.botparts.travel import TravelMixin, note_way_out, ways_out
 
 GANG = 4004                       # a gang base: every one has the same layout (4001-4006)
 OUTER = (59, 93)                  # beside the Gem Craftsman, in the outer hall
@@ -493,8 +493,8 @@ class Seen:
 
 def tools_window(monkeypatch: pytest.MonkeyPatch, rules: dict[str, dict[str, Any]], answer: bool,
                  busy: bool = False) -> Seen:
-    from unclefarmer.gui import main
-    from unclefarmer.gui.mainparts import editing
+    from mistworldfarmer.gui import main
+    from mistworldfarmer.gui.mainparts import editing
     seen = Seen()
 
     def ask(parent: object, msg: str, title: str | None = None) -> bool:

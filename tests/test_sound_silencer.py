@@ -6,8 +6,8 @@ from typing import Any
 
 import pytest
 
-from unclefarmer import jsonio, settings, silencer
-from unclefarmer.link import AgentError
+from mistworldfarmer import jsonio, settings, silencer
+from mistworldfarmer.link import AgentError
 
 
 class Link:

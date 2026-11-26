@@ -15,11 +15,11 @@ from typing import Any
 
 import pytest
 
-from unclefarmer import chat, trust
+from mistworldfarmer import chat, trust
 
 wx = pytest.importorskip("wx")
 
-from unclefarmer.gui import chat as gui_chat, main  # noqa: E402
+from mistworldfarmer.gui import chat as gui_chat, main  # noqa: E402
 
 # what the agent hands the app for three channel lines and a private message
 FROM_AGENT: list[tuple[str, str, str, int]] = [
@@ -69,7 +69,7 @@ class Window:
 
 def shown(trusted: list[str], monkeypatch: pytest.MonkeyPatch) -> tuple[list[str], list[str]]:
     """(each line as the Chat window shows it, the tones played) after the agent's lines arrive."""
-    from unclefarmer import tones
+    from mistworldfarmer import tones
     played: list[str] = []
 
     def play(tone: str) -> None:

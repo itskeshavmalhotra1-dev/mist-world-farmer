@@ -10,7 +10,7 @@ from typing import Any
 from conftest import as_bot
 from test_chests import Bot, chest
 
-from unclefarmer.engine import chesthunt, chests
+from mistworldfarmer.engine import chesthunt, chests
 
 APPEARS = "There's a Shining Small Chest in Margit Rainforest. Go find it and see what's inside!"
 OPENED = "The lucky adventurer has opened the treasure chest in Margit Rainforest."

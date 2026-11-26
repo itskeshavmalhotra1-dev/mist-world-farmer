@@ -6,8 +6,8 @@ import json
 
 import pytest
 
-from unclefarmer import paths
-from unclefarmer.engine import plan
+from mistworldfarmer import paths
+from mistworldfarmer.engine import plan
 from pathlib import Path
 
 
@@ -52,7 +52,7 @@ def test_a_plan_of_the_wrong_shape_is_refused(plans_dir: Path) -> None:
 def test_plan_export_round_trips_and_a_direct_plan_imports(plans_dir: Path) -> None:
     original = dict(plan.PLAN_DEFAULTS, name="Turkey cave", spots=[plan.new_step(5302)], stop_after_minutes=120)
     plan.save(original)
-    exported = plans_dir / "Turkey.unclefarmer-plan.json"
+    exported = plans_dir / "Turkey.mistworldfarmer-plan.json"
     plan.export("Turkey cave", str(exported))
     assert plan.read_import(str(exported)) == plan.load("Turkey cave")
     direct = plans_dir / "Old.json"

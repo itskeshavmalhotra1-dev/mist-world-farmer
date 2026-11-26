@@ -12,11 +12,11 @@ from __future__ import annotations
 import pytest
 from conftest import as_kind, returning, stand_in, Clock
 
-from unclefarmer.clock import CLOCK
-from unclefarmer import settings, stats
-from unclefarmer.engine import town
-from unclefarmer.engine.botparts.bag import BagMixin
-from unclefarmer.engine.botparts.base import Stopped
+from mistworldfarmer.clock import CLOCK
+from mistworldfarmer import settings, stats
+from mistworldfarmer.engine import town
+from mistworldfarmer.engine.botparts.bag import BagMixin
+from mistworldfarmer.engine.botparts.base import Stopped
 from typing import Any
 
 

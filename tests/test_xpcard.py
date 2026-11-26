@@ -8,9 +8,9 @@ from __future__ import annotations
 import threading
 from typing import Any
 
-from unclefarmer.engine import xpcard
+from mistworldfarmer.engine import xpcard
 from conftest import as_bot
-from unclefarmer.clock import Waitable
+from mistworldfarmer.clock import Waitable
 
 
 class Clock:

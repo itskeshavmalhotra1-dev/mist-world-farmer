@@ -22,7 +22,7 @@ import pytest
 
 from conftest import as_bot, stand_in
 from test_crafting import Bot, add, entry
-from unclefarmer.engine import crafting, town
+from mistworldfarmer.engine import crafting, town
 
 FEE = 527
 

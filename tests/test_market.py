@@ -14,9 +14,9 @@ from typing import Any, cast
 
 import pytest
 
-from unclefarmer.engine import market
-from unclefarmer.engine.botparts.base import Stopped
-from unclefarmer.engine.market import ALL, CHRONO, PRICE, ListRow, Lot, Order, Search
+from mistworldfarmer.engine import market
+from mistworldfarmer.engine.botparts.base import Stopped
+from mistworldfarmer.engine.market import ALL, CHRONO, PRICE, ListRow, Lot, Order, Search
 
 # ---------------------------------------------------------------- recorded rows
 ITEM_ROW = {"flags": 73, "cmd": [3, 261429, 0], "f": "Please enter the purchase quantity",
@@ -581,7 +581,7 @@ def test_the_script_command_runs_the_windows_files() -> None:
 
 # ---------------------------------------------------------------- the script command
 def test_the_script_command_reads_every_form() -> None:
-    from unclefarmer.engine import script
+    from mistworldfarmer.engine import script
     main, _subs, _stop = script.parse(
         'market scan sellers\n'
         'market search item="Lesser Blood | Worthless Blood" cheapest max=50 category=materials pages=5\n'
@@ -600,7 +600,7 @@ def test_the_script_command_reads_every_form() -> None:
 @pytest.mark.parametrize("line", ["market", "market sell", "market seller", "market buy item=X",
                                   "market search colour=red", 'market search item="unclosed'])
 def test_a_wrong_market_line_is_refused_when_the_script_is_read(line: str) -> None:
-    from unclefarmer.engine import script
+    from mistworldfarmer.engine import script
     with pytest.raises(script.ScriptError):
         script.parse(line + "\n")
 

@@ -10,9 +10,9 @@ import pytest
 from conftest import as_bot, returning, stand_in
 from test_town import TownBot
 
-from unclefarmer import knowledge
-from unclefarmer.engine import bagrules, script, town, triggers
-from unclefarmer.engine.bot import Bot, Stopped
+from mistworldfarmer import knowledge
+from mistworldfarmer.engine import bagrules, script, town, triggers
+from mistworldfarmer.engine.bot import Bot, Stopped
 
 
 ITEM = "Large Red Potion"

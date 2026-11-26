@@ -4,9 +4,9 @@ game's target by id (no target keys), and an agent that can't do either hands bo
 from __future__ import annotations
 
 
-from unclefarmer.engine.botparts.bag import BagMixin
-from unclefarmer.engine.botparts.fighting import FightingMixin
-from unclefarmer.engine.botparts.health import HealthMixin
+from mistworldfarmer.engine.botparts.bag import BagMixin
+from mistworldfarmer.engine.botparts.fighting import FightingMixin
+from mistworldfarmer.engine.botparts.health import HealthMixin
 import pytest
 from typing import Any
 

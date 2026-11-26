@@ -8,9 +8,9 @@ The menu fake here is the same shape tests/test_gang.py drives: entries carry th
 
 from __future__ import annotations
 
-from unclefarmer import travel  # noqa: F401  (find_entry uses travel.matches)
-from unclefarmer.engine import team
-from unclefarmer.engine.bot import Bot
+from mistworldfarmer import travel  # noqa: F401  (find_entry uses travel.matches)
+from mistworldfarmer.engine import team
+from mistworldfarmer.engine.bot import Bot
 from conftest import as_bot
 from typing import Any
 

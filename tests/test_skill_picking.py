@@ -6,8 +6,8 @@ from __future__ import annotations
 import pytest
 from conftest import as_parts, data, fight, Bot, Game, ME
 
-from unclefarmer.engine import combat
-from unclefarmer.engine.combat import Skill
+from mistworldfarmer.engine import combat
+from mistworldfarmer.engine.combat import Skill
 from conftest import Clock
 from typing import Any, cast
 

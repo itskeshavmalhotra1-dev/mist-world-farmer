@@ -14,8 +14,8 @@ import pytest
 from conftest import stand_in
 
 from test_walking import MapBot
-from unclefarmer import atlas
-from unclefarmer.atlaslib import MapModel
+from mistworldfarmer import atlas
+from mistworldfarmer.atlaslib import MapModel
 
 MID = 1041
 X0, Y0 = 68, 20                     # a 24 x 16 open patch (checked below)

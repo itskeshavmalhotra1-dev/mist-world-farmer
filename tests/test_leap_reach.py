@@ -11,8 +11,8 @@ from conftest import Bot as BookBot
 from conftest import Clock, Game, as_kind, as_parts
 from test_fighting import Bot, monster, straight_walk
 
-from unclefarmer.engine import combat
-from unclefarmer.engine.botparts import fighting
+from mistworldfarmer.engine import combat
+from mistworldfarmer.engine.botparts import fighting
 
 
 def book(clock: Clock, skills: list[str], profile: dict[str, Any] | None = None) -> combat.SkillBook:

@@ -13,8 +13,8 @@ import pytest
 from conftest import as_bot
 from test_fighting import Bot, Clock, Link, monster, straight_walk
 from test_pet_defence import ME, PET, fight_on, pet_entity
-from unclefarmer.clock import CLOCK
-from unclefarmer.engine import pets
+from mistworldfarmer.clock import CLOCK
+from mistworldfarmer.engine import pets
 
 
 @pytest.fixture

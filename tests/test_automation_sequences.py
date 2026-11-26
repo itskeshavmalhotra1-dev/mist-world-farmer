@@ -12,11 +12,11 @@ from conftest import as_bot, returning, Clock
 from test_script import FakeBot
 from test_triggers import triggered
 from test_schedule import Window, daily, fresh, T0, outcomes
-from unclefarmer import paths, settings, schedule
-from unclefarmer.engine import triggers, runner, dungeon
-from unclefarmer.gui import triggers as gui, schedules
-from unclefarmer.gui.mainparts.runs import RunsMixin
-from unclefarmer.gui.mainparts import runs as runs_gui
+from mistworldfarmer import paths, settings, schedule
+from mistworldfarmer.engine import triggers, runner, dungeon
+from mistworldfarmer.gui import triggers as gui, schedules
+from mistworldfarmer.gui.mainparts.runs import RunsMixin
+from mistworldfarmer.gui.mainparts import runs as runs_gui
 
 
 def profile(*rows: dict[str, Any], stage: str = "before") -> dict[str, Any]:
@@ -427,7 +427,7 @@ def test_empty_trigger_context_actions_are_disabled(monkeypatch: pytest.MonkeyPa
 
 
 def test_main_menu_has_no_plans_menu_and_retains_plan_shortcuts(monkeypatch: pytest.MonkeyPatch) -> None:
-    from unclefarmer.gui.main import MainFrame
+    from mistworldfarmer.gui.main import MainFrame
     app = wx.GetApp() or wx.App(False)
     frame = MainFrame.__new__(MainFrame)
     wx.Frame.__init__(frame, None)

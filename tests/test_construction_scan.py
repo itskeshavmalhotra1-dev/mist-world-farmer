@@ -9,7 +9,7 @@ from typing import Any
 import pytest
 from conftest import Clock, as_bot, stand_in
 
-from unclefarmer.engine import chores, constructionscan as hr, script, town
+from mistworldfarmer.engine import chores, constructionscan as hr, script, town
 
 TURRET, WALL = (n for n, _s in chores.HIGHLAND_SITES)
 ACTION = [["Action menu; lag 126"], ["Disorder gang", "transfer the gang", "disband", "send system message",

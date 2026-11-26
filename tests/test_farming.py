@@ -16,13 +16,13 @@ import threading
 import pytest
 from conftest import failing, returning, stand_in, Clock
 
-from unclefarmer.clock import CLOCK
-from unclefarmer import settings
-from unclefarmer.engine import town
-from unclefarmer.engine.botparts import farming
-from unclefarmer.engine.botparts.base import Respawned, Stopped
-from unclefarmer.engine.botparts.farming import FarmingMixin
-from unclefarmer.engine.botparts.parts import FarmFilter, Rect
+from mistworldfarmer.clock import CLOCK
+from mistworldfarmer import settings
+from mistworldfarmer.engine import town
+from mistworldfarmer.engine.botparts import farming
+from mistworldfarmer.engine.botparts.base import Respawned, Stopped
+from mistworldfarmer.engine.botparts.farming import FarmingMixin
+from mistworldfarmer.engine.botparts.parts import FarmFilter, Rect
 from collections.abc import Callable, Sequence
 from typing import Any
 import typing

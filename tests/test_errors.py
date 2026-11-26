@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from unclefarmer.errors import carry_on
+from mistworldfarmer.errors import carry_on
 
 
 def test_carry_on_raises_the_original_exception_in_tests() -> None:

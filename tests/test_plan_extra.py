@@ -9,8 +9,8 @@ import os
 
 import pytest
 
-from unclefarmer import paths
-from unclefarmer.engine import plan
+from mistworldfarmer import paths
+from mistworldfarmer.engine import plan
 from pathlib import Path
 from conftest import stand_in
 from typing import Any

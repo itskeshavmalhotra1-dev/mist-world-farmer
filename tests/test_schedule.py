@@ -12,8 +12,8 @@ from typing import Any
 
 import pytest
 
-from unclefarmer import schedule
-from unclefarmer.schedule import FAILED, STARTED, WAIT, Schedule, Scheduler
+from mistworldfarmer import schedule
+from mistworldfarmer.schedule import FAILED, STARTED, WAIT, Schedule, Scheduler
 
 T0 = dt.datetime(2026, 11, 2, 5, 0)        # a Monday, 05:00
 
@@ -403,8 +403,8 @@ def test_a_date_that_isn_t_one_says_how_to_write_it() -> None:
 # ================================================================ the main window's side
 wx = pytest.importorskip("wx")
 
-from unclefarmer.gui import main as gui_main, schedules as gui_schedules  # noqa: E402
-from unclefarmer.gui.mainparts import scheduling  # noqa: E402
+from mistworldfarmer.gui import main as gui_main, schedules as gui_schedules  # noqa: E402
+from mistworldfarmer.gui.mainparts import scheduling  # noqa: E402
 
 
 class ScheduledRun:
@@ -581,6 +581,6 @@ def test_the_editor_refuses_what_can_t_run(editor: Editor, says: str) -> None:
 
 
 def test_the_schedules_file_is_never_replaced_by_an_update() -> None:
-    from unclefarmer import updater
+    from mistworldfarmer import updater
     assert "schedules.json" in updater.NEVER
     assert scheduling.TICK_MS <= 60_000                  # looked at well inside the 15 minutes an occurrence waits

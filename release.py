@@ -6,7 +6,7 @@
     python release.py 0.2.0 --local --notes-file notes.md   (build and zip only, no GitHub)
     python release.py 0.2.0 --local --full ...              (every core, normal priority: faster)
 
-It sets the version in unclefarmer/__init__.py and pyproject.toml (and refreshes uv.lock), builds
+It sets the version in mistworldfarmer/__init__.py and pyproject.toml (and refreshes uv.lock), builds
 the folder (build_exe.py), zips it as dist/UncleFarmer-<version>.zip and makes the GitHub release
 v<version> with that zip, using the GitHub CLI (gh, logged in). The release notes are what the app shows under "What's new". Commit
 and push first: the release's tag points at what GitHub has.
@@ -29,9 +29,9 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, ROOT)
 
 import export_requirements  # noqa: E402
-from unclefarmer import updater  # noqa: E402
+from mistworldfarmer import updater  # noqa: E402
 
-INIT = os.path.join(ROOT, "unclefarmer", "__init__.py")
+INIT = os.path.join(ROOT, "mistworldfarmer", "__init__.py")
 PYPROJECT = os.path.join(ROOT, "pyproject.toml")
 OUT = os.path.join(ROOT, "dist", "Mist World Farmer")
 
@@ -47,7 +47,7 @@ def _replace_once(path: str, pattern: str, new: str) -> None:
 
 
 def set_version(v: str) -> None:
-    """The version in unclefarmer/__init__.py and pyproject.toml, and uv.lock to match: the lock
+    """The version in mistworldfarmer/__init__.py and pyproject.toml, and uv.lock to match: the lock
     records the project's version, and CI's `uv sync --locked` fails when the two disagree. The
     pip files are exported again from that lock, so a release never ships stale ones."""
     _replace_once(INIT, r'__version__ = "[^"]*"', '__version__ = "%s"' % v)
@@ -99,7 +99,7 @@ def main() -> None:
         if notes:
             with open(os.path.join(ROOT, "dist", "UncleFarmer-%s.txt" % v), "w", encoding="utf-8") as f:
                 f.write("Mist World Farmer %s\n\n%s\n" % (v, notes.strip()))
-        print("built v%s locally. Commit the version change (unclefarmer/__init__.py, pyproject.toml, uv.lock)." % v)
+        print("built v%s locally. Commit the version change (mistworldfarmer/__init__.py, pyproject.toml, uv.lock)." % v)
         return
     _publish(a, v, zip_path)
 
@@ -141,7 +141,7 @@ def _checked_version(a: Options) -> str:
     if not updater.is_stable(v):
         # exactly three numbers: the updater offers no other shape (a fourth is a dev build's number)
         sys.exit("a version looks like 0.2.0 (three numbers)")
-    from unclefarmer import __version__
+    from mistworldfarmer import __version__
     if not updater.is_newer(v, __version__) and v != __version__:
         sys.exit("%s is not newer than %s" % (v, __version__))
     dirty = subprocess.run(["git", "status", "--porcelain"], cwd=ROOT, capture_output=True, text=True).stdout
@@ -176,7 +176,7 @@ def _publish(a: Options, v: str, zip_path: str) -> None:
     if a.draft:
         cmd.append("--draft")
     subprocess.check_call(cmd, cwd=ROOT)
-    print("released v%s. Commit the version change (unclefarmer/__init__.py, pyproject.toml, uv.lock)." % v)
+    print("released v%s. Commit the version change (mistworldfarmer/__init__.py, pyproject.toml, uv.lock)." % v)
 
 
 if __name__ == "__main__":

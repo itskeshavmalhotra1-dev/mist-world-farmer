@@ -15,9 +15,9 @@ import pytest
 
 from conftest import as_bot
 from test_fighting import Bot, Clock, Link, monster, straight_walk
-from unclefarmer.clock import CLOCK
-from unclefarmer.engine import pets
-from unclefarmer.engine.botparts.fighting import _Fight
+from mistworldfarmer.clock import CLOCK
+from mistworldfarmer.engine import pets
+from mistworldfarmer.engine.botparts.fighting import _Fight
 
 ME = 4242
 PET = 10001

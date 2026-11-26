@@ -15,9 +15,9 @@ import pytest
 
 from conftest import stand_in
 from test_runner import FakeRunner, FarmingRunner, bot_of, make
-from unclefarmer import settings, stats
-from unclefarmer.engine import runner as R, town
-from unclefarmer.engine.bot import Stopped
+from mistworldfarmer import settings, stats
+from mistworldfarmer.engine import runner as R, town
+from mistworldfarmer.engine.bot import Stopped
 
 
 class Jobs:
@@ -44,7 +44,7 @@ class Jobs:
 def farming_run(monkeypatch: pytest.MonkeyPatch, tmp_path: Path, sell: bool, clean: bool,
                 runner: type[FakeRunner] = FarmingRunner, **kw: Any) -> tuple[R.Run, list[tuple[str, bool]], Jobs]:
     run, _links, logs, _done = make(monkeypatch, tmp_path, runner=runner, **kw)
-    from unclefarmer import scan as scan_mod
+    from mistworldfarmer import scan as scan_mod
     profile = {"sell_shards_after_farming": sell, "clean_bag_after_farming": clean}
     monkeypatch.setattr(scan_mod, "scan_and_save",
                         stand_in(scan_mod.scan_and_save, lambda link, character, game_folder="": (dict(profile), {})))
@@ -104,7 +104,7 @@ def test_a_failing_job_still_lets_the_other_run(monkeypatch: pytest.MonkeyPatch,
 
 
 def test_a_lost_game_ends_the_jobs(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
-    from unclefarmer.link import AgentError
+    from mistworldfarmer.link import AgentError
     run, _logs, jobs = farming_run(monkeypatch, tmp_path, True, True)
     jobs.raises["sell"] = AgentError("the game closed")
     run.run()
@@ -190,7 +190,7 @@ def test_each_setting_is_kept_on_its_own_after_a_restart() -> None:
 
 
 def test_a_setting_of_the_wrong_kind_falls_back_to_off(tmp_path: Path) -> None:
-    from unclefarmer import jsonio, paths
+    from mistworldfarmer import jsonio, paths
     import os
     jsonio.save(os.path.join(paths.PROFILES, "Odd.json"), {"sell_shards_after_farming": "yes please"})
     p = settings.load_profile("Odd")
@@ -201,7 +201,7 @@ def test_a_setting_of_the_wrong_kind_falls_back_to_off(tmp_path: Path) -> None:
 @pytest.mark.parametrize("ticked", [False, True])
 def test_the_tools_menu_runs_both_by_hand_whatever_the_settings_say(monkeypatch: pytest.MonkeyPatch, ticked: bool) -> None:
     pytest.importorskip("wx")
-    from unclefarmer.gui.mainparts import editing
+    from mistworldfarmer.gui.mainparts import editing
     p = settings.load_profile("Hero")
     p.update(sell_shards_after_farming=ticked, clean_bag_after_farming=ticked,
              bag_rules={"old boots": {"action": "throw", "keep": 0}})

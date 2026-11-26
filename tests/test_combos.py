@@ -10,7 +10,7 @@ import pytest
 
 from conftest import as_parts, Bot, Clock, fight, followed_by, Game, ME
 
-from unclefarmer.engine import combat, combos
+from mistworldfarmer.engine import combat, combos
 
 WARRIOR = ["Bash", "Cleave", "Sweep Attack", "Leap Slash", "Execute"]
 HUNTER = ["Arcane Shot", "Aimed Shot", "Multi Shot", "Rapid Arrows", "Marked Shot"]

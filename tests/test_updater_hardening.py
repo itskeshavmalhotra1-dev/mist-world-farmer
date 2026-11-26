@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 import pytest
 
 import build_exe
-from unclefarmer import updater
+from mistworldfarmer import updater
 from test_updater import Resp, fake_open, for_download, junction, release
 from conftest import returning
 
@@ -245,7 +245,7 @@ def test_locked_copy_obeys_one_deadline(app: Path, tmp_path: Path, monkeypatch: 
 
 def test_worker_unexpected_exception_always_completes_and_holds_claim(app: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     pytest.importorskip("wx")
-    from unclefarmer.gui.mainparts import updates
+    from mistworldfarmer.gui.mainparts import updates
     from test_built_copy import Started, Window, REL
     frame = Window()
     completed: list[tuple[bool, Exception | None]] = []
@@ -271,7 +271,7 @@ def test_worker_unexpected_exception_always_completes_and_holds_claim(app: Path,
 def test_paused_copier_never_activates_on_close_veto(app: Path, monkeypatch: pytest.MonkeyPatch,
                                                   close_allowed: bool) -> None:
     pytest.importorskip("wx")
-    from unclefarmer.gui.mainparts import updates
+    from mistworldfarmer.gui.mainparts import updates
     from test_built_copy import Window, REL
     frame = Window()
     events: list[str] = []
@@ -300,7 +300,7 @@ def test_paused_copier_never_activates_on_close_veto(app: Path, monkeypatch: pyt
 
 def test_game_started_during_download_blocks_application(app: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     pytest.importorskip("wx")
-    from unclefarmer.gui.mainparts import updates
+    from mistworldfarmer.gui.mainparts import updates
     from test_built_copy import Window, REL
     frame = Window()
     monkeypatch.setattr(updates.agentfix, "running_pids", lambda: [123])
@@ -509,7 +509,7 @@ def test_backup_exists_until_both_commit_files_are_installed(app: Path, tmp_path
     monkeypatch.setattr(updater.recovery, "move", replace)
     updater.apply(str(app), str(src), lambda text: None)
     assert observed == [True]
-    assert not list(tmp_path.glob(".unclefarmer-update-*"))
+    assert not list(tmp_path.glob(".mistworldfarmer-update-*"))
 
 
 @pytest.mark.parametrize("wait_status", [0, 0xFFFFFFFF])
@@ -569,7 +569,7 @@ def test_mixed_case_never_entries_are_not_installed(app: Path, tmp_path: Path) -
 
 def test_worker_failure_closes_progress_and_resets_state(app: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     pytest.importorskip("wx")
-    from unclefarmer.gui.mainparts import updates
+    from mistworldfarmer.gui.mainparts import updates
     from test_built_copy import Started, Window, REL
     frame = Window()
     closed: list[bool] = []
@@ -594,7 +594,7 @@ def test_worker_failure_closes_progress_and_resets_state(app: Path, monkeypatch:
 
 def test_claim_survives_successful_unpack_until_completion_callback(app: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     pytest.importorskip("wx")
-    from unclefarmer.gui.mainparts import updates
+    from mistworldfarmer.gui.mainparts import updates
     from test_built_copy import Started, Window, REL
     frame = Window()
     callbacks: list[Callable[[], None]] = []
@@ -739,7 +739,7 @@ def test_names_are_the_app_and_the_bootstrap() -> None:
     assert updater.EXE == updater.recovery.PAYLOAD == "MistWorldFarmer.exe"
     assert updater.BOOTSTRAP == updater.recovery.BOOTSTRAP == "bootstrap.exe"
     assert updater.BOOTSTRAP in updater.NEVER and updater.EXE.casefold() not in updater.NEVER
-    assert updater.BOOTSTRAP in updater.recovery.PROTECTED and "unclefarmer.exe" not in updater.recovery.PROTECTED
+    assert updater.BOOTSTRAP in updater.recovery.PROTECTED and "mistworldfarmer.exe" not in updater.recovery.PROTECTED
 
 
 def test_a_copy_without_a_bootstrap_gets_the_new_app_and_the_bootstrap(app: Path, tmp_path: Path) -> None:
@@ -916,7 +916,7 @@ def test_a_legacy_recovery_runtime_is_renewed(app: Path) -> None:
 def test_a_journal_from_the_front_door_layout_still_validates(app: Path) -> None:
     record = updater.recovery.begin(str(app), "0.4.0", "0.5.0")
     record["protected"] = [".recovery", "agent/run", "data/game_texts.json", "logs", "messages", "plans", "profiles",
-                           "results", "schedules.json", "scripts", "settings.json", "survey", "unclefarmer.exe",
+                           "results", "schedules.json", "scripts", "settings.json", "survey", "mistworldfarmer.exe",
                            "update"]
     updater.recovery.save(str(app), record, "ROLLED_BACK", "legacy")
     loaded = updater.recovery.load(str(app))

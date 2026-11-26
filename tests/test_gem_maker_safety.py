@@ -12,7 +12,7 @@ import pytest
 from conftest import as_bot, returning, stand_in
 from test_crafting import Bot, add, entry
 from test_gem_maker_no_break import Craftsman, count
-from unclefarmer.engine import crafting, town
+from mistworldfarmer.engine import crafting, town
 
 JOB: dict[str, Any] = {"colour": "Topaz", "level": 2, "count": 1, "amount": 1, "supply": "none", "where": "gang",
                        "boost": True, "protect": False}

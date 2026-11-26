@@ -1,8 +1,8 @@
 """The cave simulator behind dungeon.CHASE (caveloops.py): it runs on the caves' real walls, the
 same seed gives the same visit, and its numbers stay where the logged run put them."""
 
-from unclefarmer import atlas, caveloops
-from unclefarmer.engine import dungeon
+from mistworldfarmer import atlas, caveloops
+from mistworldfarmer.engine import dungeon
 
 
 def test_a_visit_is_the_same_for_the_same_seed_and_kills() -> None:

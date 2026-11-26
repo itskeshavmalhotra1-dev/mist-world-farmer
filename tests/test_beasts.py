@@ -8,9 +8,9 @@ from __future__ import annotations
 import pytest
 from conftest import as_bot, stand_in, Clock
 
-from unclefarmer.clock import CLOCK
-from unclefarmer import settings
-from unclefarmer.engine import beasts
+from mistworldfarmer.clock import CLOCK
+from mistworldfarmer import settings
+from mistworldfarmer.engine import beasts
 from typing import Any
 
 

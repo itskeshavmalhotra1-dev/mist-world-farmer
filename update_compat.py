@@ -30,7 +30,7 @@ import time
 import zipfile
 from collections.abc import Callable
 
-from unclefarmer import updater
+from mistworldfarmer import updater
 
 REPO = os.environ.get("GITHUB_REPOSITORY") or updater.REPO      # the repository the app updates from
 EXE = "MistWorldFarmer.exe"
@@ -44,7 +44,7 @@ OLD_APP = r'''
 import json, os, sys
 root, app, zip_path, version, sha, size = sys.argv[1:]
 sys.path.insert(0, root)
-from unclefarmer import updater, paths
+from mistworldfarmer import updater, paths
 paths.APP = app
 paths.LOGS = os.path.join(app, "logs")
 updater.UPDATE = os.path.join(app, "update")

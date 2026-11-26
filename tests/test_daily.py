@@ -7,7 +7,7 @@ import datetime as dt
 
 import pytest
 
-from unclefarmer import daily
+from mistworldfarmer import daily
 from conftest import returning, stand_in
 from typing import Any
 

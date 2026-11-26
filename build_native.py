@@ -1,4 +1,4 @@
-"""Build the C map searches (unclefarmer/native/routing.c) into unclefarmer/native/_routing-<hash>.dll.
+"""Build the C map searches (mistworldfarmer/native/routing.c) into mistworldfarmer/native/_routing-<hash>.dll.
 
     python build_native.py
 
@@ -25,7 +25,7 @@ import sys
 ROOT = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, ROOT)
 
-from unclefarmer import native  # noqa: E402
+from mistworldfarmer import native  # noqa: E402
 
 MSYS_GCC = r"C:\msys64\mingw64\bin\gcc.exe"
 FLAGS = ["-O2", "-shared", "-std=c11", "-Wall", "-Wextra", "-Werror", "-ffp-contract=off",

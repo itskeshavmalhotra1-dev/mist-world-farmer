@@ -5,11 +5,11 @@ more after heals that raise nobody's HP."""
 
 from __future__ import annotations
 
-from unclefarmer.engine import teamheal
+from mistworldfarmer.engine import teamheal
 import pytest
 from conftest import as_bot, stand_in, Clock
 from typing import Any
-from unclefarmer.engine.combat import Press, Skill
+from mistworldfarmer.engine.combat import Press, Skill
 
 ME = 500
 LEADER = 700

@@ -6,8 +6,8 @@ from __future__ import annotations
 
 from typing import Any
 
-from unclefarmer import knowledge, travel
-from unclefarmer.engine import town
+from mistworldfarmer import knowledge, travel
+from mistworldfarmer.engine import town
 
 from conftest import as_bot
 

@@ -15,17 +15,17 @@ import threading
 
 import pytest
 
-from unclefarmer.clock import CLOCK
+from mistworldfarmer.clock import CLOCK
 from conftest import Clock, as_kind
 
-from unclefarmer.engine.botparts.base import Stopped
-from unclefarmer.engine.botparts.reading import ReadingMixin
-from unclefarmer.stats import Tally
+from mistworldfarmer.engine.botparts.base import Stopped
+from mistworldfarmer.engine.botparts.reading import ReadingMixin
+from mistworldfarmer.stats import Tally
 from collections.abc import Callable
 from typing import Any, NoReturn
 
-from unclefarmer import jsonio
-from unclefarmer.engine.bot import Bot
+from mistworldfarmer import jsonio
+from mistworldfarmer.engine.bot import Bot
 
 
 class Seq:

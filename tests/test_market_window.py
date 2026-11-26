@@ -9,8 +9,8 @@ import pytest
 
 pytest.importorskip("wx")
 
-from unclefarmer.engine.market import ListRow, Lot, Order  # noqa: E402
-from unclefarmer.gui import market as window  # noqa: E402
+from mistworldfarmer.engine.market import ListRow, Lot, Order  # noqa: E402
+from mistworldfarmer.gui import market as window  # noqa: E402
 
 
 def test_the_items_list_shows_lots_opening_soon_and_a_price_that_changed() -> None:
@@ -110,7 +110,7 @@ def test_a_status_caught_while_being_written_is_read_again(tmp_path: Path, monke
 
     import wx
 
-    from unclefarmer.engine import market
+    from mistworldfarmer.engine import market
     app = wx.GetApp() or wx.App(False)
     host = _host()
     monkeypatch.setattr(market, "folder", lambda: str(tmp_path))

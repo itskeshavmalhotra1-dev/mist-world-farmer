@@ -4,11 +4,11 @@ from __future__ import annotations
 
 import threading
 
-from unclefarmer import chat
-from unclefarmer.gui.chat import line_text
+from mistworldfarmer import chat
+from mistworldfarmer.gui.chat import line_text
 import pytest
 from conftest import stand_in
-from unclefarmer.chat import Feed
+from mistworldfarmer.chat import Feed
 from typing import Any, ClassVar
 
 
@@ -166,7 +166,7 @@ def test_a_private_message_goes_to_an_id_or_a_name_the_game_has_shown(monkeypatc
 def test_the_messenger_never_answers_our_own_lines() -> None:
     import inspect
 
-    from unclefarmer import messages
+    from mistworldfarmer import messages
     assert 'if not pm.get("mine")' in inspect.getsource(messages.Messenger.run)
 
 
@@ -185,7 +185,7 @@ def test_private_messages_make_one_conversation_per_person() -> None:
 
 
 def test_a_tone_name_nobody_knows_plays_nothing() -> None:
-    from unclefarmer import tones
+    from mistworldfarmer import tones
     tones.play("")
     tones.play("no such tone")
     assert set(tones.ORDER) - {""} == set(tones.TONES)

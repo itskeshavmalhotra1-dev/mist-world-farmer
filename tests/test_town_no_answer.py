@@ -20,8 +20,8 @@ from conftest import as_bot, returning, stand_in
 
 from test_restock_rules import RULE, bot
 from test_town import DANI, MAGNUS, Npc, TownBot, _unload_bot, menu, opt, shops  # noqa: F401 (a fixture)
-from unclefarmer.engine import bagrules, town
-from unclefarmer.engine.botparts.base import Stopped
+from mistworldfarmer.engine import bagrules, town
+from mistworldfarmer.engine.botparts.base import Stopped
 
 
 def nothing(*_a: Any, **_k: Any) -> int:

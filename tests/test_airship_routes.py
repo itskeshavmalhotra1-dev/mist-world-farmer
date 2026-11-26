@@ -16,8 +16,8 @@ from typing import Any
 import pytest
 
 from conftest import as_bot
-from unclefarmer import atlas, travel
-from unclefarmer.engine.botparts.travel import TravelMixin
+from mistworldfarmer import atlas, travel
+from mistworldfarmer.engine.botparts.travel import TravelMixin
 
 CENTRAL = 1041                          # central plains, Giant Rock City
 SQUARE = (200, 205)                     # its square
@@ -238,7 +238,7 @@ def test_a_transport_row_missing_what_a_ride_needs_is_left_out(monkeypatch: pyte
 
 
 def test_a_broken_transport_file_means_walking(monkeypatch: pytest.MonkeyPatch, tmp_path: Any) -> None:
-    from unclefarmer import paths
+    from mistworldfarmer import paths
     atlas.maps()                       # the map data stays the real one, read before the folder moves
     (tmp_path / "transports.json").write_text("{not json", encoding="utf-8")
     monkeypatch.setattr(paths, "DATA", str(tmp_path))
@@ -327,7 +327,7 @@ class Shopper:
 def test_the_nearest_place_is_judged_with_the_rides_the_bot_will_take() -> None:
     """From Tulip City an NPC in Moon City is nearest by airship, one a map away on foot is
     nearest without: with "Use airships" off, the airship mustn't decide where the bot goes."""
-    from unclefarmer.engine import town
+    from mistworldfarmer.engine import town
     candidates: list[tuple[int, str, float, float]] = []
     for mid in (1101, 1501):
         port = travel._ports(mid)[0]                                   # pyright: ignore[reportPrivateUsage]
@@ -400,7 +400,7 @@ def test_cable_cars_off_still_flies_by_airship(prefer_walking: bool) -> None:
 
 
 def test_both_switches_off_means_no_ride() -> None:
-    from unclefarmer.engine.botparts.base import Stopped
+    from mistworldfarmer.engine.botparts.base import Stopped
     with pytest.raises(Stopped):
         plan_with(LOKI, use_transport=False, use_airships=False)        # Loki Union: only by airship
     legs = plan_with(1081, use_transport=False, use_airships=False)

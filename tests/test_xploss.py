@@ -14,10 +14,10 @@ from typing import Any
 
 import pytest
 
-from unclefarmer.engine import script, triggers, xploss
-from unclefarmer.engine.bot import Respawned, Stopped
+from mistworldfarmer.engine import script, triggers, xploss
+from mistworldfarmer.engine.bot import Respawned, Stopped
 from conftest import as_bot, returning
-from unclefarmer.clock import Waitable
+from mistworldfarmer.clock import Waitable
 
 ME = 1234
 REAL_SAFE_ZONES = xploss.atlas.safe_zones   # the game's own map table, for the one test that reads it

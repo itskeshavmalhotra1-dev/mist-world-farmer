@@ -8,7 +8,7 @@ import glob
 import os
 import re
 
-ROOT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "unclefarmer", "engine")
+ROOT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "mistworldfarmer", "engine")
 GROUPS = ("traveling", "on_farm_run", "farmed", "crossing_poison", "warned_poison", "ways_out", "rides_too_high",
           "restocking", "restock_looked", "restock_town", "restock_failed", "restock_skipped", "storehouse_lacks",
           "supply_told", "potion_slots")      # (bag_start: BagMixin's class default)

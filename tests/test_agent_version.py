@@ -9,8 +9,8 @@ test instead of a failed run.
 import re
 from pathlib import Path
 
-from unclefarmer import messages
-from unclefarmer.engine import runner
+from mistworldfarmer import messages
+from mistworldfarmer.engine import runner
 
 ROOT = Path(__file__).resolve().parents[1]
 JAVA = ROOT / "agent" / "src" / "unclefarmer" / "agent" / "StateServer.java"
@@ -42,6 +42,6 @@ def test_java_agent_version_covers_every_python_gate() -> None:
 
 
 def test_automatic_login_has_its_own_protocol_version() -> None:
-    from unclefarmer.engine.runner import AGENT_LOGIN
+    from mistworldfarmer.engine.runner import AGENT_LOGIN
     # its own bump past the Sound Silencer's 63, and an agent this copy ships answers it
     assert 63 < AGENT_LOGIN <= _java_version()

@@ -17,7 +17,7 @@ from typing import Any
 import pytest
 
 import simgame
-from unclefarmer import paths, settings
+from mistworldfarmer import paths, settings
 
 pytestmark = pytest.mark.slow
 

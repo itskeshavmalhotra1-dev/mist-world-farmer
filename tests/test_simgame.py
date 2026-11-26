@@ -11,9 +11,9 @@ import os
 import pytest
 
 import simgame
-from unclefarmer import paths
+from mistworldfarmer import paths
 from conftest import stand_in
-from unclefarmer.engine.runner import Run
+from mistworldfarmer.engine.runner import Run
 from collections.abc import Callable
 from typing import Any
 
@@ -63,7 +63,7 @@ def test_a_lost_connection_ends_the_run_cleanly(sim_env: Callable[..., simgame.S
 def test_drop_time_to_save_is_left_unused(sim_env: Callable[..., simgame.SimGame]):
     # Bag and supplies, Full bag: "Drop time to save (minutes)". With 60 saved, the run stops while
     # 60 minutes and the tail (the drop time keeps running for a while after we leave) are left.
-    from unclefarmer import settings
+    from mistworldfarmer import settings
     settings.save_profile(simgame.NAME, dict(settings.PROFILE_DEFAULTS, drop_keep_minutes=60))
     game = sim_env()
     game.world.drop_seconds = 70 * 60
@@ -97,9 +97,9 @@ def test_a_dungeon_visit_fights_until_the_timer_end_to_end(sim_env: Callable[...
     # (test_dungeon.py); here the visit itself runs - the farming fight in dungeon mode for the
     # cave's 15 minutes, no trips out, then out through the Action menu when the game doesn't
     # move us (the pretend game has no timer of its own).
-    from unclefarmer import settings
-    from unclefarmer.engine import dungeon
-    from unclefarmer.engine.bot import Bot
+    from mistworldfarmer import settings
+    from mistworldfarmer.engine import dungeon
+    from mistworldfarmer.engine.bot import Bot
     settings.save_profile(simgame.NAME, dict(settings.PROFILE_DEFAULTS, dungeon={"cave": "Spider cave"}))
     monkeypatch.setattr(dungeon, "get_supplies", stand_in(dungeon.get_supplies, lambda b, cfg, check_only=False: []))
     monkeypatch.setattr(dungeon, "level_of", stand_in(dungeon.level_of, lambda b: 80))
@@ -125,10 +125,10 @@ def test_a_dungeon_visit_fights_until_the_timer_end_to_end(sim_env: Callable[...
 @pytest.mark.slow
 def test_a_ranged_character_shoots_on_the_way_in_a_dungeon(sim_env: Callable[..., simgame.SimGame], monkeypatch: pytest.MonkeyPatch):
     # the same visit with a character that hits from 20 tiles: shots go off while it walks
-    from unclefarmer import settings
-    from unclefarmer.engine import dungeon
-    from unclefarmer.engine.bot import Bot
-    from unclefarmer.engine.botparts.fighting import FightingMixin
+    from mistworldfarmer import settings
+    from mistworldfarmer.engine import dungeon
+    from mistworldfarmer.engine.bot import Bot
+    from mistworldfarmer.engine.botparts.fighting import FightingMixin
     monkeypatch.setattr(simgame, "SKILLS", [("Arcane Shot", 0.0, 2600, 20.0), ("Aimed Shot", 6.0, 5200, 20.0)])
     settings.save_profile(simgame.NAME, dict(settings.PROFILE_DEFAULTS, attack_range=19.5,
                                              dungeon={"cave": "Spider cave"}))
@@ -159,8 +159,8 @@ def test_a_ranged_character_shoots_on_the_way_in_a_dungeon(sim_env: Callable[...
 def test_a_ranged_character_farming_shoots_on_the_way_when_set(sim_env: Callable[..., simgame.SimGame],
                                                                monkeypatch: pytest.MonkeyPatch, on: bool):
     # Character, Settings, Fighting: "Shoot monsters in reach while walking to the next one"
-    from unclefarmer import settings
-    from unclefarmer.engine.botparts.fighting import FightingMixin
+    from mistworldfarmer import settings
+    from mistworldfarmer.engine.botparts.fighting import FightingMixin
     monkeypatch.setattr(simgame, "SKILLS", [("Arcane Shot", 0.0, 2600, 20.0), ("Aimed Shot", 6.0, 5200, 20.0)])
     settings.save_profile(simgame.NAME, dict(settings.PROFILE_DEFAULTS, attack_range=19.5,
                                              shoot_while_walking=on))

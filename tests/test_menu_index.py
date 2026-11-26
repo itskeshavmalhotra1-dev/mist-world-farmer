@@ -16,8 +16,8 @@ from typing import Any
 
 import pytest
 
-from unclefarmer import settings
-from unclefarmer.engine import bagrules, crafting, menus, town
+from mistworldfarmer import settings
+from mistworldfarmer.engine import bagrules, crafting, menus, town
 from conftest import Clock, as_bot, returning
 
 CONTRACT = Path(__file__).resolve().parent.parent / "agent" / "test" / "contract.txt"
@@ -232,7 +232,7 @@ class ShopBot:
         return [t for t in [e.get("text"), e.get("raw")] + list(e.get("options") or []) if t]
 
     def find_entry(self, top: dict[str, Any] | None, pattern: str) -> tuple[int, int] | None:
-        from unclefarmer import travel
+        from mistworldfarmer import travel
         for r, row in enumerate((top or {}).get("rows") or []):
             for c, e in enumerate(row):
                 if e and any(travel.matches(pattern, t) for t in self.entry_texts(e)):

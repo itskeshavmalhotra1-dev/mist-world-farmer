@@ -10,21 +10,21 @@ import threading
 
 from conftest import Clock
 
-from unclefarmer.clock import CLOCK
-from unclefarmer.engine import bot as botmod
-from unclefarmer.engine import repair
-from unclefarmer.engine.bot import Bot
-from unclefarmer.engine.botparts.bag import BagMixin
-from unclefarmer.engine.botparts.dialogs import DialogsMixin
-from unclefarmer.engine.botparts.farming import FarmingMixin
-from unclefarmer.engine.botparts.parts import Log
-from unclefarmer.engine.botparts.fighting import FightingMixin
-from unclefarmer.engine.botparts.health import HealthMixin
-from unclefarmer.engine.botparts.keys import KeysMixin
-from unclefarmer.engine.botparts.reading import ReadingMixin
-from unclefarmer.engine.botparts.travel import TravelMixin
-from unclefarmer.engine.botparts.walking import WalkingMixin
-from unclefarmer.engine.kills import KillTracker
+from mistworldfarmer.clock import CLOCK
+from mistworldfarmer.engine import bot as botmod
+from mistworldfarmer.engine import repair
+from mistworldfarmer.engine.bot import Bot
+from mistworldfarmer.engine.botparts.bag import BagMixin
+from mistworldfarmer.engine.botparts.dialogs import DialogsMixin
+from mistworldfarmer.engine.botparts.farming import FarmingMixin
+from mistworldfarmer.engine.botparts.parts import Log
+from mistworldfarmer.engine.botparts.fighting import FightingMixin
+from mistworldfarmer.engine.botparts.health import HealthMixin
+from mistworldfarmer.engine.botparts.keys import KeysMixin
+from mistworldfarmer.engine.botparts.reading import ReadingMixin
+from mistworldfarmer.engine.botparts.travel import TravelMixin
+from mistworldfarmer.engine.botparts.walking import WalkingMixin
+from mistworldfarmer.engine.kills import KillTracker
 import pytest
 from typing import Any
 

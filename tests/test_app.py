@@ -17,11 +17,11 @@ import tomllib
 import pytest
 from conftest import ROOT, Clock, data
 
-import unclefarmer
-from unclefarmer import catalog, i18n, paths, settings
-from unclefarmer.engine import combat
-from unclefarmer.engine.bot import Bot
-from unclefarmer.engine.script import Runner
+import mistworldfarmer
+from mistworldfarmer import catalog, i18n, paths, settings
+from mistworldfarmer.engine import combat
+from mistworldfarmer.engine.bot import Bot
+from mistworldfarmer.engine.script import Runner
 from pathlib import Path
 from typing import Any
 from collections.abc import Callable
@@ -30,12 +30,12 @@ HAVE_WX = importlib.util.find_spec("wx") is not None
 
 
 def modules() -> list[str]:
-    return [m.name for m in pkgutil.walk_packages(unclefarmer.__path__, "unclefarmer.")]
+    return [m.name for m in pkgutil.walk_packages(mistworldfarmer.__path__, "mistworldfarmer.")]
 
 
 @pytest.mark.parametrize("name", modules())
 def test_module_imports(name: str) -> None:
-    if (".gui" in name or name == "unclefarmer.__main__") and not HAVE_WX:
+    if (".gui" in name or name == "mistworldfarmer.__main__") and not HAVE_WX:
         pytest.skip("wxPython not installed")
     importlib.import_module(name)
 
@@ -43,11 +43,11 @@ def test_module_imports(name: str) -> None:
 def test_pyproject_has_the_apps_version() -> None:
     # release.py sets both; uv.lock records the pyproject one, so a mismatch also means a stale lock.
     with open(os.path.join(ROOT, "pyproject.toml"), "rb") as f:
-        assert tomllib.load(f)["project"]["version"] == unclefarmer.__version__
+        assert tomllib.load(f)["project"]["version"] == mistworldfarmer.__version__
 
 
 def test_the_bot_keeps_its_old_names() -> None:
-    from unclefarmer.engine import bot
+    from mistworldfarmer.engine import bot
     for name in bot.__all__:
         assert hasattr(bot, name)
 
@@ -56,9 +56,9 @@ def test_translation_template_is_up_to_date(tmp_path: Path, monkeypatch: pytest.
     monkeypatch.setattr(paths, "LANG", str(tmp_path))
     pot, _count = i18n.write_template()
     _header, fresh = catalog.parse_po(open(pot, encoding="utf-8").read())
-    _shipped_header, shipped = catalog.parse_po(open(f"{ROOT}/lang/unclefarmer.pot", encoding="utf-8").read())
+    _shipped_header, shipped = catalog.parse_po(open(f"{ROOT}/lang/mistworldfarmer.pot", encoding="utf-8").read())
     assert {msgid for msgid, _msgstr in fresh} == {msgid for msgid, _msgstr in shipped}, \
-        "run: python -m unclefarmer --strings"
+        "run: python -m mistworldfarmer --strings"
 
 
 def test_a_quick_loop_turn_is_paced() -> None:

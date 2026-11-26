@@ -8,9 +8,9 @@ import time
 
 from conftest import ME, Clock
 
-from unclefarmer.engine.botparts.fighting import FightingMixin
-from unclefarmer.engine.botparts.walking import WalkingMixin
-from unclefarmer.engine.kills import KillTracker
+from mistworldfarmer.engine.botparts.fighting import FightingMixin
+from mistworldfarmer.engine.botparts.walking import WalkingMixin
+from mistworldfarmer.engine.kills import KillTracker
 from typing import Any
 
 DODGED, CRIT, HIT = 2, 5, 3
@@ -200,7 +200,7 @@ def test_fresh_casts_are_only_the_new_ones_and_include_monsters() -> None:
 
 
 def test_count_kills_feeds_the_tally_with_both_sides() -> None:
-    from unclefarmer import stats
+    from mistworldfarmer import stats
 
     a = Link()
     b = Fighter(a)
@@ -221,7 +221,7 @@ def test_count_kills_feeds_the_tally_with_both_sides() -> None:
 
 
 def test_a_death_before_the_run_began_is_not_its_kill() -> None:
-    from unclefarmer import stats
+    from mistworldfarmer import stats
 
     a = Link()
     b = Fighter(a)

@@ -11,7 +11,7 @@ import pytest
 
 from test_xploss import CITY, REAL_SAFE_ZONES, Game, guard, lose
 from test_xploss import isolated as isolated   # the same pretend world (autouse)
-from unclefarmer.engine import xploss
+from mistworldfarmer.engine import xploss
 
 VILLAGE: xploss.Village = (CITY, "Hill Village", 90, 90, 110, 110)
 GATE = (100, 113)                 # just outside its south side

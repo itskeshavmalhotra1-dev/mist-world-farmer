@@ -9,7 +9,7 @@ from types import SimpleNamespace
 
 import pytest
 
-from unclefarmer import paths, speech
+from mistworldfarmer import paths, speech
 from pathlib import Path
 from typing import NoReturn, Protocol, TypeVar
 

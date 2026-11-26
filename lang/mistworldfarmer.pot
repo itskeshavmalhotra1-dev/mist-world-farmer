@@ -1,0 +1,9715 @@
+# Mist World Farmer translation catalog. Edit the msgstr lines; keep the {placeholders}.
+msgid ""
+msgstr ""
+"Project-Id-Version: Mist World Farmer\n"
+"Report-Msgid-Bugs-To: \n"
+"Language: \n"
+"Language-Team: \n"
+"X-Language-Name: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+
+msgid " (estimated: it includes shards)"
+msgstr ""
+
+msgid " (locked here)"
+msgstr ""
+
+msgid " (worth about {v})"
+msgstr ""
+
+msgid " ({rate} an hour)"
+msgstr ""
+
+msgid " ({rate} casts an hour)"
+msgstr ""
+
+msgid " - estimated: it includes shards"
+msgstr ""
+
+msgid " - {n} used up with no stored price, not counted"
+msgstr ""
+
+msgid "&About Mist World Farmer"
+msgstr ""
+
+msgid "&Accept requests to join my team"
+msgstr ""
+
+msgid "&Action:"
+msgstr ""
+
+msgid "&Add"
+msgstr ""
+
+msgid "&Add a supply"
+msgstr ""
+
+msgid "&Add an item"
+msgstr ""
+
+msgid "&Add new filter"
+msgstr ""
+
+msgid "&Add where I stand"
+msgstr ""
+
+msgid "&Another character"
+msgstr ""
+
+msgid "&Answer strangers:"
+msgstr ""
+
+msgid "&Apply profile"
+msgstr ""
+
+msgid "&Assistant (it kills for you; you can't fight in there):"
+msgstr ""
+
+msgid "&Attack keys when skills can't be read:"
+msgstr ""
+
+msgid "&Attack style:"
+msgstr ""
+
+msgid "&Automatically redeem gifts at Activity Envoy"
+msgstr ""
+
+msgid "&Autopilot: the whole day"
+msgstr ""
+
+msgid "&Bag and supplies"
+msgstr ""
+
+msgid "&Bot"
+msgstr ""
+
+msgid "&Browse"
+msgstr ""
+
+msgid "&Call them by their name"
+msgstr ""
+
+msgid "&Cancel the shutdown"
+msgstr ""
+
+msgid "&Carry on now"
+msgstr ""
+
+msgid "&Category:"
+msgstr ""
+
+msgid "&Change key"
+msgstr ""
+
+msgid "&Character"
+msgstr ""
+
+msgid "&Character:"
+msgstr ""
+
+msgid "&Chase monsters up to this many steps away (patrol loops):"
+msgstr ""
+
+msgid "&Chat filters"
+msgstr ""
+
+msgid "&Check (F5)"
+msgstr ""
+
+msgid "&Check only"
+msgstr ""
+
+msgid "&Close"
+msgstr ""
+
+msgid "&Close windows the game opens by itself"
+msgstr ""
+
+msgid "&Commands for trusted players"
+msgstr ""
+
+msgid ""
+"&Construction builds a day (the game allows 2; free, each pays contribution and arnebia):"
+msgstr ""
+
+msgid "&Copy the address"
+msgstr ""
+
+msgid "&Create my team when the run starts, if I'm in none"
+msgstr ""
+
+msgid "&DETERMINISTIC: stop the sequence if this action fails"
+msgstr ""
+
+msgid "&Daily chores"
+msgstr ""
+
+msgid "&Date (year-month-day):"
+msgstr ""
+
+msgid "&Day:"
+msgstr ""
+
+msgid "&Defensive skills below HP (%):"
+msgstr ""
+
+msgid "&Delay before replying, from (seconds):"
+msgstr ""
+
+msgid "&Delete"
+msgstr ""
+
+msgid "&Delete filter"
+msgstr ""
+
+msgid "&Delete profile"
+msgstr ""
+
+msgid "&Don't carry on"
+msgstr ""
+
+msgid "&Donation, once a day:"
+msgstr ""
+
+msgid "&Dungeon:"
+msgstr ""
+
+msgid "&Edit"
+msgstr ""
+
+msgid "&Edit binding..."
+msgstr ""
+
+msgid "&Edit filter"
+msgstr ""
+
+msgid "&Email address:"
+msgstr ""
+
+msgid "&Enable this event"
+msgstr ""
+
+msgid "&Enabled"
+msgstr ""
+
+msgid "&End:"
+msgstr ""
+
+msgid "&Equipment Enhancer"
+msgstr ""
+
+msgid "&Equipment to enhance:"
+msgstr ""
+
+msgid "&Event:"
+msgstr ""
+
+msgid "&Events"
+msgstr ""
+
+msgid "&Experience:"
+msgstr ""
+
+msgid "&Farm with:"
+msgstr ""
+
+msgid "&Feed the gang's breed beast at the Animal Shed"
+msgstr ""
+
+msgid "&File"
+msgstr ""
+
+msgid "&Filters:"
+msgstr ""
+
+msgid "&Find the running game"
+msgstr ""
+
+msgid "&Find:"
+msgstr ""
+
+msgid "&Fix the speed of voice messages the game plays by itself"
+msgstr ""
+
+msgid "&Fuse spare potions up to:"
+msgstr ""
+
+msgid "&Game"
+msgstr ""
+
+msgid "&Game folder:"
+msgstr ""
+
+msgid "&Games:"
+msgstr ""
+
+msgid "&Gang name (another gang's):"
+msgstr ""
+
+msgid "&Gem Maker"
+msgstr ""
+
+msgid "&Gem:"
+msgstr ""
+
+msgid "&Gems to break:"
+msgstr ""
+
+msgid "&Get it:"
+msgstr ""
+
+msgid "&Get more from:"
+msgstr ""
+
+msgid "&Give up a fight after (seconds):"
+msgstr ""
+
+msgid "&Go"
+msgstr ""
+
+msgid "&Going round:"
+msgstr ""
+
+msgid "&Goodbyes, one per line:"
+msgstr ""
+
+msgid "&HP potion:"
+msgstr ""
+
+msgid "&Hand the team over when the run ends"
+msgstr ""
+
+msgid ""
+"&Harvest the monsters we kill with the learned Draw Blood, Skinning or Cut Flesh"
+msgstr ""
+
+msgid "&Heal skill below HP (%):"
+msgstr ""
+
+msgid "&Hearthstone item:"
+msgstr ""
+
+msgid "&Help"
+msgstr ""
+
+msgid "&Highest gem level to break:"
+msgstr ""
+
+msgid "&History"
+msgstr ""
+
+msgid "&How many:"
+msgstr ""
+
+msgid "&Import"
+msgstr ""
+
+msgid "&Import character settings"
+msgstr ""
+
+msgid "&Insert command"
+msgstr ""
+
+msgid "&Install"
+msgstr ""
+
+msgid "&Items for sale (Enter searches):"
+msgstr ""
+
+msgid "&Keep at least this many of each gem and level:"
+msgstr ""
+
+msgid "&Keep at least this many of each level:"
+msgstr ""
+
+msgid ""
+"&Keep this many crystals in the bag before starting (0: only as needed):"
+msgstr ""
+
+msgid "&Keep:"
+msgstr ""
+
+msgid "&Keyboard Manager"
+msgstr ""
+
+msgid "&Keyboard shortcuts"
+msgstr ""
+
+msgid "&Keys the bot presses:"
+msgstr ""
+
+msgid "&Kill limit"
+msgstr ""
+
+msgid "&Language:"
+msgstr ""
+
+msgid "&Leave a team another player leads when the run starts"
+msgstr ""
+
+msgid "&Let it shut down"
+msgstr ""
+
+msgid "&Level:"
+msgstr ""
+
+msgid "&Log"
+msgstr ""
+
+msgid "&Log:"
+msgstr ""
+
+msgid "&Lose experience:"
+msgstr ""
+
+msgid "&Make Enhance Crystals from crystal shards when needed"
+msgstr ""
+
+msgid "&Make them:"
+msgstr ""
+
+msgid "&Map:"
+msgstr ""
+
+msgid "&Market searcher and buyer"
+msgstr ""
+
+msgid "&Messages"
+msgstr ""
+
+msgid "&Messages:"
+msgstr ""
+
+msgid "&Missing Child (Little Jack -> Old Jack in Tari Village)"
+msgstr ""
+
+msgid "&Most a unit (0 = any):"
+msgstr ""
+
+msgid "&Movement:"
+msgstr ""
+
+msgid "&Mute the game's own speech:"
+msgstr ""
+
+msgid "&Mute this game"
+msgstr ""
+
+msgid "&Muted Sounds:"
+msgstr ""
+
+msgid "&Names or ids (separated by commas):"
+msgstr ""
+
+msgid "&Never fight:"
+msgstr ""
+
+msgid "&New chat with (name or id):"
+msgstr ""
+
+msgid "&New plan"
+msgstr ""
+
+msgid "&New profile"
+msgstr ""
+
+msgid "&No, keep current language"
+msgstr ""
+
+msgid "&Number of gems:"
+msgstr ""
+
+msgid "&Offer version {v} again (you chose to skip it)"
+msgstr ""
+
+msgid "&Only fight (names, separated by commas):"
+msgstr ""
+
+msgid "&Open the chests that turn up while farming"
+msgstr ""
+
+msgid ""
+"&Open the game again, log in and carry on where the run was (at most {n} times a day)"
+msgstr ""
+
+msgid "&Open the log folder"
+msgstr ""
+
+msgid "&PK mode:"
+msgstr ""
+
+msgid "&Pages at most (0 = all):"
+msgstr ""
+
+msgid "&Pause"
+msgstr ""
+
+msgid "&Pause between attack keys (seconds):"
+msgstr ""
+
+msgid "&People:"
+msgstr ""
+
+msgid "&Period:"
+msgstr ""
+
+msgid "&Pet:"
+msgstr ""
+
+msgid "&Pharmacist:"
+msgstr ""
+
+msgid "&Pick from monsters near me"
+msgstr ""
+
+msgid "&Place:"
+msgstr ""
+
+msgid "&Plan:"
+msgstr ""
+
+msgid "&Plans"
+msgstr ""
+
+msgid "&Practise for (minutes; 0: in, share, out; time inside uses drop time):"
+msgstr ""
+
+msgid "&Private messages"
+msgstr ""
+
+msgid "&Protection runes (a failure keeps the level):"
+msgstr ""
+
+msgid "&Publish"
+msgstr ""
+
+msgid "&Quick guide"
+msgstr ""
+
+msgid "&Read keys from the game"
+msgstr ""
+
+msgid "&Read new messages:"
+msgstr ""
+
+msgid "&Refresh the market list"
+msgstr ""
+
+msgid "&Remove"
+msgstr ""
+
+msgid "&Repeat:"
+msgstr ""
+
+msgid "&Replies before the goodbye:"
+msgstr ""
+
+msgid "&Replies, one per line:"
+msgstr ""
+
+msgid "&Reply"
+msgstr ""
+
+msgid "&Report:"
+msgstr ""
+
+msgid "&Rest before the next fight below HP (%):"
+msgstr ""
+
+msgid "&Restore selected message"
+msgstr ""
+
+msgid "&Results"
+msgstr ""
+
+msgid "&Results (Space ticks a lot to buy):"
+msgstr ""
+
+msgid "&Results:"
+msgstr ""
+
+msgid "&Room (part of its name; empty: the highest level free room):"
+msgstr ""
+
+msgid "&Run"
+msgstr ""
+
+msgid "&Run selected"
+msgstr ""
+
+msgid "&Run the day as:"
+msgstr ""
+
+msgid "&Save"
+msgstr ""
+
+msgid "&Save profile"
+msgstr ""
+
+msgid "&Save some of the day's drop time (instead of the character's setting)"
+msgstr ""
+
+msgid "&Scan the constructions"
+msgstr ""
+
+msgid "&Schedules:"
+msgstr ""
+
+msgid "&Script commands"
+msgstr ""
+
+msgid "&Search"
+msgstr ""
+
+msgid "&Sell shards by the bag manager's rules (when done, or when too heavy)"
+msgstr ""
+
+msgid "&Sell what is gathered to the Aquaculture, Ore or Herb Buyer"
+msgstr ""
+
+msgid "&Sell:"
+msgstr ""
+
+msgid "&Send"
+msgstr ""
+
+msgid "&Settings"
+msgstr ""
+
+msgid "&Shields and big heals below HP (%):"
+msgstr ""
+
+msgid ""
+"&Shoot monsters in reach while walking to the next one (a character that fights from afar)"
+msgstr ""
+
+msgid "&Show the time after each message"
+msgstr ""
+
+msgid "&Skip monsters with HP over:"
+msgstr ""
+
+msgid "&Sounds:"
+msgstr ""
+
+msgid "&Speak"
+msgstr ""
+
+msgid "&Speak important events with NVDA"
+msgstr ""
+
+msgid "&Start"
+msgstr ""
+
+msgid "&Start:"
+msgstr ""
+
+msgid "&Stop farming every day at a set time, whatever the bot is doing"
+msgstr ""
+
+msgid "&Stop when a death costs too little"
+msgstr ""
+
+msgid "&Supplies (ticked ones are refilled):"
+msgstr ""
+
+msgid "&Take them from:"
+msgstr ""
+
+msgid "&Target keys pick:"
+msgstr ""
+
+msgid "&Test filter"
+msgstr ""
+
+msgid "&Then:"
+msgstr ""
+
+msgid "&Throw away:"
+msgstr ""
+
+msgid "&Time (HH:MM, this computer's clock):"
+msgstr ""
+
+msgid "&Time (hours:minutes):"
+msgstr ""
+
+msgid "&Time limit"
+msgstr ""
+
+msgid "&Tools"
+msgstr ""
+
+msgid "&Travel on fusion beast:"
+msgstr ""
+
+msgid "&Troubled Guard (Guard Barr -> Merlin -> Mulberry Silk -> Coat)"
+msgstr ""
+
+msgid "&Unmute this game"
+msgstr ""
+
+msgid "&Update now"
+msgstr ""
+
+msgid "&Use the selected skill:"
+msgstr ""
+
+msgid "&User guide (opens in your browser)"
+msgstr ""
+
+msgid "&View"
+msgstr ""
+
+msgid "&View as script"
+msgstr ""
+
+msgid "&Walk whenever the maps connect on foot"
+msgstr ""
+
+msgid "&What to do:"
+msgstr ""
+
+msgid "&When the bag is full:"
+msgstr ""
+
+msgid "&Where to die:"
+msgstr ""
+
+msgid "&Who may join:"
+msgstr ""
+
+msgid "&Write an email"
+msgstr ""
+
+msgid "&Write the script of the day now"
+msgstr ""
+
+msgid "&Write to the files in the logs folder:"
+msgstr ""
+
+msgid "&XP loser"
+msgstr ""
+
+msgid "&Yes, switch language"
+msgstr ""
+
+msgid "&Your places:"
+msgstr ""
+
+msgid "'break' outside a repeat or while block"
+msgstr ""
+
+msgid "'end' without a block to end"
+msgstr ""
+
+msgid "'{value}' isn't a key the bot can press."
+msgstr ""
+
+msgid "'{word}' block has no 'end'"
+msgstr ""
+
+msgid "'{word}' must be at the top level, not inside a block"
+msgstr ""
+
+msgid "'{word}' outside an if block"
+msgstr ""
+
+msgid "(+{n} opening soon)"
+msgstr ""
+
+msgid "(Taken from {twin}, the same size.)"
+msgstr ""
+
+msgid "(a development build)"
+msgstr ""
+
+msgid "(and {n} more with no price then)"
+msgstr ""
+
+msgid "(no plan yet)"
+msgstr ""
+
+msgid "(sellers not counted)"
+msgstr ""
+
+msgid "(was {n})"
+msgstr ""
+
+msgid "({n} lots couldn't be read: see logs\\dialogs.log)"
+msgstr ""
+
+msgid "({pages} pages, {min:.1f} minutes)"
+msgstr ""
+
+msgid "+{n} arnebia"
+msgstr ""
+
+msgid ", +20% with {shard}"
+msgstr ""
+
+msgid ", about {total} arnebia at the market's last seen price"
+msgstr ""
+
+msgid ", and says it to the team"
+msgstr ""
+
+msgid ", pet HP {pct}%"
+msgstr ""
+
+msgid ", protected by runes"
+msgstr ""
+
+msgid ", team of 2-3"
+msgstr ""
+
+msgid ", worth about {v} arnebia at the Shard Market"
+msgstr ""
+
+msgid ", {heal} healing"
+msgstr ""
+
+msgid ", {n} threads"
+msgstr ""
+
+msgid "1 chest opened"
+msgstr ""
+
+msgid "1 game, bot running"
+msgstr ""
+
+msgid "1 game, bot stopped"
+msgstr ""
+
+msgid "1 level up"
+msgstr ""
+
+msgid ""
+"1. the Before farming list, top to bottom; 2. the farming, until the plan ends or the daily stop before the game's day reset; 3. the After farming list, when the farming ended by itself (not after Stop). These are the same lists as Character settings, Triggers. The script of the day is written from them once; after that it is yours to change, until you write it again."
+msgstr ""
+
+msgid "10,000 arnebia (1,500 gang contribution)"
+msgstr ""
+
+msgid "12-hour (4:05 PM)"
+msgstr ""
+
+msgid "20 diamonds (5,000 gang contribution)"
+msgstr ""
+
+msgid "20,000 arnebia (3,000 gang contribution)"
+msgstr ""
+
+msgid "24-hour (16:05)"
+msgstr ""
+
+msgid "; these keys hold a skill that is also on another key: {keys}"
+msgstr ""
+
+msgid "A bot is running. Stop it and quit?"
+msgstr ""
+
+msgid "A city s&quare"
+msgstr ""
+
+msgid "A day of my choice"
+msgstr ""
+
+msgid ""
+"A file that reaches the size above is kept as name.1, the older ones move to name.2 and so on, and the oldest is dropped. The day's run log is rotated the same way inside its day."
+msgstr ""
+
+msgid "A name for this place:"
+msgstr ""
+
+msgid "A plan named {name} already exists. Replace it?"
+msgstr ""
+
+msgid ""
+"A scheduled plan starts in the game the character is logged in to, as the Start button would. A time missed while Mist World Farmer was closed doesn't run later; a game busy with another run waits up to 15 minutes."
+msgstr ""
+
+msgid "A script called {name} exists. Replace it?"
+msgstr ""
+
+msgid "A share of the day's &drop time (kept across restarts)"
+msgstr ""
+
+msgid "A sound's mute setting must be on or off."
+msgstr ""
+
+msgid "A team dungeon: the game lets in groups of 2 to 3 players."
+msgstr ""
+
+msgid "About the skill:"
+msgstr ""
+
+msgid "About this entrance:"
+msgstr ""
+
+msgid "About this map:"
+msgstr ""
+
+msgid "About:"
+msgstr ""
+
+msgid "Accept &commands from them"
+msgstr ""
+
+msgid "Accept their team &invites"
+msgstr ""
+
+msgid "Accumulation points"
+msgstr ""
+
+msgid "Action"
+msgstr ""
+
+msgid "Action menu"
+msgstr ""
+
+msgid "Actions in execution &order:"
+msgstr ""
+
+msgid ""
+"Actions run from top to bottom. A failed DETERMINISTIC Before action also prevents farming. After runs automatically only when farming ends by itself."
+msgstr ""
+
+msgid "Activity:"
+msgstr ""
+
+msgid "Ad&vanced"
+msgstr ""
+
+msgid "Add a gang"
+msgstr ""
+
+msgid "Add a gang by &name"
+msgstr ""
+
+msgid "Add a gang to gather in, or untick gathering in gangs' areas."
+msgstr ""
+
+msgid "Add a leftover matching shard for +20% (level 2 and up)"
+msgstr ""
+
+msgid "Add a place"
+msgstr ""
+
+msgid "Add a supply"
+msgstr ""
+
+msgid "Add an item"
+msgstr ""
+
+msgid "Add at least one farming spot."
+msgstr ""
+
+msgid "Add new filter"
+msgstr ""
+
+msgid "Add our &own gang"
+msgstr ""
+
+msgid "Add selected to Saved Sounds"
+msgstr ""
+
+msgid "Add to &filter list"
+msgstr ""
+
+msgid "Added to the draft. Choose Save to apply."
+msgstr ""
+
+msgid ""
+"Added {place} on {map}. Stand where you gather by hand: the bot stands on that very spot."
+msgstr ""
+
+msgid "Advanced settings - {name}"
+msgstr ""
+
+msgid "After a &kill count"
+msgstr ""
+
+msgid "After a &time limit"
+msgstr ""
+
+msgid "After farming"
+msgstr ""
+
+msgid "After the run, &stay in town and manage the team until I stop it"
+msgstr ""
+
+msgid "Afterwards"
+msgstr ""
+
+msgid "Agent"
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "All files (*.*)|*.*"
+msgstr ""
+
+msgid "All items ({n})"
+msgstr ""
+
+msgid "All mode"
+msgstr ""
+
+msgid "All time"
+msgstr ""
+
+msgid "Already following you."
+msgstr ""
+
+msgid "Already running."
+msgstr ""
+
+msgid "Also count se&llers (slow the first time)"
+msgstr ""
+
+msgid "Also: {names}"
+msgstr ""
+
+msgid "Always"
+msgstr ""
+
+msgid ""
+"Always fight the &nearest monster (off: melee picks a calm one beside a pack)"
+msgstr ""
+
+msgid "Always leave this many in the &bag:"
+msgstr ""
+
+msgid ""
+"An older Mist World Farmer agent is installed. Press Install to update it."
+msgstr ""
+
+msgid "Animal Shed feeding"
+msgstr ""
+
+msgid "Another character"
+msgstr ""
+
+msgid "Another gang's, by its name"
+msgstr ""
+
+msgid "Another program is using the Pause key; the Pause shortcut won't work."
+msgstr ""
+
+msgid "Answering"
+msgstr ""
+
+msgid "Applied keyboard profile {name}."
+msgstr ""
+
+msgid "Apply a keyboard profile while out of combat with game menus closed."
+msgstr ""
+
+msgid "Apply keyboard profile {name}"
+msgstr ""
+
+msgid ""
+"Are you sure you want to kill this game?\n"
+"\n"
+"{name}"
+msgstr ""
+
+msgid "Area a&round me"
+msgstr ""
+
+msgid "Arnebia"
+msgstr ""
+
+msgid ""
+"Arnebia paid out at shops and for fares: {n} (a bought item is an expense once it is used up)"
+msgstr ""
+
+msgid ""
+"Arnebia spent on items used up (from the stored prices; bought items are not counted here):"
+msgstr ""
+
+msgid "As many as I can"
+msgstr ""
+
+msgid "At a &clock time"
+msgstr ""
+
+msgid "At a place I choose"
+msgstr ""
+
+msgid "At the shops' fixed prices:"
+msgstr ""
+
+msgid "Attack keys: enter keys separated by spaces, for example: j y . h"
+msgstr ""
+
+msgid "Automatic, by class"
+msgstr ""
+
+msgid "Autopilot"
+msgstr ""
+
+msgid "Available sound IDs could not be read. Adding sounds is unavailable."
+msgstr ""
+
+msgid "Back where the run started"
+msgstr ""
+
+msgid "Bag"
+msgstr ""
+
+msgid "Bag and supplies - {name}"
+msgstr ""
+
+msgid "Bag:"
+msgstr ""
+
+msgid "Battlefield merit"
+msgstr ""
+
+msgid "Before farming"
+msgstr ""
+
+msgid "Before moving on to the next spot (only with more than one spot)"
+msgstr ""
+
+msgid "Before setting out, have at least (0: don't look)"
+msgstr ""
+
+msgid ""
+"Before setting out, the bag is full with less than this much load &left (900 to 1000 is safe):"
+msgstr ""
+
+msgid "Best hit: {hit}"
+msgstr ""
+
+msgid "Best normal hit: {hit}"
+msgstr ""
+
+msgid "Between fights"
+msgstr ""
+
+msgid "Binding for {key}"
+msgstr ""
+
+msgid "Black Gold Teleportation Stones"
+msgstr ""
+
+msgid "Bot"
+msgstr ""
+
+msgid "Bottomless pit"
+msgstr ""
+
+msgid "Bought:"
+msgstr ""
+
+msgid "Break &Equipment Enhance Crystals"
+msgstr ""
+
+msgid "Break &Weapon Enhance Crystals"
+msgstr ""
+
+msgid "Break &down to:"
+msgstr ""
+
+msgid "Break them now?"
+msgstr ""
+
+msgid "Breaking can't be undone."
+msgstr ""
+
+msgid "Breaks {n} {item}."
+msgstr ""
+
+msgid "Broadcast (with a sound)"
+msgstr ""
+
+msgid "Browse a category"
+msgstr ""
+
+msgid "Bu&y the ticked lots"
+msgstr ""
+
+msgid "Buffs off."
+msgstr ""
+
+msgid "Buffs on."
+msgstr ""
+
+msgid "Build at the East and West &posts"
+msgstr ""
+
+msgid "Build the Magic Ca&nnon under construction"
+msgstr ""
+
+msgid "Build the S&upply Camp under construction"
+msgstr ""
+
+msgid "Busy - send stop first."
+msgstr ""
+
+msgid "Buy {lots} lots, {items} items, {gold} gold coins in all?"
+msgstr ""
+
+msgid "By item"
+msgstr ""
+
+msgid "By seller ID"
+msgstr ""
+
+msgid "C&hannel:"
+msgstr ""
+
+msgid "C&hat"
+msgstr ""
+
+msgid "C&lock:"
+msgstr ""
+
+msgid "C&opy"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Cancel &reply"
+msgstr ""
+
+msgid "Capture current &keys"
+msgstr ""
+
+msgid "Carry on the interrupted runs"
+msgstr ""
+
+msgid "Category"
+msgstr ""
+
+msgid "Caves"
+msgstr ""
+
+msgid "Cell x:"
+msgstr ""
+
+msgid "Cell y:"
+msgstr ""
+
+msgid "Change PK mode"
+msgstr ""
+
+msgid "Change key"
+msgstr ""
+
+msgid "Change target mode"
+msgstr ""
+
+msgid "Change&log"
+msgstr ""
+
+msgid "Changelog"
+msgstr ""
+
+msgid "Changes apply when you save."
+msgstr ""
+
+msgid "Changes are a draft until Save."
+msgstr ""
+
+msgid "Channels"
+msgstr ""
+
+msgid "Character"
+msgstr ""
+
+msgid "Character settings - {name}"
+msgstr ""
+
+msgid ""
+"Character settings, Triggers: the {stage} list can't be read ({err}) - open Character settings and save it again"
+msgstr ""
+
+msgid "Character sheet"
+msgstr ""
+
+msgid "Character:"
+msgstr ""
+
+msgid "Chat - {name}"
+msgstr ""
+
+msgid "Chat filters"
+msgstr ""
+
+msgid "Chat needs the new agent in this game: restart the game."
+msgstr ""
+
+msgid "Chat settings"
+msgstr ""
+
+msgid "Cheapest"
+msgstr ""
+
+msgid "Cheapest first"
+msgstr ""
+
+msgid "Check for &updates"
+msgstr ""
+
+msgid "Check for offline members every (minutes):"
+msgstr ""
+
+msgid "Check for offline members only when the run &passes through a town"
+msgstr ""
+
+msgid "Check o&nly"
+msgstr ""
+
+msgid "Check the bag for restocking every (seconds):"
+msgstr ""
+
+msgid "Chests opened: {n}"
+msgstr ""
+
+msgid "Chime"
+msgstr ""
+
+msgid ""
+"Choose &skills from what the game says about them (off: press the attack keys in turn)"
+msgstr ""
+
+msgid "Choose Before farming or After farming."
+msgstr ""
+
+msgid "Choose a bound self-buff or shield to prepare."
+msgstr ""
+
+msgid "Choose a category to browse."
+msgstr ""
+
+msgid "Choose a character."
+msgstr ""
+
+msgid "Choose a city square:"
+msgstr ""
+
+msgid "Choose a command to insert at the cursor:"
+msgstr ""
+
+msgid "Choose a filter matching type."
+msgstr ""
+
+msgid "Choose a map."
+msgstr ""
+
+msgid "Choose a tool or a saved script."
+msgstr ""
+
+msgid "Choose an action to run."
+msgstr ""
+
+msgid "Choose at least one officer."
+msgstr ""
+
+msgid "Choose in a dialog"
+msgstr ""
+
+msgid "Choose the Mist World folder (the one with mw.exe)"
+msgstr ""
+
+msgid "Choose the pet to rebirth, or untick pet rebirth."
+msgstr ""
+
+msgid "Choose where to go first."
+msgstr ""
+
+msgid "City"
+msgstr ""
+
+msgid "City squares"
+msgstr ""
+
+msgid "Cl&ear"
+msgstr ""
+
+msgid "Clean the &bag now"
+msgstr ""
+
+msgid "Clean the bag"
+msgstr ""
+
+msgid "Clean the bag now: started by hand"
+msgstr ""
+
+msgid "Cleaning the bag"
+msgstr ""
+
+msgid "Clear the log? This can't be undone."
+msgstr ""
+
+msgid "Clock"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Close a dialog"
+msgstr ""
+
+msgid "Close the game"
+msgstr ""
+
+msgid "Close without saving"
+msgstr ""
+
+msgid "Closing every Mist World window for the update"
+msgstr ""
+
+msgid "Closing every Mist World window to reinstall the agent"
+msgstr ""
+
+msgid "Closing the game."
+msgstr ""
+
+msgid "Collect Herbs"
+msgstr ""
+
+msgid "Collect the &bank's deposit income and Value Product incomes"
+msgstr ""
+
+msgid "Colo&urs (none ticked: all of them):"
+msgstr ""
+
+msgid "Combat"
+msgstr ""
+
+msgid "Combining and craftsman"
+msgstr ""
+
+msgid "Combining gems (3 make 1, 50% chance)"
+msgstr ""
+
+msgid "Coming."
+msgstr ""
+
+msgid "Command &list (F1)"
+msgstr ""
+
+msgid "Commands for trusted players"
+msgstr ""
+
+msgid "Commands: {list}"
+msgstr ""
+
+msgid ""
+"Configure seasonal and special game events. Currently active event: Thanksgiving Hunt. Defeating turkeys in the event hunt map grants turkeys that can be exchanged for valuable gifts."
+msgstr ""
+
+msgid "Connected"
+msgstr ""
+
+msgid "Connecting..."
+msgstr ""
+
+msgid "Construction &scanner"
+msgstr ""
+
+msgid "Construction scanner"
+msgstr ""
+
+msgid "Contact the &developer"
+msgstr ""
+
+msgid "Contact the developer"
+msgstr ""
+
+msgid "Contains text"
+msgstr ""
+
+msgid "Contribution"
+msgstr ""
+
+msgid "Contribution Chests"
+msgstr ""
+
+msgid "Contribution Chests a day (the game allows 2):"
+msgstr ""
+
+msgid "Cop&y all"
+msgstr ""
+
+msgid "Copied"
+msgstr ""
+
+msgid "Copied {email}."
+msgstr ""
+
+msgid "Copy &selection"
+msgstr ""
+
+msgid "Corpses"
+msgstr ""
+
+msgid "Could not read known sound IDs: {error}"
+msgstr ""
+
+msgid "Could not read the saved sound list: {error}"
+msgstr ""
+
+msgid ""
+"Could not release sound listening; it is released when the connection closes."
+msgstr ""
+
+msgid "Couldn't apply the settings: {err}"
+msgstr ""
+
+msgid "Couldn't assign {binding} to {key}."
+msgstr ""
+
+msgid "Couldn't carry on {what} for {name}: {why}"
+msgstr ""
+
+msgid "Couldn't change the game's settings: {err}"
+msgstr ""
+
+msgid "Couldn't close it: {why}"
+msgstr ""
+
+msgid "Couldn't copy it. The address is {email}"
+msgstr ""
+
+msgid "Couldn't delete it: {err}"
+msgstr ""
+
+msgid "Couldn't export the plan: {err}"
+msgstr ""
+
+msgid "Couldn't export the settings: {err}"
+msgstr ""
+
+msgid "Couldn't find this character's quick phrases in the game folder."
+msgstr ""
+
+msgid "Couldn't import the plan: {err}"
+msgstr ""
+
+msgid "Couldn't import the settings: {err}"
+msgstr ""
+
+msgid "Couldn't kill {name}. It may have already closed."
+msgstr ""
+
+msgid ""
+"Couldn't load the changelog. Check your internet connection and try again."
+msgstr ""
+
+msgid "Couldn't open it."
+msgstr ""
+
+msgid "Couldn't open it: {err}"
+msgstr ""
+
+msgid "Couldn't prepare {skill}."
+msgstr ""
+
+msgid "Couldn't reach GitHub to look for updates: {why}"
+msgstr ""
+
+msgid "Couldn't read keyboard settings from the game."
+msgstr ""
+
+msgid "Couldn't read the game: {err}"
+msgstr ""
+
+msgid "Couldn't save the schedules: {err}"
+msgstr ""
+
+msgid "Couldn't save: {err}"
+msgstr ""
+
+msgid "Couldn't set the quick phrase on {key}."
+msgstr ""
+
+msgid "Couldn't shut the computer down: {err}"
+msgstr ""
+
+msgid "Couldn't start the game: {err}"
+msgstr ""
+
+msgid "Couldn't work out a route: {err}"
+msgstr ""
+
+msgid "Couldn't write it: {err}"
+msgstr ""
+
+msgid "Couldn't."
+msgstr ""
+
+msgid "Cra&ftsman:"
+msgstr ""
+
+msgid "Craftsman and selling"
+msgstr ""
+
+msgid "Craftsman and spending"
+msgstr ""
+
+msgid ""
+"Create Mist World Farmer settings for {character} from {source}?\n"
+"\n"
+"This creates settings for that name only. It doesn't create or log in to a Mist World character. The choices take effect when that character is scanned or run. Nothing changes until you choose Yes."
+msgstr ""
+
+msgid ""
+"Critical hits: {crits}, defence breaks: {breaks}, normal hits: {normals}"
+msgstr ""
+
+msgid "Crystals"
+msgstr ""
+
+msgid "Crystals: what they give and cost is read from the craftsman's page."
+msgstr ""
+
+msgid "Cut Flesh"
+msgstr ""
+
+msgid "D&ungeons"
+msgstr ""
+
+msgid "D&uplicate"
+msgstr ""
+
+msgid "Daily chores"
+msgstr ""
+
+msgid "Damage data: null (no hit data for this run)"
+msgstr ""
+
+msgid "Damage given: {dmg} ({hits} hits, {misses} misses)"
+msgstr ""
+
+msgid "Damage received: {dmg} ({hits} hits, {misses} misses)"
+msgstr ""
+
+msgid "Date: write it as year-month-day, for example 2026-11-05"
+msgstr ""
+
+msgid "Death"
+msgstr ""
+
+msgid "Deaths before stopping:"
+msgstr ""
+
+msgid "Delay after success (&seconds):"
+msgstr ""
+
+msgid "Delete keyboard profile {name}?"
+msgstr ""
+
+msgid "Delete the schedule for {what} ({who})?"
+msgstr ""
+
+msgid "Delete {name}? This can't be undone."
+msgstr ""
+
+msgid "Description:"
+msgstr ""
+
+msgid "Details:"
+msgstr ""
+
+msgid "Dev: development builds (newest changes, can break)"
+msgstr ""
+
+msgid "Ding"
+msgstr ""
+
+msgid "Disabled"
+msgstr ""
+
+msgid "Discard item"
+msgstr ""
+
+msgid "Do nothing"
+msgstr ""
+
+msgid ""
+"Do the day's chores at the start of the &first farming run each game day"
+msgstr ""
+
+msgid "Does not match"
+msgstr ""
+
+msgid "Don't donate"
+msgstr ""
+
+msgid "Don't fuse"
+msgstr ""
+
+msgid "Don't go"
+msgstr ""
+
+msgid "Don't refill, just tell me"
+msgstr ""
+
+msgid "Done this game day (it starts at 00:00 GMT):"
+msgstr ""
+
+msgid "Double beep"
+msgstr ""
+
+msgid "Downloading Mist World Farmer {v}"
+msgstr ""
+
+msgid "Draw Blood"
+msgstr ""
+
+msgid "Drink below (%):"
+msgstr ""
+
+msgid "Drop time and experience"
+msgstr ""
+
+msgid "Drop time left: {h} h {m} min"
+msgstr ""
+
+msgid "Drop time not read yet."
+msgstr ""
+
+msgid "Drop time to save (minutes):"
+msgstr ""
+
+msgid "Drop time used after reaching safety (seconds):"
+msgstr ""
+
+msgid "Drop time:"
+msgstr ""
+
+msgid "Dungeon entrance"
+msgstr ""
+
+msgid "Dungeons"
+msgstr ""
+
+msgid "Dungeons to run (ticked ones run one after another)"
+msgstr ""
+
+msgid "Dungeons whose entrance the game's files don't show: {names}"
+msgstr ""
+
+msgid ""
+"E&xchange contribution for Contribution Chests (5,000 each, at Guard Captain Suke)"
+msgstr ""
+
+msgid "E&xit"
+msgstr ""
+
+msgid "E&xport"
+msgstr ""
+
+msgid "E&xport character settings"
+msgstr ""
+
+msgid "Each from its own recipe"
+msgstr ""
+
+msgid "Each sound needs an ID, a name, and a mute setting."
+msgstr ""
+
+msgid "Earnings so far: {n} arnebia (picked up and sold)"
+msgstr ""
+
+msgid "East edge (x):"
+msgstr ""
+
+msgid "Edit binding"
+msgstr ""
+
+msgid "Edit filter"
+msgstr ""
+
+msgid "Edit quick phrase"
+msgstr ""
+
+msgid "Edit schedule"
+msgstr ""
+
+msgid "Elite"
+msgstr ""
+
+msgid "Enable/&disable"
+msgstr ""
+
+msgid "Enable/&disable filter"
+msgstr ""
+
+msgid "Enabled"
+msgstr ""
+
+msgid "End on a map &without monsters"
+msgstr ""
+
+msgid "End the run with the &hearthstone"
+msgstr ""
+
+msgid "Ending a run"
+msgstr ""
+
+msgid "Ends at home, with the hearthstone."
+msgstr ""
+
+msgid "Ends at {map}{at}."
+msgstr ""
+
+msgid "Ends back where the run started."
+msgstr ""
+
+msgid "Ends on the nearest map without monsters."
+msgstr ""
+
+msgid "Ends where it is."
+msgstr ""
+
+msgid "Enemies"
+msgstr ""
+
+msgid "Enhance &up to (+):"
+msgstr ""
+
+msgid "Enhance Crystals"
+msgstr ""
+
+msgid "Enhance Crystals (breaking them costs arnebia)"
+msgstr ""
+
+msgid "Enter a keyboard profile name on one line."
+msgstr ""
+
+msgid "Enter a name for the plan."
+msgstr ""
+
+msgid "Enter a quick phrase on one line."
+msgstr ""
+
+msgid "Enter a sound ID between 1 and 99999."
+msgstr ""
+
+msgid "Enter filter text or a pattern."
+msgstr ""
+
+msgid "Enter sound IDs, ranges, all, or off."
+msgstr ""
+
+msgid "Enter the daily stop time as HH:MM, for example 04:50."
+msgstr ""
+
+msgid "Enter the hearthstone item's name, or give it a hotkey."
+msgstr ""
+
+msgid "Enter the item to watch."
+msgstr ""
+
+msgid "Enter the time as HH:MM, for example 22:30."
+msgstr ""
+
+msgid ""
+"Entrance: on {map}, at one of the {n} entrances the game marks there ({spots}). The bot looks at each until the game shows the {name} circle, and remembers it for next time."
+msgstr ""
+
+msgid "Entrance: {npc}, on {map} at {x},{y}."
+msgstr ""
+
+msgid "Equipment"
+msgstr ""
+
+msgid "Equipment Enhancer"
+msgstr ""
+
+msgid "Errors only"
+msgstr ""
+
+msgid "Event"
+msgstr ""
+
+msgid "Event &entries (times to run):"
+msgstr ""
+
+msgid "Events"
+msgstr ""
+
+msgid "Every (minutes):"
+msgstr ""
+
+msgid "Every day"
+msgstr ""
+
+msgid "Every day at the time below"
+msgstr ""
+
+msgid "Every end goes here - time up, drop time, a full bag, the last death"
+msgstr ""
+
+msgid ""
+"Every shard into gems, then each colour up as far as it goes (failures give back a shard, which is used again). Expected:"
+msgstr ""
+
+msgid "Everyone can get replies again."
+msgstr ""
+
+msgid "Everything"
+msgstr ""
+
+msgid "Everything (debug)"
+msgstr ""
+
+msgid ""
+"Everything the buyer lists is sold, except what you keep in Character, Bag and supplies (an item set to Keep, or the number you keep of it). Before the gang's area the bot sells what it carries, since that half hour can't be left and taken up again."
+msgstr ""
+
+msgid "Exact message"
+msgstr ""
+
+msgid "Exchange"
+msgstr ""
+
+msgid "Experience"
+msgstr ""
+
+msgid ""
+"Experience cards to keep running while farming (the strongest ticked one in the bag first)"
+msgstr ""
+
+msgid "Expert"
+msgstr ""
+
+msgid "Export character settings"
+msgstr ""
+
+msgid "Export plan"
+msgstr ""
+
+msgid "Falling"
+msgstr ""
+
+msgid "Farming"
+msgstr ""
+
+msgid "Farming &spots:"
+msgstr ""
+
+msgid "Farming day"
+msgstr ""
+
+msgid "Farming is over. The computer shuts down in {n} seconds."
+msgstr ""
+
+msgid "Farming plan"
+msgstr ""
+
+msgid "Farming spot"
+msgstr ""
+
+msgid "Feed the pet a Rice Roll"
+msgstr ""
+
+msgid "Fewer than:"
+msgstr ""
+
+msgid "Fight &back when attacked while travelling"
+msgstr ""
+
+msgid "Fight as &fusion beast:"
+msgstr ""
+
+msgid "Fight monsters another player is &already killing"
+msgstr ""
+
+msgid "Fight on"
+msgstr ""
+
+msgid "Fighting"
+msgstr ""
+
+msgid "Fighting:"
+msgstr ""
+
+msgid "Fill &up to:"
+msgstr ""
+
+msgid "Filter list"
+msgstr ""
+
+msgid "Filter settings"
+msgstr ""
+
+msgid "Filter text or &pattern:"
+msgstr ""
+
+msgid "Fishing"
+msgstr ""
+
+msgid "Floor {n} (level {lvl}+)"
+msgstr ""
+
+msgid "Following a leader"
+msgstr ""
+
+msgid "Following you."
+msgstr ""
+
+msgid "For (seconds):"
+msgstr ""
+
+msgid "Free rebirths a day (the game gives 2):"
+msgstr ""
+
+msgid "Friday"
+msgstr ""
+
+msgid "From (+):"
+msgstr ""
+
+msgid "From Small ones, fused up (5 for 1, usually cheaper)"
+msgstr ""
+
+msgid "From a level on"
+msgstr ""
+
+msgid "From everyone"
+msgstr ""
+
+msgid "From the shop only"
+msgstr ""
+
+msgid "From the storehouse only"
+msgstr ""
+
+msgid "From the storehouse, then the shop"
+msgstr ""
+
+msgid "From trusted players"
+msgstr ""
+
+msgid "Full bag"
+msgstr ""
+
+msgid "Full event duration (until game auto-exits)"
+msgstr ""
+
+msgid "Full loop (every lane, a longer lap)"
+msgstr ""
+
+msgid "Full patrol loop"
+msgstr ""
+
+msgid "Game"
+msgstr ""
+
+msgid "Games muted."
+msgstr ""
+
+msgid "Games unmuted."
+msgstr ""
+
+msgid "Gang"
+msgstr ""
+
+msgid "Gang announcement"
+msgstr ""
+
+msgid "Gang missions (once a day each)"
+msgstr ""
+
+msgid "Gang mode"
+msgstr ""
+
+msgid "Gang name"
+msgstr ""
+
+msgid "Gangs"
+msgstr ""
+
+msgid "Gangs' production areas (a Lake, Mining Area or Herbal Garden)"
+msgstr ""
+
+msgid "Gangs, in &order (the bot goes to each in turn):"
+msgstr ""
+
+msgid "Gathe&ring"
+msgstr ""
+
+msgid "Gather &outside (after the gangs' areas, or without them)"
+msgstr ""
+
+msgid "Gather for this many &minutes (0: until Vitality runs out):"
+msgstr ""
+
+msgid "Gather in &gangs' areas first, each once a game day (30 minutes inside)"
+msgstr ""
+
+msgid "Gathering"
+msgstr ""
+
+msgid ""
+"Gathering also stops when Vitality runs out for the day; more Vitality costs diamonds, which the bot never spends."
+msgstr ""
+
+msgid "Gathering skill: {skill}, {rank}."
+msgstr ""
+
+msgid "Gear"
+msgstr ""
+
+msgid "Gear of level {lo} and up: Level {lv} crystals"
+msgstr ""
+
+msgid "Gear of levels {lo} to {hi}: Level {lv} crystals"
+msgstr ""
+
+msgid "Gem &level to stop at:"
+msgstr ""
+
+msgid "Gem Brea&ker"
+msgstr ""
+
+msgid "Gem Breaker"
+msgstr ""
+
+msgid "Gem Maker"
+msgstr ""
+
+msgid "Gem Maker, Equipment Enhancer and chores"
+msgstr ""
+
+msgid "Gem Shards"
+msgstr ""
+
+msgid "Gems"
+msgstr ""
+
+msgid "Gems of a level"
+msgstr ""
+
+msgid "Get crystal shards &from:"
+msgstr ""
+
+msgid "Get more Level 1 shards &from:"
+msgstr ""
+
+msgid "Getting there"
+msgstr ""
+
+msgid "Gifts to redeem with turkeys (up to 2 times a day each)"
+msgstr ""
+
+msgid "Give the script a name."
+msgstr ""
+
+msgid "Give up when the enemy takes no &damage for (seconds):"
+msgstr ""
+
+msgid "Glacier prince"
+msgstr ""
+
+msgid "Glacier princess"
+msgstr ""
+
+msgid "Global"
+msgstr ""
+
+msgid "Go &on"
+msgstr ""
+
+msgid "Go anyway"
+msgstr ""
+
+msgid "Go round them in turn until the plan stops"
+msgstr ""
+
+msgid "Go somewhere safe and stop"
+msgstr ""
+
+msgid "Go through them once, then end"
+msgstr ""
+
+msgid "Go to a &cell on the map"
+msgstr ""
+
+msgid "Go to town with the hearthstone, heal and come back (while farming)"
+msgstr ""
+
+msgid "Goes round the spots in turn."
+msgstr ""
+
+msgid "Goes through the spots once, sharing out the day's drop time."
+msgstr ""
+
+msgid "Goes through the spots once."
+msgstr ""
+
+msgid "Going back to where farming started."
+msgstr ""
+
+msgid "Going home"
+msgstr ""
+
+msgid "Going home."
+msgstr ""
+
+msgid "Going on"
+msgstr ""
+
+msgid "Going on."
+msgstr ""
+
+msgid "Grand Master"
+msgstr ""
+
+msgid "Guard Barr did not give Barr's Letter"
+msgstr ""
+
+msgid "HP"
+msgstr ""
+
+msgid "HP and MP are read with the key again: {why}"
+msgstr ""
+
+msgid "HP higher than maximum target HP"
+msgstr ""
+
+msgid "HP isn't coming back while resting ({pct}%) - fighting on"
+msgstr ""
+
+msgid "HP stayed under {pct}% - leaving the fight: hearthstone to town"
+msgstr ""
+
+msgid ""
+"HP stayed under {pct}% for {secs} seconds - stopping so you can take over"
+msgstr ""
+
+msgid "HP {hp}/{max} ({pct}%) - {item}"
+msgstr ""
+
+msgid "HP {pct}%"
+msgstr ""
+
+msgid "HP {pct}% - resting before the next fight"
+msgstr ""
+
+msgid "HP:"
+msgstr ""
+
+msgid "Hand it to (names or ids; the &first one in the team gets it):"
+msgstr ""
+
+msgid "Heal a teammate when their HP is below (%):"
+msgstr ""
+
+msgid "Heal it when its HP is below (%):"
+msgstr ""
+
+msgid "Heal the pet with my healing &skill (Priest, Sorceress)"
+msgstr ""
+
+msgid ""
+"Heal the player I follow and our &teammates with my healing skill (Priest, Sorceress)"
+msgstr ""
+
+msgid ""
+"Heal with the class's o&wn heal skill (Sorceress, Priest); red potions only under half HP"
+msgstr ""
+
+msgid "Healed others"
+msgstr ""
+
+msgid "Healed our pet"
+msgstr ""
+
+msgid "Healed ourselves"
+msgstr ""
+
+msgid "Healing by our skills (potions not counted):"
+msgstr ""
+
+msgid "Healing the pet"
+msgstr ""
+
+msgid "Hearthstone hotkey"
+msgstr ""
+
+msgid "Hearthstones"
+msgstr ""
+
+msgid "Here, next to you."
+msgstr ""
+
+msgid "Hidden &messages and matching filters:"
+msgstr ""
+
+msgid ""
+"Hidden messages stay in the current chat buffers. Only filter rules are saved."
+msgstr ""
+
+msgid "Highest &crystal level to break:"
+msgstr ""
+
+msgid "Highest l&evel to make:"
+msgstr ""
+
+msgid "Highest unlocked floor"
+msgstr ""
+
+msgid "History of {what} for {who}"
+msgstr ""
+
+msgid "Ho&w the game works"
+msgstr ""
+
+msgid "Home, with the hearthstone"
+msgstr ""
+
+msgid "Home."
+msgstr ""
+
+msgid "Hook unavailable: {reason}"
+msgstr ""
+
+msgid "How"
+msgstr ""
+
+msgid "How &many of the selected lot:"
+msgstr ""
+
+msgid "How it works:"
+msgstr ""
+
+msgid "How many of each to have in the bag (0: don't make it)."
+msgstr ""
+
+msgid "How the game works"
+msgstr ""
+
+msgid "Hunt &until:"
+msgstr ""
+
+msgid "Hunting bount&ies"
+msgstr ""
+
+msgid "Hunting bounties"
+msgstr ""
+
+msgid ""
+"I can't see you. Press E in the game, copy it with Shift+C and send: come <what you copied>"
+msgstr ""
+
+msgid ""
+"I can't tell the map from that. Press E in the game, copy it with Shift+C and send: come <what you copied>"
+msgstr ""
+
+msgid ""
+"I died on {map}. How do I come back? Send: respawn crystal, respawn map or respawn city"
+msgstr ""
+
+msgid "I don't know where a Shard Market is"
+msgstr ""
+
+msgid "I don't know where a {role} is"
+msgstr ""
+
+msgid ""
+"I don't know where to find a {role} - visit one with the agent running first"
+msgstr ""
+
+msgid "I don't know where {cave} is entered"
+msgstr ""
+
+msgid "I don't know which shop sells {item}"
+msgstr ""
+
+msgid "I don't know who buys {item}"
+msgstr ""
+
+msgid "I don't see an application from {name}"
+msgstr ""
+
+msgid ""
+"I went to where I last saw you ({map} at {x}, {y}) but can't see you. Press E in the game, copy it with Shift+C and send: come <what you copied>"
+msgstr ""
+
+msgid "I'll ask you after each death."
+msgstr ""
+
+msgid "I'm a &VIP (cable cars and airships are free)"
+msgstr ""
+
+msgid ""
+"I'm at {x}, {y} on {map}, where you said, but can't see you. Press E again and send it."
+msgstr ""
+
+msgid "I'm away, the bot is running. Send help for commands."
+msgstr ""
+
+msgid "I'm not following anyone."
+msgstr ""
+
+msgid "I'm not following anyone. Send follow first, then buff."
+msgstr ""
+
+msgid "I'm not following anyone. Send follow first."
+msgstr ""
+
+msgid "I'm not in a team"
+msgstr ""
+
+msgid "I'm not the team leader"
+msgstr ""
+
+msgid ""
+"I'm on {map} at {x}, {y} but can't see you. Press E in the game, copy it with Shift+C and send: come <what you copied>"
+msgstr ""
+
+msgid "ID {id}, X {x}, Y {y}: {state}"
+msgstr ""
+
+msgid "Ice prince"
+msgstr ""
+
+msgid "Ice princess"
+msgstr ""
+
+msgid "Idle on {map}, HP {hp}%{mp}."
+msgstr ""
+
+msgid "If I die, I'll respawn in the city."
+msgstr ""
+
+msgid "If I die, I'll respawn on the map."
+msgstr ""
+
+msgid "If I die, I'll respawn with Resurrection Crystals."
+msgstr ""
+
+msgid "If my team has another name, &disband it and create it again"
+msgstr ""
+
+msgid "If none of them is in the room, share with &anyone there"
+msgstr ""
+
+msgid "Import character settings"
+msgstr ""
+
+msgid "Import plan"
+msgstr ""
+
+msgid "Import settings into this character:"
+msgstr ""
+
+msgid "Important events only"
+msgstr ""
+
+msgid "In all"
+msgstr ""
+
+msgid "In the bag: {n} {gem}."
+msgstr ""
+
+msgid "Include maps &without monsters"
+msgstr ""
+
+msgid "Inner hall"
+msgstr ""
+
+msgid "Insert command"
+msgstr ""
+
+msgid "Inside"
+msgstr ""
+
+msgid ""
+"Inside, the bot never stops: it goes round the whole cave, fights whatever is in reach, drinks instead of resting, keeps the pet out and fed, and stays until the game moves it out after 15 minutes. Monsters come back about 30 seconds after they die, anywhere in the cave."
+msgstr ""
+
+msgid ""
+"Installed. If the game was running when you installed it, restart the game."
+msgstr ""
+
+msgid "Installed. Start Mist World: it loads the agent as it starts."
+msgstr ""
+
+msgid ""
+"Installed. The open games load the agent only when they start again.\n"
+"\n"
+"Press OK to close every Mist World window ({n} open) now, then start Mist World again."
+msgstr ""
+
+msgid "International"
+msgstr ""
+
+msgid "Invalid keyboard slot."
+msgstr ""
+
+msgid "Invalid sound reply from the game agent."
+msgstr ""
+
+msgid "It also stops by itself:"
+msgstr ""
+
+msgid "Item"
+msgstr ""
+
+msgid "Item name, exactly as the game writes it:"
+msgstr ""
+
+msgid "Item type {id}"
+msgstr ""
+
+msgid "Item:"
+msgstr ""
+
+msgid "Items"
+msgstr ""
+
+msgid "Items with no rule: touch &only what this run picked up"
+msgstr ""
+
+msgid "JSON files (*.json)|*.json"
+msgstr ""
+
+msgid "Join a private channel in the game first."
+msgstr ""
+
+msgid "Join an international room in the game first."
+msgstr ""
+
+msgid "Join the &Telegram group"
+msgstr ""
+
+msgid "Keep &old files:"
+msgstr ""
+
+msgid "Keep at least this many of each &Small potion:"
+msgstr ""
+
+msgid "Keep at least this many of each M&edium potion:"
+msgstr ""
+
+msgid "Keep at least this many of each crystal and le&vel:"
+msgstr ""
+
+msgid "Keep away from bosses"
+msgstr ""
+
+msgid "Keep farming, just tell me"
+msgstr ""
+
+msgid "Keep the class's b&uffs up"
+msgstr ""
+
+msgid "Key"
+msgstr ""
+
+msgid "Key &bindings:"
+msgstr ""
+
+msgid "Keyboard Manager"
+msgstr ""
+
+msgid "Keyboard profile information"
+msgstr ""
+
+msgid "Keyboard profile {name} was not found."
+msgstr ""
+
+msgid "Keyboard shortcuts"
+msgstr ""
+
+msgid "Keys"
+msgstr ""
+
+msgid "Keys read from the game."
+msgstr ""
+
+msgid "Kill game"
+msgstr ""
+
+msgid "Kills:"
+msgstr ""
+
+msgid "Kind"
+msgstr ""
+
+msgid "Kind: {what}"
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Large"
+msgstr ""
+
+msgid "Large Blue Potions"
+msgstr ""
+
+msgid "Large Red Potions"
+msgstr ""
+
+msgid "Last 30 days"
+msgstr ""
+
+msgid "Last 7 days"
+msgstr ""
+
+msgid "Last critical hit received: {hit}"
+msgstr ""
+
+msgid "Last critical hit: {hit}"
+msgstr ""
+
+msgid "Last defence break received: {hit}"
+msgstr ""
+
+msgid "Last defence break: {hit}"
+msgstr ""
+
+msgid "Last hit received: {hit}"
+msgstr ""
+
+msgid "Last hit: {hit}"
+msgstr ""
+
+msgid "Last monster killed: {name}"
+msgstr ""
+
+msgid "Last run: {r}"
+msgstr ""
+
+msgid "Leading a team"
+msgstr ""
+
+msgid "Leads to: {maps}"
+msgstr ""
+
+msgid "Leave as it is"
+msgstr ""
+
+msgid "Leave demon&ized elites alone (they still get fought when they attack)"
+msgstr ""
+
+msgid ""
+"Leave the farm this many &minutes before the half hour (the walk there included):"
+msgstr ""
+
+msgid "Leave unchanged"
+msgstr ""
+
+msgid "Leaves {n} {item}."
+msgstr ""
+
+msgid "Let everyone get replies &again"
+msgstr ""
+
+msgid ""
+"Let other programs press &keys in the game (NVDA Remote, a controller mapper)"
+msgstr ""
+
+msgid "Levels gained: {n}, now level {level}"
+msgstr ""
+
+msgid "Limit the &price at the Shard Broker"
+msgstr ""
+
+msgid "Limit the &price at the market"
+msgstr ""
+
+msgid "Limits"
+msgstr ""
+
+msgid "Listed"
+msgstr ""
+
+msgid ""
+"Listen for game sound requests, select an ID, then add it to Saved Sounds. This tab does not change muting. Save changes on the Saved Sounds tab."
+msgstr ""
+
+msgid "Listen for sounds"
+msgstr ""
+
+msgid "Listing"
+msgstr ""
+
+msgid "Loading the changelog…"
+msgstr ""
+
+msgid "Location:"
+msgstr ""
+
+msgid "Log"
+msgstr ""
+
+msgid "Log files"
+msgstr ""
+
+msgid "Log in to a character in the game first."
+msgstr ""
+
+msgid ""
+"Log in to the character in the game first, or use Character, Another character."
+msgstr ""
+
+msgid "Log in to the character in the game first."
+msgstr ""
+
+msgid "Logging"
+msgstr ""
+
+msgid "Look for a chest the game announces on the map"
+msgstr ""
+
+msgid "Look for a new &version when Mist World Farmer starts"
+msgstr ""
+
+msgid "Looking for a new version"
+msgstr ""
+
+msgid "Looking for your application."
+msgstr ""
+
+msgid "Lots"
+msgstr ""
+
+msgid "Low HP"
+msgstr ""
+
+msgid "Low HP (%):"
+msgstr ""
+
+msgid "Low beep"
+msgstr ""
+
+msgid "M&P potion:"
+msgstr ""
+
+msgid "MP"
+msgstr ""
+
+msgid "MP about {pct}% - {item}"
+msgstr ""
+
+msgid "MP {pct}%"
+msgstr ""
+
+msgid "MP {pct}% - too little to hurt {name}"
+msgstr ""
+
+msgid "MP:"
+msgstr ""
+
+msgid "Made or received:"
+msgstr ""
+
+msgid "Make a gem"
+msgstr ""
+
+msgid "Make a gem: choose which, its level and how many"
+msgstr ""
+
+msgid ""
+"Make a plan first (the Plans tab), or farm on the best map for the level."
+msgstr ""
+
+msgid "Make a plan first, in the Plans tab."
+msgstr ""
+
+msgid "Make a plan or script first, in the Plans tab."
+msgstr ""
+
+msgid "Make as many {gem} as I can."
+msgstr ""
+
+msgid "Make the most of my bag"
+msgstr ""
+
+msgid "Make the most of my bag: every shard and gem as high as it goes"
+msgstr ""
+
+msgid "Make {n} more {gem}."
+msgstr ""
+
+msgid "Map"
+msgstr ""
+
+msgid "Map by map:"
+msgstr ""
+
+msgid "Market buying"
+msgstr ""
+
+msgid "Market check"
+msgstr ""
+
+msgid "Market list"
+msgstr ""
+
+msgid "Market list:"
+msgstr ""
+
+msgid "Market search"
+msgstr ""
+
+msgid "Market searcher and buyer"
+msgstr ""
+
+msgid "Market searcher and buyer - {name}"
+msgstr ""
+
+msgid "Master"
+msgstr ""
+
+msgid "Master: stable releases"
+msgstr ""
+
+msgid "Match &case"
+msgstr ""
+
+msgid "Matches"
+msgstr ""
+
+msgid "Matching &type:"
+msgstr ""
+
+msgid "Matching filters disabled. Save to restore these messages in chat."
+msgstr ""
+
+msgid "Materials"
+msgstr ""
+
+msgid "Maximum &monster HP:"
+msgstr ""
+
+msgid "Medium"
+msgstr ""
+
+msgid "Medium and Large potions"
+msgstr ""
+
+msgid "Memory Butterflies"
+msgstr ""
+
+msgid "Messa&ge to {where}:"
+msgstr ""
+
+msgid "Messa&ge:"
+msgstr ""
+
+msgid "Message added to the filter list."
+msgstr ""
+
+msgid "Mining"
+msgstr ""
+
+msgid "Minutes of drop time on this spot:"
+msgstr ""
+
+msgid "Minutes to look for it:"
+msgstr ""
+
+msgid "Minutes without a kill:"
+msgstr ""
+
+msgid "Minutes:"
+msgstr ""
+
+msgid "Missing Bloods and Pelts"
+msgstr ""
+
+msgid "Missing Child mission completed"
+msgstr ""
+
+msgid "Missing Child not offered (already done today?)"
+msgstr ""
+
+msgid "Mist World"
+msgstr ""
+
+msgid "Mist World Farmer"
+msgstr ""
+
+msgid ""
+"Mist World Farmer character settings and profiles (*.mistworldfarmer-profile.json;*.json)|*.mistworldfarmer-profile.json;*.json|"
+msgstr ""
+
+msgid "Mist World Farmer is updated to {v}."
+msgstr ""
+
+msgid ""
+"Mist World Farmer plan exports (*.mistworldfarmer-plan.json)|*.mistworldfarmer-plan.json|"
+msgstr ""
+
+msgid ""
+"Mist World Farmer plan exports and plans (*.mistworldfarmer-plan.json;*.json)|*.mistworldfarmer-plan.json;*.json|"
+msgstr ""
+
+msgid "Mist World Farmer {v}"
+msgstr ""
+
+msgid ""
+"Mist World Farmer {v}\n"
+"A farming bot for Mist World."
+msgstr ""
+
+msgid ""
+"Mist World Farmer {v} doesn't look for updates online. New versions come as a zip: unpack it over this folder."
+msgstr ""
+
+msgid ""
+"Mist World Farmer {v} is out (you have {cur}).\n"
+"\n"
+"Mist World Farmer closes, updates and starts again; your characters, plans, scripts and settings stay as they are."
+msgstr ""
+
+msgid "Mist World Farmer {v} is the newest version."
+msgstr ""
+
+msgid ""
+"Mist World Farmer's agent needs to be reinstalled: {why}.\n"
+"\n"
+"Press OK to close every Mist World window ({n} open) and reinstall it. A game loads the agent only as it starts, so start Mist World again afterwards."
+msgstr ""
+
+msgid ""
+"Mist World Farmer's agent needs to be reinstalled: {why}.\n"
+"\n"
+"Press OK to reinstall it."
+msgstr ""
+
+msgid ""
+"Mist World Farmer's agent needs to be reinstalled: {why}. Stop every running bot, then use File, Settings, Install."
+msgstr ""
+
+msgid "Mist World isn't in this folder. Choose the folder that has mw.exe."
+msgstr ""
+
+msgid "Mist World isn't running. Start it, or use Browse."
+msgstr ""
+
+msgid ""
+"Mist World loads another Mist World Farmer's agent (an older copy, or this one before it moved)"
+msgstr ""
+
+msgid "Mist World windows that didn't close: {n}. Close them yourself."
+msgstr ""
+
+msgid "Mist World windows that didn't close: {n}. Close them, then update."
+msgstr ""
+
+msgid ""
+"Mist World windows that didn't close: {n}. The agent wasn't reinstalled: close them, then use File, Settings, Install."
+msgstr ""
+
+msgid ""
+"Mist World's settings don't load it (it was never installed there, or another tool removed it)"
+msgstr ""
+
+msgid "Monday"
+msgstr ""
+
+msgid ""
+"Monster hits: {hits} hits ({crits} critical, {breaks} defence breaks, {normals} normal), {misses} misses"
+msgstr ""
+
+msgid "Monster levels: {lv}"
+msgstr ""
+
+msgid "Monsters"
+msgstr ""
+
+msgid "Monsters near you"
+msgstr ""
+
+msgid "Monsters that hit us:"
+msgstr ""
+
+msgid "Moral Mode"
+msgstr ""
+
+msgid ""
+"Morality is {n} (a black name): a death can cost worn gear, so the XP loser won't run"
+msgstr ""
+
+msgid ""
+"Most gold coins a piece at the market (0: the cheapest first, any price)"
+msgstr ""
+
+msgid "Most gold coins to spend on materials in one run (0: no limit):"
+msgstr ""
+
+msgid "Most to pay per shard (arnebia):"
+msgstr ""
+
+msgid "Move &down"
+msgstr ""
+
+msgid "Move &up"
+msgstr ""
+
+msgid "Move do&wn"
+msgstr ""
+
+msgid "Move to Mute List"
+msgstr ""
+
+msgid "Move to Sounds List"
+msgstr ""
+
+msgid "Move to kee&p"
+msgstr ""
+
+msgid "Move to se&ll"
+msgstr ""
+
+msgid "Move to st&orehouse"
+msgstr ""
+
+msgid "Move to sto&rehouse"
+msgstr ""
+
+msgid "Move to thro&w away"
+msgstr ""
+
+msgid "Move to throw a&way"
+msgstr ""
+
+msgid "Mute e&very game"
+msgstr ""
+
+msgid "My friends in the game"
+msgstr ""
+
+msgid "My list ({n})"
+msgstr ""
+
+msgid "My own gang's (gangs pay less)"
+msgstr ""
+
+msgid "NPCs"
+msgstr ""
+
+msgid "Names or &ids who may join (separated by commas):"
+msgstr ""
+
+msgid "Nearby"
+msgstr ""
+
+msgid "Net earnings: {n} arnebia"
+msgstr ""
+
+msgid "Never"
+msgstr ""
+
+msgid "Never spend arnebia belo&w:"
+msgstr ""
+
+msgid "New &script"
+msgstr ""
+
+msgid "New profile"
+msgstr ""
+
+msgid "New sc&ript"
+msgstr ""
+
+msgid "New schedule"
+msgstr ""
+
+msgid "Newbie"
+msgstr ""
+
+msgid "Next"
+msgstr ""
+
+msgid "Next category"
+msgstr ""
+
+msgid "Next item"
+msgstr ""
+
+msgid "Next level needs {n} more experience"
+msgstr ""
+
+msgid "Next panel"
+msgstr ""
+
+msgid "No"
+msgstr ""
+
+msgid "No Gem Maker, Equipment Enhancer or chores runs."
+msgstr ""
+
+msgid "No bot is running."
+msgstr ""
+
+msgid "No browser opened. The Telegram group is at {link}"
+msgstr ""
+
+msgid "No changelog entry for {v}. Showing the full changelog."
+msgstr ""
+
+msgid "No changelog entry for {v}. Showing the release notes."
+msgstr ""
+
+msgid ""
+"No character has settings to export yet. Log in to one and let the bot scan it first."
+msgstr ""
+
+msgid ""
+"No character has settings yet. Log in to one in the game and the bot scans it."
+msgstr ""
+
+msgid "No command called {word}. Send help for the list."
+msgstr ""
+
+msgid "No crystals or runes seen yet."
+msgstr ""
+
+msgid "No development build of Mist World Farmer can be seen on GitHub yet."
+msgstr ""
+
+msgid "No email program opened. Write to {email} from your email."
+msgstr ""
+
+msgid "No enabled triggers are configured for this sequence."
+msgstr ""
+
+msgid "No farming spots yet."
+msgstr ""
+
+msgid "No game found"
+msgstr ""
+
+msgid "No game found. Start Mist World first."
+msgstr ""
+
+msgid "No game found. Start Mist World. (First time? File, Settings, Install.)"
+msgstr ""
+
+msgid "No game with the agent is running."
+msgstr ""
+
+msgid "No gem kinds known yet."
+msgstr ""
+
+msgid "No known buyer, so it will be stored instead"
+msgstr ""
+
+msgid "No monsters near you right now."
+msgstr ""
+
+msgid ""
+"No most price is set for any material, so the market's cheapest lots are bought at any price. Go on?"
+msgstr ""
+
+msgid "No pet"
+msgstr ""
+
+msgid "No pet out"
+msgstr ""
+
+msgid "No plan called {name}."
+msgstr ""
+
+msgid "No plans yet"
+msgstr ""
+
+msgid "No plans yet. Press New plan to make one."
+msgstr ""
+
+msgid "No price stored, not counted: {list}"
+msgstr ""
+
+msgid "No release of Mist World Farmer can be seen on GitHub yet."
+msgstr ""
+
+msgid ""
+"No report yet. Scan the constructions: the bot visits each one and repairs nothing."
+msgstr ""
+
+msgid "No results yet."
+msgstr ""
+
+msgid "No shop seen selling it yet"
+msgstr ""
+
+msgid ""
+"No skills yet: log in to this character and press Scan now in the character window."
+msgstr ""
+
+msgid "No tone"
+msgstr ""
+
+msgid "No way found from {map} - travel part of the way yourself first."
+msgstr ""
+
+msgid ""
+"No {what} potion on your hotkeys. Put one on a hotkey and scan, or choose one from the bag."
+msgstr ""
+
+msgid "Nobody in sight"
+msgstr ""
+
+msgid "None"
+msgstr ""
+
+msgid "None in the bag"
+msgstr ""
+
+msgid "Normal"
+msgstr ""
+
+msgid "North edge (y):"
+msgstr ""
+
+msgid "Not installed. Press Install, then restart the game."
+msgstr ""
+
+msgid "Not logged in"
+msgstr ""
+
+msgid "Not logged in (process {pid})"
+msgstr ""
+
+msgid "Not logged in."
+msgstr ""
+
+msgid "Not read yet"
+msgstr ""
+
+msgid "Not running"
+msgstr ""
+
+msgid ""
+"Not scanned yet. Log in to this character in the game and press Scan now. The bot also scans when a run starts."
+msgstr ""
+
+msgid "Nothing changed in the bag."
+msgstr ""
+
+msgid "Nothing gained yet."
+msgstr ""
+
+msgid "Nothing has happened yet."
+msgstr ""
+
+msgid "Nothing to do: no gems or shards in the bag yet."
+msgstr ""
+
+msgid ""
+"Nothing to make: say how many of a potion to have, or choose what to fuse."
+msgstr ""
+
+msgid "Nothing today yet."
+msgstr ""
+
+msgid "Nothing was recorded: check the microphone the game uses."
+msgstr ""
+
+msgid "Nothing would be broken: tick what to break."
+msgstr ""
+
+msgid "Nothing yet."
+msgstr ""
+
+msgid "Notice"
+msgstr ""
+
+msgid "Notices"
+msgstr ""
+
+msgid "Now:"
+msgstr ""
+
+msgid "Nowhere to get them from: it makes what the bag allows."
+msgstr ""
+
+msgid "Nowhere, use what's in the bag"
+msgstr ""
+
+msgid ""
+"Officers to visit (each pays for his own bosses, after your killing blow)"
+msgstr ""
+
+msgid ""
+"Older runs kept only the bag's net arnebia change: their earnings are counted from that"
+msgstr ""
+
+msgid "Oldhand"
+msgstr ""
+
+msgid "On"
+msgstr ""
+
+msgid "On chosen days"
+msgstr ""
+
+msgid "On every try"
+msgstr ""
+
+msgid "On the nearest map without monsters"
+msgstr ""
+
+msgid "On {map}: {who}"
+msgstr ""
+
+msgid "Once"
+msgstr ""
+
+msgid "One script of the day (to read, change or schedule)"
+msgstr ""
+
+msgid "Only areas whose monsters are at most this many levels &above you:"
+msgstr ""
+
+msgid ""
+"Only maps for my &level (monsters 9 levels below to 5 above: full experience and loot)"
+msgstr ""
+
+msgid "Only what is in the bag"
+msgstr ""
+
+msgid "Only when HP is low"
+msgstr ""
+
+msgid "Only when I press Start"
+msgstr ""
+
+msgid "Only while the Chat window is open"
+msgstr ""
+
+msgid "Open another game &window"
+msgstr ""
+
+msgid ""
+"Open fire up to this many tiles &early, beyond the {reach} tiles set above, while a monster comes at you (0: wait until it is within {reach}):"
+msgstr ""
+
+msgid ""
+"Open fire up to this many tiles &early, beyond the {reach} tiles the bot fights from ({skill} reaches {range}), while a monster comes at you (0: wait until it is within {reach}):"
+msgstr ""
+
+msgid ""
+"Open fire up to this many tiles &early, beyond your class's attack range, while a monster comes at you (0: wait until it is in range):"
+msgstr ""
+
+msgid "Open its &menu when I get there"
+msgstr ""
+
+msgid "Open the &folder"
+msgstr ""
+
+msgid "Open the &log folder"
+msgstr ""
+
+msgid "Open the &results folder"
+msgstr ""
+
+msgid "Open the character sheet every (seconds):"
+msgstr ""
+
+msgid "Opening another game window. Log in, then choose it in the Games list."
+msgstr ""
+
+msgid "Or after this many casts that do &no damage:"
+msgstr ""
+
+msgid "Or type a &name (several: a | b):"
+msgstr ""
+
+msgid "Or type its &name:"
+msgstr ""
+
+msgid "Other"
+msgstr ""
+
+msgid "Other items"
+msgstr ""
+
+msgid "Other items picked up:"
+msgstr ""
+
+msgid "Our blue potions"
+msgstr ""
+
+msgid "Our own gang"
+msgstr ""
+
+msgid "Our red potions"
+msgstr ""
+
+msgid "Outside"
+msgstr ""
+
+msgid ""
+"Outside, stop when &Vitality is down to (the character sheet's; 0: until it runs out):"
+msgstr ""
+
+msgid "Overview"
+msgstr ""
+
+msgid "Own HP"
+msgstr ""
+
+msgid "Own side"
+msgstr ""
+
+msgid "P&ause or go on"
+msgstr ""
+
+msgid "P&ets (ticked ones come out, first ready one first):"
+msgstr ""
+
+msgid "P&otion Maker"
+msgstr ""
+
+msgid "PK mode back to {mode}"
+msgstr ""
+
+msgid "PK mode: all mode (guards can be hit only in it)"
+msgstr ""
+
+msgid "Pacifist mode"
+msgstr ""
+
+msgid "Pacifist mode with counterattack"
+msgstr ""
+
+msgid "Page"
+msgstr ""
+
+msgid "Page {page}, {key}"
+msgstr ""
+
+msgid "Patrol loops: {loops}"
+msgstr ""
+
+msgid ""
+"Pause the card while a&way from the monsters: town trips, the walk back after a death, the end of farming (each pause costs a minute of the card; never in a dungeon)"
+msgstr ""
+
+msgid "Paused"
+msgstr ""
+
+msgid "Paused {what}"
+msgstr ""
+
+msgid "Paused. Send resume to go on."
+msgstr ""
+
+msgid "Paused: {n} min, not counted"
+msgstr ""
+
+msgid "Pay at most this &entry fee (arnebia):"
+msgstr ""
+
+msgid "Paying to go in"
+msgstr ""
+
+msgid "Pet HP"
+msgstr ""
+
+msgid "Pet HP potions"
+msgstr ""
+
+msgid "Pet MP potions"
+msgstr ""
+
+msgid "Pet Rice Balls"
+msgstr ""
+
+msgid "Pet Rice Roll, or the pet food in Character, Settings"
+msgstr ""
+
+msgid "Pet Rice Rolls"
+msgstr ""
+
+msgid "Pet blue potions"
+msgstr ""
+
+msgid "Pet food"
+msgstr ""
+
+msgid "Pet potions"
+msgstr ""
+
+msgid "Pet rebirth"
+msgstr ""
+
+msgid "Pet rebirth (free ones only, never for diamonds)"
+msgstr ""
+
+msgid "Pet:"
+msgstr ""
+
+msgid "Pets"
+msgstr ""
+
+msgid "Pharmacist and spending"
+msgstr ""
+
+msgid "Pick a voice message in Messages first."
+msgstr ""
+
+msgid "Pick an item in the list or type a name."
+msgstr ""
+
+msgid "Pick someone in People, or type a name or id in New chat first."
+msgstr ""
+
+msgid "Pla&n:"
+msgstr ""
+
+msgid "Pla&y"
+msgstr ""
+
+msgid "Plan"
+msgstr ""
+
+msgid "Plan &name:"
+msgstr ""
+
+msgid ""
+"Plan {name} was exported to:\n"
+"{path}"
+msgstr ""
+
+msgid "Plan {name} was imported."
+msgstr ""
+
+msgid "Plan, from the last scan of your bag:"
+msgstr ""
+
+msgid "Plan:"
+msgstr ""
+
+msgid "Plans"
+msgstr ""
+
+msgid "Plans and &scripts:"
+msgstr ""
+
+msgid "Plans and scripts"
+msgstr ""
+
+msgid "Platinum Teleportation Stones"
+msgstr ""
+
+msgid "Players near:"
+msgstr ""
+
+msgid "Pliers (Small/Large/Alloy)"
+msgstr ""
+
+msgid ""
+"Polson Wetland: Poison Immunity isn't activated - its ground poisons us whenever we are off a fusion beast, and every fight there is on foot"
+msgstr ""
+
+msgid "Potion Maker"
+msgstr ""
+
+msgid "Potions"
+msgstr ""
+
+msgid "Preparing the update to {v}"
+msgstr ""
+
+msgid "Press a skill again and &again until the game casts it"
+msgstr ""
+
+msgid "Press s&kills through the game, not the keyboard"
+msgstr ""
+
+msgid "Press the new key for {action}:"
+msgstr ""
+
+msgid "Previous item"
+msgstr ""
+
+msgid "Previous panel"
+msgstr ""
+
+msgid "Private channel"
+msgstr ""
+
+msgid "Private chats"
+msgstr ""
+
+msgid "Private messages"
+msgstr ""
+
+msgid "Private messages aren't ready in this game yet."
+msgstr ""
+
+msgid "Private messages to you"
+msgstr ""
+
+msgid "Profession skills"
+msgstr ""
+
+msgid "Profile na&me:"
+msgstr ""
+
+msgid "Program version: {v}"
+msgstr ""
+
+msgid "Publish &as:"
+msgstr ""
+
+msgid "Put into the storehouse:"
+msgstr ""
+
+msgid "Put needed skills and items on &empty keys (never on keys in use)"
+msgstr ""
+
+msgid "Put the pet &away when the run ends"
+msgstr ""
+
+msgid ""
+"Put the potions made into the town st&orehouse, then make more, a bagful at a time (your numbers then count the storehouse too)"
+msgstr ""
+
+msgid "Quantity"
+msgstr ""
+
+msgid ""
+"Questions, ideas, or want to donate? Write to the developer at {email}. Bugs are best reported on GitHub, so everyone can see the fix: {issues}"
+msgstr ""
+
+msgid "Quick guide"
+msgstr ""
+
+msgid "Quick loop (the whole cave, lanes further apart)"
+msgstr ""
+
+msgid "Quick patrol loop"
+msgstr ""
+
+msgid "Quick phrase for {key} (blank leaves it unchanged)"
+msgstr ""
+
+msgid "Quick phrases"
+msgstr ""
+
+msgid "Range (tiles):"
+msgstr ""
+
+msgid "Re&move"
+msgstr ""
+
+msgid "Re&move debuffs with the class's dispel"
+msgstr ""
+
+msgid "Re&name"
+msgstr ""
+
+msgid "Read MP near the potion mark every (seconds):"
+msgstr ""
+
+msgid "Read new messages"
+msgstr ""
+
+msgid "Read rage, marks or combos in fights every (seconds):"
+msgstr ""
+
+msgid "Read {at} by {who}"
+msgstr ""
+
+msgid "Reading available sound IDs..."
+msgstr ""
+
+msgid "Reading channels out"
+msgstr ""
+
+msgid "Reading the game"
+msgstr ""
+
+msgid "Ready"
+msgstr ""
+
+msgid "Recent sound &requests (latest 200):"
+msgstr ""
+
+msgid "Record &voice"
+msgstr ""
+
+msgid "Recording cancelled."
+msgstr ""
+
+msgid ""
+"Recording for {where} - press Record voice again to send it, Escape to cancel. Longer than 20 seconds goes in parts."
+msgstr ""
+
+msgid "Redeem {item}"
+msgstr ""
+
+msgid "Refill when fewer &than:"
+msgstr ""
+
+msgid "Reinstall the agent"
+msgstr ""
+
+msgid "Release &channel:"
+msgstr ""
+
+msgid "Release notes"
+msgstr ""
+
+msgid "Remem&ber this item"
+msgstr ""
+
+msgid "Remove"
+msgstr ""
+
+msgid "Remove members who go &offline"
+msgstr ""
+
+msgid ""
+"Remove the agent from the game? The bot won't work until you install it again."
+msgstr ""
+
+msgid "Rename"
+msgstr ""
+
+msgid "Rename sound"
+msgstr ""
+
+msgid "Repair &gear with toolboxes from the bag"
+msgstr ""
+
+msgid ""
+"Repair our gang's &highlands (first what is under 100%, what is at 100% last)"
+msgstr ""
+
+msgid "Replace keyboard profile {name}?"
+msgstr ""
+
+msgid ""
+"Replace the saved Mist World Farmer settings for {character} with those exported from {source}?\n"
+"\n"
+"This replaces combat, key, potion, bag, pet, travel and restock choices. It keeps {character}'s own scan and learned hearthstone location. Nothing changes until you choose Yes."
+msgstr ""
+
+msgid "Replace the saved plan {name}? Nothing changes until you choose Yes."
+msgstr ""
+
+msgid "Reply lines"
+msgstr ""
+
+msgid "Replying to {name}: {message}"
+msgstr ""
+
+msgid "Respawning in the city."
+msgstr ""
+
+msgid "Respawning on this map."
+msgstr ""
+
+msgid "Respawning with Resurrection Crystals."
+msgstr ""
+
+msgid "Rest &until HP (%):"
+msgstr ""
+
+msgid "Restart Mist World Farmer to switch the language."
+msgstr ""
+
+msgid ""
+"Restart the game with the current agent to apply these keyboard settings."
+msgstr ""
+
+msgid "Restock &now"
+msgstr ""
+
+msgid "Restock now: a restock is already running."
+msgstr ""
+
+msgid "Restock now: no supplies could be restocked."
+msgstr ""
+
+msgid ""
+"Restock now: no supply rules are configured in Character, Bag and supplies."
+msgstr ""
+
+msgid ""
+"Restock now: nothing to restock; no supplies need purchasing or withdrawal."
+msgstr ""
+
+msgid "Restock now: supplies are at their configured targets."
+msgstr ""
+
+msgid "Restocking supplies"
+msgstr ""
+
+msgid ""
+"Restoring disables all matching rules, also restoring other messages they hide."
+msgstr ""
+
+msgid "Results"
+msgstr ""
+
+msgid "Results of {what}"
+msgstr ""
+
+msgid ""
+"Results of {what}, its {n} parts added up (it was interrupted and carried on)"
+msgstr ""
+
+msgid "Resurrection Crystals"
+msgstr ""
+
+msgid "Revive on the spot with &Resurrection Crystals"
+msgstr ""
+
+msgid "Rising"
+msgstr ""
+
+msgid "Rotation"
+msgstr ""
+
+msgid "Route from where you are:"
+msgstr ""
+
+msgid "Runes"
+msgstr ""
+
+msgid "Runes and limits"
+msgstr ""
+
+msgid "Running out"
+msgstr ""
+
+msgid "Running {what}"
+msgstr ""
+
+msgid "Runs from source: it never updates itself (use git pull)."
+msgstr ""
+
+msgid "Runs: {n}"
+msgstr ""
+
+msgid "S&can now"
+msgstr ""
+
+msgid "S&hoot while walking (a character that fights from afar)"
+msgstr ""
+
+msgid "S&how:"
+msgstr ""
+
+msgid "S&kills:"
+msgstr ""
+
+msgid "S&peak incoming messages:"
+msgstr ""
+
+msgid "S&top"
+msgstr ""
+
+msgid "S&tore items now"
+msgstr ""
+
+msgid "S&tore:"
+msgstr ""
+
+msgid "STOPPED: {why}"
+msgstr ""
+
+msgid "Saturation"
+msgstr ""
+
+msgid "Saturday"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Save and check for updates &now"
+msgstr ""
+
+msgid "Save as CS&V"
+msgstr ""
+
+msgid "Save as scri&pt"
+msgstr ""
+
+msgid "Save as script"
+msgstr ""
+
+msgid "Save changes to the script?"
+msgstr ""
+
+msgid "Save the keyboard profile before applying it."
+msgstr ""
+
+msgid "Save the results"
+msgstr ""
+
+msgid "Saved account email:"
+msgstr ""
+
+msgid ""
+"Saved bindings replace their game slots. Slots marked Leave unchanged keep their current bindings."
+msgstr ""
+
+msgid "Saved keyboard &profiles:"
+msgstr ""
+
+msgid "Saved. It's in the Plans tab as a script."
+msgstr ""
+
+msgid "Saving and applying sound settings..."
+msgstr ""
+
+msgid "Say how many of at least one potion to have, or choose what to fuse."
+msgstr ""
+
+msgid "Scan complete."
+msgstr ""
+
+msgid "Sche&dules"
+msgstr ""
+
+msgid "Scheduled {what} for {who} couldn't start: {why}"
+msgstr ""
+
+msgid "Scheduled: starting {what} for {who}"
+msgstr ""
+
+msgid "Schedules"
+msgstr ""
+
+msgid "Scorpion Cave"
+msgstr ""
+
+msgid "Script &guide"
+msgstr ""
+
+msgid "Script &name:"
+msgstr ""
+
+msgid "Script &text:"
+msgstr ""
+
+msgid "Script commands"
+msgstr ""
+
+msgid "Script guide"
+msgstr ""
+
+msgid "Script name:"
+msgstr ""
+
+msgid "Script text"
+msgstr ""
+
+msgid "Script: {name}"
+msgstr ""
+
+msgid "Scripting &guide"
+msgstr ""
+
+msgid "Se&ttings"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Search &for:"
+msgstr ""
+
+msgid "Secret room"
+msgstr ""
+
+msgid "Select a game first."
+msgstr ""
+
+msgid "Select a plan first."
+msgstr ""
+
+msgid "Select the same character before applying the keyboard profile."
+msgstr ""
+
+msgid "Sell and store by these lists, then come back"
+msgstr ""
+
+msgid "Sell it and come back"
+msgstr ""
+
+msgid "Sell s&hards now"
+msgstr ""
+
+msgid "Sell shards now: started by hand"
+msgstr ""
+
+msgid "Sell the &collection now"
+msgstr ""
+
+msgid "Seller &IDs (several: 1234, 5678):"
+msgstr ""
+
+msgid "Seller ID"
+msgstr ""
+
+msgid "Sellers"
+msgstr ""
+
+msgid "Selling"
+msgstr ""
+
+msgid "Selling shards"
+msgstr ""
+
+msgid "Selling the collection"
+msgstr ""
+
+msgid "Send buff, or buff off."
+msgstr ""
+
+msgid ""
+"Send help and a command's name to hear what it does, for example: help follow"
+msgstr ""
+
+msgid "Send respawn crystal, respawn map or respawn city."
+msgstr ""
+
+msgid ""
+"Send this to the whole gang as: {where}?\n"
+"\n"
+"{report}"
+msgstr ""
+
+msgid "Set the attack &range myself"
+msgstr ""
+
+msgid "Set the time between potions myself"
+msgstr ""
+
+msgid "Set when to drink myself"
+msgstr ""
+
+msgid "Settings"
+msgstr ""
+
+msgid ""
+"Settings for {character} were exported to:\n"
+"{path}\n"
+"\n"
+"The file has combat, keys, potions, bag, pet, travel and restock choices. It doesn't contain scans or the learned hearthstone location."
+msgstr ""
+
+msgid ""
+"Settings were imported into {character}. Scan this character before farming if its skills, hotkeys, bag, pets or beasts changed."
+msgstr ""
+
+msgid "Shard Market price when last seen: {price} arnebia"
+msgstr ""
+
+msgid "Shard prices change at the Shard Market, so these prices are estimated:"
+msgstr ""
+
+msgid "Shards"
+msgstr ""
+
+msgid "Shards picked up: {n}"
+msgstr ""
+
+msgid "Shards put into the storehouse: {n}"
+msgstr ""
+
+msgid "Shards sold: {n}"
+msgstr ""
+
+msgid "Shards thrown away: {n}"
+msgstr ""
+
+msgid "Share &with (names, commas between, first one in the room first):"
+msgstr ""
+
+msgid "Share arnebia in a &secret room"
+msgstr ""
+
+msgid ""
+"Sharing arnebia (both players get some; once in each half hour, 5 times a day)"
+msgstr ""
+
+msgid "Sho&w:"
+msgstr ""
+
+msgid "Shop only"
+msgstr ""
+
+msgid "Shop:"
+msgstr ""
+
+msgid "Short loop (the middle of the cave)"
+msgstr ""
+
+msgid "Short patrol loop (fights what comes near it)"
+msgstr ""
+
+msgid "Show"
+msgstr ""
+
+msgid "Show the &route"
+msgstr ""
+
+msgid "Shut down the computer (after every bot has finished)"
+msgstr ""
+
+msgid "Shutdown cancelled."
+msgstr ""
+
+msgid "Shutdown warning (seconds, you can cancel it):"
+msgstr ""
+
+msgid "Shutting down"
+msgstr ""
+
+msgid "Skill"
+msgstr ""
+
+msgid "Skill Proficiency Pills (large)"
+msgstr ""
+
+msgid "Skills"
+msgstr ""
+
+msgid "Skills not in this &list (learned or put on a key later):"
+msgstr ""
+
+msgid "Skills used: none"
+msgstr ""
+
+msgid ""
+"Skills used: not counted in these runs (only runs from this version on count them)"
+msgstr ""
+
+msgid "Skills used: {casts} casts, {dmg} damage in all"
+msgstr ""
+
+msgid "Skinning"
+msgstr ""
+
+msgid "Skip an area whose &saturation is under this percent:"
+msgstr ""
+
+msgid ""
+"Skip this list when the run starts on its first farming &map (a Stop, then a start again where it was farming)"
+msgstr ""
+
+msgid "Snow mountain prince"
+msgstr ""
+
+msgid "Snow mountain princess"
+msgstr ""
+
+msgid "Snowball prince"
+msgstr ""
+
+msgid "Snowball princess"
+msgstr ""
+
+msgid "Snowflake prince"
+msgstr ""
+
+msgid "Snowflake princess"
+msgstr ""
+
+msgid "Sold:"
+msgstr ""
+
+msgid "Some sound requests were missed because the event buffer filled."
+msgstr ""
+
+msgid "Sound &ID:"
+msgstr ""
+
+msgid "Sound ID {id} is already in the list."
+msgstr ""
+
+msgid "Sound IDs must be between 1 and 99999; ranges must go upwards."
+msgstr ""
+
+msgid "Sound IDs must be whole numbers between 1 and 99999."
+msgstr ""
+
+msgid "Sound Silencer"
+msgstr ""
+
+msgid "Sound Silencer - {name}"
+msgstr ""
+
+msgid "Sound controls are unavailable."
+msgstr ""
+
+msgid ""
+"Sound controls require an updated game agent. Install it and restart the game."
+msgstr ""
+
+msgid "Sound controls: {error}"
+msgstr ""
+
+msgid ""
+"Sound events were lost because the observer buffer filled. Start the wait again."
+msgstr ""
+
+msgid "Sound name:"
+msgstr ""
+
+msgid "Sound names must be at most 100 characters without control characters."
+msgstr ""
+
+msgid "Sound observer is unavailable: {reason}"
+msgstr ""
+
+msgid "Sound settings saved and mute rules applied."
+msgstr ""
+
+msgid ""
+"Sound settings were saved, but active muting could not be confirmed: {error}"
+msgstr ""
+
+msgid "Sound wait timeout cannot be negative."
+msgstr ""
+
+msgid "South edge (y):"
+msgstr ""
+
+msgid "Spea&k the results"
+msgstr ""
+
+msgid "Speak &progress while running"
+msgstr ""
+
+msgid "Speak the &results when a run ends"
+msgstr ""
+
+msgid "Speech"
+msgstr ""
+
+msgid "Speech and language"
+msgstr ""
+
+msgid "Spending &limit (0 = none):"
+msgstr ""
+
+msgid "Spider cave"
+msgstr ""
+
+msgid ""
+"Spot {n} never ends, so the spots after it never come, and they have a share of the day's drop time. Give spot {n} minutes, kills or a share of the drop time."
+msgstr ""
+
+msgid "St&op"
+msgstr ""
+
+msgid "St&ore:"
+msgstr ""
+
+msgid "Sta&rt"
+msgstr ""
+
+msgid "Sta&rt the day"
+msgstr ""
+
+msgid "Sta&tus:"
+msgstr ""
+
+msgid "Stand still"
+msgstr ""
+
+msgid "Start a new file after (MB, 0 = never):"
+msgstr ""
+
+msgid "Starting"
+msgstr ""
+
+msgid "Starting {what}."
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Status:"
+msgstr ""
+
+msgid "Stay away from &elite zones"
+msgstr ""
+
+msgid "Stays where it is when it stops (monsters may still attack)."
+msgstr ""
+
+msgid "Steps to keep from a boss:"
+msgstr ""
+
+msgid "Still short &after that:"
+msgstr ""
+
+msgid "Stop"
+msgstr ""
+
+msgid "Stop &at (HH:MM, this computer's clock):"
+msgstr ""
+
+msgid "Stop &every bot"
+msgstr ""
+
+msgid "Stop after at most this many &deaths:"
+msgstr ""
+
+msgid "Stop after this many &stuck walks in a row:"
+msgstr ""
+
+msgid "Stop after this many failures &in a row:"
+msgstr ""
+
+msgid "Stop after too many &deaths"
+msgstr ""
+
+msgid "Stop and send &voice"
+msgstr ""
+
+msgid ""
+"Stop bef&ore the next level (never inside a dungeon: there it only says so)"
+msgstr ""
+
+msgid "Stop before the next &level (instead of the character's setting)"
+msgstr ""
+
+msgid "Stop every day"
+msgstr ""
+
+msgid "Stop every running bot first, then update."
+msgstr ""
+
+msgid "Stop if broken gear ca&n't be repaired"
+msgstr ""
+
+msgid "Stop so I can take over"
+msgstr ""
+
+msgid "Stop the bot first."
+msgstr ""
+
+msgid "Stop the bot first. It uses the keyboard while it runs."
+msgstr ""
+
+msgid "Stop the plan"
+msgstr ""
+
+msgid "Stop when &Vitality is down to (0: until it runs out):"
+msgstr ""
+
+msgid "Stop when the day's drop &time runs out"
+msgstr ""
+
+msgid "Stop when the next level needs less than (experience):"
+msgstr ""
+
+msgid "Stop when the potions run &out (unless a restock rule brings more)"
+msgstr ""
+
+msgid "Stopped"
+msgstr ""
+
+msgid "Stopped following."
+msgstr ""
+
+msgid "Stopped: {why}"
+msgstr ""
+
+msgid "Stopping"
+msgstr ""
+
+msgid "Stopping every bot"
+msgstr ""
+
+msgid "Stopping {what}, then following you."
+msgstr ""
+
+msgid "Stopping."
+msgstr ""
+
+msgid "Stops {rules}."
+msgstr ""
+
+msgid "Store items now: started by hand"
+msgstr ""
+
+msgid ""
+"Stored or sold on a bag trip: on the Full bag page, choose to sell and store when the bag is full"
+msgstr ""
+
+msgid "Storehouse only"
+msgstr ""
+
+msgid "Storehouse, then the shop"
+msgstr ""
+
+msgid "Storing items"
+msgstr ""
+
+msgid "Strangers"
+msgstr ""
+
+msgid "Summary:"
+msgstr ""
+
+msgid "Sunday"
+msgstr ""
+
+msgid "Supplies"
+msgstr ""
+
+msgid "System message"
+msgstr ""
+
+msgid "Take their commands while the game &window is in front"
+msgstr ""
+
+msgid "Taken out of the storehouse:"
+msgstr ""
+
+msgid "Talk with other players and the developer in the Telegram group: {link}"
+msgstr ""
+
+msgid "Target east"
+msgstr ""
+
+msgid "Target north"
+msgstr ""
+
+msgid "Target south"
+msgstr ""
+
+msgid "Target west"
+msgstr ""
+
+msgid "Team"
+msgstr ""
+
+msgid "Team &name (letters and numbers):"
+msgstr ""
+
+msgid "Team mode"
+msgstr ""
+
+msgid ""
+"Team tab: the team name needs 1 to 20 letters and numbers, without spaces."
+msgstr ""
+
+msgid ""
+"Team tab: type the names or ids who may join, or choose another \"Who may join\"."
+msgstr ""
+
+msgid "Team tab: type who gets the team when the run ends."
+msgstr ""
+
+msgid "Teleport to the team leader"
+msgstr ""
+
+msgid "Tell them now and then that I'm a&way"
+msgstr ""
+
+msgid "Test &message:"
+msgstr ""
+
+msgid "Thanksgiving"
+msgstr ""
+
+msgid "Thanksgiving Hunt already done today (2/2)"
+msgstr ""
+
+msgid "Thanksgiving Hunt daily entries (2/2) finished - proceeding to exchange"
+msgstr ""
+
+msgid "Thanksgiving Hunt daily entries already used up (2/2)"
+msgstr ""
+
+msgid ""
+"Thanksgiving Hunt is already done (2/2) for today - proceeding to exchange"
+msgstr ""
+
+msgid "Thanksgiving Hunt is not available in Activity Envoy's menu"
+msgstr ""
+
+msgid "Thanksgiving event finished (already had required turkeys)"
+msgstr ""
+
+msgid "Thanksgiving event finished ({n} entries)"
+msgstr ""
+
+msgid "That filter already exists."
+msgstr ""
+
+msgid ""
+"That is longer than the game's 200 characters: it goes in {n} parts, one every 2 seconds (3 on Global), as fast as the game allows."
+msgstr ""
+
+msgid "That keyboard profile no longer exists. Choose another action."
+msgstr ""
+
+msgid "That place is in your list already."
+msgstr ""
+
+msgid "That schedule is gone"
+msgstr ""
+
+msgid "That script no longer exists. Choose another action."
+msgstr ""
+
+msgid "That sound ID is already in the lists."
+msgstr ""
+
+msgid "That sound ID is not in this game's available sound files."
+msgstr ""
+
+msgid "That takes about {k} more {shard}{cost}, plus the craftsman's fees."
+msgstr ""
+
+msgid "That time has already passed: choose a later one."
+msgstr ""
+
+msgid "That was too short to send - hold on a little longer."
+msgstr ""
+
+msgid ""
+"The Log tab in the main window always shows a run's lines. This level is for the log files, which also take the app's own warnings and the crashes with their tracebacks."
+msgstr ""
+
+msgid "The Shard Broker only"
+msgstr ""
+
+msgid "The Shard Market only"
+msgstr ""
+
+msgid "The Triggers lists around the farming"
+msgstr ""
+
+msgid "The agent file is missing from Mist World Farmer's agent folder."
+msgstr ""
+
+msgid ""
+"The agent is reinstalled. Start Mist World again: it loads the agent as it starts."
+msgstr ""
+
+msgid ""
+"The agent isn't installed in the game yet, and without it a second game closes right after it starts. Open Settings now?"
+msgstr ""
+
+msgid ""
+"The agent isn't installed in the game yet. Install it in Settings first."
+msgstr ""
+
+msgid "The area is now 40 tiles around you."
+msgstr ""
+
+msgid "The bag is full at (% of its load):"
+msgstr ""
+
+msgid "The best for this character"
+msgstr ""
+
+msgid "The best map for the character's level"
+msgstr ""
+
+msgid "The best one on my hotkeys"
+msgstr ""
+
+msgid "The bot decides"
+msgstr ""
+
+msgid "The bot didn't stop in time, so it isn't following you."
+msgstr ""
+
+msgid "The bot drinks it as soon as that much {what} is missing."
+msgstr ""
+
+msgid ""
+"The bot finds a guard (in sight, where one was seen before, or in the nearest town), switches the PK mode to all mode, hits the guard once and lets it kill the character: no potions, no heals, no fighting back. It respawns in the city and goes again until the next level needs at least that much experience. At the nearest village, it walks into the nearest village first (the game brings a dead character back at the last town it walked into), then dies at its gates, so each death is quicker (on Tuneful Wetland, 11 seconds at Aria Village against 29 at Tulip City); if the game brings it back somewhere else, it dies at the nearest guard instead. Each death takes a share of the experience earned in the level, so each costs a little less than the last: after three deaths the bot says how many more it will take, and it stops if the level can't reach your number. The pet is put away first, and the PK mode is put back at the end. Deaths wear your gear like any death; a black-name character (Morality -1000 or lower) can lose worn gear when it dies, so the XP loser won't run for one."
+msgstr ""
+
+msgid "The bot is busy on this game. Stop it first (Stop), then try again."
+msgstr ""
+
+msgid "The bot isn't running."
+msgstr ""
+
+msgid "The bot reads the real one from the Forger every try."
+msgstr ""
+
+msgid "The bot stops buying before it would spend more than {cap}."
+msgstr ""
+
+msgid "The character hasn't learned {skill}."
+msgstr ""
+
+msgid "The character's plan"
+msgstr ""
+
+msgid "The clipboard couldn't be opened."
+msgstr ""
+
+msgid "The collection"
+msgstr ""
+
+msgid "The computer shuts down in {n} seconds. Cancel the shutdown?"
+msgstr ""
+
+msgid "The computer shuts down once the other bots have finished."
+msgstr ""
+
+msgid ""
+"The day is written as the script \"{name}\". Open it from the Plans tab to read or change it; \"Write the script of the day now\" writes it again from this window."
+msgstr ""
+
+msgid "The day:"
+msgstr ""
+
+msgid "The delay must be between 0 and {most} seconds."
+msgstr ""
+
+msgid ""
+"The delay runs before the next enabled action. Zero starts it immediately; the last action has no delay."
+msgstr ""
+
+msgid ""
+"The east edge must be greater than the west edge, and the south edge greater than the north edge."
+msgstr ""
+
+msgid "The end place is now where you stand: {map} ({x},{y})."
+msgstr ""
+
+msgid "The fastest one"
+msgstr ""
+
+msgid "The fees are read off the Pharmacist's pages (Check only shows them)."
+msgstr ""
+
+msgid "The game didn't confirm {skill}."
+msgstr ""
+
+msgid "The game didn't play it: {why}"
+msgstr ""
+
+msgid "The game didn't send it: {why}"
+msgstr ""
+
+msgid "The game didn't start recording: {why}"
+msgstr ""
+
+msgid "The game didn't take it: {why}"
+msgstr ""
+
+msgid ""
+"The game hasn't shown {name} yet, so their id isn't known: type their id instead, or wait until they are in sight or message you."
+msgstr ""
+
+msgid "The game is quiet."
+msgstr ""
+
+msgid "The game is running but no character is logged in."
+msgstr ""
+
+msgid "The game isn't readable. Is it running, with a character logged in?"
+msgstr ""
+
+msgid "The game opened for logging in didn't start in time, so it is closed."
+msgstr ""
+
+msgid "The game sends voice messages only to Team, Gang and private chats."
+msgstr ""
+
+msgid "The game talks again."
+msgstr ""
+
+msgid ""
+"The game's drop time resets at {reset} on this computer's clock (00:00 GMT). Farming past it spends the next day's drop time, so every run stops at this time and ends where its plan says, and no run starts again until {reset}. {default} leaves time to get away from the monsters before the reset."
+msgstr ""
+
+msgid ""
+"The game's key settings weren't found. Set the game folder in Settings first."
+msgstr ""
+
+msgid "The game's map says: {about}"
+msgstr ""
+
+msgid "The game's skill texts don't describe this one."
+msgstr ""
+
+msgid ""
+"The games are closed. Start Mist World again: it loads the agent as it starts."
+msgstr ""
+
+msgid "The games were already muted."
+msgstr ""
+
+msgid "The games were already talking."
+msgstr ""
+
+msgid "The gang's area is used on its own, once a day: no need to add it."
+msgstr ""
+
+msgid "The gang's name, as the Gang Entrance's list shows it:"
+msgstr ""
+
+msgid "The guide {name} is missing from the docs folder."
+msgstr ""
+
+msgid "The hearthstone didn't work."
+msgstr ""
+
+msgid "The highest cave my level lets in"
+msgstr ""
+
+msgid "The interrupted runs won't carry on."
+msgstr ""
+
+msgid ""
+"The last scan found no gathering skill. Learn Fishing, Mining or Collect Herbs (one of them) from the gang's Guru Elder or Master Pepper, then scan again."
+msgstr ""
+
+msgid "The listener is busy or disconnected. Try again."
+msgstr ""
+
+msgid "The market"
+msgstr ""
+
+msgid "The names or ids below"
+msgstr ""
+
+msgid "The nearest city's"
+msgstr ""
+
+msgid "The nearest map where no monsters spawn."
+msgstr ""
+
+msgid ""
+"The pet's rows count only with a pet active, and the blue potions only for a character that uses MP. Between two entries the bot tops up again."
+msgstr ""
+
+msgid ""
+"The pet's rows count only with a pet ticked in Character, Settings, and the blue potions only for a character that uses MP. Between two caves the bot tops up again."
+msgstr ""
+
+msgid "The pets ticked in Character, Settings (else the one out)"
+msgstr ""
+
+msgid "The plan as a script"
+msgstr ""
+
+msgid "The plan was saved, but the old file couldn't be removed: {err}"
+msgstr ""
+
+msgid "The room"
+msgstr ""
+
+msgid ""
+"The saved {stage} list couldn't be read ({err}). It is shown from the old trigger ticks; OK saves this list in its place."
+msgstr ""
+
+msgid "The schedule isn't complete"
+msgstr ""
+
+msgid "The scheduled character and the script's login character are different."
+msgstr ""
+
+msgid ""
+"The script has a mistake:\n"
+"{p}\n"
+"\n"
+"Save it anyway?"
+msgstr ""
+
+msgid "The script reads correctly."
+msgstr ""
+
+msgid "The script was saved, but the old file couldn't be removed: {err}"
+msgstr ""
+
+msgid "The script's login character is not a known saved character: {name}"
+msgstr ""
+
+msgid "The shards are worth about {total} arnebia at the last seen prices."
+msgstr ""
+
+msgid "The sound list must be a list of sound entries."
+msgstr ""
+
+msgid ""
+"The storage list is empty. Choose what to move to the storehouse in Character, Bag and supplies first."
+msgstr ""
+
+msgid "The storehouse first, then the Shard Broker"
+msgstr ""
+
+msgid "The storehouse first, then the Shard Market"
+msgstr ""
+
+msgid "The storehouse only"
+msgstr ""
+
+msgid ""
+"The storehouse's potions count too: Check only reads them. It goes a bagful at a time."
+msgstr ""
+
+msgid "The strongest one"
+msgstr ""
+
+msgid ""
+"The throw-away list is empty. Choose what to throw away in Character, Bag and supplies first."
+msgstr ""
+
+msgid "The town storehouse"
+msgstr ""
+
+msgid "The town storehouse, then the market"
+msgstr ""
+
+msgid "The trigger sequence settings are invalid."
+msgstr ""
+
+msgid "The trigger's enabled setting must be true or false."
+msgstr ""
+
+msgid "The update couldn't start: {why}"
+msgstr ""
+
+msgid "The update didn't download: {why}"
+msgstr ""
+
+msgid ""
+"The update is being prepared: Mist World Farmer closes by itself in a moment."
+msgstr ""
+
+msgid ""
+"The update reinstalls Mist World Farmer's agent, which the open games have loaded, so every Mist World window must close first.\n"
+"\n"
+"Press OK to close them ({n} open) and update. Start Mist World again after the update."
+msgstr ""
+
+msgid ""
+"The update to {v} didn't finish: {why}\n"
+"Mist World Farmer {cur} still works. The details are in {log}."
+msgstr ""
+
+msgid ""
+"Then fill the bag with {shard} from {source} and make them up, again and again."
+msgstr ""
+
+msgid "Then stay &quiet for (minutes):"
+msgstr ""
+
+msgid "There's no plan to run."
+msgstr ""
+
+msgid "These runs didn't finish:"
+msgstr ""
+
+msgid "These sound IDs are not available in this game: {ids}"
+msgstr ""
+
+msgid "They carry on where they were in {n} seconds."
+msgstr ""
+
+msgid "They come from {source}, a bagful at a time."
+msgstr ""
+
+msgid "This character has no gathering skill to add a place for."
+msgstr ""
+
+msgid "This copy"
+msgstr ""
+
+msgid ""
+"This copy doesn't look for updates online. New versions come as a zip: unpack it over this folder."
+msgstr ""
+
+msgid "This copy runs from its source code: update it with git pull."
+msgstr ""
+
+msgid "This game"
+msgstr ""
+
+msgid "This game started with an older agent. Restart it to mute it."
+msgstr ""
+
+msgid ""
+"This is a development build from the dev branch: the newest changes, not yet a stable release, and it can break."
+msgstr ""
+
+msgid "This many more"
+msgstr ""
+
+msgid ""
+"This map can't be an end place. Choose one on the open world, or another end."
+msgstr ""
+
+msgid "This map has no patrol loop. Choose Wander at random."
+msgstr ""
+
+msgid "This run (or the last one)"
+msgstr ""
+
+msgid "This run:"
+msgstr ""
+
+msgid "This run: {r}"
+msgstr ""
+
+msgid "Throw awa&y:"
+msgstr ""
+
+msgid ""
+"Throw away whatever of these is in the bag, right where you stand?\n"
+"\n"
+"{list}\n"
+"\n"
+"Nothing else is touched. Thrown items are gone for good."
+msgstr ""
+
+msgid "Thrown away:"
+msgstr ""
+
+msgid "Thursday"
+msgstr ""
+
+msgid "Tick at least one day."
+msgstr ""
+
+msgid "Tick at least one gem, or a kind of crystal."
+msgstr ""
+
+msgid "Tick the lots to buy in Results first (Space)."
+msgstr ""
+
+msgid "Tick the monsters to fight:"
+msgstr ""
+
+msgid "Time (HH:MM):"
+msgstr ""
+
+msgid "Time between potions (seconds):"
+msgstr ""
+
+msgid ""
+"Time remaining: no end time set (no time limit, stop time or daily stop)"
+msgstr ""
+
+msgid "Time remaining: {left}"
+msgstr ""
+
+msgid "Time used: {used}, {kills} kills, {deaths} deaths"
+msgstr ""
+
+msgid "Time: hours go from 0 to 23 and minutes from 0 to 59"
+msgstr ""
+
+msgid "Time: write it as hours:minutes, for example 06:30"
+msgstr ""
+
+msgid "Time: {h} h {m} min"
+msgstr ""
+
+msgid "Times"
+msgstr ""
+
+msgid "To (seconds):"
+msgstr ""
+
+msgid "Today"
+msgstr ""
+
+msgid "Today, {n} runs: {r}"
+msgstr ""
+
+msgid "Today: already done (2/2)"
+msgstr ""
+
+msgid "Today: available (not 2/2 yet)"
+msgstr ""
+
+msgid "Today: no cave yet."
+msgstr ""
+
+msgid "Today: {cave} is done - the next one after the game day's reset."
+msgstr ""
+
+msgid "Toggle p&reparation"
+msgstr ""
+
+msgid "Tone from &everyone else:"
+msgstr ""
+
+msgid "Tone from &trusted players:"
+msgstr ""
+
+msgid "Too little &means under this much experience:"
+msgstr ""
+
+msgid "Toolboxes (Small/Large/Alloy)"
+msgstr ""
+
+msgid "Tools"
+msgstr ""
+
+msgid "Total"
+msgstr ""
+
+msgid "Total arnebia spent on items used: {n}"
+msgstr ""
+
+msgid "Total expenses: {n} arnebia (items used up, at their stored prices)"
+msgstr ""
+
+msgid "Travel"
+msgstr ""
+
+msgid "Travel and pets"
+msgstr ""
+
+msgid "Trigger action"
+msgstr ""
+
+msgid "Trigger sequence completed with failures."
+msgstr ""
+
+msgid "Triggers"
+msgstr ""
+
+msgid "Troubled Guard mission completed"
+msgstr ""
+
+msgid "Troubled Guard not offered (already done today?)"
+msgstr ""
+
+msgid "Troubled Guard turn-in did not complete"
+msgstr ""
+
+msgid "Trusted players"
+msgstr ""
+
+msgid "Trusted players (Private messages)"
+msgstr ""
+
+msgid ""
+"Trusted players are the names and ids in Private messages (Ctrl+Shift+M), where reading private messages out is set too."
+msgstr ""
+
+msgid "Tuesday"
+msgstr ""
+
+msgid "Turkeys required for {item}:"
+msgstr ""
+
+msgid "Turn on or o&ff"
+msgstr ""
+
+msgid "Turned &on"
+msgstr ""
+
+msgid "Type a message first."
+msgstr ""
+
+msgid ""
+"Type how much experience: the most the next level should need, or how much to lose."
+msgstr ""
+
+msgid "Type one or more seller IDs."
+msgstr ""
+
+msgid "Type the name of the gang whose craftsmen to use."
+msgstr ""
+
+msgid "Unit price"
+msgstr ""
+
+msgid "Unmute every &game"
+msgstr ""
+
+msgid "Unpacking"
+msgstr ""
+
+msgid ""
+"Until required exchange turkeys are collected (then quit via Action menu)"
+msgstr ""
+
+msgid "Until the bag holds this many"
+msgstr ""
+
+msgid "Update"
+msgstr ""
+
+msgid "Update log: {log}"
+msgstr ""
+
+msgid "Update shard &prices"
+msgstr ""
+
+msgid "Updater"
+msgstr ""
+
+msgid "Updates"
+msgstr ""
+
+msgid ""
+"Updates come from GitHub ({repo}) and install themselves after you say yes."
+msgstr ""
+
+msgid "Updating shard prices"
+msgstr ""
+
+msgid "Use"
+msgstr ""
+
+msgid "Use &MP potions"
+msgstr ""
+
+msgid "Use &airships (they may cost Arnebia)"
+msgstr ""
+
+msgid "Use &boost runes when I have enough (+5%)"
+msgstr ""
+
+msgid "Use &cable cars and teleport circles"
+msgstr ""
+
+msgid "Use &teleport stones and the hearthstone from the bag"
+msgstr ""
+
+msgid "Use Gem &Protection Runes (a failure breaks no gem)"
+msgstr ""
+
+msgid "Use area &skills on this many monsters close together:"
+msgstr ""
+
+msgid "Use item"
+msgstr ""
+
+msgid "Use keyboard_profile followed by one quoted profile name."
+msgstr ""
+
+msgid "Use the &combos of the activated talents"
+msgstr ""
+
+msgid "Use the &current map"
+msgstr ""
+
+msgid "Use the &default ({time})"
+msgstr ""
+
+msgid "Use the class's teleport &skill (Mage, Elf)"
+msgstr ""
+
+msgid "Use the day's free &rebirths on one pet"
+msgstr ""
+
+msgid "Use the map's whole monster &area"
+msgstr ""
+
+msgid "Use the places the bot &knows from the game, besides your own"
+msgstr ""
+
+msgid "Use where I &stand now"
+msgstr ""
+
+msgid "Used up:"
+msgstr ""
+
+msgid ""
+"Uses the hearthstone; if it can't, ends on the nearest map without monsters."
+msgstr ""
+
+msgid "Usual"
+msgstr ""
+
+msgid "Villager Merlin did not give coat and letter"
+msgstr ""
+
+msgid "Vitality is down to {n}"
+msgstr ""
+
+msgid "Vitality is down to {n}, where you set gathering outside to stop"
+msgstr ""
+
+msgid "Vitality is used up for today"
+msgstr ""
+
+msgid "Voice message sent to {where} in {n} parts."
+msgstr ""
+
+msgid "Voice message sent to {where}."
+msgstr ""
+
+msgid "Voice messages need the new agent in this game: restart the game."
+msgstr ""
+
+msgid "Wa&lk to a dungeon or map"
+msgstr ""
+
+msgid "Waiting {seconds} seconds after {job}"
+msgstr ""
+
+msgid "Walk d&iagonally across open ground (both direction keys at once)"
+msgstr ""
+
+msgid "Walk east"
+msgstr ""
+
+msgid "Walk north"
+msgstr ""
+
+msgid "Walk south"
+msgstr ""
+
+msgid "Walk to"
+msgstr ""
+
+msgid "Walk to {where}"
+msgstr ""
+
+msgid ""
+"Walk up to corpses further off, up to 20 steps awa&y (off: only the ones within 4.5 steps of where the fight ended)"
+msgstr ""
+
+msgid "Walk up to the enemy"
+msgstr ""
+
+msgid "Walk west"
+msgstr ""
+
+msgid "Walking"
+msgstr ""
+
+msgid ""
+"Walks (and rides cable cars and airships) back to where you started the bot. If monsters spawn there, it ends on the nearest map without them instead."
+msgstr ""
+
+msgid ""
+"Walks and rides to that map, then to the spot (0,0 = anywhere on the map)."
+msgstr ""
+
+msgid "Wander at random"
+msgstr ""
+
+msgid "Warnings and errors"
+msgstr ""
+
+msgid "Wednesday"
+msgstr ""
+
+msgid ""
+"Welcome to Mist World Farmer. The agent needs to be installed in Mist World first. Open Settings now?"
+msgstr ""
+
+msgid "West edge (x):"
+msgstr ""
+
+msgid "What is on the hotkey (else the strongest in the bag)"
+msgstr ""
+
+msgid "What is short"
+msgstr ""
+
+msgid "What the bot knows about this character:"
+msgstr ""
+
+msgid "What to break"
+msgstr ""
+
+msgid ""
+"What's in the bag should be enough (a combine works half the time, so maybe not)."
+msgstr ""
+
+msgid "When"
+msgstr ""
+
+msgid "When HP stays &low:"
+msgstr ""
+
+msgid "When a game is lost during a run"
+msgstr ""
+
+msgid "When an &item runs low"
+msgstr ""
+
+msgid "When crystals run &out, make this many more:"
+msgstr ""
+
+msgid "When farming stops by itself (never after you press Stop)"
+msgstr ""
+
+msgid "When its amiability is below:"
+msgstr ""
+
+msgid "When nothing is killed for a while, try elsewhere, then stop"
+msgstr ""
+
+msgid "When the bag is &full outside:"
+msgstr ""
+
+msgid "When the last cave is done"
+msgstr ""
+
+msgid "When to stop"
+msgstr ""
+
+msgid "Whenever it's ready"
+msgstr ""
+
+msgid "Where"
+msgstr ""
+
+msgid "Where it is"
+msgstr ""
+
+msgid "Where to end"
+msgstr ""
+
+msgid "Where to farm"
+msgstr ""
+
+msgid "Which crystal level an item takes:"
+msgstr ""
+
+msgid "Which plan? Send: start <plan name>"
+msgstr ""
+
+msgid "While a bot runs"
+msgstr ""
+
+msgid "While a bot runs in it"
+msgstr ""
+
+msgid "While farming, go and share just before each half &hour, then come back"
+msgstr ""
+
+msgid "White Bone Cave"
+msgstr ""
+
+msgid "Wildcard"
+msgstr ""
+
+msgid ""
+"Wildcards: * matches any text; ? matches one character. Not a regular expression."
+msgstr ""
+
+msgid "With a heal skill, red &potions only below HP (%):"
+msgstr ""
+
+msgid "With more than one spot:"
+msgstr ""
+
+msgid "With one spot, the bot farms there until the plan stops (When to stop)."
+msgstr ""
+
+msgid "With your {top} max HP that is below {pct}%."
+msgstr ""
+
+msgid "Worst hit received: {hit}"
+msgstr ""
+
+msgid "Worst normal hit received: {hit}"
+msgstr ""
+
+msgid "Would you like to switch to {language}?"
+msgstr ""
+
+msgid "Wraith Cave &floor:"
+msgstr ""
+
+msgid "Write the time as HH:MM, for example 06:30."
+msgstr ""
+
+msgid "X:"
+msgstr ""
+
+msgid "XP loser"
+msgstr ""
+
+msgid ""
+"XP loser: the next level needs {xp} experience; dying to guards until it needs {goal}"
+msgstr ""
+
+msgid "XP loser: {end} ({n} deaths)"
+msgstr ""
+
+msgid "Y:"
+msgstr ""
+
+msgid "Yes"
+msgstr ""
+
+msgid "Yesterday"
+msgstr ""
+
+msgid "You are already on {map}."
+msgstr ""
+
+msgid "You have (last scan):"
+msgstr ""
+
+msgid ""
+"You have the development build {v}. The newest stable release, {stable}, is older; the next stable release newer than your build will be offered."
+msgstr ""
+
+msgid ""
+"Your system language is supported. Would you like to use {language} in Mist World Farmer?"
+msgstr ""
+
+msgid "a chat line"
+msgstr ""
+
+msgid "a chest in sight, {n} steps away: going to open it"
+msgstr ""
+
+msgid "a chest turned up on {map} - looking for it (up to {n} minutes)"
+msgstr ""
+
+msgid "a condition or value is missing"
+msgstr ""
+
+msgid "a death now costs less than {n} experience - stopped"
+msgstr ""
+
+msgid "a monster"
+msgstr ""
+
+msgid "a number the Gem Craftsman will tell"
+msgstr ""
+
+msgid "a skill with no name"
+msgstr ""
+
+msgid "a sub needs a name"
+msgstr ""
+
+msgid ""
+"a text box is open in the game (chat?) - the game ignores keys until you close it with Escape"
+msgstr ""
+
+msgid "about to be killed by someone else"
+msgstr ""
+
+msgid "about {price}"
+msgstr ""
+
+msgid "accepted into the team: {names}"
+msgstr ""
+
+msgid "accepted {name} into the team"
+msgstr ""
+
+msgid "add: I accept your application to join my team."
+msgstr ""
+
+msgid "after a dodge or block"
+msgstr ""
+
+msgid "after farming"
+msgstr ""
+
+msgid "after {n} kills"
+msgstr ""
+
+msgid "after {n} minutes"
+msgstr ""
+
+msgid "agreed to {names} joining, and the game didn't say they joined"
+msgstr ""
+
+msgid "alive again on {map}"
+msgstr ""
+
+msgid "all goods"
+msgstr ""
+
+msgid ""
+"all required turkeys ({n}/{target}) collected; skipping remaining entries"
+msgstr ""
+
+msgid "all the gear repaired with a {tool}"
+msgstr ""
+
+msgid "all {n} lots of each seller found"
+msgstr ""
+
+msgid "already donated today"
+msgstr ""
+
+msgid "already done today"
+msgstr ""
+
+msgid "already fed today"
+msgstr ""
+
+msgid ""
+"already have {n} turkeys (target {target}); skipping hunt and proceeding to exchange"
+msgstr ""
+
+msgid "already in a town - staying here"
+msgstr ""
+
+msgid "already inside {cave}"
+msgstr ""
+
+msgid "already inside {cave}: hunting until the game moves us out"
+msgstr ""
+
+msgid ""
+"already on {map}, where this run farms first - the Before farming list is skipped"
+msgstr ""
+
+msgid "anything"
+msgstr ""
+
+msgid "area attack"
+msgstr ""
+
+msgid "area is four numbers: x1,y1,x2,y2"
+msgstr ""
+
+msgid "area level {n}"
+msgstr ""
+
+msgid "arena"
+msgstr ""
+
+msgid "armors"
+msgstr ""
+
+msgid "arnebia shared {n} of {all} times"
+msgstr ""
+
+msgid "arrived"
+msgstr ""
+
+msgid "arrived next to {npc}"
+msgstr ""
+
+msgid "arrived on {map}"
+msgstr ""
+
+msgid "arrived on {map} at {x},{y}"
+msgstr ""
+
+msgid "arrived on {map} at {x},{y} - planning the way on from here"
+msgstr ""
+
+msgid "asking for hunting bounties"
+msgstr ""
+
+msgid "at most {n} gold coins"
+msgstr ""
+
+msgid "at the nearest guard"
+msgstr ""
+
+msgid "at the nearest village (you respawn next to its guards)"
+msgstr ""
+
+msgid "at {time}"
+msgstr ""
+
+msgid "attack"
+msgstr ""
+
+msgid "attack that heals you"
+msgstr ""
+
+msgid "attacked - staying on foot, no fusion beast until the fight is over"
+msgstr ""
+
+msgid "attacked by {name}, fighting back"
+msgstr ""
+
+msgid "attacked on the way - stopping to fight"
+msgstr ""
+
+msgid ""
+"attacked {secs} s ago - the fusion beast waits until {quiet} s without an attack"
+msgstr ""
+
+msgid "attacking guards with the {key} key"
+msgstr ""
+
+msgid "attacks {how}"
+msgstr ""
+
+msgid "auto-redeeming Thanksgiving gifts at Activity Envoy..."
+msgstr ""
+
+msgid "automatic login could not start"
+msgstr ""
+
+msgid "automatic login finished"
+msgstr ""
+
+msgid "automatic login stopped"
+msgstr ""
+
+msgid "automatic reconnection finished"
+msgstr ""
+
+msgid "avoiding elites"
+msgstr ""
+
+msgid "back on the farm"
+msgstr ""
+
+msgid "back to {map}"
+msgstr ""
+
+msgid "back to {map} after fleeing a lost fight"
+msgstr ""
+
+msgid "back to {map} after {why}"
+msgstr ""
+
+msgid "bad pattern: {why}"
+msgstr ""
+
+msgid "bag capacity allows {n} more {item}"
+msgstr ""
+
+msgid "bag items and targets go by keys again: {why}"
+msgstr ""
+
+msgid "bag only, used between fights"
+msgstr ""
+
+msgid "bag trip: {items}"
+msgstr ""
+
+msgid "bag: how full my backpack is and how many potions of each kind I have."
+msgstr ""
+
+msgid "bank income"
+msgstr ""
+
+msgid "basic attack"
+msgstr ""
+
+msgid "before farming"
+msgstr ""
+
+msgid "belts"
+msgstr ""
+
+msgid "blocks are nested too deeply (over {max})"
+msgstr ""
+
+msgid "blue"
+msgstr ""
+
+msgid "bought {n} for {cost} gold coins"
+msgstr ""
+
+msgid "bought {n} of {all} lots for {spent} gold coins"
+msgstr ""
+
+msgid "bought {n} {item}"
+msgstr ""
+
+msgid "bought {n} {shard}"
+msgstr ""
+
+msgid "bought {n} {shard}: the bag has no room for more"
+msgstr ""
+
+msgid "bought {n} {shard}: the spare arnebia pays for no more"
+msgstr ""
+
+msgid "breaking gems"
+msgstr ""
+
+msgid "broke {n} gems and crystals"
+msgstr ""
+
+msgid "broke {n} {item} into {k} {product}"
+msgstr ""
+
+msgid "browsing {cat}"
+msgstr ""
+
+msgid "buff"
+msgstr ""
+
+msgid ""
+"buff: while I follow you I keep my buffs up. buff off stops them again. Each new follow starts without buffs."
+msgstr ""
+
+msgid "built at the {post}"
+msgstr ""
+
+msgid "built {n} times"
+msgstr ""
+
+msgid "built {n} times; no place took more today (places: {places})"
+msgstr ""
+
+msgid "built {n} times; the game's two builds a day are made"
+msgstr ""
+
+msgid "built {n} times; {made} already made today"
+msgstr ""
+
+msgid "built {n} times; {why}"
+msgstr ""
+
+msgid "buying the ticked lots..."
+msgstr ""
+
+msgid "buying {n} lots"
+msgstr ""
+
+msgid ""
+"buying {n} {item}, not {want}: that is what {money} arnebia pays for at {price} each"
+msgstr ""
+
+msgid "can build at the {post}"
+msgstr ""
+
+msgid "can exchange contribution for a Contribution Chest"
+msgstr ""
+
+msgid "can't choose the best map: the character's level isn't known yet"
+msgstr ""
+
+msgid ""
+"can't cross Polson Wetland: Poison Immunity isn't activated and no fusion beast would go on (a fused character takes no poison damage there)"
+msgstr ""
+
+msgid "can't find {npc} here"
+msgstr ""
+
+msgid "can't get next to {npc}"
+msgstr ""
+
+msgid ""
+"can't heal {name} with {skill}: the bot can't select teammates in this game (restart the game so Mist World Farmer's agent loads)"
+msgstr ""
+
+msgid "can't heal {name} with {skill}: {why} - the heal is tried again"
+msgstr ""
+
+msgid ""
+"can't heal {pet} with {skill}: the bot can't select the pet in this game (restart the game so Mist World Farmer's agent loads) - pet potions meanwhile"
+msgstr ""
+
+msgid ""
+"can't heal {pet} with {skill}: {why} - pet potions meanwhile, and the heal is tried again"
+msgstr ""
+
+msgid ""
+"can't hear team requests ({err}): they are looked at when farming starts"
+msgstr ""
+
+msgid "can't read the experience card from the character sheet yet"
+msgstr ""
+
+msgid ""
+"can't read the experience from the character sheet - restart the game so the new agent loads"
+msgstr ""
+
+msgid "can't read the experience from the character sheet any more"
+msgstr ""
+
+msgid ""
+"can't read the game's bag cursor - restart the game so the new agent loads"
+msgstr ""
+
+msgid "can't read the game's modes ({why}) - not changing them"
+msgstr ""
+
+msgid ""
+"can't read the profession skills ({why}) - corpse harvesting tries again in 5 minutes"
+msgstr ""
+
+msgid "can't read this expression: {expr}"
+msgstr ""
+
+msgid ""
+"can't see this character's quick phrases in the game folder ({folder}) - leaving them all alone"
+msgstr ""
+
+msgid "can't select the guard: {why}"
+msgstr ""
+
+msgid "can't switch the skill page yet ({why}); using the page that is up"
+msgstr ""
+
+msgid "cancel the team's navigation target"
+msgstr ""
+
+msgid "carrying on the interrupted run of {what}"
+msgstr ""
+
+msgid ""
+"carrying on with {map} where it was: {minutes} minutes and {kills} kills done"
+msgstr ""
+
+msgid "cast {n} times"
+msgstr ""
+
+msgid "casting {skill} to {place}"
+msgstr ""
+
+msgid "charge in"
+msgstr ""
+
+msgid "cheapest {what}"
+msgstr ""
+
+msgid ""
+"check: the next level needs {xp} experience, goal {goal}; {n} guards in sight here, {k} remembered spots; PK mode {pk}{locked}"
+msgstr ""
+
+msgid "checked {n} lots"
+msgstr ""
+
+msgid "checking the ticked lots..."
+msgstr ""
+
+msgid "checking {n} lots"
+msgstr ""
+
+msgid "chest opened"
+msgstr ""
+
+msgid ""
+"chests on {map} are opened by others within {n} s on average - not looking for them here"
+msgstr ""
+
+msgid "chests on {map} stay unopened longer now - looking for them again"
+msgstr ""
+
+msgid "choose the officers first: Tools, Hunting bounties"
+msgstr ""
+
+msgid "choose what? write: choose Tulip City"
+msgstr ""
+
+msgid "choosing \"{entry}\""
+msgstr ""
+
+msgid "chose \"Open the chest\" but the chest is still there"
+msgstr ""
+
+msgid "circles seen on {map}: {names}"
+msgstr ""
+
+msgid "cleaning the bag"
+msgstr ""
+
+msgid "closed a window the game opened: {what}"
+msgstr ""
+
+msgid "closed map - no way in or out on foot"
+msgstr ""
+
+msgid "collected the deposit income"
+msgstr ""
+
+msgid "collected {n} Value Product incomes"
+msgstr ""
+
+msgid ""
+"collected {n} turkeys (reached target {target}); quitting event via Action menu..."
+msgstr ""
+
+msgid "collections"
+msgstr ""
+
+msgid "combos that start on a critical hit wait for the new agent: {list}"
+msgstr ""
+
+msgid "combos: {list}"
+msgstr ""
+
+msgid ""
+"come: I walk to you. Best: press E, copy it with Shift+C and send come and what you copied. come and a map's name works too."
+msgstr ""
+
+msgid "completed Thanksgiving Hunt entry {cur} of {total}"
+msgstr ""
+
+msgid "construction report published"
+msgstr ""
+
+msgid "construction report published; {n} older reports of yours removed"
+msgstr ""
+
+msgid "construction scanner: everything is at 100%, nothing published"
+msgstr ""
+
+msgid ""
+"construction scanner: nothing changed since the last report, nothing published"
+msgstr ""
+
+msgid ""
+"construction scanner: {n} places read, {open} under 100%; open Tools, Construction scanner to read the report"
+msgstr ""
+
+msgid "cooldown {n} s"
+msgstr ""
+
+msgid "corpse harvesting"
+msgstr ""
+
+msgid ""
+"corpse harvesting is on, but this character has no Draw Blood, Skinning or Cut Flesh - learn one (Learn Profession Skill) from the gang's Guru Elder or Master Pepper"
+msgstr ""
+
+msgid ""
+"corpse harvesting needs the game's agent {need} or newer (this game has {have}) - restart the game so the new agent loads"
+msgstr ""
+
+msgid ""
+"corpse harvesting needs the game's agent {need} or newer - restart the game so the new agent loads"
+msgstr ""
+
+msgid "could not enter Thanksgiving Hunt (limit reached or entrance failed)"
+msgstr ""
+
+msgid "couldn't add the {shard}"
+msgstr ""
+
+msgid "couldn't cast {skill} ({why}) - trying again in 5 minutes"
+msgstr ""
+
+msgid "couldn't choose Thanksgiving Hunt from dialog"
+msgstr ""
+
+msgid "couldn't collect Missing Child reward from Old Jack"
+msgstr ""
+
+msgid "couldn't confirm the repair with a {tool} - not marked repaired"
+msgstr ""
+
+msgid "couldn't enter Outer hall"
+msgstr ""
+
+msgid "couldn't find Villager Little Jack"
+msgstr ""
+
+msgid "couldn't finish at the game's end: {err}"
+msgstr ""
+
+msgid "couldn't finish safely: {err}"
+msgstr ""
+
+msgid "couldn't finish the results: {err}"
+msgstr ""
+
+msgid "couldn't finish the run ({where}): {err}"
+msgstr ""
+
+msgid "couldn't get a hit in on that guard - trying another"
+msgstr ""
+
+msgid "couldn't get away - fighting on"
+msgstr ""
+
+msgid "couldn't get back from the highland"
+msgstr ""
+
+msgid "couldn't get back into the gang's base ({why}) - staying here"
+msgstr ""
+
+msgid "couldn't get back to {place}: {why}"
+msgstr ""
+
+msgid "couldn't get into highland {n}"
+msgstr ""
+
+msgid "couldn't get into the gang {gang}'s base"
+msgstr ""
+
+msgid "couldn't get into the gang's inner hall"
+msgstr ""
+
+msgid "couldn't get into the gang's outer hall to reach the Pharmacist"
+msgstr ""
+
+msgid "couldn't get into the secret room"
+msgstr ""
+
+msgid "couldn't get there - going to the nearest map without monsters"
+msgstr ""
+
+msgid "couldn't get to page {page} of {cat}"
+msgstr ""
+
+msgid "couldn't get to panel {n} with the arrow keys"
+msgstr ""
+
+msgid "couldn't get to the bag with the arrow keys"
+msgstr ""
+
+msgid "couldn't get to {name} - next one"
+msgstr ""
+
+msgid "couldn't get to {npc}"
+msgstr ""
+
+msgid "couldn't get to {place}: {why}"
+msgstr ""
+
+msgid "couldn't leave the gang's area - waiting for its half hour to end"
+msgstr ""
+
+msgid "couldn't message {name}: {why}"
+msgstr ""
+
+msgid "couldn't move to the menu entry"
+msgstr ""
+
+msgid "couldn't open Redeem Thanksgiving Gifts menu"
+msgstr ""
+
+msgid "couldn't open the Gem Craftsman's shard synthesis"
+msgstr ""
+
+msgid "couldn't put the PK mode back ({why})"
+msgstr ""
+
+msgid "couldn't put the PK mode back to {mode} - please set it by hand"
+msgstr ""
+
+msgid "couldn't put things on empty keys: {err}"
+msgstr ""
+
+msgid "couldn't put {pet} away; keeping it out"
+msgstr ""
+
+msgid ""
+"couldn't reach the {who} of the gang {gang}; going to the nearest city's"
+msgstr ""
+
+msgid "couldn't reach your gang's {who}; going to the nearest city's"
+msgstr ""
+
+msgid "couldn't reach {item} in the bag"
+msgstr ""
+
+msgid "couldn't reach {skill} in the skills panel"
+msgstr ""
+
+msgid "couldn't read the storehouse's list: only the bag counts"
+msgstr ""
+
+msgid "couldn't respawn - please do it by hand"
+msgstr ""
+
+msgid "couldn't restock {item}: {why}"
+msgstr ""
+
+msgid "couldn't save the results: {err}"
+msgstr ""
+
+msgid "couldn't save the shard prices: {err}"
+msgstr ""
+
+msgid "couldn't scan {name}: {err}"
+msgstr ""
+
+msgid "couldn't sell the collection: {why}"
+msgstr ""
+
+msgid "couldn't sell {item}: {why}"
+msgstr ""
+
+msgid "couldn't set a phrase: {why}"
+msgstr ""
+
+msgid "couldn't set the mode to {mode} with the {key} key"
+msgstr ""
+
+msgid "couldn't stay on guard either: {err}"
+msgstr ""
+
+msgid "couldn't stop your Ctrl/Shift/Alt reaching this game: {why}"
+msgstr ""
+
+msgid "couldn't store {item}: {why}"
+msgstr ""
+
+msgid "couldn't switch the target key to NPCs"
+msgstr ""
+
+msgid "couldn't take {item} out of the storehouse: {why}"
+msgstr ""
+
+msgid "couldn't talk to Activity Envoy"
+msgstr ""
+
+msgid "couldn't talk to Gang Entrance"
+msgstr ""
+
+msgid "couldn't talk to Guard Barr"
+msgstr ""
+
+msgid "couldn't talk to Mulberry tree"
+msgstr ""
+
+msgid "couldn't talk to Villager Merlin"
+msgstr ""
+
+msgid "couldn't talk to Villager Merlin for coat"
+msgstr ""
+
+msgid "couldn't talk to Villager Old Jack"
+msgstr ""
+
+msgid "couldn't talk to the Pharmacist"
+msgstr ""
+
+msgid "couldn't talk to the {npc}"
+msgstr ""
+
+msgid "couldn't talk to {npc}"
+msgstr ""
+
+msgid "couldn't throw away: {list}"
+msgstr ""
+
+msgid "couldn't tick the box for {shard}: these tries go without its +20%"
+msgstr ""
+
+msgid "couldn't tick the protection rune - not forging without it"
+msgstr ""
+
+msgid "couldn't travel to Activity Envoy in Mario Basin"
+msgstr ""
+
+msgid "couldn't turn to the attack page {skill} is on"
+msgstr ""
+
+msgid "couldn't type into the game: {why}"
+msgstr ""
+
+msgid "couldn't walk into {village} - trying another village"
+msgstr ""
+
+msgid "couldn't {what} the experience card: {why} - trying again in a minute"
+msgstr ""
+
+msgid "critical"
+msgstr ""
+
+msgid "daily chores"
+msgstr ""
+
+msgid "daily chores finished: {list}"
+msgstr ""
+
+msgid "damage over time"
+msgstr ""
+
+msgid "dead - asked {name} how to respawn, waiting for the answer"
+msgstr ""
+
+msgid "dead, but the respawn menu never opened - please respawn by hand"
+msgstr ""
+
+msgid "defence break"
+msgstr ""
+
+msgid ""
+"demonized elites or too close to one, left alone as the character settings say"
+msgstr ""
+
+msgid "didn't get Silk from Mulberry tree"
+msgstr ""
+
+msgid "died and came back outside {map}"
+msgstr ""
+
+msgid "died on {map} ({n} so far)"
+msgstr ""
+
+msgid "died {n} times - stopping; this place may be too hard"
+msgstr ""
+
+msgid "died {n} times: the next level needs {xp} experience now (goal {goal})"
+msgstr ""
+
+msgid "disbanded {team}: the team is to be called {name}"
+msgstr ""
+
+msgid "done here - going to {map}, where no monsters spawn"
+msgstr ""
+
+msgid "done: made {n} {gem}; {have} in the bag"
+msgstr ""
+
+msgid "done: the next level needs at least {goal} experience"
+msgstr ""
+
+msgid "done: {what}"
+msgstr ""
+
+msgid ""
+"drop time is nearly used up ({m} min left) - going somewhere safe and stopping"
+msgstr ""
+
+msgid "drop time left {time}"
+msgstr ""
+
+msgid "drop time used up"
+msgstr ""
+
+msgid "drop time: {h} h {m} min left; farming stops in about {n} minutes"
+msgstr ""
+
+msgid "drop: how much drop time I have left today."
+msgstr ""
+
+msgid "dungeon - you leave by its chest, not on foot"
+msgstr ""
+
+msgid "dying at {village}: the game brings us back right next to its guards"
+msgstr ""
+
+msgid "dying costs no more experience on this level - stopped"
+msgstr ""
+
+msgid "elites is fight or avoid"
+msgstr ""
+
+msgid ""
+"end_at takes start, safe, hearthstone, here, or a map (and 'at x,y'): {what}"
+msgstr ""
+
+msgid "enhancing equipment"
+msgstr ""
+
+msgid "entrance unknown"
+msgstr ""
+
+msgid "error"
+msgstr ""
+
+msgid "every day at {time}"
+msgstr ""
+
+msgid "every farm of the script is already done - stopping"
+msgstr ""
+
+msgid "everything"
+msgstr ""
+
+msgid "exchanged {name} for {cost} turkeys"
+msgstr ""
+
+msgid "experience card paused ({card}): {why}"
+msgstr ""
+
+msgid "experience card running again ({card}): {why}"
+msgstr ""
+
+msgid "experience card started: {card} ({left} more in the bag; {now})"
+msgstr ""
+
+msgid ""
+"experience cards need the game's agent {need} or newer (this game has {have}) - restart the game so the new agent loads"
+msgstr ""
+
+msgid "farm doesn't know '{opt}'. It takes: {opts}"
+msgstr ""
+
+msgid "farmed {time}"
+msgstr ""
+
+msgid "farming is over"
+msgstr ""
+
+msgid "farming is over - closing the game"
+msgstr ""
+
+msgid "farming map"
+msgstr ""
+
+msgid "farming stops at {time} at the latest (the drop time resets at {reset})"
+msgstr ""
+
+msgid "farming {map}"
+msgstr ""
+
+msgid "fed {beast}"
+msgstr ""
+
+msgid "fed {beast}, but no arnebia came in"
+msgstr ""
+
+msgid "fighting"
+msgstr ""
+
+msgid "fighting as {beast}"
+msgstr ""
+
+msgid "fighting {name}"
+msgstr ""
+
+msgid "finding sellers needs agent {n}: restart the game so it loads"
+msgstr ""
+
+msgid "finished"
+msgstr ""
+
+msgid "finished farming {map}"
+msgstr ""
+
+msgid "finishing attack"
+msgstr ""
+
+msgid "fish"
+msgstr ""
+
+msgid "fishing lake"
+msgstr ""
+
+msgid "fled too many lost fights"
+msgstr ""
+
+msgid ""
+"fled {n} times in {m} minutes - this map is too hard for now; stopping here"
+msgstr ""
+
+msgid ""
+"follow: I stay with you, help the team fight and go where you go. A Priest or Sorceress heals the team. No buffs unless you send buff. Lost, I wait and teleport to the leader."
+msgstr ""
+
+msgid "following {name}"
+msgstr ""
+
+msgid "found it: {npc} at {x},{y} - but couldn't save it for next time"
+msgstr ""
+
+msgid "found it: {npc} at {x},{y} - remembered"
+msgstr ""
+
+msgid "found no place to build"
+msgstr ""
+
+msgid "from {name}"
+msgstr ""
+
+msgid "full"
+msgstr ""
+
+msgid "full loop"
+msgstr ""
+
+msgid "further off than we walk for a corpse"
+msgstr ""
+
+msgid "further to walk than the chase range"
+msgstr ""
+
+msgid "fuse {n} {potion}"
+msgstr ""
+
+msgid "fused {k} {src} into {n} {potion}"
+msgstr ""
+
+msgid "fusion power {n} - on foot until it is back to {back}"
+msgstr ""
+
+msgid "game"
+msgstr ""
+
+msgid "game memory: {used} of {limit} MB in use"
+msgstr ""
+
+msgid "game {pid}"
+msgstr ""
+
+msgid "gang construction"
+msgstr ""
+
+msgid "gang donation"
+msgstr ""
+
+msgid "gang map"
+msgstr ""
+
+msgid "gang mission: Missing Child"
+msgstr ""
+
+msgid "gang mission: Troubled Guard"
+msgstr ""
+
+msgid "gathered at {place}"
+msgstr ""
+
+msgid "gathering"
+msgstr ""
+
+msgid "gathering check: {notes}"
+msgstr ""
+
+msgid "gathering finished: {notes}"
+msgstr ""
+
+msgid "gathering with {skill} ({rank})"
+msgstr ""
+
+msgid "gear broken, no toolbox"
+msgstr ""
+
+msgid "getting Level {lv} {kind} Enhance Crystals up to {n}"
+msgstr ""
+
+msgid ""
+"getting ready at the door of {cave}: its timer starts the moment we are in"
+msgstr ""
+
+msgid "going back to the chest seen {n} steps away: going to open it"
+msgstr ""
+
+msgid "going back to where farming started"
+msgstr ""
+
+msgid "going back to where farming started, as {name} asked"
+msgstr ""
+
+msgid "going back to where the run started in the gang's base"
+msgstr ""
+
+msgid "going back to {map}"
+msgstr ""
+
+msgid "going back to {map}{at}"
+msgstr ""
+
+msgid "going home with the hearthstone"
+msgstr ""
+
+msgid "going into a dungeon"
+msgstr ""
+
+msgid "going into the dungeons without a pet (Tools, Dungeons)"
+msgstr ""
+
+msgid "going on"
+msgstr ""
+
+msgid "going to where a guard was seen: {map}"
+msgstr ""
+
+msgid "going to {map}"
+msgstr ""
+
+msgid "going to {map} to find {name}"
+msgstr ""
+
+msgid "going to {name}"
+msgstr ""
+
+msgid "going to {name} on {map}"
+msgstr ""
+
+msgid "going to {npc} on {map}"
+msgstr ""
+
+msgid "going to {x}, {y}, where {name} said they are"
+msgstr ""
+
+msgid "gone (sold or taken back)"
+msgstr ""
+
+msgid "got off {beast}"
+msgstr ""
+
+msgid "got off {beast} for the fight"
+msgstr ""
+
+msgid "got out by pushing {way}"
+msgstr ""
+
+msgid "got out: walked to {cell}"
+msgstr ""
+
+msgid "got {n} Contribution Chests"
+msgstr ""
+
+msgid "got {n} Contribution Chests; not enough contribution for another"
+msgstr ""
+
+msgid "got {n} Contribution Chests; the game allows no more today"
+msgstr ""
+
+msgid "got {n} Contribution Chests; {why}"
+msgstr ""
+
+msgid "handwears"
+msgstr ""
+
+msgid "hangings"
+msgstr ""
+
+msgid "harvested by someone else, or dried, before we got there"
+msgstr ""
+
+msgid ""
+"have {n} turkeys (target {target} for exchange); would run Thanksgiving Hunt up to {entries} time(s)"
+msgstr ""
+
+msgid "have {n} turkeys; would exchange selected gifts with Activity Envoy"
+msgstr ""
+
+msgid ""
+"have {n} turkeys; would run Thanksgiving Hunt {entries} time(s) (full duration)"
+msgstr ""
+
+msgid "heal"
+msgstr ""
+
+msgid "healed {n}"
+msgstr ""
+
+msgid "heals the pet with {skill} below {pct}% of its HP"
+msgstr ""
+
+msgid "heals with {skill} below {pct}% HP; red potions only below {low}%"
+msgstr ""
+
+msgid "heals {name} with {skill} below {pct}% of their HP"
+msgstr ""
+
+msgid "helmets"
+msgstr ""
+
+msgid ""
+"help: lists the commands. help and a command's name says what that one does, for example: help follow"
+msgstr ""
+
+msgid "herbs"
+msgstr ""
+
+msgid "here, with Resurrection Crystals"
+msgstr ""
+
+msgid "hit {n} times on the way - giving up this walk"
+msgstr ""
+
+msgid ""
+"home: I go back to where my farming started, then the run stops. If I don't know where that was, the hearthstone takes me home."
+msgstr ""
+
+msgid "home: {map}"
+msgstr ""
+
+msgid "how many? write count=<n>"
+msgstr ""
+
+msgid "hunting bounties: {list}"
+msgstr ""
+
+msgid ""
+"in Thanksgiving Hunt map {mid} ({cur} of {total}): hunting until auto-exit..."
+msgstr ""
+
+msgid ""
+"in Thanksgiving Hunt map {mid} ({cur} of {total}): hunting until {target} turkeys collected..."
+msgstr ""
+
+msgid "in an elite or boss zone we keep out of"
+msgstr ""
+
+msgid "in highland {n}"
+msgstr ""
+
+msgid "in the city"
+msgstr ""
+
+msgid "in {cave}: {n} minutes to kill all we can"
+msgstr ""
+
+msgid "in {room}; practice time left: {m} minutes"
+msgstr ""
+
+msgid "in {where}"
+msgstr ""
+
+msgid "in {who}'s game"
+msgstr ""
+
+msgid "it didn't start"
+msgstr ""
+
+msgid ""
+"it's {time} - the day's farming is over (the drop time resets at {reset})"
+msgstr ""
+
+msgid "its game is busy with {what}"
+msgstr ""
+
+msgid "its items aren't the verified ones (the game may have changed it)"
+msgstr ""
+
+msgid "its price isn't the one read ({now} now)"
+msgstr ""
+
+msgid "joined {who}'s team ({team}): {who} is trusted"
+msgstr ""
+
+msgid "keep_drop takes the minutes of drop time to save, 0 to 1440: {what}"
+msgstr ""
+
+msgid ""
+"keep_level takes the experience the next level must still need, 0 to {most}: {what}"
+msgstr ""
+
+msgid "kept in the bag, as their rules say: {list}"
+msgstr ""
+
+msgid "key {key}"
+msgstr ""
+
+msgid "key {key} didn't work: {why}"
+msgstr ""
+
+msgid "landed in the gang's inner hall, which is walled off from the craftsmen"
+msgstr ""
+
+msgid "last {minutes} min: contribution +{n} ({rate} an hour)"
+msgstr ""
+
+msgid ""
+"last {minutes} min: {kills} kills ({rate} an hour), {secs:.1f} s a kill - {parts}"
+msgstr ""
+
+msgid "leader: I make you the leader of my team."
+msgstr ""
+
+msgid ""
+"learned but on no skill key, so never used: {skills} - put them on a key (Ctrl+Alt+key in the skills panel)"
+msgstr ""
+
+msgid ""
+"learned where the exit from {map} lands on {dest}: {x},{y} - the atlas doesn't have it yet, please report it: {row}"
+msgstr ""
+
+msgid "leave (or quit team): I leave the team I'm in."
+msgstr ""
+
+msgid "leaving every {name} here alone - it can't be attacked"
+msgstr ""
+
+msgid "leaving out the {npc} on {map} and planning again"
+msgstr ""
+
+msgid "leaving {map} first, to find the nearest from outside"
+msgstr ""
+
+msgid "leaving {map} for {dest} to get unstuck"
+msgstr ""
+
+msgid "leaving {skill} out of this trip and planning again"
+msgstr ""
+
+msgid "left alone for now (took no damage, couldn't be reached or selected)"
+msgstr ""
+
+msgid "left out by the only-fight / never-fight names"
+msgstr ""
+
+msgid ""
+"left out {n} gear warnings from before this run (they were dealt with then); broken gear is still repaired"
+msgstr ""
+
+msgid "left out: {step} farms, and the day's farming may be over by then"
+msgstr ""
+
+msgid "left the corpse of {name}: {why}"
+msgstr ""
+
+msgid "left the team"
+msgstr ""
+
+msgid "left {map} (died or moved?) - going back"
+msgstr ""
+
+msgid "left {map} while looking for the {name} circle"
+msgstr ""
+
+msgid "left {team}, which another player leads"
+msgstr ""
+
+msgid "level unknown"
+msgstr ""
+
+msgid "level {level}, saturation {sat}%, entry {fee} arnebia"
+msgstr ""
+
+msgid "line {n} again after respawning"
+msgstr ""
+
+msgid "line {n}: a condition or value is missing"
+msgstr ""
+
+msgid "line {n}: died every time I tried it"
+msgstr ""
+
+msgid "line {n}: subs are nested more than {max} calls deep"
+msgstr ""
+
+msgid "line {n}: the number grew too large (over {bits} bits)"
+msgstr ""
+
+msgid "line {n}: the text grew too large (over {max} characters)"
+msgstr ""
+
+msgid "line {n}: {err}"
+msgstr ""
+
+msgid "line {n}: {msg}"
+msgstr ""
+
+msgid "line {n}: {name} has no value yet (set it first)"
+msgstr ""
+
+msgid "load {a} of {b}"
+msgstr ""
+
+msgid "log in to a character first"
+msgstr ""
+
+msgid "login must be the first command in a script"
+msgstr ""
+
+msgid "looked over the whole area, no chest - back to farming"
+msgstr ""
+
+msgid "looking after {pet}: HP {hp}/{max}"
+msgstr ""
+
+msgid "looking for a guard on {map}"
+msgstr ""
+
+msgid "looking for the gang {gang} at the Gang Entrance"
+msgstr ""
+
+msgid "looking for the {name} circle at the {n} entrances marked on {map}"
+msgstr ""
+
+msgid "lose this much experience"
+msgstr ""
+
+msgid "losing experience"
+msgstr ""
+
+msgid "lost sight of {name}"
+msgstr ""
+
+msgid "lost the connection to the game"
+msgstr ""
+
+msgid "lost the connection to the game: {err}"
+msgstr ""
+
+msgid "lost the game's bag cursor"
+msgstr ""
+
+msgid "lots of seller {ids}"
+msgstr ""
+
+msgid "low on {item}: {have} left"
+msgstr ""
+
+msgid "made the team {name}"
+msgstr ""
+
+msgid "made {n} Level {lv} {kind} Enhance Crystals"
+msgstr ""
+
+msgid "made {n} of the {want} {gem} asked for; {have} in the bag"
+msgstr ""
+
+msgid "made {n} {gem} from {used} {shard}"
+msgstr ""
+
+msgid "made {n} {gem}; {have} in the bag"
+msgstr ""
+
+msgid "made {n} {potion} for {fee} arnebia"
+msgstr ""
+
+msgid "make {n} batches of {potion}"
+msgstr ""
+
+msgid "make {n} batches of {potion} ({fee} arnebia each)"
+msgstr ""
+
+msgid "making gems"
+msgstr ""
+
+msgid "making gems: {list}"
+msgstr ""
+
+msgid "making potions"
+msgstr ""
+
+msgid ""
+"market list made: {items} items in {lots} lots, {pages} pages, {min:.1f} minutes"
+msgstr ""
+
+msgid "market seller needs seller IDs: market seller 1234,5678"
+msgstr ""
+
+msgid "market what? scan, search, seller or buy"
+msgstr ""
+
+msgid "market: nothing to buy at that price"
+msgstr ""
+
+msgid "market: {lot}: {words}"
+msgstr ""
+
+msgid "market: {summary}"
+msgstr ""
+
+msgid "market: {what}: {summary}"
+msgstr ""
+
+msgid "materials"
+msgstr ""
+
+msgid "message from {name}: {words}"
+msgstr ""
+
+msgid "message to {name}: {words}"
+msgstr ""
+
+msgid "minigame map"
+msgstr ""
+
+msgid "missed"
+msgstr ""
+
+msgid "mode set: {mode}"
+msgstr ""
+
+msgid "monsters in sight, none to fight ({map}): {why}"
+msgstr ""
+
+msgid "monsters in sight, none to fight: {why}"
+msgstr ""
+
+msgid "moved off {place} too often"
+msgstr ""
+
+msgid "moved out of {map}"
+msgstr ""
+
+msgid "moved {n} tiles while paused - going on from here"
+msgstr ""
+
+msgid "movement"
+msgstr ""
+
+msgid "mute: the game stops talking (only my game)."
+msgstr ""
+
+msgid "muted request"
+msgstr ""
+
+msgid "near a boss"
+msgstr ""
+
+msgid "needs {n} {item} ({k} missing)"
+msgstr ""
+
+msgid "never again"
+msgstr ""
+
+msgid "new"
+msgstr ""
+
+msgid "no Gem Protection Rune left, and combining is set to use one"
+msgstr ""
+
+msgid "no Gem Protection Rune to use - stopping, as asked"
+msgstr ""
+
+msgid "no Swift fusion beast on this character - walking on foot"
+msgstr ""
+
+msgid "no answer"
+msgstr ""
+
+msgid "no answer from the game"
+msgstr ""
+
+msgid "no arnebia shared this time: {why}"
+msgstr ""
+
+msgid "no arnebia to buy {item}"
+msgstr ""
+
+msgid "no attack key in Character settings - the guard can't be hit"
+msgstr ""
+
+msgid "no cave lets in level {n} yet (the lowest needs level {low})"
+msgstr ""
+
+msgid "no chest came into the bag"
+msgstr ""
+
+msgid "no chest found in {n} minutes - back to farming"
+msgstr ""
+
+msgid "no construction of the gang was found to read"
+msgstr ""
+
+msgid "no construction report yet: scan first"
+msgstr ""
+
+msgid "no daily chores to do: turn some on in Tools, Daily chores"
+msgstr ""
+
+msgid "no donation offered now - already donated today?"
+msgstr ""
+
+msgid "no empty hotkey for {items}: used from the backpack between fights"
+msgstr ""
+
+msgid "no empty phrase slot for {code} ({what})"
+msgstr ""
+
+msgid "no empty skill key for {skills}, so the bot can't use them"
+msgstr ""
+
+msgid "no farming map fits level {level}"
+msgstr ""
+
+msgid "no free rebirth left today"
+msgstr ""
+
+msgid ""
+"no guard found here, at the spots where guards were seen, or in the nearest town"
+msgstr ""
+
+msgid "no guard here - going to the nearest town, {map}"
+msgstr ""
+
+msgid "no guard to fight at {village} - trying another village"
+msgstr ""
+
+msgid ""
+"no hearthstone on a key or in the bag - a fight that goes badly is fought on"
+msgstr ""
+
+msgid "no items selected for Thanksgiving exchange"
+msgstr ""
+
+msgid "no kill for {n} minutes"
+msgstr ""
+
+msgid "no kill for {n} minutes - stopping the run"
+msgstr ""
+
+msgid "no kill for {n} minutes - trying another part of the map"
+msgstr ""
+
+msgid "no known entrance for the dungeon {name}"
+msgstr ""
+
+msgid "no map without monsters near {map}"
+msgstr ""
+
+msgid "no market list yet - press Refresh the market list"
+msgstr ""
+
+msgid "no menu entry like \"{want}\""
+msgstr ""
+
+msgid "no more {shard} came into the bag - the Gem Maker stops here"
+msgstr ""
+
+msgid ""
+"no outside place to gather at for this character - stand on one and add it in Tools, Gathering"
+msgstr ""
+
+msgid "no pet called {pet} (pets: {pets})"
+msgstr ""
+
+msgid "no pet out and none ticked in Character, Settings - going without one"
+msgstr ""
+
+msgid "no pet ready to summon yet (cooldown); farming on without one"
+msgstr ""
+
+msgid ""
+"no pet ticked in Character, Settings - looking after {pet}, the one out now"
+msgstr ""
+
+msgid "no potions"
+msgstr ""
+
+msgid "no reason given"
+msgstr ""
+
+msgid "no red potions left - healing with skills only"
+msgstr ""
+
+msgid "no room with a free place for this level"
+msgstr ""
+
+msgid "no runs yet"
+msgstr ""
+
+msgid "no search yet"
+msgstr ""
+
+msgid "no secret room for this level has a free place"
+msgstr ""
+
+msgid "no shard prices could be read - nothing changed"
+msgstr ""
+
+msgid "no shards to sell: nothing in the bag is on the bag manager's sell list"
+msgstr ""
+
+msgid "no shop in {map} sells {item} - not going to another town for it"
+msgstr ""
+
+msgid "no shop near enough lists {item} - see logs\\dialogs.log"
+msgstr ""
+
+msgid "no shop sells {item}"
+msgstr ""
+
+msgid "no storehouse in {map} - not taking {item} out"
+msgstr ""
+
+msgid "no sub named {name}"
+msgstr ""
+
+msgid "no such chore: {names} (there are: {all})"
+msgstr ""
+
+msgid "no such dungeon: {name} (there are: {all})"
+msgstr ""
+
+msgid "no turkey in bag to redeem"
+msgstr ""
+
+msgid ""
+"no village with a guard to fight nearby - dying at the nearest guard instead"
+msgstr ""
+
+msgid "no way from {a} to {b} - go there yourself and start again"
+msgstr ""
+
+msgid "no way from {a} to {b} on {map}"
+msgstr ""
+
+msgid "no way out of the safe zone on {map} to cast {skill}"
+msgstr ""
+
+msgid "no way to walk there, or only a very long way round"
+msgstr ""
+
+msgid "no yes/no question came up"
+msgstr ""
+
+msgid "no {card} in the bag - farming on without an experience card"
+msgstr ""
+
+msgid "no {item} in the storehouse"
+msgstr ""
+
+msgid "no {kind} Enhance Crystal Shards to make crystals from"
+msgstr ""
+
+msgid "no {role} known yet"
+msgstr ""
+
+msgid "no {what} potion for the pet on a hotkey or in the bag"
+msgstr ""
+
+msgid "nobody I know buys {item} - storing it instead"
+msgstr ""
+
+msgid "nobody to hand the team to is in it: it stays with this character"
+msgstr ""
+
+msgid "nobody yet"
+msgstr ""
+
+msgid "none"
+msgstr ""
+
+msgid "none of the entrances marked on {map} is the {name} circle"
+msgstr ""
+
+msgid "none of the shops that sell {item} answered"
+msgstr ""
+
+msgid "none of the ticked experience cards in the bag - farming on without one"
+msgstr ""
+
+msgid "none of the {n} places that could do it can be reached from {map}"
+msgstr ""
+
+msgid "normal"
+msgstr ""
+
+msgid "not allowed in an expression: {expr}"
+msgstr ""
+
+msgid "not bought: the game said \"{words}\""
+msgstr ""
+
+msgid "not bought: the game's quantity box didn't take the number"
+msgstr ""
+
+msgid "not bought: {why}"
+msgstr ""
+
+msgid ""
+"not choosing in the menu directly ({why}) - moving to the entry with the keys"
+msgstr ""
+
+msgid "not enough MP for {skill} ({mp} of {top}) - going another way"
+msgstr ""
+
+msgid "not enough arnebia above your reserve for a {n} arnebia donation"
+msgstr ""
+
+msgid "not enough arnebia above your reserve for the gang area's {fee} arnebia"
+msgstr ""
+
+msgid "not enough arnebia for one {item}: {price} each, {money} in the bag"
+msgstr ""
+
+msgid "not enough arnebia to buy {item}: {price} each, {money} in the bag"
+msgstr ""
+
+msgid "not enough contribution for a Contribution Chest: {have} of {cost}"
+msgstr ""
+
+msgid "not enough protection runes for {item} - stopping, as asked"
+msgstr ""
+
+msgid ""
+"not enough shards or spare arnebia for a Level {lv} {kind} Enhance Crystal ({need} shards, fee {fee})"
+msgstr ""
+
+msgid "not enough spare arnebia to break {item} (fee {fee} each)"
+msgstr ""
+
+msgid "not enough spare arnebia to buy {shard}"
+msgstr ""
+
+msgid "not enough spare arnebia to enhance {item} ({cost})"
+msgstr ""
+
+msgid "not enough spare arnebia to make {gem} (fee {fee} each)"
+msgstr ""
+
+msgid "not enough spare arnebia to make {potion} (fee {fee})"
+msgstr ""
+
+msgid "not enough spare arnebia to raise {gem} (fee {fee})"
+msgstr ""
+
+msgid "not enough supplies for the dungeon"
+msgstr ""
+
+msgid "not farming {map}: the interrupted run had already done it"
+msgstr ""
+
+msgid "not farming {map}: {cond} is already true"
+msgstr ""
+
+msgid "not fed: {why}"
+msgstr ""
+
+msgid "not in the bag: {list}"
+msgstr ""
+
+msgid "not in the price list, left out: {list}"
+msgstr ""
+
+msgid "not in {cave} yet - trying again ({n} of {all})"
+msgstr ""
+
+msgid ""
+"not known yet (the bot reads it from the character sheet when it starts)"
+msgstr ""
+
+msgid "not reached on foot"
+msgstr ""
+
+msgid "not read, old price kept: {list}"
+msgstr ""
+
+msgid "not restocking {item}: {why}"
+msgstr ""
+
+msgid "not selling {item}: the Shard Market doesn't buy it"
+msgstr ""
+
+msgid "not set"
+msgstr ""
+
+msgid "not sold: {list}"
+msgstr ""
+
+msgid "not stored (the storehouse may be full): {list}"
+msgstr ""
+
+msgid "not taking {item} to the storehouse: it is full and holds none yet"
+msgstr ""
+
+msgid "nothing"
+msgstr ""
+
+msgid "nothing came of that - asking for {n} {gem} tries instead"
+msgstr ""
+
+msgid "nothing came of that - asking to break {n} {item} instead"
+msgstr ""
+
+msgid ""
+"nothing came of this round although the bag still has {what} - trying again"
+msgstr ""
+
+msgid "nothing can follow 'else' in the same if"
+msgstr ""
+
+msgid "nothing done"
+msgstr ""
+
+msgid "nothing in the bag is on the storage list (or only what its rules keep)"
+msgstr ""
+
+msgid ""
+"nothing in the bag is on the throw-away list (or only what its rules keep)"
+msgstr ""
+
+msgid "nothing is ticked to buy"
+msgstr ""
+
+msgid "nothing left to make {gem} from"
+msgstr ""
+
+msgid "nothing left to make {gem} from, and getting more {shard} is off"
+msgstr ""
+
+msgid "nothing of the collection was sold"
+msgstr ""
+
+msgid "nothing to break with these settings"
+msgstr ""
+
+msgid "nothing to collect today"
+msgstr ""
+
+msgid ""
+"nothing to manage: tick taking requests or removing offline members on the Team tab"
+msgstr ""
+
+msgid "now (waiting to start)"
+msgstr ""
+
+msgid "now on {map}"
+msgstr ""
+
+msgid "nowhere to build now (places: {places})"
+msgstr ""
+
+msgid "of a kind that can't be attacked here"
+msgstr ""
+
+msgid "off"
+msgstr ""
+
+msgid "off to the secret room to share arnebia"
+msgstr ""
+
+msgid "on"
+msgstr ""
+
+msgid "on another map than when paused - going on from here"
+msgstr ""
+
+msgid ""
+"on foot for {secs} s more: the server still counts the last fight as combat"
+msgstr ""
+
+msgid "on foot: no Swift fusion beast to ride"
+msgstr ""
+
+msgid "on foot: our Swift fusion beast has expired"
+msgstr ""
+
+msgid "on foot: the fusion beast list couldn't be read"
+msgstr ""
+
+msgid "on foot: the game won't let {beast} on for {secs} s more"
+msgstr ""
+
+msgid ""
+"on foot: the travel fusion beast is set to none in the character settings"
+msgstr ""
+
+msgid ""
+"on foot: {beasts} isn't in the bot's list of fusion beasts yet, so it can't tell whether it is a Swift one - please report its description"
+msgstr ""
+
+msgid "on foot: {beast} isn't among our fusion beasts"
+msgstr ""
+
+msgid "on the Forger's screen: {screen}"
+msgstr ""
+
+msgid "on this map"
+msgstr ""
+
+msgid "on this map, with Resurrection Crystals"
+msgstr ""
+
+msgid "on {days} at {time}"
+msgstr ""
+
+msgid "on {map}: riding - waiting to arrive"
+msgstr ""
+
+msgid "on {name}"
+msgstr ""
+
+msgid "once, {date} at {time}"
+msgstr ""
+
+msgid "one cave only: a character goes into one cave a day"
+msgstr ""
+
+msgid "only {names}"
+msgstr ""
+
+msgid "only {n} left (you asked for {want})"
+msgstr ""
+
+msgid "only {n} {kind} potions left"
+msgstr ""
+
+msgid "open games started without this version's agent: {n}"
+msgstr ""
+
+msgid "opened a chest ({n} this run)"
+msgstr ""
+
+msgid "opening a game for {name}"
+msgstr ""
+
+msgid "opening {chest}"
+msgstr ""
+
+msgid "opens in {min} min"
+msgstr ""
+
+msgid "ore"
+msgstr ""
+
+msgid "other"
+msgstr ""
+
+msgid "other equipments"
+msgstr ""
+
+msgid "our hits land on {name} - fighting that one"
+msgstr ""
+
+msgid "our own gang"
+msgstr ""
+
+msgid "our pet"
+msgstr ""
+
+msgid "out of Level {lv} {kind} Enhance Crystals - stopping"
+msgstr ""
+
+msgid "out of {kind} potions - stopping"
+msgstr ""
+
+msgid "outside the farming area"
+msgstr ""
+
+msgid "outside: no place for this character - add one where you stand"
+msgstr ""
+
+msgid "outside: {place} (area level {level})"
+msgstr ""
+
+msgid "page {page} key {key} ({skill})"
+msgstr ""
+
+msgid "pant legs"
+msgstr ""
+
+msgid "patrol is random, full, quick or short"
+msgstr ""
+
+msgid "pause"
+msgstr ""
+
+msgid ""
+"pause: I stop where I am and hold still until you send resume. The run is not ended."
+msgstr ""
+
+msgid "paused"
+msgstr ""
+
+msgid "pet amiability {n} - {item}"
+msgstr ""
+
+msgid "pet rebirth"
+msgstr ""
+
+msgid "pet {what} {pct}% - {item}"
+msgstr ""
+
+msgid "pet: my pet's name, HP and MP (MP once the bot has read it in a run)."
+msgstr ""
+
+msgid ""
+"phrase {code} ({what}) would go on the empty {key} - restart the game so the new agent loads"
+msgstr ""
+
+msgid "phrase {line}"
+msgstr ""
+
+msgid "plan"
+msgstr ""
+
+msgid ""
+"players: how many other players I can see and who they are, nearest first, with how many steps away."
+msgstr ""
+
+msgid "points"
+msgstr ""
+
+msgid "probably a dungeon - no way out on foot"
+msgstr ""
+
+msgid "put {code} ({what}) on the empty phrase {key}"
+msgstr ""
+
+msgid "put {n} {item} into the storehouse"
+msgstr ""
+
+msgid "put {pet} away"
+msgstr ""
+
+msgid "quick"
+msgstr ""
+
+msgid "quick loop"
+msgstr ""
+
+msgid ""
+"quit game: I close the game. Any run stops first. A plain quit means leave the team."
+msgstr ""
+
+msgid "random"
+msgstr ""
+
+msgid "range {n}"
+msgstr ""
+
+msgid "rank unknown"
+msgstr ""
+
+msgid "read {made}: {items} items in {lots} lots"
+msgstr ""
+
+msgid "read {n} friends from the game for team requests"
+msgstr ""
+
+msgid "reading the whole market..."
+msgstr ""
+
+msgid "reading {cat}"
+msgstr ""
+
+msgid "reading {npc}'s menus"
+msgstr ""
+
+msgid "reading {what} with the {key} key"
+msgstr ""
+
+msgid "recursion is not allowed: {name} ends up calling itself"
+msgstr ""
+
+msgid "red"
+msgstr ""
+
+msgid "remembered: {names}"
+msgstr ""
+
+msgid "removed {name} from the team: offline"
+msgstr ""
+
+msgid "removes debuffs"
+msgstr ""
+
+msgid "repairing all the gear with a {tool} from {where} ({n} left)"
+msgstr ""
+
+msgid ""
+"respawn crystal, map or city: how I come back when I die following you. I ask and wait; sent early it counts for every death. respawn ask: ask again."
+msgstr ""
+
+msgid "respawning: {how}"
+msgstr ""
+
+msgid "resting"
+msgstr ""
+
+msgid "restocking in {map}: {what}"
+msgstr ""
+
+msgid "restocking supplies"
+msgstr ""
+
+msgid "restocking: {what}"
+msgstr ""
+
+msgid ""
+"results: what this run has got so far (kills, arnebia, shards, experience), or the last run's if none is going."
+msgstr ""
+
+msgid "resume"
+msgstr ""
+
+msgid "resume: I go on with the paused run."
+msgstr ""
+
+msgid "revive"
+msgstr ""
+
+msgid "riding {beast}"
+msgstr ""
+
+msgid "rings"
+msgstr ""
+
+msgid "road"
+msgstr ""
+
+msgid ""
+"round {n}: {made} batches made, {fused} potions fused, {put} into the storehouse"
+msgstr ""
+
+msgid "route to {map}: {steps}"
+msgstr ""
+
+msgid "row {n}"
+msgstr ""
+
+msgid "running"
+msgstr ""
+
+msgid "running a dungeon"
+msgstr ""
+
+msgid "running events"
+msgstr ""
+
+msgid "running on_stop"
+msgstr ""
+
+msgid "scanning the constructions"
+msgstr ""
+
+msgid "scanning the constructions, then a broadcast"
+msgstr ""
+
+msgid "scanning the constructions, then a gang announcement"
+msgstr ""
+
+msgid "scanning the constructions, then a system message"
+msgstr ""
+
+msgid "script"
+msgstr ""
+
+msgid "script finished"
+msgstr ""
+
+msgid "script stopped itself"
+msgstr ""
+
+msgid "script {name}"
+msgstr ""
+
+msgid "searching"
+msgstr ""
+
+msgid "searching: {what}"
+msgstr ""
+
+msgid "secret room"
+msgstr ""
+
+msgid "secret room (timed practice)"
+msgstr ""
+
+msgid "secret room: nobody to share arnebia with yet"
+msgstr ""
+
+msgid "secret room: shared arnebia with {name}"
+msgstr ""
+
+msgid "secret room: {who}"
+msgstr ""
+
+msgid "selecting"
+msgstr ""
+
+msgid "sellers"
+msgstr ""
+
+msgid "selling shards"
+msgstr ""
+
+msgid "selling shards: {list}"
+msgstr ""
+
+msgid "selling the collection"
+msgstr ""
+
+msgid "selling to the nearest {role}"
+msgstr ""
+
+msgid "set it up first: Tools, {tool}"
+msgstr ""
+
+msgid "set your target as the team's navigation target"
+msgstr ""
+
+msgid "set yourself as the team's navigation target"
+msgstr ""
+
+msgid "shard price not used: {why}"
+msgstr ""
+
+msgid "shard prices: {changed} changed, {same} unchanged, {missing} not read"
+msgstr ""
+
+msgid "shared arnebia {n} of {all} times today"
+msgstr ""
+
+msgid "shawls"
+msgstr ""
+
+msgid "shield"
+msgstr ""
+
+msgid "shoes"
+msgstr ""
+
+msgid "shooting monsters in reach on the way to the next one"
+msgstr ""
+
+msgid ""
+"shooting while walking is on, but this character fights from close by - it stops for each monster"
+msgstr ""
+
+msgid "short"
+msgstr ""
+
+msgid "short loop"
+msgstr ""
+
+msgid "short of supplies for the dungeon: {what}"
+msgstr ""
+
+msgid "skills go by keys again: {why}"
+msgstr ""
+
+msgid "skipped"
+msgstr ""
+
+msgid "skipping {map}: died there every time"
+msgstr ""
+
+msgid "skipping {map}: {why}"
+msgstr ""
+
+msgid "sold the {kind} for {n} arnebia"
+msgstr ""
+
+msgid "sold {list}"
+msgstr ""
+
+msgid "sold {n} {item}"
+msgstr ""
+
+msgid "sold {n} {item} at the Shard Market"
+msgstr ""
+
+msgid ""
+"someone else disbanded the team or took it over: no more managing it this run"
+msgstr ""
+
+msgid "sound request"
+msgstr ""
+
+msgid "sound_wait needs at least one sound ID, or all."
+msgstr ""
+
+msgid "stand still"
+msgstr ""
+
+msgid ""
+"start: I start the plan I ran last. start and a plan's name starts that plan, for example: start wolves"
+msgstr ""
+
+msgid "started"
+msgstr ""
+
+msgid "starting Thanksgiving Hunt entry {cur} of {total}"
+msgstr ""
+
+msgid "starting automatic login"
+msgstr ""
+
+msgid "starting {what} as {name}"
+msgstr ""
+
+msgid ""
+"status: what I'm doing (running, paused or idle), the run, its minutes and kills, my map, HP and MP."
+msgstr ""
+
+msgid "staying here managing the team until you stop the run"
+msgstr ""
+
+msgid "still being attacked - fighting back before stopping"
+msgstr ""
+
+msgid "still broken after the repair: {items}"
+msgstr ""
+
+msgid "still on display - it can't be bought in its first hour"
+msgstr ""
+
+msgid "still on display for {min} minutes"
+msgstr ""
+
+msgid "still on {map} after {n} seconds - the ride didn't move us on"
+msgstr ""
+
+msgid "still short after restocking: {what}"
+msgstr ""
+
+msgid "still short of: {what}"
+msgstr ""
+
+msgid "stop rule: {cond}"
+msgstr ""
+
+msgid ""
+"stop: I end the run the safe way, as if you pressed Stop in Mist World Farmer."
+msgstr ""
+
+msgid "stopped"
+msgstr ""
+
+msgid "stopped after {n} deaths, as you set"
+msgstr ""
+
+msgid "stopped after {n} pages"
+msgstr ""
+
+msgid "stopped before the next level"
+msgstr ""
+
+msgid "stopped by you"
+msgstr ""
+
+msgid "stopped with {n} Vitality left, as you set"
+msgstr ""
+
+msgid "stopped: {n} found so far"
+msgstr ""
+
+msgid "stopped: {spent} gold coins spent"
+msgstr ""
+
+msgid "stopped: {why}"
+msgstr ""
+
+msgid "stops healing"
+msgstr ""
+
+msgid "stored {list}"
+msgstr ""
+
+msgid "storing items"
+msgstr ""
+
+msgid "storing: {list}"
+msgstr ""
+
+msgid "stuck near {cell} and every way out failed - stopping"
+msgstr ""
+
+msgid "stuck near {cell}, stepping aside"
+msgstr ""
+
+msgid "stuck {n} times near {cell} - fighting, then trying to get out"
+msgstr ""
+
+msgid "stun or slow"
+msgstr ""
+
+msgid "summoned {pet}"
+msgstr ""
+
+msgid "supplies for the dungeon: {what}"
+msgstr ""
+
+msgid ""
+"survey cities, survey all, survey everything, survey here, or survey <map>"
+msgstr ""
+
+msgid "survey finished"
+msgstr ""
+
+msgid "survey of {n} maps"
+msgstr ""
+
+msgid "surveying {map}: {n} stops"
+msgstr ""
+
+msgid "taking {pet} into the dungeons (Tools, Dungeons)"
+msgstr ""
+
+msgid "talk to whom? write: talk Cable Car manager"
+msgstr ""
+
+msgid "target the next teammate on this map (and learn where they are)"
+msgstr ""
+
+msgid "target the weakest teammate within 20 yards"
+msgstr ""
+
+msgid "target the weakest teammate within 30 yards"
+msgstr ""
+
+msgid "target what is attacking you"
+msgstr ""
+
+msgid "target what is attacking your target"
+msgstr ""
+
+msgid "target what your target is attacking"
+msgstr ""
+
+msgid "taunt"
+msgstr ""
+
+msgid "team requests: the Action menu didn't open"
+msgstr ""
+
+msgid "team requests: the game didn't select {names}"
+msgstr ""
+
+msgid "team requests: this character doesn't lead a team"
+msgstr ""
+
+msgid "team: couldn't move to {name} in the member list"
+msgstr ""
+
+msgid "team: this character doesn't lead a team"
+msgstr ""
+
+msgid "teleport"
+msgstr ""
+
+msgid ""
+"teleported to the team leader - {name} isn't the leader, walking from here"
+msgstr ""
+
+msgid "teleported to {name}, the team leader"
+msgstr ""
+
+msgid "test map"
+msgstr ""
+
+msgid "text"
+msgstr ""
+
+msgid "text can't be multiplied"
+msgstr ""
+
+msgid "that didn't work: {err}"
+msgstr ""
+
+msgid "that would leave {n} {item}"
+msgstr ""
+
+msgid "the Animal Shed has nothing to feed now"
+msgstr ""
+
+msgid "the Forger didn't list {item} (is it equipped or in the bag?)"
+msgstr ""
+
+msgid "the Forger didn't say which crystal {item} needs - skipping it"
+msgstr ""
+
+msgid "the Forger has no enhance equipment"
+msgstr ""
+
+msgid "the Gang Entrance didn't let us in"
+msgstr ""
+
+msgid ""
+"the Gang Entrance has no way into a gang's inner hall - is this character in a gang?"
+msgstr ""
+
+msgid "the Gang Entrance led to {now}, not {was} - staying here"
+msgstr ""
+
+msgid "the Gang Entrance lists no gang called {gang}"
+msgstr ""
+
+msgid "the Gem Breaker stopped: {n} kinds in a row couldn't be broken"
+msgstr ""
+
+msgid "the Gem Craftsman didn't ask how many"
+msgstr ""
+
+msgid "the Gem Craftsman didn't ask how many {gem} to make"
+msgstr ""
+
+msgid "the Gem Craftsman didn't ask how many {item} to break"
+msgstr ""
+
+msgid "the Gem Craftsman didn't list {gem}"
+msgstr ""
+
+msgid "the Gem Craftsman didn't list {item}"
+msgstr ""
+
+msgid "the Gem Craftsman is open; nothing was broken (check only)"
+msgstr ""
+
+msgid "the Gem Craftsman is open; nothing was made (check only)"
+msgstr ""
+
+msgid ""
+"the Gem Craftsman made nothing in {n} rounds in a row although the bag still has {what} - stopping; see logs\\dialogs.log"
+msgstr ""
+
+msgid "the Gem Craftsman offered no way to make {gem}"
+msgstr ""
+
+msgid "the Gem Craftsman's menu has no gem synthesis"
+msgstr ""
+
+msgid "the Gem Craftsman's menu has no way to break gems"
+msgstr ""
+
+msgid "the Gem Craftsman's page for {gem} didn't come up - nothing was spent"
+msgstr ""
+
+msgid "the Gem Maker can't go on: {why}"
+msgstr ""
+
+msgid "the Gem Maker stopped after {n} rounds"
+msgstr ""
+
+msgid "the Head of the inner hall offers no donation"
+msgstr ""
+
+msgid "the Highland Entrance offers no Occupied Highlands"
+msgstr ""
+
+msgid "the PK mode can't be changed on {map} - looking for guards elsewhere"
+msgstr ""
+
+msgid "the PK mode can't be changed where the guards are"
+msgstr ""
+
+msgid "the PK mode is locked here - leaving it as {mode}"
+msgstr ""
+
+msgid ""
+"the PK mode is locked on this map: it turns back to all mode when you leave - please set it to {mode} then"
+msgstr ""
+
+msgid "the Pet Trainer offers no rebirth"
+msgstr ""
+
+msgid "the Pharmacist didn't ask how many {potion} to fuse"
+msgstr ""
+
+msgid "the Pharmacist doesn't list {potion}"
+msgstr ""
+
+msgid "the Pharmacist is open; nothing was made (check only)"
+msgstr ""
+
+msgid "the Pharmacist says there aren't enough materials for {potion}"
+msgstr ""
+
+msgid "the Pharmacist's menu has no \"{entry}\""
+msgstr ""
+
+msgid "the Pharmacist's page for {potion} didn't come up - nothing was spent"
+msgstr ""
+
+msgid "the Pharmacist's page for {potion} has no \"start synthesis\""
+msgstr ""
+
+msgid ""
+"the Potion Maker is done: {made} batches made, {fused} potions fused, {put} into the storehouse"
+msgstr ""
+
+msgid "the Secret room Manager summoned no assistant"
+msgstr ""
+
+msgid "the Shard Market"
+msgstr ""
+
+msgid "the Shard Market didn't list {item}"
+msgstr ""
+
+msgid ""
+"the Shard Market didn't take all of it at once - selling the rest one by one"
+msgstr ""
+
+msgid "the Shard Market doesn't sell {shard}"
+msgstr ""
+
+msgid "the Shard Market sells {shard} at {price} arnebia each"
+msgstr ""
+
+msgid ""
+"the Shard Market sold {came} of the {step} {shard} asked for - buying no more now"
+msgstr ""
+
+msgid ""
+"the Shard Market's buy and sell menu for {item} didn't come up as expected - nothing chosen there, see logs\\dialogs.log"
+msgstr ""
+
+msgid "the Shard Market's list didn't open again - bought {n} {shard}"
+msgstr ""
+
+msgid "the agent can't read menus by layout (agent {n} or newer needed)"
+msgstr ""
+
+msgid "the app wasn't running then"
+msgstr ""
+
+msgid "the bag"
+msgstr ""
+
+msgid "the bag cursor is out of range"
+msgstr ""
+
+msgid "the bag has no room for more Bloods and Pelts"
+msgstr ""
+
+msgid "the bag is empty - nothing to throw away"
+msgstr ""
+
+msgid "the bag is full"
+msgstr ""
+
+msgid "the bag is full - leaving the gang's area"
+msgstr ""
+
+msgid "the bag is full - off to sell, then back to {place}"
+msgstr ""
+
+msgid "the bag is full: load {load} of {max}"
+msgstr ""
+
+msgid ""
+"the bag is heavy, but no rule says to store, sell or throw anything in it - open the bag manager to choose"
+msgstr ""
+
+msgid "the bag is still full and nothing could be sold or stored - stopping"
+msgstr ""
+
+msgid "the bag is too full for more {potion}"
+msgstr ""
+
+msgid "the bag is too full for more {shard}"
+msgstr ""
+
+msgid "the bag is too heavy to break any more: make room and start again"
+msgstr ""
+
+msgid "the bag is {pct}% full (load {load} of {max})"
+msgstr ""
+
+msgid ""
+"the bag is {pct}% full - going to sell and store by the bag manager's rules"
+msgstr ""
+
+msgid ""
+"the bag is {pct}% full with things you keep - going somewhere safe and stopping"
+msgstr ""
+
+msgid "the bag showed no change after breaking {item}"
+msgstr ""
+
+msgid ""
+"the bag showed no change after combining {gem} - leaving it for this round"
+msgstr ""
+
+msgid "the bag showed no new {potion} after fusing"
+msgstr ""
+
+msgid "the bag showed no new {potion} after making it"
+msgstr ""
+
+msgid "the bag trip"
+msgstr ""
+
+msgid "the bag's gems are as high as they go"
+msgstr ""
+
+msgid "the best map for level {level}: {map}"
+msgstr ""
+
+msgid ""
+"the character sheet didn't show the experience card {what} - looking again in a minute"
+msgstr ""
+
+msgid "the character sheet is read with the key again: {why}"
+msgstr ""
+
+msgid ""
+"the character sheet shows no Vitality yet (restart the game so it loads the new agent) - gathering until it runs out"
+msgstr ""
+
+msgid ""
+"the character sheet shows no experience card inside the dungeon - keeping the one we have, not using another"
+msgstr ""
+
+msgid "the chest is gone: someone else opened it"
+msgstr ""
+
+msgid "the chest was opened by someone else - back to farming"
+msgstr ""
+
+msgid ""
+"the construction report was typed, but the game didn't confirm it - check before sending it again"
+msgstr ""
+
+msgid "the day of {name}"
+msgstr ""
+
+msgid "the day's chores first"
+msgstr ""
+
+msgid ""
+"the day's farming is over - the drop time resets at {reset}; start again after that"
+msgstr ""
+
+msgid "the deposit income can be collected"
+msgstr ""
+
+msgid "the donation didn't go through: {why}"
+msgstr ""
+
+msgid "the drop time is nearly used up ({m} min left) - not starting to farm"
+msgstr ""
+
+msgid "the fees come to {total} arnebia; {spare} is spare"
+msgstr ""
+
+msgid ""
+"the follow attack doesn't walk us to the monster here - walking up to them ourselves"
+msgstr ""
+
+msgid ""
+"the fusion beast waits {secs} s: the game refuses one this soon after a death"
+msgstr ""
+
+msgid "the game asked another price ({words})"
+msgstr ""
+
+msgid ""
+"the game brought us back on {map} at {x},{y}, not at {village} - dying at the nearest guard instead"
+msgstr ""
+
+msgid "the game can't be read: {why}"
+msgstr ""
+
+msgid "the game didn't accept the direct discard request: {why}"
+msgstr ""
+
+msgid "the game didn't ask to confirm"
+msgstr ""
+
+msgid "the game didn't offer to agree"
+msgstr ""
+
+msgid ""
+"the game didn't put {item} on hotkey {key} - leaving the hotkeys as they are"
+msgstr ""
+
+msgid "the game didn't put {skill} on key {key} - leaving the keys as they are"
+msgstr ""
+
+msgid "the game didn't say the team {name} was made"
+msgstr ""
+
+msgid "the game didn't say this character left {team}"
+msgstr ""
+
+msgid "the game didn't say {name} leads the team now"
+msgstr ""
+
+msgid "the game didn't say {team} was disbanded"
+msgstr ""
+
+msgid ""
+"the game didn't show the 5000 contribution price, so nothing was confirmed"
+msgstr ""
+
+msgid "the game didn't start {skill} in the gang's area"
+msgstr ""
+
+msgid "the game didn't take the construction report"
+msgstr ""
+
+msgid "the game didn't take the number"
+msgstr ""
+
+msgid "the game didn't take the team name {name}"
+msgstr ""
+
+msgid "the game didn't throw {item} away - see logs\\dialogs.log"
+msgstr ""
+
+msgid "the game doesn't let us gather at {place} - trying another place"
+msgstr ""
+
+msgid ""
+"the game has only {left} MB of memory left - it may freeze soon; restart it when you can"
+msgstr ""
+
+msgid ""
+"the game is running an older Mist World Farmer agent - restart Mist World so it loads the new one"
+msgstr ""
+
+msgid "the game isn't running with the agent"
+msgstr ""
+
+msgid "the game lost our target on {name} and won't take it back - next one"
+msgstr ""
+
+msgid ""
+"the game ran out of memory and stopped working ({where}) - restart Mist World"
+msgstr ""
+
+msgid "the game refused the login request"
+msgstr ""
+
+msgid "the game said nothing - look in the bag"
+msgstr ""
+
+msgid "the game said: {lines}"
+msgstr ""
+
+msgid ""
+"the game says this character has already been in an experience dungeon today"
+msgstr ""
+
+msgid "the game seems frozen: nothing in it has moved - it is opened again"
+msgstr ""
+
+msgid "the game still won't change its mode - farming on in the mode it has"
+msgstr ""
+
+msgid "the game won't let us hit {name} from here - next one"
+msgstr ""
+
+msgid ""
+"the game won't teleport us ({why}) - waiting for {name} to come back here"
+msgstr ""
+
+msgid "the game wouldn't select it ({why})"
+msgstr ""
+
+msgid "the game wouldn't take {beast} now; trying again later"
+msgstr ""
+
+msgid ""
+"the game's dialogs can't be read ({why}) - restart the game so the new agent loads"
+msgstr ""
+
+msgid "the game's keys can't be used: {why}"
+msgstr ""
+
+msgid "the game's own speech is off while the bot runs"
+msgstr ""
+
+msgid "the game's report: {n} of {total} kills, {dmg} damage"
+msgstr ""
+
+msgid "the game's report: {total} kills"
+msgstr ""
+
+msgid "the gang has no {npc}"
+msgstr ""
+
+msgid "the gang's area costs {fee} arnebia, more than your limit of {max}"
+msgstr ""
+
+msgid "the gang's area didn't let us in: {why}"
+msgstr ""
+
+msgid "the gang's area is under your {least}% saturation ({about})"
+msgstr ""
+
+msgid "the gang's area: {about}"
+msgstr ""
+
+msgid ""
+"the gear needs repairing, but there's no toolbox on a hotkey or in the bag"
+msgstr ""
+
+msgid ""
+"the gear needs repairing: the {tool} is only in the bag, so after this fight (put it on a hotkey to repair at once)"
+msgstr ""
+
+msgid "the gold limit for materials ({cap}) is spent"
+msgstr ""
+
+msgid "the guard didn't strike back - trying another"
+msgstr ""
+
+msgid "the hearthstone didn't take me home"
+msgstr ""
+
+msgid "the hearthstone takes me to {square} - remembered"
+msgstr ""
+
+msgid "the instructor offers no secret room now"
+msgstr ""
+
+msgid "the instructor offers no secret room training"
+msgstr ""
+
+msgid "the item isn't on it"
+msgstr ""
+
+msgid "the last 30 days"
+msgstr ""
+
+msgid "the last 7 days"
+msgstr ""
+
+msgid "the last trip for {item} got none, and nothing has changed since"
+msgstr ""
+
+msgid "the limit of {most} deaths will stop the run before that"
+msgstr ""
+
+msgid ""
+"the list Mist World Farmer came with (from {made}) - press Refresh for today's"
+msgstr ""
+
+msgid ""
+"the market can't be used with this agent: restart the game so agent {n} loads"
+msgstr ""
+
+msgid "the market didn't take the page number"
+msgstr ""
+
+msgid "the market has no category {cat}"
+msgstr ""
+
+msgid "the market has no {item} at {most} gold coins or less"
+msgstr ""
+
+msgid "the market has no {item} for sale"
+msgstr ""
+
+msgid "the market's category choice isn't on the page"
+msgstr ""
+
+msgid "the market's details weren't asked for: {why}"
+msgstr ""
+
+msgid "the market's order switch isn't on the page"
+msgstr ""
+
+msgid "the marketplace didn't open its menu"
+msgstr ""
+
+msgid "the menu has no entry like \"{want}\""
+msgstr ""
+
+msgid ""
+"the next level already needs {xp} experience (goal {goal}) - nothing to lose"
+msgstr ""
+
+msgid ""
+"the next level needs only {n} experience - going somewhere safe and stopping"
+msgstr ""
+
+msgid "the next level needs only {n} experience - not going into {cave}"
+msgstr ""
+
+msgid "the next level needs only {n} experience - not starting to farm"
+msgstr ""
+
+msgid ""
+"the next level needs only {n} experience - the dungeon goes on, leaving would lose the visit"
+msgstr ""
+
+msgid "the next level needs {n} experience"
+msgstr ""
+
+msgid "the next level needs {n} experience; farming stops under {goal}"
+msgstr ""
+
+msgid "the open menu is {what}"
+msgstr ""
+
+msgid "the open menu isn't the Shard Market's list"
+msgstr ""
+
+msgid "the pet"
+msgstr ""
+
+msgid "the pet's amiability is {n} but there's no {item} in the bag"
+msgstr ""
+
+msgid ""
+"the plan's character has no saved account or server. Log in to it once first."
+msgstr ""
+
+msgid "the potions asked for are already there"
+msgstr ""
+
+msgid "the ride from {map} never arrived"
+msgstr ""
+
+msgid "the run ended outside a town: not staying to manage the team"
+msgstr ""
+
+msgid ""
+"the run started inside {map}, which can't be walked back into - ending on the nearest map without monsters"
+msgstr ""
+
+msgid ""
+"the run started where monsters spawn ({map} {x},{y}) - ending on the nearest map without them"
+msgstr ""
+
+msgid "the run's place is kept: it can carry on from there"
+msgstr ""
+
+msgid "the script is too long (over {max} characters)"
+msgstr ""
+
+msgid "the shard price list (data\\shards.json) can't be read"
+msgstr ""
+
+msgid ""
+"the shard prices were read {hours} ago - not going to the Shard Broker for them again before {most} hours"
+msgstr ""
+
+msgid "the skill page turns with {key} (the game's key for it)"
+msgstr ""
+
+msgid "the spare arnebia pays for {n} of the {all} batches"
+msgstr ""
+
+msgid ""
+"the storage list is empty - choose items to move to the storehouse in Character, Bag and supplies"
+msgstr ""
+
+msgid "the storehouse"
+msgstr ""
+
+msgid "the storehouse has no {item}"
+msgstr ""
+
+msgid "the storehouse has no {item} and there is no arnebia to buy it"
+msgstr ""
+
+msgid "the storehouse has no {item}, and no shop sells it"
+msgstr ""
+
+msgid "the storehouse has {n} {item}"
+msgstr ""
+
+msgid ""
+"the storehouse is full - these stay in the bag until there is room in it: {list}"
+msgstr ""
+
+msgid "the storehouse is full: {item} has no place in it"
+msgstr ""
+
+msgid "the storehouse menu has no deposit"
+msgstr ""
+
+msgid "the storehouse menu has no item storage"
+msgstr ""
+
+msgid "the storehouse, then the Shard Market"
+msgstr ""
+
+msgid "the target key was on {mode} - back to {want}"
+msgstr ""
+
+msgid ""
+"the target keys still won't select {name} where it stands - leaving it {n} seconds"
+msgstr ""
+
+msgid "the target keys wouldn't select {name} - next one"
+msgstr ""
+
+msgid "the text grew too long (over {n} characters)"
+msgstr ""
+
+msgid ""
+"the throw-away list is empty - choose items in Character, Bag and supplies"
+msgstr ""
+
+msgid "the top level - nothing to lose"
+msgstr ""
+
+msgid "the village at {x},{y} on {map}"
+msgstr ""
+
+msgid "the way on at {cell} is still shut - its stage isn't cleared yet"
+msgstr ""
+
+msgid "the whole market"
+msgstr ""
+
+msgid "the {item} on key {key} are used up"
+msgstr ""
+
+msgid "the {kind} {name} doesn't exist any more"
+msgstr ""
+
+msgid "the {npc} didn't take me anywhere"
+msgstr ""
+
+msgid ""
+"the {npc} didn't take me for free - check that your VIP is still active. Paying the fares for the rest of this run"
+msgstr ""
+
+msgid "the {npc} offers no way in ({about})"
+msgstr ""
+
+msgid "the {npc} on {map} takes only level {n} and above - going another way"
+msgstr ""
+
+msgid "the {npc} said no - see logs\\dialogs.log"
+msgstr ""
+
+msgid "the {npc}'s next menu didn't open"
+msgstr ""
+
+msgid "the {post} is at 100%: leaving it for now"
+msgstr ""
+
+msgid "the {post}: {what}"
+msgstr ""
+
+msgid "the {role} didn't take {item}"
+msgstr ""
+
+msgid "the {shard} box stays ticked with none in the bag"
+msgstr ""
+
+msgid "the {tool} can't repair this gear: {what}"
+msgstr ""
+
+msgid "the {tool} didn't open its question - not repaired"
+msgstr ""
+
+msgid ""
+"the {tool} is still in the bag after the repair ({n}) - the game may not have used it"
+msgstr ""
+
+msgid ""
+"the {tool} only repairs gear up to level {limit}, and this character is level {level}"
+msgstr ""
+
+msgid "there are no team applications waiting"
+msgstr ""
+
+msgid "there's no {item} in the bag"
+msgstr ""
+
+msgid "this character can't publish that: it takes a gang elder's rights"
+msgstr ""
+
+msgid ""
+"this character has no gathering skill: learn Fishing, Mining or Collect Herbs (one of them) from the gang's Guru Elder or Master Pepper"
+msgstr ""
+
+msgid ""
+"this character is at the top level: there is no next level to stay away from"
+msgstr ""
+
+msgid "this character is in {team}, which another player leads"
+msgstr ""
+
+msgid "this expression is too complex (over {n} parts or {d} deep)"
+msgstr ""
+
+msgid "this expression is too long (over {max} characters)"
+msgstr ""
+
+msgid ""
+"this game's agent can't warn before gear breaks - restart Mist World so the new agent loads; until then gear is repaired only once something breaks"
+msgstr ""
+
+msgid ""
+"this level holds about {top} experience: about {n} more deaths to reach {xp}"
+msgstr ""
+
+msgid ""
+"this level holds about {top} experience: about {n} more deaths, about {mins} min, to reach {xp}"
+msgstr ""
+
+msgid ""
+"this level holds only about {top} experience, so the goal of {goal} can't be reached - stopped"
+msgstr ""
+
+msgid "this number is too large: {expr}"
+msgstr ""
+
+msgid "this text is too long: {expr}"
+msgstr ""
+
+msgid "threw away {list}"
+msgstr ""
+
+msgid "through the teleport at {cell}"
+msgstr ""
+
+msgid "throwing away {n} {item} (the bag manager says so)"
+msgstr ""
+
+msgid "to {name}"
+msgstr ""
+
+msgid "today"
+msgstr ""
+
+msgid ""
+"today: everything all of today's runs got, added up, with how many runs and minutes."
+msgstr ""
+
+msgid "too close to a boss"
+msgstr ""
+
+msgid "too far to harvest from where we stand, and walking to corpses is off"
+msgstr ""
+
+msgid "took {n} {item} out of the storehouse"
+msgstr ""
+
+msgid "town"
+msgstr ""
+
+msgid "town and travel"
+msgstr ""
+
+msgid "travel to {map} didn't arrive"
+msgstr ""
+
+msgid "traveling to Activity Envoy in Mario Basin..."
+msgstr ""
+
+msgid "trying the {npc} once more"
+msgstr ""
+
+msgid "trying the {tool} instead"
+msgstr ""
+
+msgid "unavailable"
+msgstr ""
+
+msgid "unbalanced quotes"
+msgstr ""
+
+msgid "unexpected error: {err}"
+msgstr ""
+
+msgid "unfollow: I stop following you."
+msgstr ""
+
+msgid "unknown"
+msgstr ""
+
+msgid "unknown command: {cmd}"
+msgstr ""
+
+msgid "unknown event: {name}"
+msgstr ""
+
+msgid "unknown function in: {expr}"
+msgstr ""
+
+msgid "unknown map (or several share that name; use the number): {map}"
+msgstr ""
+
+msgid "unknown map: {map}"
+msgstr ""
+
+msgid "unmute: the game talks again."
+msgstr ""
+
+msgid "until the next level needs at least"
+msgstr ""
+
+msgid "until the plan stops"
+msgstr ""
+
+msgid "until= needs a condition, for example: until=kills >= 100"
+msgstr ""
+
+msgid "updating shard prices"
+msgstr ""
+
+msgid "usable items"
+msgstr ""
+
+msgid ""
+"used a {card}, but the character sheet doesn't show it - no other experience card for {m} minutes"
+msgstr ""
+
+msgid "using the hearthstone key"
+msgstr ""
+
+msgid "using {item} from the bag"
+msgstr ""
+
+msgid "using {item} to go to {map}"
+msgstr ""
+
+msgid "view the enemy in the arena"
+msgstr ""
+
+msgid "visit what? write: visit storehouse  or  visit Grocer John"
+msgstr ""
+
+msgid "voice message"
+msgstr ""
+
+msgid "voice message from {name} - play it in Chat (Ctrl+T)"
+msgstr ""
+
+msgid "waiting for the game opened for {name} to start"
+msgstr ""
+
+msgid "walk to the enemy"
+msgstr ""
+
+msgid ""
+"walking into {village} first: the game brings us back at the last town we walked into"
+msgstr ""
+
+msgid "walking on to {cell}"
+msgstr ""
+
+msgid "walking out of the safe zone to cast {skill}"
+msgstr ""
+
+msgid "walking to monsters"
+msgstr ""
+
+msgid "we are on another map now - leaving the fight with {name}"
+msgstr ""
+
+msgid "weakens the enemy"
+msgstr ""
+
+msgid "weapons"
+msgstr ""
+
+msgid "wedding map"
+msgstr ""
+
+msgid "went home as {name} asked"
+msgstr ""
+
+msgid "went to {name} as they asked"
+msgstr ""
+
+msgid ""
+"when the day's drop time is used up; before the next level, if you asked for it; when the bag is full of things you keep; after the last death you allow; when broken gear can't be repaired. Those are set per character, in Character, Settings and Bag and supplies."
+msgstr ""
+
+msgid "when the next level needs less than {n} experience"
+msgstr ""
+
+msgid "when {item} is below {n}"
+msgstr ""
+
+msgid ""
+"where the run started wasn't read - ending on the nearest map without monsters"
+msgstr ""
+
+msgid "where: the map I'm on and my x, y on it."
+msgstr ""
+
+msgid "which key?"
+msgstr ""
+
+msgid "which seller? type a seller ID"
+msgstr ""
+
+msgid "with {n} minutes of drop time saved"
+msgstr ""
+
+msgid "with {skill}"
+msgstr ""
+
+msgid "would break {n} {item}"
+msgstr ""
+
+msgid "would buy {n} for {cost} gold coins"
+msgstr ""
+
+msgid ""
+"would combine {n} x 3 {gem} into {nxt}: fee {fee} each, 50% chance{boost}{protect}"
+msgstr ""
+
+msgid "would enter {room}"
+msgstr ""
+
+msgid "would feed: {beast}"
+msgstr ""
+
+msgid "would go to: {cave}"
+msgstr ""
+
+msgid "would run Missing Child gang mission"
+msgstr ""
+
+msgid "would run Thanksgiving Hunt {n} time(s)"
+msgstr ""
+
+msgid "would run Troubled Guard gang mission"
+msgstr ""
+
+msgid "would {what}"
+msgstr ""
+
+msgid "write it as: chores [check] [only=bank,donation]"
+msgstr ""
+
+msgid ""
+"write it as: construction_scan, construction_scan publish=broadcast or construction_scan auto=broadcast (announcement, broadcast or system)"
+msgstr ""
+
+msgid "write it as: hold key seconds"
+msgstr ""
+
+msgid "write it as: login  or  login <character>"
+msgstr ""
+
+msgid ""
+"write it as: market scan [sellers] | market search [item=\"<name>\"] [cheapest] [max=<price>] [category=<name>] [pages=<n>] | market seller <id>[,<id>] | market buy [check] [item=\"<name>\" count=<n> max=<price> [cap=<gold>]]"
+msgstr ""
+
+msgid ""
+"write it as: sell_collection  or  sell_collection fish (fish, ore or herb)"
+msgstr ""
+
+msgid "write it as: set name = value"
+msgstr ""
+
+msgid "write it as: triggers off"
+msgstr ""
+
+msgid "write it as: walk x y"
+msgstr ""
+
+msgid "write it as: {cmd}  or  {cmd} check"
+msgstr ""
+
+msgid "write it as: {cmd} 50 Large Red Potion"
+msgstr ""
+
+msgid "write it as: {cmd} Milkfish 20"
+msgstr ""
+
+msgid "written by Run, Autopilot - the Triggers lists don't run around it"
+msgstr ""
+
+msgid ""
+"written by Run, Autopilot: the best map for the level, with the Triggers lists around it"
+msgstr ""
+
+msgid "yesterday"
+msgstr ""
+
+msgid "you"
+msgstr ""
+
+msgid "you joined the gang today: the game allows no building until tomorrow"
+msgstr ""
+
+msgid "you joined the gang today: the game allows no donation until tomorrow"
+msgstr ""
+
+msgid "{action}: '{value}' isn't a key the bot can press."
+msgstr ""
+
+msgid "{at}: {outcome} (due {due})"
+msgstr ""
+
+msgid ""
+"{a}: the gang base's way out is in its outer hall, walled off from here - walk out yourself and start again"
+msgstr ""
+
+msgid "{beast} taken after {n} refusals"
+msgstr ""
+
+msgid "{better} is ready again - putting {pet} away for it"
+msgstr ""
+
+msgid "{bonus}% more experience, {m} min {s} s left"
+msgstr ""
+
+msgid "{boss} (a boss) is {n} steps away - keeping {keep} steps from it"
+msgstr ""
+
+msgid "{boss} (a boss) keeps coming back - leaving for {map} for {n} s"
+msgstr ""
+
+msgid "{buffer} ({n} new)"
+msgstr ""
+
+msgid "{card} (none in the bag)"
+msgstr ""
+
+msgid "{card} ({n} in the bag)"
+msgstr ""
+
+msgid "{cave} (highest unlocked floor) - level {n}+ - {where}"
+msgstr ""
+
+msgid "{cave} (single-player dungeon - {where})"
+msgstr ""
+
+msgid "{cave} - level {n} - {where}"
+msgstr ""
+
+msgid "{cave} - level {n}+ - {where}"
+msgstr ""
+
+msgid "{cave} is done for today - a character goes into one cave a day"
+msgstr ""
+
+msgid "{cave} needs level {n}"
+msgstr ""
+
+msgid "{cave}: couldn't enter"
+msgstr ""
+
+msgid "{cave}: couldn't get in after {n} tries"
+msgstr ""
+
+msgid "{cave}: died inside after {n} kills"
+msgstr ""
+
+msgid "{cave}: floor not available for level {n}"
+msgstr ""
+
+msgid "{cave}: still inside after the timer - leaving"
+msgstr ""
+
+msgid "{cave}: the game didn't let us in (once a day)"
+msgstr ""
+
+msgid "{cave}: {n} kills in {m} minutes"
+msgstr ""
+
+msgid "{cave}: {n} kills in {m} minutes ({status})"
+msgstr ""
+
+msgid "{cell} can't be reached on {map}"
+msgstr ""
+
+msgid "{chore}: {note}"
+msgstr ""
+
+msgid "{cls} skills on keys: {keys}"
+msgstr ""
+
+msgid "{cmd} whom? write: {cmd} <player name>"
+msgstr ""
+
+msgid "{colour} (none in the bag)"
+msgstr ""
+
+msgid "{colour}: about {gems}"
+msgstr ""
+
+msgid "{colour}: {what}"
+msgstr ""
+
+msgid "{col}: shards {shards}; gems {gems}"
+msgstr ""
+
+msgid ""
+"{cost} gold coins would go over the spending limit ({cap}, {spent} spent)"
+msgstr ""
+
+msgid "{dmg} damage ({share} of all)"
+msgstr ""
+
+msgid ""
+"{elite} (a demonized elite) is {n} steps away - keeping {keep} steps from it"
+msgstr ""
+
+msgid "{field}: enter a number from {lo} to {hi}"
+msgstr ""
+
+msgid "{field}: enter a number, for example 1.5"
+msgstr ""
+
+msgid "{file} isn't a shard price list"
+msgstr ""
+
+msgid "{file}: the new prices didn't come out right - nothing saved"
+msgstr ""
+
+msgid "{file}: the price of {shard} isn't where it should be"
+msgstr ""
+
+msgid "{games} games, {bots} bots running"
+msgstr ""
+
+msgid "{gang} is in the list already."
+msgstr ""
+
+msgid "{gang}: already today ({note})"
+msgstr ""
+
+msgid "{gang}: {about}"
+msgstr ""
+
+msgid "{gem}: {tries} tries, {made} {nxt} made, {lost} failed"
+msgstr ""
+
+msgid "{h} h {m} min"
+msgstr ""
+
+msgid "{id} sells {n} lots"
+msgstr ""
+
+msgid ""
+"{items} broken and nothing to repair it with - going somewhere safe and stopping"
+msgstr ""
+
+msgid "{item} (you have {n}):"
+msgstr ""
+
+msgid "{item} ({count}, {where})"
+msgstr ""
+
+msgid "{item} ({n} of {want}: the storehouse took no more)"
+msgstr ""
+
+msgid "{item} didn't take me anywhere"
+msgstr ""
+
+msgid "{item} is +{lv}: done"
+msgstr ""
+
+msgid "{item} is about to break"
+msgstr ""
+
+msgid "{item} is broken"
+msgstr ""
+
+msgid "{item} is missing from the bag."
+msgstr ""
+
+msgid "{item} is no longer on key {key} - the game put something else there"
+msgstr ""
+
+msgid "{item} isn't on the buyer's list"
+msgstr ""
+
+msgid "{item} put on the empty hotkey {key}"
+msgstr ""
+
+msgid ""
+"{item} recovers {pct}% of your max {what} plus {flat}, cooldown {cd} seconds."
+msgstr ""
+
+msgid "{item} weighs {w} each"
+msgstr ""
+
+msgid "{item}, keeping {n}"
+msgstr ""
+
+msgid "{item}:"
+msgstr ""
+
+msgid ""
+"{item}: +{a} to +{b} needs {n} Level {lv} {kind} Enhance Crystal (you have {have}), {cost} arnebia, {chance}% chance; protection takes {runes} runes (you have {hr})"
+msgstr ""
+
+msgid "{item}: +{lv}, success"
+msgstr ""
+
+msgid "{item}: below {low}, fill to {fill}, {src}"
+msgstr ""
+
+msgid "{item}: failed, now +{lv} ({n} in a row)"
+msgstr ""
+
+msgid ""
+"{item}: the game hasn't shown what it heals yet. Until you type your own numbers below, the bot drinks it when {what} is below {pct}%, every {secs} seconds at most."
+msgstr ""
+
+msgid "{item}: {n} used x {price} = {cost} arnebia"
+msgstr ""
+
+msgid "{job} didn't finish: {why}"
+msgstr ""
+
+msgid "{key} (page {page})"
+msgstr ""
+
+msgid "{kind} zone: x {x1} to {x2}, y {y1} to {y2}"
+msgstr ""
+
+msgid "{k} shards and {fee} arnebia"
+msgstr ""
+
+msgid "{label}: {hp} HP in {n} heals"
+msgstr ""
+
+msgid "{left} left"
+msgstr ""
+
+msgid "{map} at {x}, {y}"
+msgstr ""
+
+msgid "{map} at {x},{y}"
+msgstr ""
+
+msgid "{map}, {x}, {y}"
+msgstr ""
+
+msgid "{map}: heading for the exit to {dest}"
+msgstr ""
+
+msgid "{map}: leaving through our treasure chest"
+msgstr ""
+
+msgid "{map}: leaving through the Action menu"
+msgstr ""
+
+msgid "{map}: taking the {npc} to {dest}"
+msgstr ""
+
+msgid ""
+"{map}: the exit to {dest} brought me round in a loop - planning without it"
+msgstr ""
+
+msgid ""
+"{map}: the exit to {dest} put me at {x},{y}, not at {ax},{ay} as the atlas says - please report it: {row}"
+msgstr ""
+
+msgid ""
+"{map}: the gang base's way out is in its outer hall, walled off from here"
+msgstr ""
+
+msgid "{map}: walking out of the gang base"
+msgstr ""
+
+msgid "{map}: walking out through its exit didn't take me out"
+msgstr ""
+
+msgid "{map}: {n} NPCs"
+msgstr ""
+
+msgid ""
+"{menu}: not choosing by index ({why}) - choosing by the menu's text instead"
+msgstr ""
+
+msgid "{message} — hidden by {filters}"
+msgstr ""
+
+msgid "{mode}: {pattern} ({state})"
+msgstr ""
+
+msgid "{m} min"
+msgstr ""
+
+msgid "{name} (level {level})"
+msgstr ""
+
+msgid "{name} (script)"
+msgstr ""
+
+msgid "{name} (speed +{speed}, level {level})"
+msgstr ""
+
+msgid "{name} ({id})"
+msgstr ""
+
+msgid "{name} ({id}) asked to join the team and isn't allowed in: left waiting"
+msgstr ""
+
+msgid "{name} ({n} new)"
+msgstr ""
+
+msgid "{name} ({n})"
+msgstr ""
+
+msgid "{name} - character {id}"
+msgstr ""
+
+msgid "{name} - {map}{team}"
+msgstr ""
+
+msgid "{name} - {server}"
+msgstr ""
+
+msgid "{name} asks: {what}"
+msgstr ""
+
+msgid "{name} attacks us on the way - fighting it first"
+msgstr ""
+
+msgid "{name} copy"
+msgstr ""
+
+msgid "{name} down ({n} so far)"
+msgstr ""
+
+msgid ""
+"{name} has more than one signed-out game; close the extras or log in first"
+msgstr ""
+
+msgid ""
+"{name} has no profile yet - using the default keys. Open Character, Settings to check them."
+msgstr ""
+
+msgid ""
+"{name} in a line becomes the player's name; a line without it starts with their name while this is ticked."
+msgstr ""
+
+msgid "{name} is about to be killed by someone else - next one"
+msgstr ""
+
+msgid "{name} is attacking our pet - fighting it first"
+msgstr ""
+
+msgid "{name} is gone, and none of our hits landed on it"
+msgstr ""
+
+msgid "{name} is in the way - fighting it"
+msgstr ""
+
+msgid "{name} is on this map at {x}, {y} - going there"
+msgstr ""
+
+msgid "{name} is read from the game and can't be set"
+msgstr ""
+
+msgid "{name} isn't in my team"
+msgstr ""
+
+msgid "{name} isn't logged in to a game that has the agent."
+msgstr ""
+
+msgid "{name} isn't logged in to one available game"
+msgstr ""
+
+msgid "{name} leads the team now"
+msgstr ""
+
+msgid "{name} moved to {list}"
+msgstr ""
+
+msgid "{name} muted."
+msgstr ""
+
+msgid "{name} scanned."
+msgstr ""
+
+msgid "{name} seems offline, and the game didn't remove them from the team"
+msgstr ""
+
+msgid "{name} takes no damage, leaving it"
+msgstr ""
+
+msgid "{name} took the exit to {map} - following"
+msgstr ""
+
+msgid "{name} unmuted."
+msgstr ""
+
+msgid "{name} was already muted."
+msgstr ""
+
+msgid "{name} was already talking."
+msgstr ""
+
+msgid "{name} was last seen on {map} at {x}, {y} - looking there"
+msgstr ""
+
+msgid "{name} was taken by someone else - next one"
+msgstr ""
+
+msgid "{name} went to {map} - going too"
+msgstr ""
+
+msgid ""
+"{name}'s game was lost again. It was opened again {n} times today already, so the run ends here."
+msgstr ""
+
+msgid ""
+"{name}'s game was lost, and the bot can't log in to it by itself: log in to it once by hand so its account is known."
+msgstr ""
+
+msgid ""
+"{name}'s game was lost: opening it again and carrying on where the run was ({n} of {most} today)."
+msgstr ""
+
+msgid "{name}, last run ({what}, started {when})"
+msgstr ""
+
+msgid "{name}, last run: {results}"
+msgstr ""
+
+msgid "{name}, this run ({what}, running)"
+msgstr ""
+
+msgid "{name}, {period}"
+msgstr ""
+
+msgid "{name}, {period}: no runs"
+msgstr ""
+
+msgid "{name}: fight took too long, leaving it"
+msgstr ""
+
+msgid "{name}: no runs yet"
+msgstr ""
+
+msgid ""
+"{name}: {dmg} damage ({hits} hits, {crits} critical, {breaks} defence breaks)"
+msgstr ""
+
+msgid "{name}: {results}"
+msgstr ""
+
+msgid "{now} of {top} ({pct}%)"
+msgstr ""
+
+msgid "{npc} can pay hunting bounties"
+msgstr ""
+
+msgid "{npc} didn't answer"
+msgstr ""
+
+msgid "{npc} didn't answer ({why}) - trying the next nearest shop"
+msgstr ""
+
+msgid "{npc} doesn't sell {item} - trying the next nearest shop"
+msgstr ""
+
+msgid "{npc} isn't in sight - looking for it"
+msgstr ""
+
+msgid "{npc} offered no \"Enter the dungeon\""
+msgstr ""
+
+msgid "{npc} offers no exchange"
+msgstr ""
+
+msgid "{npc} offers no hunting bounty"
+msgstr ""
+
+msgid ""
+"{npc}'s menu didn't show {item} - see logs\\dialogs.log; trying the next nearest shop"
+msgstr ""
+
+msgid "{npc}, {price} {cur} each"
+msgstr ""
+
+msgid "{npc}: \"{entry}\" got the answer \"{said}\" - reading no more of its menus"
+msgstr ""
+
+msgid "{npc}: {what}"
+msgstr ""
+
+msgid "{n} Value Product incomes can be collected"
+msgstr ""
+
+msgid "{n} Value Product incomes were already collected today"
+msgstr ""
+
+msgid "{n} a hit on average"
+msgstr ""
+
+msgid "{n} arnebia"
+msgstr ""
+
+msgid "{n} at level {lv}"
+msgstr ""
+
+msgid "{n} chests"
+msgstr ""
+
+msgid "{n} chests opened"
+msgstr ""
+
+msgid "{n} contribution"
+msgstr ""
+
+msgid "{n} critical"
+msgstr ""
+
+msgid "{n} days ago"
+msgstr ""
+
+msgid "{n} deaths"
+msgstr ""
+
+msgid "{n} experience"
+msgstr ""
+
+msgid "{n} failures in a row - stopping {item}"
+msgstr ""
+
+msgid "{n} gems at level {lv}"
+msgstr ""
+
+msgid "{n} in the bag"
+msgstr ""
+
+msgid "{n} kills"
+msgstr ""
+
+msgid "{n} levels up"
+msgstr ""
+
+msgid "{n} lots found"
+msgstr ""
+
+msgid "{n} made or received"
+msgstr ""
+
+msgid "{n} minutes"
+msgstr ""
+
+msgid "{n} minutes are up"
+msgstr ""
+
+msgid "{n} minutes of drop time"
+msgstr ""
+
+msgid "{n} missed"
+msgstr ""
+
+msgid "{n} more"
+msgstr ""
+
+msgid "{n} more {gem} would take about {k} more {shard}"
+msgstr ""
+
+msgid "{n} of them are still on display and will be skipped."
+msgstr ""
+
+msgid "{n} sellers looked up"
+msgstr ""
+
+msgid "{n} shards"
+msgstr ""
+
+msgid "{n} shards at level {lv}"
+msgstr ""
+
+msgid "{n} sold"
+msgstr ""
+
+msgid "{n} stored"
+msgstr ""
+
+msgid "{n} thrown away"
+msgstr ""
+
+msgid "{n} times, {first} to {last}: {why}"
+msgstr ""
+
+msgid "{n} used up"
+msgstr ""
+
+msgid "{n} {item} still missing"
+msgstr ""
+
+msgid "{n} {item}: each gives {k} {product} for {fee} arnebia"
+msgstr ""
+
+msgid "{n} {shard} in the bag; a Level {lv} crystal takes {per}"
+msgstr ""
+
+msgid "{n}. {action} — {state}; delay {seconds} s; deterministic: {strict}"
+msgstr ""
+
+msgid "{opt} isn't a valid name pattern"
+msgstr ""
+
+msgid "{pct}% full ({load} of {max})"
+msgstr ""
+
+msgid ""
+"{pet} can come out in {n} seconds - waiting for it at the door, where no timer runs"
+msgstr ""
+
+msgid ""
+"{pet} can't come out for {n} more minutes - going in without it; it is called inside as soon as it can"
+msgstr ""
+
+msgid "{pet} didn't come out (no pets allowed here?) - trying again later"
+msgstr ""
+
+msgid ""
+"{pet} is losing HP fast ({pct}% in {secs} s) - fighting what is next to it"
+msgstr ""
+
+msgid "{pet} is no longer losing HP"
+msgstr ""
+
+msgid "{pet} is out, but not in sight - its potions wait until it is"
+msgstr ""
+
+msgid "{pet}: assets {assets}; {free}"
+msgstr ""
+
+msgid "{pet}: no free rebirth left today"
+msgstr ""
+
+msgid "{pet}: {n} free rebirths, assets {before} -> {after}"
+msgstr ""
+
+msgid "{potion} (you have {n}):"
+msgstr ""
+
+msgid "{potion}:"
+msgstr ""
+
+msgid "{price} a unit is over the most you set ({most})"
+msgstr ""
+
+msgid "{query}: {pages} pages, {lots} lots read"
+msgstr ""
+
+msgid "{room}: shared arnebia {n} of {all} times today"
+msgstr ""
+
+msgid "{row}: listed twice with different prices"
+msgstr ""
+
+msgid "{row}: no price shown"
+msgstr ""
+
+msgid "{row}: not a shard row"
+msgstr ""
+
+msgid "{row}: the price shown ({shown}) isn't the one the menu sends ({sent})"
+msgstr ""
+
+msgid "{row}: {price} isn't a price"
+msgstr ""
+
+msgid "{r} replies, {g} goodbyes"
+msgstr ""
+
+msgid "{shard} costs {price} at the market, more than your limit of {limit}"
+msgstr ""
+
+msgid "{shard}: {old} -> {new} arnebia"
+msgstr ""
+
+msgid "{shard}: {was} before, {now} after, {used} used"
+msgstr ""
+
+msgid "{skill} (prepare when applied)"
+msgstr ""
+
+msgid "{skill} at {where}"
+msgstr ""
+
+msgid ""
+"{skill} didn't raise {name}'s HP {n} times running - it may be landing on you, or the game isn't showing their HP. No teammate heals for {minutes} minutes, then {skill} again"
+msgstr ""
+
+msgid ""
+"{skill} didn't raise {pet}'s HP {n} times running - it may be landing on you instead. Pet potions for {minutes} minutes, then {skill} again"
+msgstr ""
+
+msgid "{skill} doesn't list {place} for this character"
+msgstr ""
+
+msgid "{skill} for a long walk"
+msgstr ""
+
+msgid "{skill} isn't on a skill key (putting skills on empty keys is off)"
+msgstr ""
+
+msgid ""
+"{skill} isn't on a skill key and no skill key is empty - put it on one to use it"
+msgstr ""
+
+msgid "{skill} isn't ready to prepare."
+msgstr ""
+
+msgid "{skill} not cast at {name}: {why}"
+msgstr ""
+
+msgid "{skill} on our kills while Vitality lasts ({n} now)"
+msgstr ""
+
+msgid "{skill} opened no menu (cooling down, or not enough MP?)"
+msgstr ""
+
+msgid "{skill} put on the empty skill key {key} (page {page})"
+msgstr ""
+
+msgid "{skill} stopped - starting it again"
+msgstr ""
+
+msgid "{skill} to jump ahead"
+msgstr ""
+
+msgid "{skill} to reach {name}"
+msgstr ""
+
+msgid ""
+"{skill} was broken off before it ended (something hit us) - fighting first"
+msgstr ""
+
+msgid ""
+"{skill} went out at {n} corpses in a row and the game never answered - trying again in 5 minutes"
+msgstr ""
+
+msgid "{skill}, {rank}; character level {level}"
+msgstr ""
+
+msgid "{skill}: {name}"
+msgstr ""
+
+msgid "{stage}, automatically: {job}"
+msgstr ""
+
+msgid "{stage}: done {ok}"
+msgstr ""
+
+msgid "{stage}: done {ok}; didn't finish {bad}"
+msgstr ""
+
+msgid "{stage}: sequence stopped because {job} failed"
+msgstr ""
+
+msgid "{state} {what} for {m} min on {map}, HP {hp}%{mp}, {k} kills"
+msgstr ""
+
+msgid ""
+"{state}. Active mute IDs: {mute}. Observed: {observed}; blocked: {dropped}; live muted: {live}; unsupported: {unsupported}."
+msgstr ""
+
+msgid "{tool} - {name}"
+msgstr ""
+
+msgid "{tool} check"
+msgstr ""
+
+msgid "{used}, {kills} kills"
+msgstr ""
+
+msgid "{village} on {map}"
+msgstr ""
+
+msgid ""
+"{what} changed since it was interrupted, so it starts from the beginning"
+msgstr ""
+
+msgid "{what} for {name}"
+msgstr ""
+
+msgid "{what} for {who} is waiting: {why}"
+msgstr ""
+
+msgid "{what} for {who}: {outcome} ({why})"
+msgstr ""
+
+msgid "{what} must be a number, not {value}"
+msgstr ""
+
+msgid "{what} potion: {item} on key {key}"
+msgstr ""
+
+msgid "{what}, at least:"
+msgstr ""
+
+msgid "{what}:"
+msgstr ""
+
+msgid "{what}: couldn't be read"
+msgstr ""
+
+msgid ""
+"{what}: none in the bag and none chosen in Tools, Dungeons - not looked at"
+msgstr ""
+
+msgid "{what}: {item} - drinking below {pct}%, every {secs} seconds at most"
+msgstr ""
+
+msgid "{what}: {percent}%"
+msgstr ""
+
+msgid "{where} failed: {err} (carrying on)"
+msgstr ""
+
+msgid "{who} isn't logged in to one available game"
+msgstr ""
+
+msgid "{who}'s game is busy with {what}"
+msgstr ""
+
+msgid "{why} - no more {skill} this run ({n} done)"
+msgstr ""
+
+msgid ""
+"{why} - waiting here, and teleporting to the team leader (Shift+P) as soon as the game allows"
+msgstr ""
+
+msgid "{w} by {h} tiles, {n} exits."
+msgstr ""

@@ -8,7 +8,7 @@ from typing import Any
 import pytest
 from conftest import ME, Clock, fight
 
-from unclefarmer.engine import combat
+from mistworldfarmer.engine import combat
 
 
 def swing(t: float, caster: int = -9, result: int = 3) -> dict[str, Any]:

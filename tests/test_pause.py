@@ -8,11 +8,11 @@ import threading
 import time
 from typing import Any
 
-from unclefarmer.clock import Waitable
-from unclefarmer.engine.botparts import reading
+from mistworldfarmer.clock import Waitable
+from mistworldfarmer.engine.botparts import reading
 
-from unclefarmer.engine.botparts.keys import KeysMixin
-from unclefarmer.engine.botparts.reading import ReadingMixin
+from mistworldfarmer.engine.botparts.keys import KeysMixin
+from mistworldfarmer.engine.botparts.reading import ReadingMixin
 
 
 class Agent:

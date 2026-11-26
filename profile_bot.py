@@ -17,7 +17,7 @@ uses instead:
 
 For a no-restart snapshot on the live process, py-spy still works on all threads:
 
-    py-spy record -p <pid> -d 60 -f speedscope -o %TEMP%\\unclefarmer.json
+    py-spy record -p <pid> -d 60 -f speedscope -o %TEMP%\\mistworldfarmer.json
 
 Micro-benchmarks (perf_counter_ns) live in benchmark.py.
 """
@@ -38,7 +38,7 @@ from typing import Protocol, TypeVar
 ROOT = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, ROOT)
 
-from unclefarmer.__main__ import main as app_main      # noqa: E402
+from mistworldfarmer.__main__ import main as app_main      # noqa: E402
 
 # Frames that mean "this thread is not working, it is waiting". Their time is still part of the
 # thread's wall clock, so it is reported separately instead of at the top of the busy list.

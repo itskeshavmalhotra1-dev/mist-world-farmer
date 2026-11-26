@@ -17,8 +17,8 @@ from typing import Any
 
 import pytest
 
-from unclefarmer import atlas, knowledge, paths, stats
-from unclefarmer.engine import script as S, town
+from mistworldfarmer import atlas, knowledge, paths, stats
+from mistworldfarmer.engine import script as S, town
 from conftest import as_bot, returning
 
 REAL = Path(paths.DATA) / "shards.json"
@@ -214,7 +214,7 @@ def test_update_shard_prices_is_a_script_command_and_a_tool() -> None:
 
 
 def test_tools_update_shard_prices_runs_the_job(monkeypatch: pytest.MonkeyPatch) -> None:
-    from unclefarmer.gui import main
+    from mistworldfarmer.gui import main
     errands: list[str] = []
 
     class Win:

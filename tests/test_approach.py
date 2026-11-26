@@ -11,13 +11,13 @@ import threading
 import pytest
 from conftest import ME, data
 
-from unclefarmer import settings
-from unclefarmer.clock import CLOCK, Waitable
-from unclefarmer.engine import combat
-from unclefarmer.engine.bot import Bot
-from unclefarmer.engine.botparts.fighting import FightingMixin
-from unclefarmer.engine.botparts.walking import WalkingMixin
-from unclefarmer.engine.kills import KillTracker
+from mistworldfarmer import settings
+from mistworldfarmer.clock import CLOCK, Waitable
+from mistworldfarmer.engine import combat
+from mistworldfarmer.engine.bot import Bot
+from mistworldfarmer.engine.botparts.fighting import FightingMixin
+from mistworldfarmer.engine.botparts.walking import WalkingMixin
+from mistworldfarmer.engine.kills import KillTracker
 from typing import Any
 
 

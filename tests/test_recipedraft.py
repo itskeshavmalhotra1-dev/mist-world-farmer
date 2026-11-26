@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import struct
 
-from unclefarmer import recipedraft as rd
+from mistworldfarmer import recipedraft as rd
 
 NPC = -70
 

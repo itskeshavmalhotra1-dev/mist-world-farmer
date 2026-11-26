@@ -18,15 +18,15 @@ import threading
 import numpy as np
 import pytest
 
-from unclefarmer.clock import CLOCK, Waitable
-from unclefarmer import atlas
-from unclefarmer.engine.botparts.base import NPC_HP, GameLost, Respawned, Stopped
-from unclefarmer.engine.botparts.parts import Rect
-from unclefarmer.engine.botparts.walking import WalkingMixin
+from mistworldfarmer.clock import CLOCK, Waitable
+from mistworldfarmer import atlas
+from mistworldfarmer.engine.botparts.base import NPC_HP, GameLost, Respawned, Stopped
+from mistworldfarmer.engine.botparts.parts import Rect
+from mistworldfarmer.engine.botparts.walking import WalkingMixin
 from collections.abc import Callable, Iterable, Sequence
 from typing import Any
 from conftest import as_kind, stand_in
-from unclefarmer.atlaslib import Cell, MapModel
+from mistworldfarmer.atlaslib import Cell, MapModel
 
 MOVE_KEYS = {"up": "w", "down": "s", "left": "a", "right": "d"}
 
@@ -528,7 +528,7 @@ def test_walk_to_returns_map_once_the_map_changed_between_attempts(model: Map) -
 
 
 def test_walk_to_returns_map_when_mounting_up_ended_on_another_map(model: Map, monkeypatch: pytest.MonkeyPatch) -> None:
-    from unclefarmer.engine import beasts
+    from mistworldfarmer.engine import beasts
     b = MapBot(model, pos=(1, 1), map_id=5)
     b.traveling = True
 
@@ -974,7 +974,7 @@ def test_a_hung_game_counts_as_no_stuck(clock: Clock) -> None:
 
 # ---------------------------------------------------------------- mounting on the way
 def _riding_calls(monkeypatch: pytest.MonkeyPatch) -> list[bool]:
-    from unclefarmer.engine import beasts
+    from mistworldfarmer.engine import beasts
     calls: list[bool] = []
 
     def keep_riding(b: object, read_power: bool = True) -> None:

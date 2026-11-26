@@ -7,10 +7,10 @@ from types import SimpleNamespace
 
 import pytest
 
-from unclefarmer import messages
+from mistworldfarmer import messages
 from conftest import HostStub, as_kind, as_parts, Clock
-from unclefarmer.engine.runner import Run as RealRun
-from unclefarmer.messages import Messenger
+from mistworldfarmer.engine.runner import Run as RealRun
+from mistworldfarmer.messages import Messenger
 
 
 @pytest.mark.parametrize("text, want", [
@@ -107,7 +107,7 @@ def test_buff_without_a_follow() -> None:
 def test_no_buffs_while_following_until_asked(clock: Clock) -> None:
     from conftest import Bot, Game
 
-    from unclefarmer.engine import combat
+    from mistworldfarmer.engine import combat
     g = Game(clock, ["Arcane Shot", "Strong-Arm Aura"])
     b = Bot(g)
     sb = combat.SkillBook(as_parts(b))

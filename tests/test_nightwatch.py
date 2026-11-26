@@ -88,24 +88,24 @@ def test_resources_per_process_and_growth() -> None:
 
 def test_profiles_split_by_thread_with_waiting_and_agent_time(tmp_path: Path) -> None:
     raw = "\n".join([
-        "thread (7);run (unclefarmer\\engine\\runner.py:120);fight (unclefarmer\\engine\\botparts\\fighting.py:500)"
-        ";json (unclefarmer\\link.py:80);readinto (socket.py:720) 30",
-        "thread (7);run (unclefarmer\\engine\\runner.py:120);sleep (unclefarmer\\clock.py:40) 50",
-        "thread (7);run (unclefarmer\\engine\\runner.py:120);route (unclefarmer\\routing.py:300) 20",
+        "thread (7);run (mistworldfarmer\\engine\\runner.py:120);fight (mistworldfarmer\\engine\\botparts\\fighting.py:500)"
+        ";json (mistworldfarmer\\link.py:80);readinto (socket.py:720) 30",
+        "thread (7);run (mistworldfarmer\\engine\\runner.py:120);sleep (mistworldfarmer\\clock.py:40) 50",
+        "thread (7);run (mistworldfarmer\\engine\\runner.py:120);route (mistworldfarmer\\routing.py:300) 20",
         "thread (9);MainLoop (wx\\core.py:2100) 100",
     ])
     (tmp_path / "p.txt").write_text(raw + "\n", encoding="utf-8")
     t = nw.profiles(str(tmp_path), {"profiles": [{"file": "p.txt"}]}, {7: "run 1234 Hero"})
     run = t["run 1234 Hero"]
     assert run["samples"] == 100 and run["waiting"] == 80 and run["agent"] == 30 and run["agent_wait"] == 30
-    assert run["funcs"]["fight (unclefarmer\\engine\\botparts\\fighting.py)"] == 30
+    assert run["funcs"]["fight (mistworldfarmer\\engine\\botparts\\fighting.py)"] == 30
     assert run["busy_leaf"] == {"route (routing.py)": 20}
     assert t["thread 9"]["waiting"] == 100
 
 
 def test_a_thread_blocked_on_the_agent_is_waiting(tmp_path: Path) -> None:
     # socket.recv is C code: py-spy's innermost Python frame is link._ask itself
-    raw = "thread (7);run (unclefarmer\\chat.py:60);json (unclefarmer\\link.py:89);_ask (unclefarmer\\link.py:78) 40"
+    raw = "thread (7);run (mistworldfarmer\\chat.py:60);json (mistworldfarmer\\link.py:89);_ask (mistworldfarmer\\link.py:78) 40"
     (tmp_path / "p.txt").write_text(raw + "\n", encoding="utf-8")
     t = nw.profiles(str(tmp_path), {"profiles": [{"file": "p.txt"}]}, {})
     assert t["thread 7"]["waiting"] == 40 and t["thread 7"]["agent_wait"] == 40
@@ -225,7 +225,7 @@ def test_process_facts_of_our_own_process() -> None:
 def test_the_app_names_its_threads_for_the_watcher(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     import threading
 
-    from unclefarmer import applog, paths
+    from mistworldfarmer import applog, paths
     monkeypatch.setattr(paths, "LOGS", str(tmp_path))
     applog.thread("run 1234 Hero")
     tid, what = open(tmp_path / "threads.log", encoding="utf-8").read().rstrip("\n").split("  ")[1:]

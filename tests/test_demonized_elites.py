@@ -11,8 +11,8 @@ from conftest import ME
 from test_bosses import mob
 from test_wrong_target import Fighter
 
-from unclefarmer import settings
-from unclefarmer.engine import bosses
+from mistworldfarmer import settings
+from mistworldfarmer.engine import bosses
 
 
 def fighter(*mobs: dict[str, Any], skip: bool = True) -> Fighter:

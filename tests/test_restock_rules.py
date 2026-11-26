@@ -21,9 +21,9 @@ import pytest
 from conftest import as_bot, stand_in
 
 from test_town import TownBot
-from unclefarmer import knowledge
-from unclefarmer.engine import town
-from unclefarmer.engine.bot import Bot
+from mistworldfarmer import knowledge
+from mistworldfarmer.engine import town
+from mistworldfarmer.engine.bot import Bot
 
 RULE = {"item": "Large Red Potion", "min": 30, "stock": 200, "source": "both", "on": True}
 

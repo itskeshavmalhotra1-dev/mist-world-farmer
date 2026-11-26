@@ -13,11 +13,11 @@ import queue
 import pytest
 from conftest import returning, stand_in, Clock
 
-from unclefarmer.clock import CLOCK
-from unclefarmer import gamekeys, settings
-from unclefarmer.engine.botparts import health
-from unclefarmer.engine.botparts.base import Stopped
-from unclefarmer.engine.botparts.health import HealthMixin
+from mistworldfarmer.clock import CLOCK
+from mistworldfarmer import gamekeys, settings
+from mistworldfarmer.engine.botparts import health
+from mistworldfarmer.engine.botparts.base import Stopped
+from mistworldfarmer.engine.botparts.health import HealthMixin
 from typing import Any
 
 
@@ -532,7 +532,7 @@ def test_rest_up_sets_and_clears_the_resting_flag(clock: Clock) -> None:
 
 
 def test_a_potion_off_the_hotkeys_is_drunk_in_a_fight_when_the_agent_uses_it_by_uid() -> None:
-    from unclefarmer.engine.botparts.health import HealthMixin
+    from mistworldfarmer.engine.botparts.health import HealthMixin
 
     class Drinker(HealthMixin):
         def __init__(self) -> None:

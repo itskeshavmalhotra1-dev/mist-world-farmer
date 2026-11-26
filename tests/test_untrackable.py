@@ -18,8 +18,8 @@ import pytest
 
 import simgame
 from test_fighting import Bot, Clock, monster, straight_walk
-from unclefarmer.clock import CLOCK
-from unclefarmer import atlas
+from mistworldfarmer.clock import CLOCK
+from mistworldfarmer import atlas
 
 @pytest.fixture
 def clock(monkeypatch: pytest.MonkeyPatch) -> Clock:

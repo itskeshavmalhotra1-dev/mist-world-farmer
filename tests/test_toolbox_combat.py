@@ -16,13 +16,13 @@ from test_health import H
 from test_toolbox_tiers import ASK_80, GameBot
 from test_fighting import monster
 from test_repair import Link as RepairLink
-from unclefarmer.clock import Flag, StopFlag
-from unclefarmer.link import GameLink
-from unclefarmer.engine.botparts import fighting
-from unclefarmer.engine.botparts.dialogs import DialogsMixin
-from unclefarmer.engine.botparts.health import HealthMixin
-from unclefarmer.engine.botparts.keys import KeysMixin
-from unclefarmer.engine.botparts.reading import ReadingMixin
+from mistworldfarmer.clock import Flag, StopFlag
+from mistworldfarmer.link import GameLink
+from mistworldfarmer.engine.botparts import fighting
+from mistworldfarmer.engine.botparts.dialogs import DialogsMixin
+from mistworldfarmer.engine.botparts.health import HealthMixin
+from mistworldfarmer.engine.botparts.keys import KeysMixin
+from mistworldfarmer.engine.botparts.reading import ReadingMixin
 
 
 class ScenarioLink(RepairLink):

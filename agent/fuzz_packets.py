@@ -15,7 +15,7 @@ import tempfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, "src")
 TEST = os.path.join(HERE, "test")
-MAIN = "unclefarmer.agent.PacketFuzz"
+MAIN = "mistworldfarmer.agent.PacketFuzz"
 
 
 def tool(name: str) -> str:
@@ -36,7 +36,7 @@ def main() -> None:
     sources = [os.path.join(folder, n) for folder, _d, names in os.walk(SRC) for n in names if n.endswith(".java")]
     sources += [os.path.join(folder, n) for folder, _d, names in os.walk(TEST) for n in names if n.endswith(".java")]
 
-    build = tempfile.mkdtemp(prefix="unclefarmer-fuzz-")
+    build = tempfile.mkdtemp(prefix="mistworldfarmer-fuzz-")
     try:
         subprocess.check_call([tool("javac"), "--release", "8", "-encoding", "UTF-8", "-Xlint:-options", "-d", build] + sources)
         subprocess.check_call([tool("java"), "-cp", build, MAIN, seed, iterations])
