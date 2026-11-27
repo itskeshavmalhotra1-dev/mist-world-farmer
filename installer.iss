@@ -1,5 +1,5 @@
 #define MyAppName "Mist World Farmer"
-#define MyAppVersion "1.2.5"
+#define MyAppVersion "1.2.6"
 #define MyAppPublisher "Mist World Farmer"
 #define MyAppURL "https://github.com/itskeshavmalhotra1-dev/mist-world-farmer"
 #define MyAppExeName "MistWorldFarmer.exe"

@@ -291,3 +291,16 @@ def test_sold_out_item_is_skipped():
     }
     assert events._can_redeem(d_sold_out, r"Arnebia") is False  # pyright: ignore[reportPrivateUsage]
     assert events._can_redeem(d_sold_out, r"Gem Shards") is True  # pyright: ignore[reportPrivateUsage]
+
+
+def test_xp_card_skipped_when_no_xp_card_set():
+    from mistworldfarmer.engine import xpcard
+
+    class DummyBot:
+        no_xp_card = True
+        p = {"xp_cards": ["1.3x experience acceleration card"]}
+
+        def bag_rows(self) -> list[dict[str, Any]]:
+            raise AssertionError("xpcard.on_farm should return early when no_xp_card=True")
+
+    xpcard.on_farm(DummyBot())  # type: ignore

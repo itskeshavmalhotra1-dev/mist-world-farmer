@@ -194,6 +194,8 @@ def _have_one(b: Bot, st: Cards, now: float) -> bool:
 def on_farm(b: Bot, now: float | None = None) -> None:
     """Between fights on the farm: a paused card runs again, and with kinds ticked (xp_cards) a new
     card of the strongest of them in the bag is used when none runs. Looks every LOOK_EVERY seconds at most."""
+    if getattr(b, "no_xp_card", False):
+        return
     keep, pause = wanted(b.p)
     if not (keep or pause):
         return

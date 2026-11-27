@@ -437,6 +437,8 @@ def hunt_one_entry(b: Bot, cfg: dict[str, Any], cur: int, total: int) -> bool:
     """Execute one Thanksgiving Hunt run until required turkeys collected or auto-exit."""
     was_pets = _apply_pet_choice(b, cfg)
     was_max_hp = getattr(b, "max_mob_hp", None)
+    was_no_xp_card = getattr(b, "no_xp_card", False)
+    b.no_xp_card = True
     try:
         if not is_in_hunting_map(b):
             dungeon.pet_ready(b)
@@ -479,6 +481,7 @@ def hunt_one_entry(b: Bot, cfg: dict[str, Any], cur: int, total: int) -> bool:
         b.sleep(2.0)
         return True
     finally:
+        b.no_xp_card = was_no_xp_card
         b.max_mob_hp = was_max_hp
         b.pets_for_run = was_pets
 
