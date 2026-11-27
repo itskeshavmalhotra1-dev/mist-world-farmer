@@ -73,10 +73,10 @@ from . import __version__, applog, jsonio as json, paths, update_recovery as rec
 # app never asks the network for one. Only ever a repository the project controls: a name nobody
 # controls any more could be taken by someone else, whose "release" every copy would then offer
 # and install.
-REPO = "afnannasir/uncle-farmer"
+REPO = "itskeshavmalhotra1-dev/mist-world-farmer"
 LATEST = "https://api.github.com/repos/%s/releases/latest"      # % REPO, when asked
 RELEASES = "https://api.github.com/repos/%s/releases?per_page=%d"   # % (REPO, DEV_PAGE)
-CHANGELOG_URL = "https://raw.githubusercontent.com/afnannasir/uncle-farmer/master/CHANGELOG.md"
+CHANGELOG_URL = "https://raw.githubusercontent.com/itskeshavmalhotra1-dev/mist-world-farmer/master/CHANGELOG.md"
 CHANGELOG_TTL = 300.0
 CHANGELOG_LIMIT = 2 * 1024 * 1024
 _changelog_lock = threading.Lock()

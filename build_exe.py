@@ -28,7 +28,7 @@ OUT = os.path.join(DIST, "Mist World Farmer")
 # The release's jar is built here, never over agent/unclefarmer-agent.jar: a running game has that
 # one loaded, and a release can be built while you play.
 JAR = os.path.join(DIST, "unclefarmer-agent.jar")
-BUILT = os.path.join(DIST, "UncleFarmer.dist")
+BUILT = os.path.join(DIST, "MistWorldFarmer.dist")
 # -O, never -OO: -OO strips docstrings, and Help, Commands for trusted players and both Script
 # commands windows show module docstrings (messages, engine.script) - they were empty in every build.
 PYTHON_FLAG = "--python-flag=-O"
@@ -127,6 +127,7 @@ def main(full: bool = False) -> None:
         if os.path.exists(os.path.join(ROOT, name)):
             shutil.copy2(os.path.join(ROOT, name), OUT)
     verify(OUT)
+    updater.write_build(OUT, __version__, "master")
     print("built:", OUT)
 
 

@@ -9,7 +9,7 @@ themselves.
 from __future__ import annotations
 
 EMAIL = "afnan.nasir2000@gmail.com"
-ISSUES = "https://github.com/afnannasir/uncle-farmer/issues"
+ISSUES = "https://github.com/itskeshavmalhotra1-dev/mist-world-farmer/issues"
 TELEGRAM = "https://t.me/+55NtoqsY7u1lMzNk"   # the players' Telegram group (invite link)
 
 

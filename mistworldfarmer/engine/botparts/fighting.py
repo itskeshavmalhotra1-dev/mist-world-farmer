@@ -119,6 +119,7 @@ class FightingMixin(Parts):
     MOVE_SHOT_REACH = MOVE_SHOT_REACH   # shooting on the way only for a character that hits from this far
     move_shots: bool = False   # Tools, Dungeons' "shoot while walking", for the visit
     max_mob_hp: int | None = None   # ignore monsters with HP or maxhp above this
+    no_xp_card: bool = False   # skip xpcard.on_farm during event hunts
     burst_target: tuple[int, float] | None = None   # the fight's monster while a burst presses at it
     _speech: str
     select_refused: str = ""   # agent 41's reason the last `select` was refused ("" when it wasn't)

@@ -15,7 +15,7 @@ import tempfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, "src")
 TEST = os.path.join(HERE, "test")
-MAIN = "mistworldfarmer.agent.PacketFuzz"
+MAIN = "unclefarmer.agent.PacketFuzz"
 
 
 def tool(name: str) -> str:
