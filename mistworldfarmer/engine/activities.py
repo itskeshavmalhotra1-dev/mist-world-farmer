@@ -43,9 +43,125 @@ def _town(fn: str) -> Run:
     return run
 
 
-def _gather(b: Bot, check: bool, _o: Mapping[str, Any]) -> object:
+def _zone_rects(skill: str, map_id: int, zone_name: str) -> list[list[int]]:
+    import os
+    from .. import jsonio, paths
+    try:
+        with open(os.path.join(paths.DATA, "gathering_zones.json"), "rb") as f:
+            zdata = jsonio.load(f)
+    except Exception:
+        return []
+    entry = (zdata.get(skill) or {}).get(str(map_id)) if isinstance(zdata, dict) else None
+    if not isinstance(entry, dict):
+        return []
+    rects: list[list[int]] = []
+    for z in entry.get("zones") or []:
+        if not zone_name or str(z.get("name") or "").casefold() == zone_name.casefold():
+            for r in z.get("rects") or []:
+                if isinstance(r, list) and len(r) >= 4:
+                    rects.append([int(v) for v in r[:4]])
+    return rects
+
+
+def _multi_gather_config(b: Bot, slot_raw: object, base_cfg: dict[str, Any]) -> dict[str, Any]:
+    import os
+    from .. import jsonio, paths, settings
     from . import gathering
-    return gathering.run(b, gathering.config(b.p), check)
+    path = os.path.join(paths.APP, "multi_gathering.json")
+    try:
+        with open(path, "rb") as f:
+            data = jsonio.load(f)
+    except Exception:
+        data = {}
+    if not isinstance(data, dict):
+        return base_cfg
+    cfg = dict(base_cfg)
+    cfg["gang_fee_max"] = 1000000000
+    cfg["outside"] = bool(data.get("outside", True))
+    cfg["known_places"] = True
+    saved_places = list(cfg.get("places") or [])
+    for prof in settings.profiles():
+        g = settings.load_profile(prof).get("gathering")
+        if isinstance(g, dict) and isinstance(g.get("places"), list):
+            for p in g["places"]:
+                if isinstance(p, dict) and p not in saved_places:
+                    saved_places.append(p)
+    cfg["places"] = saved_places
+    cfg["stop_vitality"] = int(data.get("stop_vitality") or 0)
+    cfg["sell"] = bool(data.get("sell", True))
+    cfg["minutes"] = int(data.get("minutes") or 0)
+    try:
+        idx = int(str(slot_raw))
+    except (TypeError, ValueError):
+        idx = -1
+    accounts = data.get("accounts") or []
+    if 0 <= idx < len(accounts) and isinstance(accounts[idx], dict):
+        slot = accounts[idx]
+        gangs: list[str] = []
+        if slot.get("own_gang", data.get("own_gang", True)):
+            gangs.append("")
+        if slot.get("allied_gang") and str(slot.get("allied_name") or "").strip():
+            gangs.append(str(slot.get("allied_name")).strip())
+        if slot.get("other_gang") and str(slot.get("other_name") or "").strip():
+            gangs.append(str(slot.get("other_name")).strip())
+        cfg["gang"] = bool(gangs)
+        cfg["gangs"] = gangs or [""]
+
+        place_val = str(slot.get("place") or "")
+        zone_val = str(slot.get("zone") or "").strip()
+        x_val = int(slot.get("x") or 0)
+        y_val = int(slot.get("y") or 0)
+        actual_skill, _rank = gathering.read_skill(b)
+        wanted_skill = str(slot.get("skill") or "")
+        if wanted_skill and wanted_skill != "auto":
+            if actual_skill and actual_skill != wanted_skill:
+                b.log(_("Note: Multi Gathering set {wanted}, but character has {actual}",
+                        wanted=_(wanted_skill), actual=_(actual_skill)))
+        use_skill = actual_skill or (wanted_skill if wanted_skill != "auto" else "")
+        map_id: int | None = None
+        if place_val.startswith("map:"):
+            try:
+                map_id = int(place_val.split(":", 1)[1])
+            except ValueError:
+                map_id = None
+        elif place_val:
+            import re
+            m = re.search(r"\((\d+)\)", place_val)
+            if m:
+                map_id = int(m.group(1))
+        if (x_val > 0 or y_val > 0) and map_id and use_skill:
+            custom = {"skill": use_skill, "map": map_id, "x": x_val, "y": y_val}
+            cfg["places"] = [custom] + saved_places
+            cfg["place"] = gathering.label(custom)
+        elif map_id and use_skill:
+            rects = _zone_rects(use_skill, map_id, zone_val)
+            if zone_val and rects:
+                search_place = {"skill": use_skill, "map": map_id, "x": 0, "y": 0, "search": True, "rects": rects}
+                cfg["places"] = [search_place] + saved_places
+                cfg["place"] = gathering.label(search_place)
+            else:
+                matched = ""
+                for p in gathering.places(cfg, use_skill):
+                    if int(p.get("map") or 0) == map_id:
+                        matched = str(p.get("label") or "")
+                        break
+                if matched:
+                    cfg["place"] = matched
+                else:
+                    search_place = {"skill": use_skill, "map": map_id, "x": 0, "y": 0, "search": True, "rects": rects}
+                    cfg["places"] = [search_place] + saved_places
+                    cfg["place"] = gathering.label(search_place)
+        else:
+            cfg["place"] = place_val
+    return cfg
+
+
+def _gather(b: Bot, check: bool, o: Mapping[str, Any]) -> object:
+    from . import gathering
+    cfg = gathering.config(b.p)
+    if o.get("multi_gather_slot") is not None:
+        cfg = _multi_gather_config(b, o.get("multi_gather_slot"), cfg)
+    return gathering.run(b, cfg, check)
 
 
 def _lose_xp(b: Bot, check: bool, _o: Mapping[str, Any]) -> object:

@@ -1084,10 +1084,10 @@ def test_variable_count_in_commands(monkeypatch: pytest.MonkeyPatch) -> None:
     withdrawn: list[tuple[Any, ...]] = []
     deposited: list[tuple[Any, ...]] = []
     broken: list[tuple[Any, ...]] = []
-    monkeypatch.setattr("unclefarmer.engine.town.buy", lambda bot, item, n: bought.append((item, n)))
-    monkeypatch.setattr("unclefarmer.engine.town.withdraw", lambda bot, item, n: withdrawn.append((item, n)))
-    monkeypatch.setattr("unclefarmer.engine.town.deposit", lambda bot, item, n: deposited.append((item, n)))
-    monkeypatch.setattr("unclefarmer.engine.town.breakdown", lambda bot, item, n: broken.append((item, n)))
+    monkeypatch.setattr("mistworldfarmer.engine.town.buy", lambda bot, item, n: bought.append((item, n)))
+    monkeypatch.setattr("mistworldfarmer.engine.town.withdraw", lambda bot, item, n: withdrawn.append((item, n)))
+    monkeypatch.setattr("mistworldfarmer.engine.town.deposit", lambda bot, item, n: deposited.append((item, n)))
+    monkeypatch.setattr("mistworldfarmer.engine.town.breakdown", lambda bot, item, n: broken.append((item, n)))
 
     script_text = """
     set weapon_count = 10
@@ -1107,7 +1107,7 @@ def test_variable_count_in_commands(monkeypatch: pytest.MonkeyPatch) -> None:
 
 
 def test_counts_includes_backpack_equipment() -> None:
-    from unclefarmer.engine import town
+    from mistworldfarmer.engine import town
 
     class Link:
         def json(self, line: str):
@@ -1133,7 +1133,7 @@ def test_counts_includes_backpack_equipment() -> None:
 
 
 def test_item_row_prioritizes_unenhanced_item() -> None:
-    from unclefarmer.engine import crafting
+    from mistworldfarmer.engine import crafting
 
     class DummyBot:
         def dialog(self):
@@ -1180,7 +1180,7 @@ def test_item_row_prioritizes_unenhanced_item() -> None:
 
 
 def test_arnebia_settings_load_save(tmp_path) -> None:
-    from unclefarmer.gui import arnebia
+    from mistworldfarmer.gui import arnebia
 
     script_path = str(tmp_path / "arnebia_transfer.mwf")
     with open(script_path, "w", encoding="utf-8") as f:
@@ -1216,8 +1216,8 @@ def test_storehouse_deposit_withdraw_script(monkeypatch: pytest.MonkeyPatch) -> 
     b = FakeBot()
     withdrawn: list[tuple[Any, ...]] = []
     deposited: list[tuple[Any, ...]] = []
-    monkeypatch.setattr("unclefarmer.engine.town.withdraw", lambda bot, item, n, storehouse=None: withdrawn.append((item, n, storehouse)) or n)
-    monkeypatch.setattr("unclefarmer.engine.town.deposit", lambda bot, item, n, storehouse=None: deposited.append((item, n, storehouse)) or (n if n is not None else 10))
+    monkeypatch.setattr("mistworldfarmer.engine.town.withdraw", lambda bot, item, n, storehouse=None: withdrawn.append((item, n, storehouse)) or n)
+    monkeypatch.setattr("mistworldfarmer.engine.town.deposit", lambda bot, item, n, storehouse=None: deposited.append((item, n, storehouse)) or (n if n is not None else 10))
 
     script_text = """
     deposit "Bow of chaser" at="Soul Storehouse"
@@ -1239,7 +1239,7 @@ def test_storehouse_deposit_withdraw_script(monkeypatch: pytest.MonkeyPatch) -> 
 
 def test_enhance_done_variable(monkeypatch: pytest.MonkeyPatch) -> None:
     b = FakeBot()
-    monkeypatch.setattr("unclefarmer.engine.crafting.enhance", lambda bot, cfg, check: "done")
+    monkeypatch.setattr("mistworldfarmer.engine.crafting.enhance", lambda bot, cfg, check: "done")
     script_text = """
     enhance
     set finished = enhance_done
@@ -1253,7 +1253,7 @@ def test_enhance_done_variable(monkeypatch: pytest.MonkeyPatch) -> None:
 def test_enhance_protect_default_never(monkeypatch: pytest.MonkeyPatch) -> None:
     b = FakeBot()
     captured_cfg: dict[str, Any] = {}
-    monkeypatch.setattr("unclefarmer.engine.crafting.enhance", lambda bot, cfg, check: captured_cfg.update(cfg) or "done")
+    monkeypatch.setattr("mistworldfarmer.engine.crafting.enhance", lambda bot, cfg, check: captured_cfg.update(cfg) or "done")
     r = S.Runner(as_bot(b), "enhance")
     r.run()
     assert captured_cfg.get("protect") == "never"
@@ -1276,11 +1276,11 @@ def test_dynamic_target_weapon_and_crystals(monkeypatch: pytest.MonkeyPatch) -> 
     bought: list[tuple[str, int]] = []
     deposited: list[tuple[str, int | None, str | None]] = []
 
-    monkeypatch.setattr("unclefarmer.engine.crafting.make_crystals",
+    monkeypatch.setattr("mistworldfarmer.engine.crafting.make_crystals",
                         lambda bot, kind, level, count, where: made_crystals.append((kind, level, count, where)))
-    monkeypatch.setattr("unclefarmer.engine.town.buy",
+    monkeypatch.setattr("mistworldfarmer.engine.town.buy",
                         lambda bot, item, count: bought.append((item, count)))
-    monkeypatch.setattr("unclefarmer.engine.town.deposit",
+    monkeypatch.setattr("mistworldfarmer.engine.town.deposit",
                         lambda bot, item, count, storehouse=None: deposited.append((item, count, storehouse)) or 1)
 
     script_text = """
@@ -1302,7 +1302,7 @@ def test_dynamic_target_weapon_and_crystals(monkeypatch: pytest.MonkeyPatch) -> 
 
 
 def test_arnebia_settings_smart_class(tmp_path: Any) -> None:
-    from unclefarmer.gui.arnebia import load_settings, save_settings
+    from mistworldfarmer.gui.arnebia import load_settings, save_settings
     script_file = tmp_path / "test_arnebia.mwf"
     initial_text = """
     set weapon_count = 10

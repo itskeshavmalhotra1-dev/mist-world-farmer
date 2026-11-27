@@ -112,7 +112,9 @@ class RunsMixin(FrameParts):
         return name if kind == "plan" else _("{name} (script)", name=name)
 
     def fill_runs(self, select: Item | None = None) -> None:
-        self.items = [("plan", n) for n in plans.names()] + [("script", n) for n in plans.script_names()]
+        self.items = [("plan", n) for n in plans.names()] + [
+            ("script", n) for n in plans.script_names() if n not in ("arnebia_transfer", "multi_gathering")
+        ]
         labels = [self.item_label(it) for it in self.items]
         self.what.Set(labels or [_("No plans yet")])
         self.plan_list.Set(labels)

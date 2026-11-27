@@ -292,7 +292,7 @@ class ArnebiaTransferDialog(Dialog):
         self.char_class.Bind(wx.EVT_CHOICE, self.on_gear_or_class_changed)
         self.where.Bind(wx.EVT_CHOICE, self.on_where_changed)
 
-        ok_cancel(self, root, _("&Save"), extra=[(_("Edit &raw script"), self.on_raw_script)])
+        ok_cancel(self, root, _("&Save"), extra=[(_("&Start"), self.on_start), (_("Edit &raw script"), self.on_raw_script)])
         self.SetSizerAndFit(root)
         self.SetMinSize(wx.Size(560, 560))
         self.Bind(wx.EVT_BUTTON, self.on_ok, id=wx.ID_OK)
@@ -408,35 +408,51 @@ class ArnebiaTransferDialog(Dialog):
         self.gang_name.Enable(self.where.GetSelection() == 1)
         evt.Skip()
 
-    def on_ok(self, evt: wx.Event | None = None) -> None:
+    def _validate_and_save(self) -> bool:
         email = self.account_email.GetValue().strip()
         if not email:
             info(self, _("Account email is required. Please enter an email."))
             self.account_email.SetFocus()
-            return
+            return False
 
         enhancer = self.enhancer_char.GetValue().strip()
         if not enhancer:
             info(self, _("Enhancer character is required."))
             self.enhancer_char.SetFocus()
-            return
+            return False
 
         breaker = self.breaker_char.GetValue().strip()
         if not breaker:
             info(self, _("Breaker character is required."))
             self.breaker_char.SetFocus()
-            return
+            return False
 
         self.save()
+        return True
+
+    def on_ok(self, evt: wx.Event | None = None) -> None:
+        if not self._validate_and_save():
+            return
         parent = self.GetParent()
         self.EndModal(wx.ID_OK)
         info(parent, _("Arnebia transfer settings saved successfully."))
+
+    def on_start(self, evt: wx.Event | None = None) -> None:
+        if not self._validate_and_save():
+            return
+        parent = self.GetParent()
+        self.EndModal(wx.ID_OK)
+        if parent is not None and hasattr(parent, "start"):
+            parent.start(item=("script", self.script_name))
 
     def on_char_hook(self, evt: wx.KeyEvent) -> None:
         if evt.GetKeyCode() == wx.WXK_RETURN:
             focused = self.FindFocus()
             if isinstance(focused, wx.Button) and focused.GetId() == wx.ID_CANCEL:
                 self.EndModal(wx.ID_CANCEL)
+                return
+            if isinstance(focused, wx.Button) and focused.GetLabel() == _("&Start"):
+                self.on_start(evt)
                 return
             if isinstance(focused, wx.Button) and focused.GetLabel() == _("Edit &raw script"):
                 self.on_raw_script(evt)

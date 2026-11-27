@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import copy
+import os
 import re
 from typing import TYPE_CHECKING, Any, cast
 
@@ -75,6 +76,7 @@ DEFAULTS: dict[str, Any] = {
     "when_short": "stop",
     "auto_exchange": True,
     "exchange": DEFAULT_EXCHANGE,
+    "after_exchange": {},
 }
 
 
@@ -104,6 +106,32 @@ def turkey_count(b: Bot) -> int:
     from . import town
 
     return sum(count for name, count in town.counts(b).items() if "turkey" in name)
+
+
+def _after_path() -> str:
+    from .. import paths
+    return os.path.join(paths.APP, "events_after.json")
+
+
+def load_global_after() -> dict[str, str]:
+    from .. import jsonio
+    try:
+        with open(_after_path(), "rb") as f:
+            raw = jsonio.load(f)
+    except Exception:
+        raw = {}
+    out: dict[str, str] = {}
+    if isinstance(raw, dict):
+        for k, v in raw.items():
+            if k in EXCHANGES and str(v) in ("keep", "store", "bag_rules", "sell"):
+                out[k] = str(v)
+    return out
+
+
+def save_global_after(after: dict[str, str]) -> None:
+    from .. import jsonio, paths
+    os.makedirs(paths.APP, exist_ok=True)
+    jsonio.save(_after_path(), after)
 
 
 def config(p: dict[str, Any]) -> dict[str, Any]:
@@ -145,6 +173,14 @@ def config(p: dict[str, Any]) -> dict[str, Any]:
                 co = int(cost_raw) if isinstance(cost_raw, (int, float)) else default_cost
                 ex[k] = {"enabled": en, "cost": max(1, co)}
     c["exchange"] = ex
+    global_after = load_global_after()
+    raw_after = mine.get("after_exchange") if isinstance(mine, dict) else None
+    after: dict[str, str] = dict(global_after)
+    if not after and isinstance(raw_after, dict):
+        for k, v in raw_after.items():
+            if k in EXCHANGES and str(v) in ("keep", "store", "bag_rules", "sell"):
+                after[k] = str(v)
+    c["after_exchange"] = after
     return c
 
 
@@ -334,7 +370,7 @@ def redeem_thanksgiving(b: Bot, cfg: dict[str, Any], check_only: bool = False) -
     return total_spent, redeemed
 
 
-HUNTING_MAPS: tuple[int, ...] = (3401, 3402, 3404)
+HUNTING_MAPS: tuple[int, ...] = (3401, 3402, 3404, 5302, 5303)
 
 
 def done_today(name: str | None) -> bool:
@@ -371,8 +407,8 @@ def is_in_hunting_map(b: Bot) -> bool:
     if mid in HUNTING_MAPS:
         return True
     try:
-        name = atlas.name(mid)
-        return "hunting" in name.lower()
+        name = atlas.name(mid).lower()
+        return "hunting" in name or "turkey" in name
     except Exception:
         return False
 
@@ -500,6 +536,7 @@ def run_thanksgiving(b: Bot, cfg: dict[str, Any], check_only: bool = False) -> t
         b.log(_("Thanksgiving Hunt is already done (2/2) for today - proceeding to exchange"), speak=True)
         if cfg.get("auto_exchange", True):
             redeem_thanksgiving(b, cfg, check_only=check_only)
+        apply_after_exchange(b, cfg, check_only=check_only)
         return _("Thanksgiving Hunt already done today (2/2)"), True
 
     total_entries = max(1, int(cfg.get("entries", 1)))
@@ -551,7 +588,51 @@ def run_thanksgiving(b: Bot, cfg: dict[str, Any], check_only: bool = False) -> t
         b.log(_("auto-redeeming Thanksgiving gifts at Activity Envoy..."))
         redeem_thanksgiving(b, cfg, check_only=False)
 
+    apply_after_exchange(b, cfg, check_only=False)
+
     return _("Thanksgiving event finished ({n} entries)", n=completed), True
+
+
+def apply_after_exchange(b: Bot, cfg: dict[str, Any], check_only: bool = False) -> None:
+    """Sell/store redeemed shards via Bag rules and store other chosen items in storehouse."""
+    if check_only:
+        return
+    ex_cfg: dict[str, dict[str, Any]] = cfg.get("exchange") or {}
+    after_cfg: dict[str, str] = cfg.get("after_exchange") or {}
+    shards_enabled = (
+        ex_cfg.get("gem_shards", {}).get("enabled", False)
+        and after_cfg.get("gem_shards") in ("bag_rules", "sell", "store")
+    )
+    to_store = [k for k in EXCHANGES if k not in ("arnebia", "gem_shards")
+                and ex_cfg.get(k, {}).get("enabled", False) and after_cfg.get(k) == "store"]
+    if not shards_enabled and not to_store:
+        return
+
+    from . import town
+
+    if shards_enabled:
+        try:
+            b.log(_("selling shards per Character -> Bag and supplies rules..."), speak=True)
+            town.sell_shards_now(b)
+        except Stopped as e:
+            b.log(_("could not sell shards: {why}", why=e))
+        try:
+            b.log(_("storing items/shards per Character -> Bag and supplies rules..."), speak=True)
+            town.store_items(b)
+        except Stopped as e:
+            b.log(_("could not store shards: {why}", why=e))
+
+    if to_store:
+        counts = town.counts(b)
+        for key in to_store:
+            pat = str(EXCHANGES[key]["pattern"])
+            matched = [n for n, cnt in counts.items() if cnt > 0 and re.search(pat, n, re.IGNORECASE)]
+            for item_name in matched:
+                try:
+                    b.log(_("storing {item} in storehouse...", item=item_name))
+                    town.deposit(b, item_name)
+                except Stopped as e:
+                    b.log(_("could not store {item}: {why}", item=item_name, why=e))
 
 
 def run(b: Bot, cfg: dict[str, Any] | None = None, check_only: bool = False) -> tuple[str, bool]:

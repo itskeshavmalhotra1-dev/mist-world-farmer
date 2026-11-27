@@ -12,6 +12,7 @@ from __future__ import annotations
 import ctypes
 import datetime as dt
 import os
+import re
 import subprocess
 import sys
 import threading
@@ -325,7 +326,15 @@ class Run(threading.Thread):
             character = self.profile = matches[0]
         email = settings.load_profile(character).get("login_email")
         entity_id, server = settings.profile_id(character), settings.profile_server(character)
-        if not isinstance(email, str) or not email or not entity_id or not server:
+        if (not isinstance(email, str) or not email) and self.text:
+            m_em = re.search(r'^set\s+account_email\s*=\s*"([^"]*)"', self.text, re.M)
+            if m_em and m_em.group(1).strip():
+                email = m_em.group(1).strip()
+        if not server and self.text:
+            m_sv = re.search(r'^set\s+server(?:_name)?\s*=\s*"([^"]*)"', self.text, re.M)
+            if m_sv and m_sv.group(1).strip():
+                server = m_sv.group(1).strip()
+        if not isinstance(email, str) or not email or not server:
             raise Stopped(_("the plan's character has no saved account or server. Log in to it once first."))
 
         deadline = time.monotonic() + 45.0
@@ -334,7 +343,8 @@ class Run(threading.Thread):
             if link.send("arm") != "armed":
                 self.stop_event.wait(0.5)
                 continue
-            reply = link.json("autologin %s %s %s" % (email, entity_id, server))
+            target_id = entity_id or settings.profile_name(character) or character
+            reply = link.json("autologin %s %s %s" % (email, target_id, server))
             if reply.get("ok"):
                 break
             err = str(reply.get("error") or "")
@@ -369,6 +379,37 @@ class Run(threading.Thread):
                 continue
             raise Stopped(status_msg or _("automatic login stopped"))
         raise Stopped(_("stopped by you"))
+
+    def _try_f1_switch_account(self, bot: Any, link: AgentLink) -> bool:
+        """Open F1 Settings menu and choose 'switch account' without restarting mw.exe."""
+        try:
+            opened = False
+            for _attempt in range(2):
+                if bot.dialog().get("open"):
+                    link.send("typeesc")
+                    self.stop_event.wait(0.3)
+                bot.tap_key("f1")
+                if bot.wait_dialog(seconds=2.0):
+                    opened = True
+                    break
+                self.stop_event.wait(0.3)
+            if not opened:
+                self.log("F1 switch: settings menu did not open")
+                return False
+            picked = bot.choose(r"switch\s+account")
+            if picked is None:
+                self.log("F1 switch: 'switch account' option not found in menu")
+                link.send("typeesc")
+                return False
+            deadline = time.monotonic() + 8.0
+            while time.monotonic() < deadline and not self.stop_event.wait(0.25):
+                snap = link.json("mem")
+                if not snap.get("ok") or not snap.get("self"):
+                    return True
+            return True
+        except Exception as exc:
+            self.log(f"F1 switch error: {exc}")
+            return False
 
     def _profile(self, link: AgentLink, character: str) -> tuple[dict[str, Any], dict[str, Any]]:
         """Every run starts with a fresh scan: skills, keys, potions, beasts, pets -> the profile (a
@@ -477,9 +518,7 @@ class Run(threading.Thread):
                 cand_srv = [m for m in matches if settings.profile_server(m) == srv_code]
                 if cand_srv:
                     matches = cand_srv
-        if not matches:
-            raise Stopped(_("The script's login character is not a known saved character: {name}", name=target))
-        target_profile = matches[0]
+        target_profile = matches[0] if matches else target
 
         if self.profile and settings.same_character(self.profile, target_profile):
             self.log(_("Already logged in as {name}", name=settings.profile_display(target_profile)))
@@ -495,68 +534,77 @@ class Run(threading.Thread):
         bot.held.clear()
 
         old_pid = self.pid
-        if link is not None:
+        switched_in_place = link is not None and self._try_f1_switch_account(bot, link)
+
+        if switched_in_place and link is not None:
+            new_pid = self.pid
+            self.profile = target_profile
+            app = settings.load_app()
+            self._wait_for_login_screen(link, settle=1.5)
+            active_link = link
+        else:
+            if link is not None:
+                try:
+                    link.send("arm")
+                    link.send("closegame")
+                except Exception:
+                    pass
+
+            deadline = time.monotonic() + 2.5
+            while time.monotonic() < deadline:
+                try:
+                    if not psutil.pid_exists(old_pid):
+                        break
+                except Exception:
+                    break
+                time.sleep(0.1)
+
             try:
-                link.send("arm")
-                link.send("closegame")
+                if psutil.pid_exists(old_pid):
+                    psutil.Process(old_pid).kill()
             except Exception:
                 pass
 
-        deadline = time.monotonic() + 2.5
-        while time.monotonic() < deadline:
-            try:
-                if not psutil.pid_exists(old_pid):
-                    break
-            except Exception:
-                break
-            time.sleep(0.1)
+            self.profile = target_profile
+            app = settings.load_app()
+            folder = self.game_folder() or settings.game_folder(app)
+            exe = os.path.join(folder, "mw.exe")
+            if not os.path.exists(exe):
+                raise Stopped(_("Game executable mw.exe not found in {folder}", folder=folder))
 
-        try:
-            if psutil.pid_exists(old_pid):
-                psutil.Process(old_pid).kill()
-        except Exception:
-            pass
+            proc = subprocess.Popen([exe], cwd=folder, close_fds=True,
+                                    creationflags=getattr(subprocess, "DETACHED_PROCESS", 0x8))
+            new_pid = proc.pid
+            self.pid = new_pid
 
-        self.profile = target_profile
-        app = settings.load_app()
-        folder = self.game_folder() or settings.game_folder(app)
-        exe = os.path.join(folder, "mw.exe")
-        if not os.path.exists(exe):
-            raise Stopped(_("Game executable mw.exe not found in {folder}", folder=folder))
+            new_link = None
+            connect_deadline = time.monotonic() + 35.0
+            while time.monotonic() < connect_deadline:
+                if self.stop_event.is_set():
+                    raise Stopped(_("stopped by you"))
+                try:
+                    test_link = AgentLink(pid=new_pid)
+                    v = test_link.send("version")
+                    if v.startswith("mwagent "):
+                        new_link = test_link
+                        break
+                except Exception:
+                    pass
+                time.sleep(0.2)
 
-        proc = subprocess.Popen([exe], cwd=folder, close_fds=True,
-                                creationflags=getattr(subprocess, "DETACHED_PROCESS", 0x8))
-        new_pid = proc.pid
-        self.pid = new_pid
+            if new_link is None:
+                raise Stopped(_("Timed out waiting for game agent after starting mw.exe"))
 
-        new_link = None
-        connect_deadline = time.monotonic() + 35.0
-        while time.monotonic() < connect_deadline:
-            if self.stop_event.is_set():
-                raise Stopped(_("stopped by you"))
-            try:
-                test_link = AgentLink(pid=new_pid)
-                v = test_link.send("version")
-                if v.startswith("mwagent "):
-                    new_link = test_link
-                    break
-            except Exception:
-                pass
-            time.sleep(0.2)
+            self.link = new_link
+            bot.a = new_link
+            bot.kill_tracker = KillTracker(new_link)
+            self._wait_for_login_screen(new_link, settle=4.5)
 
-        if new_link is None:
-            raise Stopped(_("Timed out waiting for game agent after starting mw.exe"))
-
-        self.link = new_link
-        bot.a = new_link
-        bot.kill_tracker = KillTracker(new_link)
-        self._wait_for_login_screen(new_link, settle=4.5)
-
-        self.profile = target_profile
-        app = settings.load_app()
-        active_link = self.link
-        if active_link is None:
-            raise Stopped(_("No active game link"))
+            self.profile = target_profile
+            app = settings.load_app()
+            active_link = self.link
+            if active_link is None:
+                raise Stopped(_("No active game link"))
 
         agent = int(active_link.send("version").split()[1])
         self._login_saved_character(active_link, agent)

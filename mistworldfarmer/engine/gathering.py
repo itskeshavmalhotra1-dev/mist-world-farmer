@@ -734,11 +734,60 @@ def _ready(b: Bot, cfg: dict[str, Any], skill: str, notes: list[str]) -> str:
     after selling) and Vitality above the player's mark ("kept"). "" when ready."""
     if not _room(b, cfg, skill, notes):
         return "full"
+    v_now = vitality(b, force=True)
+    if v_now is not None and v_now <= 0:
+        b.log(_("Vitality is already 0 - skipping outside gathering"), speak=True)
+        return "vitality"
     v = vitality_kept(b, cfg, force=True)
     if v is not None:
         b.log(_("Vitality is down to {n}, where you set gathering outside to stop", n=v), speak=True)
         return "kept"
     return ""
+
+
+def _search_candidates(mid: int, skill: str, start: tuple[int, int],
+                       rects: list[list[int]] | None = None) -> list[tuple[int, int]]:
+    """Sample walkable spots across *mid* (or inside *rects*) for stand-search."""
+    model = atlas.model(mid)
+    w, h = max(1, int(model.w)), max(1, int(model.h))
+    seen: set[tuple[int, int]] = set()
+    shore: list[tuple[int, int]] = []
+    other: list[tuple[int, int]] = []
+
+    def add_cell(gx: int, gy: int, radius: int) -> None:
+        cell = model.nearest_floor(gx, gy, radius=radius)
+        if cell is None or cell in seen:
+            return
+        seen.add(cell)
+        cx, cy = cell
+        if skill == "Fishing":
+            near_blocked = any(
+                model.nearest_floor(cx + dx, cy + dy, radius=0) is None
+                for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1))
+            )
+            (shore if near_blocked else other).append(cell)
+        else:
+            other.append(cell)
+
+    if rects:
+        for r in rects:
+            if len(r) < 4:
+                continue
+            x0, y0, x1, y1 = max(1, int(r[0])), max(1, int(r[1])), min(w - 1, int(r[2])), min(h - 1, int(r[3]))
+            step = max(3, min(8, max(x1 - x0, y1 - y0) // 5 or 3))
+            for gx in range(x0, x1 + 1, step):
+                for gy in range(y0, y1 + 1, step):
+                    add_cell(gx, gy, radius=3)
+    else:
+        step = max(12, min(w, h) // 10)
+        for gx in range(step // 2, w, step):
+            for gy in range(step // 2, h, step):
+                add_cell(gx, gy, radius=8)
+
+    sx, sy = start
+    shore.sort(key=lambda c: math.hypot(c[0] - sx, c[1] - sy))
+    other.sort(key=lambda c: math.hypot(c[0] - sx, c[1] - sy))
+    return (shore + other)[:40]
 
 
 def _outside(b: Bot, cfg: dict[str, Any], skill: str, rank: int | None, level: int | None,
@@ -762,7 +811,10 @@ def _outside(b: Bot, cfg: dict[str, Any], skill: str, rank: int | None, level: i
         if ready:
             return ready
         try:
-            b.travel(int(p["map"]), (int(p["x"]), int(p["y"])))
+            if p.get("search"):
+                b.travel(int(p["map"]))
+            else:
+                b.travel(int(p["map"]), (int(p["x"]), int(p["y"])))
         except Respawned:
             continue
         except Stopped as e:
@@ -773,7 +825,27 @@ def _outside(b: Bot, cfg: dict[str, Any], skill: str, rank: int | None, level: i
             continue
         try:
             beasts.off(b)
-            why = gather_here(b, cfg, skill, p, end_at)
+            if p.get("search"):
+                why = "refused"
+                mid = int(p["map"])
+                me = b.me()
+                start_xy = (int(float(me.get("x") or 0)), int(float(me.get("y") or 0)))
+                for cx, cy in _search_candidates(mid, skill, start_xy, p.get("rects")):
+                    b.check()
+                    if end_at is not None and b.clock.time() >= end_at:
+                        why = "time"
+                        break
+                    try:
+                        b.travel(mid, (cx, cy))
+                    except Stopped:
+                        continue
+                    cand = dict(p, x=cx, y=cy, label=label({"skill": skill, "map": mid, "x": cx, "y": cy}))
+                    why = gather_here(b, cfg, skill, cand, end_at)
+                    if why != "refused":
+                        p = cand
+                        break
+            else:
+                why = gather_here(b, cfg, skill, p, end_at)
         except Respawned:
             why = "left"
         if why == "refused":

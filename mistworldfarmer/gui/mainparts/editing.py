@@ -132,6 +132,11 @@ class EditingMixin(FrameParts):
                 d.save()
         self.fill_runs()
 
+    def open_multi_gathering(self) -> None:
+        from ..multi_gathering import MultiGatheringDialog
+        with MultiGatheringDialog(self) as d:
+            d.ShowModal()
+
     def edit_selected(self) -> None:
         item = self.active_item()
         if not item:
@@ -254,9 +259,10 @@ class EditingMixin(FrameParts):
         from ..crafting import CHECK, START, EnhancerDialog, GemBreakerDialog, GemMakerDialog
         from ..potions import PotionMakerDialog
         name = active_profile(self)
-        if not name:
+        if not name and which != "events":
             error(self, _("Log in to the character in the game first."))
             return
+        name = name or "default"
         if which == "keyboard":
             from ..keyboard import KeyboardDialog
             pid = self.selected_pid()
@@ -317,9 +323,10 @@ class EditingMixin(FrameParts):
 
     def edit_bag(self) -> None:
         name = active_profile(self)
-        if not name:
+        if not name and which != "events":
             error(self, _("Log in to the character in the game first."))
             return
+        name = name or "default"
         from ..bagmanager import BagManagerDialog
         if self.selected_pid() not in self.runs:
             self.scanned = getattr(self, "scanned", {})
@@ -365,9 +372,10 @@ class EditingMixin(FrameParts):
         """The game menu's Clean the bag now: throw away what is on the bag manager's throw-away list, after
         the player has seen the list and said yes (thrown items are gone for good)."""
         name = active_profile(self)
-        if not name:
+        if not name and which != "events":
             error(self, _("Log in to the character in the game first."))
             return
+        name = name or "default"
         if self.selected_pid() in self.runs:
             self.say(_("Stop the bot first."))
             return

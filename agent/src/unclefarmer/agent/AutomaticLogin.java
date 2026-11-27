@@ -35,16 +35,18 @@ final class AutomaticLogin {
                 : "{\"ok\":true,\"email\":\"" + Protocol.jsonEscape(email) + "\"}";
     }
 
-    /** Starts the native saved-account connection, then selects only when this ID is in its picker. */
+    /** Starts the native saved-account connection, then selects only when this ID or name is in its picker. */
     static String start(String email, String idText, String serverText) {
-        final int id;
-        final int server;
-        try {
-            id = Integer.parseInt(idText);
-        } catch (RuntimeException ignored) {
-            return "{\"ok\":false,\"error\":\"invalid character id\"}";
+        int parsedId = 0;
+        if (idText != null) {
+            try {
+                parsedId = Integer.parseInt(idText.trim());
+            } catch (RuntimeException ignored) { }
         }
-        if (id <= 0) return "{\"ok\":false,\"error\":\"invalid character id\"}";
+        final int id = parsedId > 0 ? parsedId : 0;
+        final String wantedName = id > 0 ? "" : (idText == null ? "" : idText.trim());
+        final int server;
+        if (id <= 0 && wantedName.isEmpty()) return "{\"ok\":false,\"error\":\"invalid character id\"}";
         if ("S1".equalsIgnoreCase(serverText)) {
             server = 1;
         } else if ("S2".equalsIgnoreCase(serverText)) {
@@ -71,7 +73,7 @@ final class AutomaticLogin {
             running = true;
             status = "waiting for character picker";
         }
-        waitForPicker(id);
+        waitForPicker(id, wantedName);
         return "{\"ok\":true,\"id\":" + id + ",\"state\":\"waiting for character picker\"}";
     }
 
@@ -106,7 +108,7 @@ final class AutomaticLogin {
         return "{\"ok\":true,\"id\":" + id + "}";
     }
 
-    private static void waitForPicker(final int id) {
+    private static void waitForPicker(final int initialId, final String wantedName) {
         Thread worker = new Thread(new Runnable() {
             @Override public void run() {
                 long deadline = System.currentTimeMillis() + PICKER_TIMEOUT_MILLIS;
@@ -114,7 +116,14 @@ final class AutomaticLogin {
                     while (System.currentTimeMillis() < deadline) {
                         Object menu = activeCharacterMenu();
                         if (menu != null) {
-                            if (!hasCharacter(menu, id)) {
+                            int id = initialId;
+                            if (id <= 0) {
+                                id = findCharacterIdByName(menu, wantedName);
+                                if (id <= 0) {
+                                    status = "character is not in the account picker";
+                                    return;
+                                }
+                            } else if (!hasCharacter(menu, id)) {
                                 status = "character is not in the account picker";
                                 return;
                             }
@@ -323,6 +332,49 @@ final class AutomaticLogin {
     }
 
     /** The picker is a normal dialog grid: find the requested character before selecting it. */
+    private static boolean matchesName(String raw, String lower, String prefix) {
+        if (raw == null) return false;
+        String s = raw.trim().toLowerCase(java.util.Locale.ROOT);
+        return s.equals(lower) || s.startsWith(prefix);
+    }
+
+    private static int findCharacterIdByName(Object menu, String wantedName) {
+        if (wantedName == null || wantedName.isEmpty()) return 0;
+        String lower = wantedName.toLowerCase(java.util.Locale.ROOT);
+        String prefix = lower + ";";
+        Object groups = field(menu, "g");
+        if (!(groups instanceof Collection)) return 0;
+        StringBuilder seen = new StringBuilder();
+        for (Object group : (Collection<?>) groups) {
+            if (group instanceof Collection) {
+                for (Object entry : (Collection<?>) group) {
+                    int cid = characterId(entry);
+                    if (cid <= 0) continue;
+                    for (Class<?> t = entry.getClass(); t != null && t != Object.class; t = t.getSuperclass()) {
+                        for (Field f : t.getDeclaredFields()) {
+                            try {
+                                f.setAccessible(true);
+                                Object val = f.get(entry);
+                                if (val instanceof String) {
+                                    if (matchesName((String) val, lower, prefix)) return cid;
+                                    seen.append(" [").append(cid).append(":").append(f.getName()).append("=").append(val).append("]");
+                                } else if (val instanceof String[]) {
+                                    for (String item : (String[]) val) {
+                                        if (matchesName(item, lower, prefix)) return cid;
+                                        seen.append(" [").append(cid).append(":").append(f.getName()).append("[]=").append(item).append("]");
+                                    }
+                                }
+                            } catch (Throwable ignored) { }
+                        }
+                    }
+                    if (matchesName(String.valueOf(entry), lower, prefix)) return cid;
+                }
+            }
+        }
+        Log.info("picker could not match '" + wantedName + "' among:" + seen.toString());
+        return 0;
+    }
+
     private static boolean hasCharacter(Object menu, int wanted) {
         Object groups = field(menu, "g");
         if (!(groups instanceof Collection)) return false;

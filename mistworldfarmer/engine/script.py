@@ -1506,7 +1506,10 @@ class Runner:
 
     # The Tools menu's jobs (engine/activities.py): the same code triggers and schedules run
     def _do_activity(self, node: Node, b: Bot, o: dict[str, Any]):
-        activities.run(b, node.kind, o.get("check", False), o)
+        extra = o
+        if "multi_gather_slot" in self.vars:
+            extra = {**o, "multi_gather_slot": self.vars["multi_gather_slot"]}
+        activities.run(b, node.kind, o.get("check", False), extra)
 
     _do_gem_maker = _do_gem_breaker = _do_potion_maker = _do_chores = _do_gather = _do_lose_xp = _do_activity
     _do_dungeon = _do_sell_collection = _do_bounties = _do_construction_scan = _do_events = _do_activity
