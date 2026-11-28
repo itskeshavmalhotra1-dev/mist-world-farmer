@@ -38,6 +38,9 @@ msgstr ""
 msgid "&Accept requests to join my team"
 msgstr ""
 
+msgid "&Account / Email:"
+msgstr ""
+
 msgid "&Action:"
 msgstr "Eylem (&A):"
 
@@ -56,6 +59,9 @@ msgstr "Yeni filtre ekle (&A)"
 msgid "&Add where I stand"
 msgstr "Bulunduğum yeri ekle (&A)"
 
+msgid "&Allied gang"
+msgstr ""
+
 msgid "&Another character"
 msgstr "B&aşka bir karakter"
 
@@ -64,6 +70,9 @@ msgstr "Y&abancılara cevap ver:"
 
 msgid "&Apply profile"
 msgstr "Profili uygul&a"
+
+msgid "&Arnebia Transfer"
+msgstr ""
 
 msgid "&Assistant (it kills for you; you can't fight in there):"
 msgstr "&Asistan (senin yerine öldürür; orada sen dövüşemezsin):"
@@ -86,6 +95,9 @@ msgstr "Çanta ve sarf malzemeleri (&B)"
 msgid "&Bot"
 msgstr "&Bot"
 
+msgid "&Breaker character:"
+msgstr ""
+
 msgid "&Browse"
 msgstr "Gözat (&B)"
 
@@ -106,6 +118,9 @@ msgstr "Tuşu değiştir (&C)"
 
 msgid "&Character"
 msgstr "Karakter (&C)"
+
+msgid "&Character name:"
+msgstr ""
 
 msgid "&Character:"
 msgstr "Karakter: (&C)"
@@ -131,6 +146,9 @@ msgstr "Oyunun kendi açtığı pen&cereleri kapat"
 
 msgid "&Commands for trusted players"
 msgstr "Güvenilir oyun&cular için komutlar"
+
+msgid "&Connection:"
+msgstr ""
 
 msgid ""
 "&Construction builds a day (the game allows 2; free, each pays contribution and arnebia):"
@@ -200,6 +218,12 @@ msgstr "&Etkin"
 msgid "&End:"
 msgstr "Bitiş: (&E)"
 
+msgid "&Enhance equipment up to level:"
+msgstr ""
+
+msgid "&Enhancer character:"
+msgstr ""
+
 msgid "&Equipment Enhancer"
 msgstr "&Ekipman Geliştirici"
 
@@ -250,6 +274,12 @@ msgstr "Oyunlar: (&G)"
 
 msgid "&Gang name (another gang's):"
 msgstr "Çete adı (başka bir çetenin) (&G):"
+
+msgid "&Gang number or name (for another gang):"
+msgstr ""
+
+msgid "&Gear level:"
+msgstr ""
 
 msgid "&Gem Maker"
 msgstr "Mücevher Yapıcı (&G)"
@@ -396,6 +426,9 @@ msgstr ""
 msgid "&Movement:"
 msgstr "Hareket: (&M)"
 
+msgid "&Multi Gathering"
+msgstr ""
+
 msgid "&Mute the game's own speech:"
 msgstr "Oyunun kendi konuş&masını sustur:"
 
@@ -441,6 +474,9 @@ msgstr ""
 
 msgid "&Open the log folder"
 msgstr "Günlük klasörünü aç (&O)"
+
+msgid "&Own gang"
+msgstr ""
 
 msgid "&PK mode:"
 msgstr "&PK modu:"
@@ -569,6 +605,9 @@ msgstr "Betik komutları (&S)"
 msgid "&Search"
 msgstr ""
 
+msgid "&Sell gathered items to the Buyer"
+msgstr ""
+
 msgid "&Sell shards by the bag manager's rules (when done, or when too heavy)"
 msgstr ""
 
@@ -580,6 +619,9 @@ msgstr "&Sat:"
 
 msgid "&Send"
 msgstr "Gönder (&S)"
+
+msgid "&Server:"
+msgstr ""
 
 msgid "&Settings"
 msgstr "Ayarlar (&S)"
@@ -594,6 +636,9 @@ msgstr ""
 
 msgid "&Show the time after each message"
 msgstr "Her me&sajdan sonra saati göster"
+
+msgid "&Skill:"
+msgstr ""
 
 msgid "&Skip monsters with HP over:"
 msgstr ""
@@ -649,6 +694,9 @@ msgstr "Zaman sınırı (&T)"
 msgid "&Tools"
 msgstr "Araçlar (&T)"
 
+msgid "&Total Arnebia to spend (0 = no limit):"
+msgstr ""
+
 msgid "&Travel on fusion beast:"
 msgstr "Yolculuk&ta füzyon canavarı:"
 
@@ -676,6 +724,15 @@ msgstr "Betik olarak görüntüle (&V)"
 msgid "&Walk whenever the maps connect on foot"
 msgstr "Haritalar yürüyerek bağlanıyorsa her zaman yürü (&W)"
 
+msgid "&Weapon Enhance Crystal Shards to buy per round:"
+msgstr ""
+
+msgid "&Weapon name:"
+msgstr ""
+
+msgid "&Weapons to buy per round:"
+msgstr ""
+
 msgid "&What to do:"
 msgstr "Ne yapılsın (&W):"
 
@@ -697,14 +754,23 @@ msgstr ""
 msgid "&Write to the files in the logs folder:"
 msgstr "Günlükler klasöründeki dosyalara yaz (&W):"
 
+msgid "&X coordinate (0 = auto):"
+msgstr ""
+
 msgid "&XP loser"
 msgstr "&XP kaybettirici"
+
+msgid "&Y coordinate (0 = auto):"
+msgstr ""
 
 msgid "&Yes, switch language"
 msgstr "Evet, dili değiştir (&Y)"
 
 msgid "&Your places:"
 msgstr "&Yerlerin:"
+
+msgid "&Zone:"
+msgstr ""
 
 msgid "'break' outside a repeat or while block"
 msgstr "Bir repeat ya da while bloğunun dışında 'break'"
@@ -869,6 +935,24 @@ msgstr "Onlardan komut kabul et (&C)"
 msgid "Accept their team &invites"
 msgstr "Takım davetler&ini kabul et"
 
+msgid "Account &Email:"
+msgstr ""
+
+msgid "Account and Characters"
+msgstr ""
+
+msgid "Account and Connection"
+msgstr ""
+
+msgid "Account email is required. Please enter an email."
+msgstr ""
+
+msgid "Account {n}"
+msgstr ""
+
+msgid "Account {n} Settings"
+msgstr ""
+
 msgid "Accumulation points"
 msgstr "Birikme noktaları"
 
@@ -940,6 +1024,9 @@ msgstr ""
 msgid "Advanced settings - {name}"
 msgstr "Gelişmiş ayarlar - {name}"
 
+msgid "After Events (Sell & Store)"
+msgstr ""
+
 msgid "After a &kill count"
 msgstr "Öldürme sayısından sonra (&K)"
 
@@ -948,6 +1035,9 @@ msgstr "Süre sınırından sonra (&T)"
 
 msgid "After farming"
 msgstr "Farmdan sonra"
+
+msgid "After redeeming gifts (only ticked Exchange items)"
+msgstr ""
 
 msgid "After the run, &stay in town and manage the team until I stop it"
 msgstr ""
@@ -973,8 +1063,14 @@ msgstr "Tüm mod"
 msgid "All time"
 msgstr "Tüm zamanlar"
 
+msgid "Allied gang &name:"
+msgstr ""
+
 msgid "Already following you."
 msgstr "Zaten seni takip ediyorum."
+
+msgid "Already logged in as {name}"
+msgstr ""
 
 msgid "Already running."
 msgstr "Zaten çalışıyorum."
@@ -1005,6 +1101,9 @@ msgstr "Hayvan Kulübesi besleme"
 
 msgid "Another character"
 msgstr "Başka bir karakter"
+
+msgid "Another gang's base (by number/name)"
+msgstr ""
 
 msgid "Another gang's, by its name"
 msgstr "Başka bir çetenin, adıyla"
@@ -1037,6 +1136,9 @@ msgstr "Çev&remdeki alan"
 msgid "Arnebia"
 msgstr "Arnebia"
 
+msgid "Arnebia Transfer Settings"
+msgstr ""
+
 msgid ""
 "Arnebia paid out at shops and for fares: {n} (a bought item is an expense once it is used up)"
 msgstr ""
@@ -1047,8 +1149,14 @@ msgid ""
 msgstr ""
 "Tükenen eşyalara harcanan arnebia (kayıtlı fiyatlardan; satın alınan eşyalar burada sayılmaz):"
 
+msgid "Arnebia transfer settings saved successfully."
+msgstr ""
+
 msgid "As many as I can"
 msgstr "Yapabildiğim kadar"
+
+msgid "Assassin"
+msgstr ""
 
 msgid "At a &clock time"
 msgstr "Belirli bir saatte (&C)"
@@ -1061,6 +1169,18 @@ msgstr "Dükkanların sabit fiyatlarıyla:"
 
 msgid "Attack keys: enter keys separated by spaces, for example: j y . h"
 msgstr "Saldırı tuşları: tuşları boşlukla ayırarak gir, örneğin: j y . h"
+
+msgid "Auto (Any zone)"
+msgstr ""
+
+msgid "Auto (Best for this character)"
+msgstr ""
+
+msgid "Auto (Character's own)"
+msgstr ""
+
+msgid "Auto-Detect"
+msgstr ""
 
 msgid "Automatic, by class"
 msgstr "Otomatik, sınıfa göre"
@@ -1134,6 +1254,9 @@ msgid "Break &down to:"
 msgstr ""
 
 msgid "Break them now?"
+msgstr ""
+
+msgid "Breaker character is required."
 msgstr ""
 
 msgid "Breaking can't be undone."
@@ -1240,6 +1363,12 @@ msgstr "Kanallar"
 
 msgid "Character"
 msgstr "Karakter"
+
+msgid "Character &class:"
+msgstr ""
+
+msgid "Character &{n}:"
+msgstr ""
 
 msgid "Character settings - {name}"
 msgstr "Karakter ayarları - {name}"
@@ -1433,6 +1562,12 @@ msgstr "Bağlandı"
 msgid "Connecting..."
 msgstr "Bağlanıyor..."
 
+msgid "Connection &Line / Relay:"
+msgstr ""
+
+msgid "Connection &Line:"
+msgstr ""
+
 msgid "Construction &scanner"
 msgstr ""
 
@@ -1567,8 +1702,14 @@ msgstr ""
 msgid "Couldn't."
 msgstr "Yapamadım."
 
+msgid "Cra&ftsman location:"
+msgstr ""
+
 msgid "Cra&ftsman:"
 msgstr "Usta (&F):"
+
+msgid "Crafting and Enhancing Location"
+msgstr ""
 
 msgid "Craftsman and selling"
 msgstr ""
@@ -1646,6 +1787,12 @@ msgstr "Dev: geliştirme sürümleri (en yeni değişiklikler, bozulabilir)"
 
 msgid "Ding"
 msgstr "Ding"
+
+msgid "Direct"
+msgstr ""
+
+msgid "Direct Connection"
+msgstr ""
 
 msgid "Disabled"
 msgstr "Devre dışı"
@@ -1745,6 +1892,9 @@ msgstr "Şu ana kadarki kazanç: {n} arnebia (toplanan ve satılan)"
 msgid "East edge (x):"
 msgstr "Doğu kenarı (x):"
 
+msgid "Edit &raw script"
+msgstr ""
+
 msgid "Edit binding"
 msgstr "Atamayı düzenle"
 
@@ -1756,6 +1906,9 @@ msgstr "Hızlı ifadeyi düzenle"
 
 msgid "Edit schedule"
 msgstr "Programı düzenle"
+
+msgid "Elf"
+msgstr ""
 
 msgid "Elite"
 msgstr "Elit"
@@ -1803,6 +1956,9 @@ msgid "Enhance Crystals"
 msgstr "Geliştirme Kristalleri"
 
 msgid "Enhance Crystals (breaking them costs arnebia)"
+msgstr ""
+
+msgid "Enhancer character is required."
 msgstr ""
 
 msgid "Enter a keyboard profile name on one line."
@@ -2033,6 +2189,12 @@ msgstr "Tam devriye döngüsü"
 msgid "Game"
 msgstr "Oyun"
 
+msgid "Game executable mw.exe not found in {folder}"
+msgstr ""
+
+msgid "Game is currently {current}, switching to script character {target}..."
+msgstr ""
+
 msgid "Games muted."
 msgstr "Oyunların sesi kapatıldı."
 
@@ -2069,6 +2231,9 @@ msgstr "Toplama (&R)"
 msgid "Gather &outside (after the gangs' areas, or without them)"
 msgstr "Dışarıda topla (çete alanlarından sonra ya da &onlarsız)"
 
+msgid "Gather &outside using Vitality after gang finishes"
+msgstr ""
+
 msgid "Gather for this many &minutes (0: until Vitality runs out):"
 msgstr "Şu kadar dakika topla (0: Canlılık bitene kadar) (&M):"
 
@@ -2096,6 +2261,9 @@ msgstr "{lo}. seviye ve üstü ekipman: Seviye {lv} kristaller"
 msgid "Gear of levels {lo} to {hi}: Level {lv} crystals"
 msgstr "{lo}-{hi}. seviye ekipman: Seviye {lv} kristaller"
 
+msgid "Gear, Class and Enhancing"
+msgstr ""
+
 msgid "Gem &level to stop at:"
 msgstr ""
 
@@ -2118,6 +2286,9 @@ msgid "Gems"
 msgstr "Mücevherler"
 
 msgid "Gems of a level"
+msgstr ""
+
+msgid "General"
 msgstr ""
 
 msgid "Get crystal shards &from:"
@@ -2326,6 +2497,9 @@ msgstr "Oyun nasıl işler"
 msgid "Hunt &until:"
 msgstr ""
 
+msgid "Hunter"
+msgstr ""
+
 msgid "Hunting bount&ies"
 msgstr ""
 
@@ -2516,6 +2690,9 @@ msgstr "Eşyalar"
 msgid "Items with no rule: touch &only what this run picked up"
 msgstr "Kuralı &olmayan eşyalar: yalnızca bu çalışmada toplananlara dokun"
 
+msgid "Items:"
+msgstr ""
+
 msgid "JSON files (*.json)|*.json"
 msgstr "JSON dosyaları (*.json)|*.json"
 
@@ -2545,6 +2722,9 @@ msgstr "Patronlardan uzak dur"
 
 msgid "Keep farming, just tell me"
 msgstr "Farma devam et, yalnızca bana söyle"
+
+msgid "Keep in bag"
+msgstr ""
 
 msgid "Keep the class's b&uffs up"
 msgstr "Sınıfın b&ufflarını açık tut"
@@ -2695,6 +2875,9 @@ msgstr "Günlük"
 msgid "Log files"
 msgstr "Günlük dosyaları"
 
+msgid "Log in to a character first"
+msgstr ""
+
 msgid "Log in to a character in the game first."
 msgstr "Önce oyunda bir karakterle giriş yap."
 
@@ -2753,6 +2936,9 @@ msgstr "MP:"
 
 msgid "Made or received:"
 msgstr "Yapılan veya alınan:"
+
+msgid "Mage"
+msgstr ""
 
 msgid "Make a gem"
 msgstr "Bir mücevher yap"
@@ -2830,6 +3016,9 @@ msgstr ""
 "Eşleşen filtreler devre dışı bırakıldı. Bu mesajları sohbete geri getirmek için kaydet."
 
 msgid "Materials"
+msgstr ""
+
+msgid "Max &minutes per character (0 = no limit):"
 msgstr ""
 
 msgid "Maximum &monster HP:"
@@ -3032,6 +3221,12 @@ msgstr "Atılacaklara taşı (&W)"
 msgid "Move to throw a&way"
 msgstr "Atılacaklara taşı (&W)"
 
+msgid "Multi Gathering"
+msgstr ""
+
+msgid "Multi-Account"
+msgstr ""
+
 msgid "Mute e&very game"
 msgstr "Tüm oyunları sessize al (&V)"
 
@@ -3043,6 +3238,9 @@ msgstr ""
 
 msgid "My own gang's (gangs pay less)"
 msgstr "Kendi çetemin (çete üyeleri daha az öder)"
+
+msgid "My own gang's base (cheaper)"
+msgstr ""
 
 msgid "NPCs"
 msgstr "NPC'ler"
@@ -3097,6 +3295,9 @@ msgstr "Hayır"
 
 msgid "No Gem Maker, Equipment Enhancer or chores runs."
 msgstr "Mücevher Yapıcı, Ekipman Geliştirici ya da günlük iş çalışması yok."
+
+msgid "No active game link"
+msgstr ""
 
 msgid "No bot is running."
 msgstr "Hiçbir bot çalışmıyor."
@@ -3250,6 +3451,9 @@ msgid ""
 msgstr ""
 "Henüz taranmadı. Oyunda bu karakterle giriş yap ve Şimdi tara'ya bas. Bot bir çalışma başlarken de tarar."
 
+msgid "Note: Multi Gathering set {wanted}, but character has {actual}"
+msgstr ""
+
 msgid "Nothing changed in the bag."
 msgstr "Çantada hiçbir değişiklik olmadı."
 
@@ -3292,6 +3496,9 @@ msgstr "Alınacak bir yer yok: çantanın yettiği kadar yapar."
 
 msgid "Nowhere, use what's in the bag"
 msgstr "Hiçbir yerden, çantadakini kullan"
+
+msgid "O&ther gang"
+msgstr ""
 
 msgid ""
 "Officers to visit (each pays for his own bosses, after your killing blow)"
@@ -3392,8 +3599,14 @@ msgstr ""
 msgid "Or type its &name:"
 msgstr "Ya da adı&nı yaz:"
 
+msgid "Orc"
+msgstr ""
+
 msgid "Other"
 msgstr "Diğer"
+
+msgid "Other &gang name:"
+msgstr ""
 
 msgid "Other items"
 msgstr "Diğer eşyalar"
@@ -3412,6 +3625,12 @@ msgstr "Kırmızı iksirlerimiz"
 
 msgid "Outside"
 msgstr "Dışarıda"
+
+msgid "Outside &map:"
+msgstr ""
+
+msgid "Outside / Vitality and General"
+msgstr ""
 
 msgid ""
 "Outside, stop when &Vitality is down to (the character sheet's; 0: until it runs out):"
@@ -3576,6 +3795,15 @@ msgstr ""
 msgid "Players near:"
 msgstr "Yakındaki oyuncular:"
 
+msgid "Please enter at least one character name in Account 1."
+msgstr ""
+
+msgid "Please enter the Account / Email."
+msgstr ""
+
+msgid "Please select your Mist World game folder."
+msgstr ""
+
 msgid "Pliers (Small/Large/Alloy)"
 msgstr ""
 
@@ -3607,6 +3835,9 @@ msgstr "Önceki eşya"
 
 msgid "Previous panel"
 msgstr "Önceki panel"
+
+msgid "Priest"
+msgstr ""
 
 msgid "Private channel"
 msgstr "Özel kanal"
@@ -3730,6 +3961,12 @@ msgstr "Şundan az kalınca yeniden doldur (&T):"
 
 msgid "Reinstall the agent"
 msgstr "Ajanı yeniden yükle"
+
+msgid "Relay"
+msgstr ""
+
+msgid "Relay Connection"
+msgstr ""
 
 msgid "Release &channel:"
 msgstr "Sürüm kanalı (&C):"
@@ -3898,6 +4135,12 @@ msgstr "Eşyaları şimdi depola (&T)"
 msgid "S&tore:"
 msgstr "Depola (&T):"
 
+msgid "S1"
+msgstr ""
+
+msgid "S2"
+msgstr ""
+
 msgid "STOPPED: {why}"
 msgstr "DURDURULDU: {why}"
 
@@ -4017,6 +4260,12 @@ msgstr "Önce bir plan seçin."
 msgid "Select the same character before applying the keyboard profile."
 msgstr "Klavye profilini uygulamadan önce aynı karakteri seç."
 
+msgid "Select your Mist World folder (containing mw.exe)"
+msgstr ""
+
+msgid "Sell / Store &Gem Shards (uses Character -> Bag and supplies rules)"
+msgstr ""
+
 msgid "Sell and store by these lists, then come back"
 msgstr "Bu listelere göre sat ve depola, sonra geri gel"
 
@@ -4065,6 +4314,12 @@ msgid ""
 "Send this to the whole gang as: {where}?\n"
 "\n"
 "{report}"
+msgstr ""
+
+msgid "Server 1 (S1)"
+msgstr ""
+
+msgid "Server 2 (S2)"
 msgstr ""
 
 msgid "Set the attack &range myself"
@@ -4398,6 +4653,9 @@ msgstr "Önce botu durdur. Çalışırken klavyeyi kullanıyor."
 msgid "Stop the plan"
 msgstr "Planı durdur"
 
+msgid "Stop when &Vitality is down to (0 = until it runs out):"
+msgstr ""
+
 msgid "Stop when &Vitality is down to (0: until it runs out):"
 msgstr "Canlılık şuna düşünce dur (0: bitene kadar) (&V):"
 
@@ -4434,6 +4692,9 @@ msgstr "Duruyorum."
 msgid "Stops {rules}."
 msgstr "Durma: {rules}."
 
+msgid "Store in storehouse"
+msgstr ""
+
 msgid "Store items now: started by hand"
 msgstr "Eşyaları şimdi depola: elle başlatıldı"
 
@@ -4454,6 +4715,9 @@ msgstr "Eşyalar depolanıyor"
 msgid "Strangers"
 msgstr "Yabancılar"
 
+msgid "Successfully logged in as {name}"
+msgstr ""
+
 msgid "Summary:"
 msgstr "Özet:"
 
@@ -4462,6 +4726,9 @@ msgstr "Pazar"
 
 msgid "Supplies"
 msgstr "Sarf malzemeleri"
+
+msgid "Switching character to {name}..."
+msgstr ""
 
 msgid "System message"
 msgstr ""
@@ -4512,6 +4779,9 @@ msgstr "Takım liderine ışınlan"
 
 msgid "Tell them now and then that I'm a&way"
 msgstr "Arada bir bilgisayar başında olmadığımı söyle (&W)"
+
+msgid "Test &Login All"
+msgstr ""
 
 msgid "Test &message:"
 msgstr "Deneme &mesajı:"
@@ -4603,10 +4873,6 @@ msgid ""
 "The agent isn't installed in the game yet, and without it a second game closes right after it starts. Open Settings now?"
 msgstr ""
 "Ajan henüz oyuna yüklenmedi; o olmadan ikinci bir oyun açılır açılmaz kapanır. Ayarlar şimdi açılsın mı?"
-
-msgid ""
-"The agent isn't installed in the game yet. Install it in Settings first."
-msgstr "Ajan henüz oyuna yüklenmedi. Önce Ayarlar'dan yükle."
 
 msgid "The area is now 40 tiles around you."
 msgstr "Alan artık çevrendeki 40 kare."
@@ -5010,6 +5276,9 @@ msgstr "En az bir gün işaretle."
 msgid "Tick at least one gem, or a kind of crystal."
 msgstr ""
 
+msgid "Tick items in the Exchange tab first to set Sell or Store here."
+msgstr ""
+
 msgid "Tick the lots to buy in Results first (Space)."
 msgstr ""
 
@@ -5041,6 +5310,12 @@ msgstr "Saat: saat:dakika olarak yaz, örneğin 06:30"
 
 msgid "Time: {h} h {m} min"
 msgstr "Süre: {h} sa {m} dk"
+
+msgid "Timed out waiting for Mist World to start."
+msgstr ""
+
+msgid "Timed out waiting for game agent after starting mw.exe"
+msgstr ""
 
 msgid "Times"
 msgstr "Kez"
@@ -5196,6 +5471,9 @@ msgstr "Parça fiyatları güncelleniyor"
 msgid "Use"
 msgstr "Kullan"
 
+msgid "Use &Black Gold Teleportation Stones (uncheck to walk)"
+msgstr ""
+
 msgid "Use &MP potions"
 msgstr "&MP iksirlerini kullan"
 
@@ -5260,6 +5538,9 @@ msgstr ""
 msgid "Villager Merlin did not give coat and letter"
 msgstr ""
 
+msgid "Vitality is already 0 - skipping outside gathering"
+msgstr ""
+
 msgid "Vitality is down to {n}"
 msgstr "Canlılık {n} değerine düştü"
 
@@ -5282,6 +5563,9 @@ msgstr ""
 
 msgid "Wa&lk to a dungeon or map"
 msgstr "Bir zindana ya da haritaya yürü (&L)"
+
+msgid "Waiting for game login screen to load..."
+msgstr ""
 
 msgid "Waiting {seconds} seconds after {job}"
 msgstr "{job} sonrasında {seconds} saniye bekleniyor"
@@ -5333,6 +5617,9 @@ msgstr "Rastgele dolaş"
 
 msgid "Warnings and errors"
 msgstr "Uyarılar ve hatalar"
+
+msgid "Warrior"
+msgstr ""
 
 msgid "Wednesday"
 msgstr "Çarşamba"
@@ -5435,6 +5722,9 @@ msgid ""
 "Wildcards: * matches any text; ? matches one character. Not a regular expression."
 msgstr ""
 "Joker karakterler: * herhangi bir metinle, ? tek bir karakterle eşleşir. Düzenli ifade değildir."
+
+msgid "Witcher"
+msgstr ""
 
 msgid "With a heal skill, red &potions only below HP (%):"
 msgstr ""
@@ -5729,6 +6019,9 @@ msgstr "çanta eşyaları ve hedefler yine tuşlarla yönetiliyor: {why}"
 msgid "bag only, used between fights"
 msgstr "yalnızca çantada, dövüşler arasında kullanılır"
 
+msgid "bag or load is full - stopping withdrawal"
+msgstr ""
+
 msgid "bag trip: {items}"
 msgstr "çanta yolculuğu: {items}"
 
@@ -5773,6 +6066,9 @@ msgid "bought {n} {shard}: the spare arnebia pays for no more"
 msgstr "{n} {shard} satın alındı: boştaki arnebia daha fazlasına yetmiyor"
 
 msgid "breaking gems"
+msgstr ""
+
+msgid "broke down {n} equipment at Blacksmith"
 msgstr ""
 
 msgid "broke {n} gems and crystals"
@@ -5931,6 +6227,9 @@ msgstr ""
 msgid "checked {n} lots"
 msgstr ""
 
+msgid "checking storehouse for {item} before buying"
+msgstr ""
+
 msgid "checking the ticked lots..."
 msgstr ""
 
@@ -6039,6 +6338,15 @@ msgstr ""
 "ceset hasadı için oyunun ajanı {need} ya da daha yenisi gerekiyor - yeni ajanın yüklenmesi için oyunu yeniden başlat"
 
 msgid "could not enter Thanksgiving Hunt (limit reached or entrance failed)"
+msgstr ""
+
+msgid "could not sell shards: {why}"
+msgstr ""
+
+msgid "could not store shards: {why}"
+msgstr ""
+
+msgid "could not store {item}: {why}"
 msgstr ""
 
 msgid "couldn't add the {shard}"
@@ -6576,6 +6884,9 @@ msgstr "zindanlara evcil hayvansız giriliyor (Araçlar, Zindanlar)"
 msgid "going on"
 msgstr "devam ediliyor"
 
+msgid "going to central plains (1041) before entering gang..."
+msgstr ""
+
 msgid "going to where a guard was seen: {map}"
 msgstr "bir muhafızın görüldüğü yere gidiliyor: {map}"
 
@@ -6600,6 +6911,9 @@ msgstr "{name} orada olduğunu söylediği için {x}, {y} konumuna gidiliyor"
 msgid "gone (sold or taken back)"
 msgstr ""
 
+msgid "got all {n} {item} from storehouse, skipping market purchase"
+msgstr ""
+
 msgid "got off {beast}"
 msgstr "{beast} üzerinden inildi"
 
@@ -6611,6 +6925,9 @@ msgstr "{way} yönüne itilerek çıkıldı"
 
 msgid "got out: walked to {cell}"
 msgstr "çıkıldı: {cell} hücresine yürüdüm"
+
+msgid "got {got} {item} from storehouse; buying remaining {rem} at market"
+msgstr ""
 
 msgid "got {n} Contribution Chests"
 msgstr ""
@@ -6869,8 +7186,8 @@ msgstr "yük {a}/{b}"
 msgid "log in to a character first"
 msgstr "önce bir karakterle giriş yap"
 
-msgid "login must be the first command in a script"
-msgstr "login bir betikteki ilk komut olmalı"
+msgid "login {name}"
+msgstr ""
 
 msgid "looked over the whole area, no chest - back to farming"
 msgstr "bütün alana bakıldı, sandık yok - farma dönülüyor"
@@ -6933,6 +7250,10 @@ msgid "make {n} batches of {potion}"
 msgstr ""
 
 msgid "make {n} batches of {potion} ({fee} arnebia each)"
+msgstr ""
+
+msgid ""
+"make_crystals level must be a number or variable, e.g. 2 or {crystal_level}"
 msgstr ""
 
 msgid "making gems"
@@ -7220,6 +7541,9 @@ msgstr ""
 
 msgid "no {card} in the bag - farming on without an experience card"
 msgstr "çantada {card} yok - deneyim kartı olmadan farma devam"
+
+msgid "no {item} in the bag to break down"
+msgstr ""
 
 msgid "no {item} in the storehouse"
 msgstr "depoda {item} yok"
@@ -7792,6 +8116,9 @@ msgstr ""
 msgid "selling shards"
 msgstr "parçalar satılıyor"
 
+msgid "selling shards per Character -> Bag and supplies rules..."
+msgstr ""
+
 msgid "selling shards: {list}"
 msgstr "parçalar satılıyor: {list}"
 
@@ -7971,6 +8298,12 @@ msgstr "{list} depolandı"
 
 msgid "storing items"
 msgstr "eşyalar depolanıyor"
+
+msgid "storing items/shards per Character -> Bag and supplies rules..."
+msgstr ""
+
+msgid "storing {item} in storehouse..."
+msgstr ""
 
 msgid "storing: {list}"
 msgstr "depolanıyor: {list}"
@@ -8455,9 +8788,6 @@ msgid ""
 msgstr ""
 "oyunun belleği bitti ve çalışmayı durdurdu ({where}) - Mist World'ü yeniden başlat"
 
-msgid "the game refused the login request"
-msgstr "oyun giriş isteğini reddetti"
-
 msgid "the game said nothing - look in the bag"
 msgstr ""
 
@@ -8864,6 +9194,9 @@ msgstr "{cell} üzerindeki ışınlanmadan geçerek"
 msgid "throwing away {n} {item} (the bag manager says so)"
 msgstr "{n} {item} atılıyor (çanta yöneticisi öyle diyor)"
 
+msgid "timed out waiting for game window to load"
+msgstr ""
+
 msgid "to {name}"
 msgstr "{name} kişisine"
 
@@ -9078,6 +9411,9 @@ msgstr ""
 msgid "would {what}"
 msgstr "yapılacak: {what}"
 
+msgid "write it as: breakdown [count] [item]"
+msgstr ""
+
 msgid "write it as: chores [check] [only=bank,donation]"
 msgstr "şöyle yaz: chores [check] [only=bank,donation]"
 
@@ -9085,11 +9421,17 @@ msgid ""
 "write it as: construction_scan, construction_scan publish=broadcast or construction_scan auto=broadcast (announcement, broadcast or system)"
 msgstr ""
 
+msgid "write it as: enhance [check] [where=gang|city] [up_to=N]"
+msgstr ""
+
 msgid "write it as: hold key seconds"
 msgstr "şöyle yaz: hold tuş saniye"
 
 msgid "write it as: login  or  login <character>"
 msgstr "şöyle yaz: login  ya da  login <karakter>"
+
+msgid "write it as: make_crystals weapon 2 [count] [where=gang|city]"
+msgstr ""
 
 msgid ""
 "write it as: market scan [sellers] | market search [item=\"<name>\"] [cheapest] [max=<price>] [category=<name>] [pages=<n>] | market seller <id>[,<id>] | market buy [check] [item=\"<name>\" count=<n> max=<price> [cap=<gold>]]"
@@ -10135,6 +10477,10 @@ msgstr "{w} x {h} kare, {n} çıkış."
 #~ msgid "The agent file is missing from Mist World Farmer's agent folder."
 #~ msgstr "Ajan dosyası Mist World Farmer'ın agent klasöründe yok."
 
+#~ msgid ""
+#~ "The agent isn't installed in the game yet. Install it in Settings first."
+#~ msgstr "Ajan henüz oyuna yüklenmedi. Önce Ayarlar'dan yükle."
+
 #~ msgid "The cave (a character goes into one cave a game day)"
 #~ msgstr "Mağara (bir karakter her oyun gününde bir mağaraya girer)"
 
@@ -10187,6 +10533,9 @@ msgstr "{w} x {h} kare, {n} çıkış."
 #~ msgstr ""
 #~ "follow: Yanında kalırım, dövüşlerine yardım ederim ve gittiğin yere giderim. Rahip ya da Sihirbaz seni ve takımı iyileştirir. buff göndermedikçe buff yok. Seni bir dakika göremezsem dururum."
 
+#~ msgid "login must be the first command in a script"
+#~ msgstr "login bir betikteki ilk komut olmalı"
+
 #~ msgid "no way to walk there"
 #~ msgstr "oraya yürüyerek gidilecek yol yok"
 
@@ -10199,3 +10548,6 @@ msgstr "{w} x {h} kare, {n} çıkış."
 #~ "the game is running an older Mist World Farmer agent - restart Mist World so it loads the new one"
 #~ msgstr ""
 #~ "oyun eski bir Mist World Farmer ajanı çalıştırıyor - yenisini yüklemesi için Mist World'ü yeniden başlat"
+
+#~ msgid "the game refused the login request"
+#~ msgstr "oyun giriş isteğini reddetti"

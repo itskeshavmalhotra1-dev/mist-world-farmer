@@ -20,8 +20,6 @@ import time
 from collections.abc import Callable
 from typing import Any
 
-import psutil
-
 from .. import applog, atlas, daily, gameinstall, phrases, scan, settings, stats, trust
 from ..clock import CLOCK, Clock, clock_for
 from ..errors import carry_on
@@ -553,15 +551,15 @@ class Run(threading.Thread):
             deadline = time.monotonic() + 2.5
             while time.monotonic() < deadline:
                 try:
-                    if not psutil.pid_exists(old_pid):
+                    if not gameinstall._alive(old_pid):  # pyright: ignore[reportPrivateUsage]
                         break
                 except Exception:
                     break
                 time.sleep(0.1)
 
             try:
-                if psutil.pid_exists(old_pid):
-                    psutil.Process(old_pid).kill()
+                if gameinstall._alive(old_pid):  # pyright: ignore[reportPrivateUsage]
+                    gameinstall._end(old_pid)  # pyright: ignore[reportPrivateUsage]
             except Exception:
                 pass
 

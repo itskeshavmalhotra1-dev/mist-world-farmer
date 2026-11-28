@@ -109,7 +109,7 @@ from ..settings import LEVEL_KEEP_MOST
 from ..link import AgentError
 from ..clock import CLOCK, Clock, clock_for
 from ..i18n import N_, _
-from . import activities, chores, combat, constructionscan, crafting, dungeon, follow, gembreak, keyboard, market, resume, survey, teamlead, town, triggers
+from . import activities, chores, combat, constructionscan, crafting, dungeon, follow, keyboard, market, resume, survey, teamlead, town
 from .bot import Bot, Respawned, Stopped
 from .botparts.base import GameLost
 from collections.abc import Callable, Mapping

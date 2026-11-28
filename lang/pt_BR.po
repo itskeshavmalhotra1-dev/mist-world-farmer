@@ -38,6 +38,9 @@ msgstr ""
 msgid "&Accept requests to join my team"
 msgstr "&Aceitar pedidos para entrar na minha equipe"
 
+msgid "&Account / Email:"
+msgstr ""
+
 msgid "&Action:"
 msgstr "&Ação:"
 
@@ -56,6 +59,9 @@ msgstr "&Adicionar filtro"
 msgid "&Add where I stand"
 msgstr "&Adicionar onde estou"
 
+msgid "&Allied gang"
+msgstr ""
+
 msgid "&Another character"
 msgstr "&Outro personagem"
 
@@ -64,6 +70,9 @@ msgstr "&Responder a desconhecidos:"
 
 msgid "&Apply profile"
 msgstr "&Aplicar perfil"
+
+msgid "&Arnebia Transfer"
+msgstr ""
 
 msgid "&Assistant (it kills for you; you can't fight in there):"
 msgstr "&Assistente (ele luta por você; não é possível lutar nele):"
@@ -86,6 +95,9 @@ msgstr "&Mochila e suprimentos"
 msgid "&Bot"
 msgstr "&Bot"
 
+msgid "&Breaker character:"
+msgstr ""
+
 msgid "&Browse"
 msgstr "&Procurar"
 
@@ -106,6 +118,9 @@ msgstr "&Alterar tecla"
 
 msgid "&Character"
 msgstr "&Personagem"
+
+msgid "&Character name:"
+msgstr ""
 
 msgid "&Character:"
 msgstr "&Personagem:"
@@ -130,6 +145,9 @@ msgstr "&Fechar janelas abertas automaticamente pelo jogo"
 
 msgid "&Commands for trusted players"
 msgstr "&Comandos para jogadores confiáveis"
+
+msgid "&Connection:"
+msgstr ""
 
 msgid ""
 "&Construction builds a day (the game allows 2; free, each pays contribution and arnebia):"
@@ -200,6 +218,12 @@ msgstr "&Ativado"
 msgid "&End:"
 msgstr "&Fim:"
 
+msgid "&Enhance equipment up to level:"
+msgstr ""
+
+msgid "&Enhancer character:"
+msgstr ""
+
 msgid "&Equipment Enhancer"
 msgstr "&Aprimorador de equipamentos"
 
@@ -250,6 +274,12 @@ msgstr "&Jogos:"
 
 msgid "&Gang name (another gang's):"
 msgstr "Nome da &guilda (de outra guilda):"
+
+msgid "&Gang number or name (for another gang):"
+msgstr ""
+
+msgid "&Gear level:"
+msgstr ""
 
 msgid "&Gem Maker"
 msgstr "&Criador de gemas"
@@ -397,6 +427,9 @@ msgstr ""
 msgid "&Movement:"
 msgstr "&Movimento:"
 
+msgid "&Multi Gathering"
+msgstr ""
+
 msgid "&Mute the game's own speech:"
 msgstr "&Silenciar a fala do próprio jogo:"
 
@@ -443,6 +476,9 @@ msgstr ""
 
 msgid "&Open the log folder"
 msgstr "Abrir a pasta de &registros"
+
+msgid "&Own gang"
+msgstr ""
 
 msgid "&PK mode:"
 msgstr "Modo &PK:"
@@ -572,6 +608,9 @@ msgstr "&Comandos de script"
 msgid "&Search"
 msgstr ""
 
+msgid "&Sell gathered items to the Buyer"
+msgstr ""
+
 msgid "&Sell shards by the bag manager's rules (when done, or when too heavy)"
 msgstr ""
 "Vender fragmentos pelas regras do gerenciador da mochila (&S) (no fim, ou se estiver pesado)"
@@ -586,6 +625,9 @@ msgstr "&Vender:"
 msgid "&Send"
 msgstr "&Enviar"
 
+msgid "&Server:"
+msgstr ""
+
 msgid "&Settings"
 msgstr "&Configurações"
 
@@ -599,6 +641,9 @@ msgstr ""
 
 msgid "&Show the time after each message"
 msgstr "&Mostrar o horário após cada mensagem"
+
+msgid "&Skill:"
+msgstr ""
 
 msgid "&Skip monsters with HP over:"
 msgstr ""
@@ -655,6 +700,9 @@ msgstr "&Limite de tempo"
 msgid "&Tools"
 msgstr "&Ferramentas"
 
+msgid "&Total Arnebia to spend (0 = no limit):"
+msgstr ""
+
 msgid "&Travel on fusion beast:"
 msgstr "&Viajar montado em besta de fusão:"
 
@@ -682,6 +730,15 @@ msgstr "&Exibir como script"
 msgid "&Walk whenever the maps connect on foot"
 msgstr "&Caminhar sempre que houver ligação a pé entre os mapas"
 
+msgid "&Weapon Enhance Crystal Shards to buy per round:"
+msgstr ""
+
+msgid "&Weapon name:"
+msgstr ""
+
+msgid "&Weapons to buy per round:"
+msgstr ""
+
 msgid "&What to do:"
 msgstr "&O que fazer:"
 
@@ -703,14 +760,23 @@ msgstr "&Escrever o script do dia agora"
 msgid "&Write to the files in the logs folder:"
 msgstr "&Registrar nos arquivos da pasta de registros:"
 
+msgid "&X coordinate (0 = auto):"
+msgstr ""
+
 msgid "&XP loser"
 msgstr "Perdedor de &EXP"
+
+msgid "&Y coordinate (0 = auto):"
+msgstr ""
 
 msgid "&Yes, switch language"
 msgstr "&Sim, mudar o idioma"
 
 msgid "&Your places:"
 msgstr "&Seus locais:"
+
+msgid "&Zone:"
+msgstr ""
 
 msgid "'break' outside a repeat or while block"
 msgstr "'break' fora de um bloco repeat ou while"
@@ -877,6 +943,24 @@ msgstr "Aceitar &comandos deles"
 msgid "Accept their team &invites"
 msgstr "Aceitar &convites para equipe"
 
+msgid "Account &Email:"
+msgstr ""
+
+msgid "Account and Characters"
+msgstr ""
+
+msgid "Account and Connection"
+msgstr ""
+
+msgid "Account email is required. Please enter an email."
+msgstr ""
+
+msgid "Account {n}"
+msgstr ""
+
+msgid "Account {n} Settings"
+msgstr ""
+
 msgid "Accumulation points"
 msgstr "Pontos de acumulação"
 
@@ -949,6 +1033,9 @@ msgstr ""
 msgid "Advanced settings - {name}"
 msgstr "Configurações avançadas - {name}"
 
+msgid "After Events (Sell & Store)"
+msgstr ""
+
 msgid "After a &kill count"
 msgstr "Após uma quantidade de &abates"
 
@@ -957,6 +1044,9 @@ msgstr "Após um &limite de tempo"
 
 msgid "After farming"
 msgstr "Depois da coleta"
+
+msgid "After redeeming gifts (only ticked Exchange items)"
+msgstr ""
 
 msgid "After the run, &stay in town and manage the team until I stop it"
 msgstr "Depois da execução, ficar na cidade e &gerenciar a equipe até eu parar"
@@ -982,8 +1072,14 @@ msgstr "Modo completo"
 msgid "All time"
 msgstr "Todo o período"
 
+msgid "Allied gang &name:"
+msgstr ""
+
 msgid "Already following you."
 msgstr "Já está seguindo você."
+
+msgid "Already logged in as {name}"
+msgstr ""
 
 msgid "Already running."
 msgstr "Já está em execução."
@@ -1014,6 +1110,9 @@ msgstr "Alimentação no Galpão de Animais"
 
 msgid "Another character"
 msgstr "Outro personagem"
+
+msgid "Another gang's base (by number/name)"
+msgstr ""
 
 msgid "Another gang's, by its name"
 msgstr "De outra guilda, pelo nome"
@@ -1047,6 +1146,9 @@ msgstr "Área ao meu &redor"
 msgid "Arnebia"
 msgstr "Arnebia"
 
+msgid "Arnebia Transfer Settings"
+msgstr ""
+
 msgid ""
 "Arnebia paid out at shops and for fares: {n} (a bought item is an expense once it is used up)"
 msgstr ""
@@ -1057,8 +1159,14 @@ msgid ""
 msgstr ""
 "Arnebia gasta em itens consumidos (com base nos preços salvos; itens comprados não são contabilizados aqui):"
 
+msgid "Arnebia transfer settings saved successfully."
+msgstr ""
+
 msgid "As many as I can"
 msgstr "O máximo possível"
+
+msgid "Assassin"
+msgstr ""
 
 msgid "At a &clock time"
 msgstr "Em um &horário específico"
@@ -1072,6 +1180,18 @@ msgstr "Aos preços fixos das lojas:"
 msgid "Attack keys: enter keys separated by spaces, for example: j y . h"
 msgstr ""
 "Teclas de ataque: informe as teclas separadas por espaços, por exemplo: j y . h"
+
+msgid "Auto (Any zone)"
+msgstr ""
+
+msgid "Auto (Best for this character)"
+msgstr ""
+
+msgid "Auto (Character's own)"
+msgstr ""
+
+msgid "Auto-Detect"
+msgstr ""
 
 msgid "Automatic, by class"
 msgstr "Automático, por classe"
@@ -1147,6 +1267,9 @@ msgstr "Quebrar até (&D):"
 
 msgid "Break them now?"
 msgstr "Quebrar agora?"
+
+msgid "Breaker character is required."
+msgstr ""
 
 msgid "Breaking can't be undone."
 msgstr "Quebrar não pode ser desfeito."
@@ -1252,6 +1375,12 @@ msgstr "Canais"
 
 msgid "Character"
 msgstr "Personagem"
+
+msgid "Character &class:"
+msgstr ""
+
+msgid "Character &{n}:"
+msgstr ""
 
 msgid "Character settings - {name}"
 msgstr "Configurações do personagem - {name}"
@@ -1447,6 +1576,12 @@ msgstr "Conectado"
 msgid "Connecting..."
 msgstr "Conectando..."
 
+msgid "Connection &Line / Relay:"
+msgstr ""
+
+msgid "Connection &Line:"
+msgstr ""
+
 msgid "Construction &scanner"
 msgstr "&Scanner de construções"
 
@@ -1583,8 +1718,14 @@ msgstr "Não foi possível escrever: {err}"
 msgid "Couldn't."
 msgstr "Não foi possível."
 
+msgid "Cra&ftsman location:"
+msgstr ""
+
 msgid "Cra&ftsman:"
 msgstr "&Artesão:"
+
+msgid "Crafting and Enhancing Location"
+msgstr ""
 
 msgid "Craftsman and selling"
 msgstr "Artesão e venda"
@@ -1663,6 +1804,12 @@ msgstr ""
 
 msgid "Ding"
 msgstr "Toque"
+
+msgid "Direct"
+msgstr ""
+
+msgid "Direct Connection"
+msgstr ""
 
 msgid "Disabled"
 msgstr "Desativado"
@@ -1764,6 +1911,9 @@ msgstr "Ganhos até agora: {n} arnebia (coletada e vendida)"
 msgid "East edge (x):"
 msgstr "Limite leste (x):"
 
+msgid "Edit &raw script"
+msgstr ""
+
 msgid "Edit binding"
 msgstr "Editar atribuição"
 
@@ -1775,6 +1925,9 @@ msgstr "Editar frase rápida"
 
 msgid "Edit schedule"
 msgstr "Editar agendamento"
+
+msgid "Elf"
+msgstr ""
 
 msgid "Elite"
 msgstr "Elite"
@@ -1823,6 +1976,9 @@ msgstr "Cristais de aprimoramento"
 
 msgid "Enhance Crystals (breaking them costs arnebia)"
 msgstr "Enhance Crystals (quebrá-los custa arnebia)"
+
+msgid "Enhancer character is required."
+msgstr ""
 
 msgid "Enter a keyboard profile name on one line."
 msgstr "Digite o nome do perfil de teclado em uma única linha."
@@ -2052,6 +2208,12 @@ msgstr "Ronda completa"
 msgid "Game"
 msgstr "Jogo"
 
+msgid "Game executable mw.exe not found in {folder}"
+msgstr ""
+
+msgid "Game is currently {current}, switching to script character {target}..."
+msgstr ""
+
 msgid "Games muted."
 msgstr "Jogos silenciados."
 
@@ -2089,6 +2251,9 @@ msgstr "Co&leta"
 msgid "Gather &outside (after the gangs' areas, or without them)"
 msgstr "Coletar &fora (depois das áreas das guildas ou sem visitá-las)"
 
+msgid "Gather &outside using Vitality after gang finishes"
+msgstr ""
+
 msgid "Gather for this many &minutes (0: until Vitality runs out):"
 msgstr "Coletar por esta quantidade de &minutos (0: até acabar a Vitalidade):"
 
@@ -2116,6 +2281,9 @@ msgstr "Equipamento de nível {lo} ou superior: cristais de nível {lv}"
 msgid "Gear of levels {lo} to {hi}: Level {lv} crystals"
 msgstr "Equipamento dos níveis {lo} a {hi}: cristais de nível {lv}"
 
+msgid "Gear, Class and Enhancing"
+msgstr ""
+
 msgid "Gem &level to stop at:"
 msgstr "Nível de gema onde parar (&L):"
 
@@ -2139,6 +2307,9 @@ msgstr "Gemas"
 
 msgid "Gems of a level"
 msgstr "Gemas de um nível"
+
+msgid "General"
+msgstr ""
 
 msgid "Get crystal shards &from:"
 msgstr "Obter fragmentos de cristal &de:"
@@ -2347,6 +2518,9 @@ msgstr "Como o jogo funciona"
 msgid "Hunt &until:"
 msgstr ""
 
+msgid "Hunter"
+msgstr ""
+
 msgid "Hunting bount&ies"
 msgstr "Recompensas de caça (&i)"
 
@@ -2540,6 +2714,9 @@ msgstr "Itens"
 msgid "Items with no rule: touch &only what this run picked up"
 msgstr "Itens sem regra: afetar &somente o que foi coletado nesta execução"
 
+msgid "Items:"
+msgstr ""
+
 msgid "JSON files (*.json)|*.json"
 msgstr "Arquivos JSON (*.json)|*.json"
 
@@ -2569,6 +2746,9 @@ msgstr "Manter distância dos chefes"
 
 msgid "Keep farming, just tell me"
 msgstr "Continuar coletando, apenas me avisar"
+
+msgid "Keep in bag"
+msgstr ""
 
 msgid "Keep the class's b&uffs up"
 msgstr "Manter os &bônus da classe ativos"
@@ -2720,6 +2900,9 @@ msgstr "Registro"
 msgid "Log files"
 msgstr "Arquivos de registro"
 
+msgid "Log in to a character first"
+msgstr ""
+
 msgid "Log in to a character in the game first."
 msgstr "Entre primeiro com um personagem no jogo."
 
@@ -2778,6 +2961,9 @@ msgstr "MP:"
 
 msgid "Made or received:"
 msgstr "Criados ou recebidos:"
+
+msgid "Mage"
+msgstr ""
 
 msgid "Make a gem"
 msgstr "Criar uma gema"
@@ -2856,6 +3042,9 @@ msgstr ""
 "Os filtros de correspondência estão desativados. Salve para restaurar estas mensagens na conversa."
 
 msgid "Materials"
+msgstr ""
+
+msgid "Max &minutes per character (0 = no limit):"
 msgstr ""
 
 msgid "Maximum &monster HP:"
@@ -3058,6 +3247,12 @@ msgstr "&Mover para descartar"
 msgid "Move to throw a&way"
 msgstr "&Mover para descartar"
 
+msgid "Multi Gathering"
+msgstr ""
+
+msgid "Multi-Account"
+msgstr ""
+
 msgid "Mute e&very game"
 msgstr "&Silenciar todos os jogos"
 
@@ -3069,6 +3264,9 @@ msgstr ""
 
 msgid "My own gang's (gangs pay less)"
 msgstr "Da minha própria guilda (guildas pagam menos)"
+
+msgid "My own gang's base (cheaper)"
+msgstr ""
 
 msgid "NPCs"
 msgstr "NPCs"
@@ -3124,6 +3322,9 @@ msgstr "Não"
 msgid "No Gem Maker, Equipment Enhancer or chores runs."
 msgstr ""
 "Nenhuma execução do Criador de Gemas, Aprimorador de Equipamentos ou tarefas."
+
+msgid "No active game link"
+msgstr ""
 
 msgid "No bot is running."
 msgstr "Nenhum bot está em execução."
@@ -3279,6 +3480,9 @@ msgid ""
 msgstr ""
 "Ainda não analisado. Entre com este personagem no jogo e pressione Analisar agora. O bot também faz uma análise ao iniciar uma execução."
 
+msgid "Note: Multi Gathering set {wanted}, but character has {actual}"
+msgstr ""
+
 msgid "Nothing changed in the bag."
 msgstr "Nada mudou na mochila."
 
@@ -3321,6 +3525,9 @@ msgstr "Não há de onde obtê-los: serão criados os que a mochila permitir."
 
 msgid "Nowhere, use what's in the bag"
 msgstr "Em nenhum lugar; usar o que estiver na mochila"
+
+msgid "O&ther gang"
+msgstr ""
 
 msgid ""
 "Officers to visit (each pays for his own bosses, after your killing blow)"
@@ -3423,8 +3630,14 @@ msgstr ""
 msgid "Or type its &name:"
 msgstr "Ou digite o &nome:"
 
+msgid "Orc"
+msgstr ""
+
 msgid "Other"
 msgstr "Outro"
+
+msgid "Other &gang name:"
+msgstr ""
 
 msgid "Other items"
 msgstr "Outros itens"
@@ -3443,6 +3656,12 @@ msgstr "Nossas poções vermelhas"
 
 msgid "Outside"
 msgstr "Fora"
+
+msgid "Outside &map:"
+msgstr ""
+
+msgid "Outside / Vitality and General"
+msgstr ""
 
 msgid ""
 "Outside, stop when &Vitality is down to (the character sheet's; 0: until it runs out):"
@@ -3608,6 +3827,15 @@ msgstr ""
 msgid "Players near:"
 msgstr "Jogadores próximos:"
 
+msgid "Please enter at least one character name in Account 1."
+msgstr ""
+
+msgid "Please enter the Account / Email."
+msgstr ""
+
+msgid "Please select your Mist World game folder."
+msgstr ""
+
 msgid "Pliers (Small/Large/Alloy)"
 msgstr ""
 
@@ -3639,6 +3867,9 @@ msgstr "Item anterior"
 
 msgid "Previous panel"
 msgstr "Painel anterior"
+
+msgid "Priest"
+msgstr ""
 
 msgid "Private channel"
 msgstr "Canal privado"
@@ -3762,6 +3993,12 @@ msgstr "Reabastecer quando houver menos &de:"
 
 msgid "Reinstall the agent"
 msgstr "Reinstalar o agente"
+
+msgid "Relay"
+msgstr ""
+
+msgid "Relay Connection"
+msgstr ""
 
 msgid "Release &channel:"
 msgstr "&Canal de lançamento:"
@@ -3935,6 +4172,12 @@ msgstr "&Guardar itens agora"
 msgid "S&tore:"
 msgstr "&Armazenar:"
 
+msgid "S1"
+msgstr ""
+
+msgid "S2"
+msgstr ""
+
 msgid "STOPPED: {why}"
 msgstr "PARADO: {why}"
 
@@ -4054,6 +4297,12 @@ msgstr "Selecione um plano primeiro."
 msgid "Select the same character before applying the keyboard profile."
 msgstr "Selecione o mesmo personagem antes de aplicar o perfil de teclado."
 
+msgid "Select your Mist World folder (containing mw.exe)"
+msgstr ""
+
+msgid "Sell / Store &Gem Shards (uses Character -> Bag and supplies rules)"
+msgstr ""
+
 msgid "Sell and store by these lists, then come back"
 msgstr "Vender e guardar conforme estas listas e depois voltar"
 
@@ -4106,6 +4355,12 @@ msgstr ""
 "Enviar isto para toda a gangue como: {where}?\n"
 "\n"
 "{report}"
+
+msgid "Server 1 (S1)"
+msgstr ""
+
+msgid "Server 2 (S2)"
+msgstr ""
 
 msgid "Set the attack &range myself"
 msgstr "Definir manualmente o &alcance de ataque"
@@ -4445,6 +4700,9 @@ msgstr "Pare o bot primeiro. Ele usa o teclado enquanto está em execução."
 msgid "Stop the plan"
 msgstr "Parar o plano"
 
+msgid "Stop when &Vitality is down to (0 = until it runs out):"
+msgstr ""
+
 msgid "Stop when &Vitality is down to (0: until it runs out):"
 msgstr "Parar quando a &vitalidade chegar a (0: até acabar):"
 
@@ -4482,6 +4740,9 @@ msgstr "Parando."
 msgid "Stops {rules}."
 msgstr "Para quando: {rules}."
 
+msgid "Store in storehouse"
+msgstr ""
+
 msgid "Store items now: started by hand"
 msgstr "Guardar itens agora: iniciado manualmente"
 
@@ -4502,6 +4763,9 @@ msgstr "Guardando itens"
 msgid "Strangers"
 msgstr "Desconhecidos"
 
+msgid "Successfully logged in as {name}"
+msgstr ""
+
 msgid "Summary:"
 msgstr "Resumo:"
 
@@ -4510,6 +4774,9 @@ msgstr "Domingo"
 
 msgid "Supplies"
 msgstr "Suprimentos"
+
+msgid "Switching character to {name}..."
+msgstr ""
 
 msgid "System message"
 msgstr "Mensagem de sistema"
@@ -4564,6 +4831,9 @@ msgstr "Teletransportar até o líder da equipe"
 
 msgid "Tell them now and then that I'm a&way"
 msgstr "Avisá-los de vez em quando que estou &ausente"
+
+msgid "Test &Login All"
+msgstr ""
 
 msgid "Test &message:"
 msgstr "&Mensagem de teste:"
@@ -4654,11 +4924,6 @@ msgid ""
 "The agent isn't installed in the game yet, and without it a second game closes right after it starts. Open Settings now?"
 msgstr ""
 "O agente ainda não está instalado no jogo e, sem ele, uma segunda instância do jogo fecha logo após iniciar. Abrir as Configurações agora?"
-
-msgid ""
-"The agent isn't installed in the game yet. Install it in Settings first."
-msgstr ""
-"O agente ainda não está instalado no jogo. Primeiro, instale-o em Configurações."
 
 msgid "The area is now 40 tiles around you."
 msgstr "A área agora cobre 40 blocos ao seu redor."
@@ -5076,6 +5341,9 @@ msgstr "Marque pelo menos um dia."
 msgid "Tick at least one gem, or a kind of crystal."
 msgstr "Marque pelo menos uma gema ou um tipo de cristal."
 
+msgid "Tick items in the Exchange tab first to set Sell or Store here."
+msgstr ""
+
 msgid "Tick the lots to buy in Results first (Space)."
 msgstr ""
 
@@ -5107,6 +5375,12 @@ msgstr "Horário: informe horas:minutos, por exemplo, 06:30"
 
 msgid "Time: {h} h {m} min"
 msgstr "Tempo: {h} h {m} min"
+
+msgid "Timed out waiting for Mist World to start."
+msgstr ""
+
+msgid "Timed out waiting for game agent after starting mw.exe"
+msgstr ""
 
 msgid "Times"
 msgstr "Horários"
@@ -5263,6 +5537,9 @@ msgstr "Atualizando preços dos fragmentos"
 msgid "Use"
 msgstr "Usar"
 
+msgid "Use &Black Gold Teleportation Stones (uncheck to walk)"
+msgstr ""
+
 msgid "Use &MP potions"
 msgstr "Usar poções de &MP"
 
@@ -5328,6 +5605,9 @@ msgstr ""
 msgid "Villager Merlin did not give coat and letter"
 msgstr ""
 
+msgid "Vitality is already 0 - skipping outside gathering"
+msgstr ""
+
 msgid "Vitality is down to {n}"
 msgstr "A vitalidade caiu para {n}"
 
@@ -5349,6 +5629,9 @@ msgstr "Mensagens de voz precisam do novo agente no jogo: reinicie o jogo."
 
 msgid "Wa&lk to a dungeon or map"
 msgstr "C&aminhar até uma masmorra ou mapa"
+
+msgid "Waiting for game login screen to load..."
+msgstr ""
 
 msgid "Waiting {seconds} seconds after {job}"
 msgstr "Aguardando {seconds} segundos após {job}"
@@ -5401,6 +5684,9 @@ msgstr "Vagar aleatoriamente"
 
 msgid "Warnings and errors"
 msgstr "Avisos e erros"
+
+msgid "Warrior"
+msgstr ""
 
 msgid "Wednesday"
 msgstr "Quarta-feira"
@@ -5503,6 +5789,9 @@ msgid ""
 "Wildcards: * matches any text; ? matches one character. Not a regular expression."
 msgstr ""
 "Curingas: * corresponde a qualquer texto; ? corresponde a um caractere. Não é uma expressão regular."
+
+msgid "Witcher"
+msgstr ""
 
 msgid "With a heal skill, red &potions only below HP (%):"
 msgstr ""
@@ -5794,6 +6083,9 @@ msgstr "os itens da bolsa e os alvos voltarão a usar teclas: {why}"
 msgid "bag only, used between fights"
 msgstr "somente bolsa, usado entre lutas"
 
+msgid "bag or load is full - stopping withdrawal"
+msgstr ""
+
 msgid "bag trip: {items}"
 msgstr "ida à bolsa: {items}"
 
@@ -5839,6 +6131,9 @@ msgstr "{n} {shard} comprado(s): a Arnebia restante não permite comprar mais"
 
 msgid "breaking gems"
 msgstr "quebrando gemas"
+
+msgid "broke down {n} equipment at Blacksmith"
+msgstr ""
 
 msgid "broke {n} gems and crystals"
 msgstr "{n} gemas e cristais quebrados"
@@ -6001,6 +6296,9 @@ msgstr ""
 msgid "checked {n} lots"
 msgstr ""
 
+msgid "checking storehouse for {item} before buying"
+msgstr ""
+
 msgid "checking the ticked lots..."
 msgstr ""
 
@@ -6111,6 +6409,15 @@ msgstr ""
 "a coleta de cadáveres exige o agente {need} ou mais recente — reinicie o jogo para carregar o novo agente"
 
 msgid "could not enter Thanksgiving Hunt (limit reached or entrance failed)"
+msgstr ""
+
+msgid "could not sell shards: {why}"
+msgstr ""
+
+msgid "could not store shards: {why}"
+msgstr ""
+
+msgid "could not store {item}: {why}"
 msgstr ""
 
 msgid "couldn't add the {shard}"
@@ -6654,6 +6961,9 @@ msgstr "entrando nas masmorras sem mascote (Ferramentas, Masmorras)"
 msgid "going on"
 msgstr "continuando"
 
+msgid "going to central plains (1041) before entering gang..."
+msgstr ""
+
 msgid "going to where a guard was seen: {map}"
 msgstr "indo ao local onde um guarda foi visto: {map}"
 
@@ -6678,6 +6988,9 @@ msgstr "indo para {x}, {y}, onde {name} disse estar"
 msgid "gone (sold or taken back)"
 msgstr ""
 
+msgid "got all {n} {item} from storehouse, skipping market purchase"
+msgstr ""
+
 msgid "got off {beast}"
 msgstr "desmontou de {beast}"
 
@@ -6689,6 +7002,9 @@ msgstr "saiu pressionando {way}"
 
 msgid "got out: walked to {cell}"
 msgstr "saiu: caminhou até {cell}"
+
+msgid "got {got} {item} from storehouse; buying remaining {rem} at market"
+msgstr ""
 
 msgid "got {n} Contribution Chests"
 msgstr "recebeu {n} Contribution Chests"
@@ -6947,8 +7263,8 @@ msgstr "carregar {a} de {b}"
 msgid "log in to a character first"
 msgstr "primeiro, entre em um personagem"
 
-msgid "login must be the first command in a script"
-msgstr "login deve ser o primeiro comando do script"
+msgid "login {name}"
+msgstr ""
 
 msgid "looked over the whole area, no chest - back to farming"
 msgstr "a área toda foi vista, nenhum baú — de volta ao farm"
@@ -7011,6 +7327,10 @@ msgid "make {n} batches of {potion}"
 msgstr ""
 
 msgid "make {n} batches of {potion} ({fee} arnebia each)"
+msgstr ""
+
+msgid ""
+"make_crystals level must be a number or variable, e.g. 2 or {crystal_level}"
 msgstr ""
 
 msgid "making gems"
@@ -7304,6 +7624,9 @@ msgstr ""
 
 msgid "no {card} in the bag - farming on without an experience card"
 msgstr "não há {card} na bolsa — continuando a coleta sem cartão de experiência"
+
+msgid "no {item} in the bag to break down"
+msgstr ""
 
 msgid "no {item} in the storehouse"
 msgstr "não há {item} no depósito"
@@ -7889,6 +8212,9 @@ msgstr ""
 msgid "selling shards"
 msgstr "vendendo fragmentos"
 
+msgid "selling shards per Character -> Bag and supplies rules..."
+msgstr ""
+
 msgid "selling shards: {list}"
 msgstr "vendendo fragmentos: {list}"
 
@@ -8069,6 +8395,12 @@ msgstr "guardou {list}"
 
 msgid "storing items"
 msgstr "guardando itens"
+
+msgid "storing items/shards per Character -> Bag and supplies rules..."
+msgstr ""
+
+msgid "storing {item} in storehouse..."
+msgstr ""
 
 msgid "storing: {list}"
 msgstr "guardando: {list}"
@@ -8562,9 +8894,6 @@ msgid ""
 msgstr ""
 "o jogo ficou sem memória e parou de funcionar ({where}) — reinicie o Mist World"
 
-msgid "the game refused the login request"
-msgstr "o jogo recusou a solicitação de entrada"
-
 msgid "the game said nothing - look in the bag"
 msgstr ""
 
@@ -8979,6 +9308,9 @@ msgstr "pelo teletransporte em {cell}"
 msgid "throwing away {n} {item} (the bag manager says so)"
 msgstr "descartando {n} {item} (conforme o gerenciador da bolsa)"
 
+msgid "timed out waiting for game window to load"
+msgstr ""
+
 msgid "to {name}"
 msgstr "para {name}"
 
@@ -9192,6 +9524,9 @@ msgstr ""
 msgid "would {what}"
 msgstr "{what}"
 
+msgid "write it as: breakdown [count] [item]"
+msgstr ""
+
 msgid "write it as: chores [check] [only=bank,donation]"
 msgstr "escreva assim: chores [check] [only=bank,donation]"
 
@@ -9200,11 +9535,17 @@ msgid ""
 msgstr ""
 "escreva assim: construction_scan, construction_scan publish=broadcast ou construction_scan auto=broadcast (announcement, broadcast ou system)"
 
+msgid "write it as: enhance [check] [where=gang|city] [up_to=N]"
+msgstr ""
+
 msgid "write it as: hold key seconds"
 msgstr "escreva assim: hold tecla segundos"
 
 msgid "write it as: login  or  login <character>"
 msgstr "escreva assim: login ou login <personagem>"
+
+msgid "write it as: make_crystals weapon 2 [count] [where=gang|city]"
+msgstr ""
 
 msgid ""
 "write it as: market scan [sellers] | market search [item=\"<name>\"] [cheapest] [max=<price>] [category=<name>] [pages=<n>] | market seller <id>[,<id>] | market buy [check] [item=\"<name>\" count=<n> max=<price> [cap=<gold>]]"
@@ -10266,6 +10607,11 @@ msgstr "{w} por {h} casas, {n} saídas."
 #~ msgstr ""
 #~ "O arquivo do agente está faltando na pasta de agentes do Mist World Farmer."
 
+#~ msgid ""
+#~ "The agent isn't installed in the game yet. Install it in Settings first."
+#~ msgstr ""
+#~ "O agente ainda não está instalado no jogo. Primeiro, instale-o em Configurações."
+
 #~ msgid "The cave (a character goes into one cave a game day)"
 #~ msgstr "A caverna (o personagem entra em uma caverna por dia de jogo)"
 
@@ -10319,6 +10665,9 @@ msgstr "{w} por {h} casas, {n} saídas."
 #~ msgstr ""
 #~ "follow: fico com você, ajudo nas lutas e acompanho seus passos. Um Sacerdote ou uma Feiticeira cura você e a equipe. Não aplico reforços a menos que você envie buff. Paro após um minuto sem ver você."
 
+#~ msgid "login must be the first command in a script"
+#~ msgstr "login deve ser o primeiro comando do script"
+
 #~ msgid "no way to walk there"
 #~ msgstr "não há caminho a pé até lá"
 
@@ -10331,3 +10680,6 @@ msgstr "{w} por {h} casas, {n} saídas."
 #~ "the game is running an older Mist World Farmer agent - restart Mist World so it loads the new one"
 #~ msgstr ""
 #~ "o jogo está usando uma versão antiga do agente Mist World Farmer — reinicie o Mist World para carregar a nova versão"
+
+#~ msgid "the game refused the login request"
+#~ msgstr "o jogo recusou a solicitação de entrada"

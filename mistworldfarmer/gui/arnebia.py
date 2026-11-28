@@ -7,10 +7,11 @@ import re
 from typing import Any
 import wx
 
-from .. import paths, settings
+from .. import settings
 from ..engine import plan as plans
 from ..i18n import _
-from .common import Dialog, Form, group, info, ok_cancel
+from ..knowledge import DEFAULT_WEAPONS
+from .common import Dialog, group, info, ok_cancel
 from .scripts import ScriptDialog
 
 WHERE_CHOICES = (
@@ -68,8 +69,6 @@ LEVEL_TO_CRYSTAL: dict[int, int] = {
     90: 7,
     100: 8,
 }
-
-from ..knowledge import DEFAULT_WEAPONS
 
 
 def script_file_path() -> str:
@@ -304,13 +303,13 @@ class ArnebiaTransferDialog(Dialog):
         all_profiles = settings.profiles()
         names: list[str] = []
         if email:
-            names = [settings.profile_name(c) for c, em in auto_profiles 
+            names = [settings.profile_name(c) for c, em in auto_profiles
                      if em.casefold() == email.casefold() and (not srv or settings.profile_server(c) == srv)]
         if not names:
-            names = [settings.profile_name(c) for c in all_profiles 
+            names = [settings.profile_name(c) for c in all_profiles
                      if settings.is_character_profile(c) and (not srv or settings.profile_server(c) == srv)]
         if not names and auto_profiles:
-            names = [settings.profile_name(c) for c, _em in auto_profiles 
+            names = [settings.profile_name(c) for c, _em in auto_profiles
                      if (not srv or settings.profile_server(c) == srv)]
         seen = set()
         res = []

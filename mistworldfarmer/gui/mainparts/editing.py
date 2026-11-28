@@ -323,10 +323,9 @@ class EditingMixin(FrameParts):
 
     def edit_bag(self) -> None:
         name = active_profile(self)
-        if not name and which != "events":
+        if not name:
             error(self, _("Log in to the character in the game first."))
             return
-        name = name or "default"
         from ..bagmanager import BagManagerDialog
         if self.selected_pid() not in self.runs:
             self.scanned = getattr(self, "scanned", {})
@@ -372,10 +371,9 @@ class EditingMixin(FrameParts):
         """The game menu's Clean the bag now: throw away what is on the bag manager's throw-away list, after
         the player has seen the list and said yes (thrown items are gone for good)."""
         name = active_profile(self)
-        if not name and which != "events":
+        if not name:
             error(self, _("Log in to the character in the game first."))
             return
-        name = name or "default"
         if self.selected_pid() in self.runs:
             self.say(_("Stop the bot first."))
             return

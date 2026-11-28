@@ -10,7 +10,7 @@ from .. import atlas, jsonio, knowledge, settings
 from ..clock import clock_for
 from ..i18n import N_, _
 from . import chores, dungeon
-from .botparts.base import CONFIRM
+from .botparts.base import CONFIRM, Stopped
 
 if TYPE_CHECKING:
     from .bot import Bot

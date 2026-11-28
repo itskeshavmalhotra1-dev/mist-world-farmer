@@ -446,13 +446,27 @@ final class Keys implements Runnable {
                 }
             }
             int[] st = screen != null ? (int[]) screen.get(null) : null;
-            if (st != null && st.length >= 4 && (st[1] == 999 || st[2] == 999 || st[3] == 999)) {
-                String before = "[" + st[0] + "," + st[1] + "," + st[2] + "," + st[3] + "]";
-                st[0] = 999;
-                st[1] = -1;
-                st[2] = -1;
-                st[3] = -1;
-                Log.info("keys restored Win.g from " + before + " to [999,-1,-1,-1]");
+            if (st != null && st.length >= 4 && !(st[1] == 999 && screenKind(st[0]) == 11)) {
+                int worldIdx = -1;
+                if (screens != null) {
+                    java.util.List<?> sc = (java.util.List<?>) screens.get(null);
+                    if (sc != null) {
+                        for (int idx = 0; idx < sc.size(); idx++) {
+                            if (screenKind(idx) == 11) {
+                                worldIdx = idx;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (worldIdx >= 0) {
+                    String before = "[" + st[0] + "," + st[1] + "," + st[2] + "," + st[3] + "]";
+                    st[0] = worldIdx;
+                    st[1] = 999;
+                    st[2] = -1;
+                    st[3] = -1;
+                    Log.info("keys restored Win.g from " + before + " to [" + worldIdx + ",999,-1,-1]");
+                }
             }
         } catch (Throwable t) {
             Log.error("keys restoreScreenIfStuck failed", t);
