@@ -522,6 +522,10 @@ final class StateServer implements Runnable {
             if (verb.equals("keysup")) {
                 return Keys.release(mine);
             }
+            if (verb.equals("resetui")) {
+                AutomaticLogin.resetUiState();
+                return "ok";
+            }
         } catch (NumberFormatException e) {
             return "bad number in: " + command;
         } catch (ArrayIndexOutOfBoundsException e) {

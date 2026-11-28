@@ -448,6 +448,9 @@ def _into_gang(b: Bot, gang: str) -> None:
     """Into a gang's base where its production area entrances stand: our own gang's inner hall, or
     the gang named `gang`, found by name at the Gang Entrance ("all gangs"), its inner hall when the
     game offers it to us, else its outer hall."""
+    if b.map_id() != 1041 and b.map_id() not in GANG_AREAS and b.map_id() not in range(4001, 4007):
+        b.log(_("going to central plains (1041) before entering gang..."))
+        b.travel(1041)
     if not gang:
         chores.inner_hall(b)
         return
@@ -626,7 +629,11 @@ def run(b: Bot, cfg: dict[str, Any], check_only: bool = False) -> list[str]:
         why = _gang_round(b, cfg, skill, end_at, notes, gang)
         if why in ("vitality", "time", "full"):
             break
-    if why not in ("vitality", "time", "full") and cfg.get("outside", True):
+    if why not in ("vitality", "time") and cfg.get("outside", True):
+        if cfg.get("sell", True) and _holding(b, skill):
+            with homeward(b):
+                _sell(b, cfg, skill)
+            why = ""
         why = _outside(b, cfg, skill, rank, level, end_at, notes)
     # Gathering is over: the way home - to the buyer, then wherever the run ends (finish) - is
     # walked like the walking assistant's: no stopping to fight, even what attacks us, riding the
@@ -758,8 +765,10 @@ def _search_candidates(mid: int, skill: str, start: tuple[int, int],
         cell = model.nearest_floor(gx, gy, radius=radius)
         if cell is None or cell in seen:
             return
-        seen.add(cell)
         cx, cy = cell
+        if atlas.in_safe_zone(mid, cx, cy):
+            return
+        seen.add(cell)
         if skill == "Fishing":
             near_blocked = any(
                 model.nearest_floor(cx + dx, cy + dy, radius=0) is None
@@ -839,10 +848,10 @@ def _outside(b: Bot, cfg: dict[str, Any], skill: str, rank: int | None, level: i
                         b.travel(mid, (cx, cy))
                     except Stopped:
                         continue
-                    cand = dict(p, x=cx, y=cy, label=label({"skill": skill, "map": mid, "x": cx, "y": cy}))
+                    cand = dict(p, x=cx, y=cy, search=False, label=label({"skill": skill, "map": mid, "x": cx, "y": cy}))
                     why = gather_here(b, cfg, skill, cand, end_at)
                     if why != "refused":
-                        p = cand
+                        p.update(x=cx, y=cy, search=False, label=cand["label"])
                         break
             else:
                 why = gather_here(b, cfg, skill, p, end_at)

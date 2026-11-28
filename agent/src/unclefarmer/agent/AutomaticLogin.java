@@ -164,8 +164,9 @@ final class AutomaticLogin {
         return false;
     }
 
-    /** Resets the game window typing lock and focus state so that all keys and menus respond. */
+    /** Resets the game window typing lock, pressed keys, and focus state so that all keys and menus respond. */
     static void resetUiState() {
+        Keys.restoreScreenIfStuck();
         final Frame window = Memory.window();
         if (window == null) return;
         try {
@@ -174,9 +175,26 @@ final class AutomaticLogin {
             fw.setInt(null, 0);
         } catch (Throwable ignored) { }
         try {
+            Field fi = window.getClass().getDeclaredField("i");
+            fi.setAccessible(true);
+            int prevI = fi.getInt(null);
+            if (prevI < 0) {
+                fi.setInt(null, 3);
+                Log.info("resetUiState restored Win.i from " + prevI + " to 3");
+            }
+        } catch (Throwable t) {
+            Log.error("resetUiState Win.i", t);
+        }
+        try {
             Field fv = window.getClass().getDeclaredField("v");
             fv.setAccessible(true);
             fv.setBoolean(null, true);
+        } catch (Throwable ignored) { }
+        try {
+            Field fe = window.getClass().getDeclaredField("e");
+            fe.setAccessible(true);
+            Object pressed = fe.get(null);
+            if (pressed instanceof java.util.Map) ((java.util.Map<?, ?>) pressed).clear();
         } catch (Throwable ignored) { }
         try {
             java.awt.EventQueue.invokeLater(new Runnable() {

@@ -164,6 +164,8 @@ class TravelMixin(Parts):
             # to make on the way, so a running experience card is paused (xp_card_pause)
             xpcard.away(as_bot(self), _("going to {map}", map=atlas.label(dst)))
         avoid: set[Any] = set(travel.kept_off(self.p))      # the rides the profile switches off
+        if not self.p.get("use_black_gold", True):
+            avoid.add("Black Gold Teleportation stone")
         was = getattr(self, "traveling", False)   # a chores run or a survey keeps it on round this
         self.traveling = True
         try:

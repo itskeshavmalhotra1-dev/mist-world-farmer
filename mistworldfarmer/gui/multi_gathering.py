@@ -70,6 +70,7 @@ def load_config() -> dict[str, Any]:
         "outside": bool(raw.get("outside", True)),
         "stop_vitality": int(raw.get("stop_vitality", 0) or 0),
         "sell": bool(raw.get("sell", True)),
+        "use_black_gold": bool(raw.get("use_black_gold", True)),
         "minutes": int(raw.get("minutes", 0) or 0),
     }
 
@@ -200,6 +201,8 @@ class MultiGatheringDialog(wx.Dialog):
         self.stop_vitality = f_opt.number(_("Stop when &Vitality is down to (0 = until it runs out):"),
                                           self.cfg["stop_vitality"], 0, 100000)
         self.sell = f_opt.check(_("&Sell gathered items to the Buyer"), self.cfg["sell"])
+        self.use_black_gold = f_opt.check(_("Use &Black Gold Teleportation Stones (uncheck to walk)"),
+                                          self.cfg["use_black_gold"])
         self.minutes = f_opt.number(_("Max &minutes per character (0 = no limit):"),
                                     self.cfg["minutes"], 0, 1440)
 
@@ -358,6 +361,7 @@ class MultiGatheringDialog(wx.Dialog):
             "outside": self.outside.GetValue(),
             "stop_vitality": self.stop_vitality.GetValue(),
             "sell": self.sell.GetValue(),
+            "use_black_gold": self.use_black_gold.GetValue(),
             "minutes": self.minutes.GetValue(),
         }
         save_config(cfg)

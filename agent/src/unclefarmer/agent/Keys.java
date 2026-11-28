@@ -233,6 +233,7 @@ final class Keys implements Runnable {
     static final String ACCEPTED_FIELD = "s";
     private static Field queue, screen, screens, lastKey, lastAt, typing, accepted;
     private static volatile String status = "not resolved";
+    private static volatile java.util.concurrent.BlockingQueue<Object> lastQueue = null;
 
     private Keys() { }
 
@@ -374,8 +375,14 @@ final class Keys implements Runnable {
             if (vk == 9 && (held.containsKey(Integer.valueOf(164)) || held.containsKey(Integer.valueOf(165)))) return false;
             java.util.Set<Object> listens = (java.util.Set<Object>) accepted.get(null);
             Integer key = Integer.valueOf(vk);
-            if (listens != null && !listens.contains(key)) return true;   // the game ignores this key
-            if (typing.getInt(null) > 0) return true;     // a text box is open: hook keys do nothing then
+            if (listens != null && !listens.contains(key)) {
+                Log.info("keys direct dropped vk=" + vk + " (not in accepted)");
+                return true;   // the game ignores this key
+            }
+            if (typing.getInt(null) > 0) {
+                Log.info("keys direct dropped vk=" + vk + " (typing=" + typing.getInt(null) + ")");
+                return true;     // a text box is open: hook keys do nothing then
+            }
             long now = System.currentTimeMillis();
             if (vk == 160 || vk == 161 || vk == 162 || vk == 164 || vk == 165) {
                 // Shift, Left Ctrl, Alt: only noted as held; the next key reads them
@@ -400,17 +407,55 @@ final class Keys implements Runnable {
             int[] st = (int[]) screen.get(null);
             int[] message = {3, flags, scan, vk, twice ? 1 : 0};
             java.util.concurrent.BlockingQueue<Object> q = (java.util.concurrent.BlockingQueue<Object>) queue.get(null);
+            if (lastQueue != null && q != null && q != lastQueue) {
+                lastQueue.offer(new int[]{99, 0, 0, 0, 0});
+                Log.info("keys woke input thread on replaced Win.f queue");
+                lastQueue = q;
+            } else if (lastQueue == null && q != null) {
+                lastQueue = q;
+            }
             if (st[1] != 999 && st[2] != 999 && st[3] != 999) {
                 q.put(message);
             } else if (st[1] == 999 && screenKind(st[0]) == 11) {
                 message[0] = 4;
                 q.put(message);
+            } else {
+                Log.info("keys direct fallback vk=" + vk + " st=[" + st[0] + "," + st[1] + "," + st[2] + "," + st[3] + "]");
+                return false;
             }
             return true;
         } catch (Throwable t) {
             Log.error("direct keys - using the game's key method from now on", t);
             queue = null;
             return false;
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    static void restoreScreenIfStuck() {
+        try {
+            if (screen == null) resolve();
+            if (queue != null) {
+                java.util.concurrent.BlockingQueue<Object> curQ = (java.util.concurrent.BlockingQueue<Object>) queue.get(null);
+                if (lastQueue != null && curQ != null && curQ != lastQueue) {
+                    lastQueue.offer(new int[]{99, 0, 0, 0, 0});
+                    Log.info("keys woke input thread on replaced Win.f queue");
+                    lastQueue = curQ;
+                } else if (lastQueue == null && curQ != null) {
+                    lastQueue = curQ;
+                }
+            }
+            int[] st = screen != null ? (int[]) screen.get(null) : null;
+            if (st != null && st.length >= 4 && (st[1] == 999 || st[2] == 999 || st[3] == 999)) {
+                String before = "[" + st[0] + "," + st[1] + "," + st[2] + "," + st[3] + "]";
+                st[0] = 999;
+                st[1] = -1;
+                st[2] = -1;
+                st[3] = -1;
+                Log.info("keys restored Win.g from " + before + " to [999,-1,-1,-1]");
+            }
+        } catch (Throwable t) {
+            Log.error("keys restoreScreenIfStuck failed", t);
         }
     }
 
@@ -465,6 +510,7 @@ final class Keys implements Runnable {
      * The name is obfuscated and may change on a patch; the shape is what the JNA hook needs, so it
      * stays. Refuses if there isn't exactly one.
      */
+    @SuppressWarnings("unchecked")
     private static boolean resolve() {
         if (handler != null) return true;
         Class<?> win = null;
@@ -530,6 +576,7 @@ final class Keys implements Runnable {
                 typing = fw;
                 accepted = fs;
                 queue = fq;
+                lastQueue = (java.util.concurrent.BlockingQueue<Object>) fq.get(null);
             }
             status = "ready (" + WIN_CLASS + "." + found.getName()
                     + (all ? ", straight onto the input queue" : ", through the key method") + ")";

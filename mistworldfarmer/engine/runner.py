@@ -540,7 +540,7 @@ class Run(threading.Thread):
             new_pid = self.pid
             self.profile = target_profile
             app = settings.load_app()
-            self._wait_for_login_screen(link, settle=1.5)
+            self._wait_for_login_screen(link, settle=3.0)
             active_link = link
         else:
             if link is not None:
@@ -608,14 +608,16 @@ class Run(threading.Thread):
 
         agent = int(active_link.send("version").split()[1])
         self._login_saved_character(active_link, agent)
-        self.stop_event.wait(3.5)
+        self.stop_event.wait(4.5)
+        focus_game_window(new_pid)
         try:
-            active_link.send("typeesc")
             active_link.send("keysup")
+            active_link.send("typeesc")
+            active_link.send("resetui")
             active_link.send("arm")
+            active_link.send("keys")
         except Exception:
             pass
-        focus_game_window(new_pid)
 
         snap = {}
         snap_deadline = time.monotonic() + 15.0

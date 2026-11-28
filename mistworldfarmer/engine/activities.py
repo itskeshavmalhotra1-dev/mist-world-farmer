@@ -90,6 +90,7 @@ def _multi_gather_config(b: Bot, slot_raw: object, base_cfg: dict[str, Any]) -> 
     cfg["stop_vitality"] = int(data.get("stop_vitality") or 0)
     cfg["sell"] = bool(data.get("sell", True))
     cfg["minutes"] = int(data.get("minutes") or 0)
+    b.p["use_black_gold"] = bool(data.get("use_black_gold", True))
     try:
         idx = int(str(slot_raw))
     except (TypeError, ValueError):
